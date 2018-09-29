@@ -1,2 +1,5 @@
-# Virtaul Env Wrapper
-source /usr/local/bin/virtualenvwrapper.sh
+# Remove carefully
+alias rm='rm -i'
+
+# Xclip to work with Selection Clipboard
+alias xclips='xclip -selection clipboard'
