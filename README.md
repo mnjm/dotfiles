@@ -5,3 +5,4 @@ Dotfiles for my vim and zsh setup.
 2. Zsh
 3. Oh My Zsh
 4. xclip
+5. Vim Plug
