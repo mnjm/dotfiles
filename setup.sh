@@ -10,7 +10,7 @@ echo Setting Up Zsh
 ln -i zshrc ~/.zshrc
 
 # Setup Zsh_alias
-echo Setting Alias
+echo Setting Up Alias
 ln -i zsh_alias ~/.zsh_alias
 
 # Setup the Terminal Theme
@@ -18,4 +18,4 @@ echo Setting Up Zsh Terminal Theme
 ln -i my_amuse ~/.oh-my-zsh/themes/amuse.zsh-theme
 
 # Source Zshrc
-szrc
+echo Updating the your terminal right now using \'. ~/.zshrc\' Command.

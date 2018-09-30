@@ -15,3 +15,6 @@ alias szrc="source ~/.zshrc"
 
 # Edit VimRc
 alias vvimrc="vim ~/.vimrc"
+
+# Workspace
+alias workspace="cd ~/Workspace"
