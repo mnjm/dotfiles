@@ -1,6 +1,3 @@
-# Remove carefully
-alias rm='rm -i'
-
 # Xclip to work with Selection Clipboard
 alias xclips='xclip -selection clipboard'
 
