@@ -1,5 +1,5 @@
 # Setting Up Oh My Zsh
-export ZSH="/home/mm/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 ZSH_THEME="my_amuse"
 

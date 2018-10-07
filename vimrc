@@ -18,7 +18,7 @@ set softtabstop=4
 set expandtab
 
 " Line Numbers
-set relativenumber
+set relativenumber number
 
 " More readable [Not Saved] Message
 set confirm
@@ -47,7 +47,8 @@ set showmatch
 set incsearch
 set hlsearch
 
-" Load Commentary
+" Plugins
 call plug#begin("~/.vim/plugins")
+" Vim Commentary from tpope
 Plug 'tpope/vim-commentary'
 call plug#end()
