@@ -5,8 +5,8 @@
 " For no reason
 set nocompatible
 
-" ColorScheme
-colorscheme koehler
+" Colorscheme
+colorscheme industry
 
 " Syntax Highlight
 syntax on
@@ -25,7 +25,6 @@ set confirm
 
 " Highlight Current Line
 set cursorline
-highlight CursorLine ctermbg=darkblue ctermfg=white
 
 " Bar at 100th Column
 highlight ColorColumn ctermbg=gray
