@@ -6,7 +6,7 @@
 set nocompatible
 
 " Colorscheme
-colorscheme industry
+colorscheme koehler
 
 " Syntax Highlight
 syntax on
