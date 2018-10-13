@@ -15,3 +15,6 @@ alias vvimrc="vim ~/.vimrc"
 
 # Workspace
 alias workspace="cd ~/Workspace"
+
+# File Open
+alias fopen='xdg-open'
