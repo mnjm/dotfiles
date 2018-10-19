@@ -1,3 +1,6 @@
+# Updating the PATH
+export PATH=$PATH:$HOME/.local/bin/
+
 # Xclip to work with Selection Clipboard
 alias xclips='xclip -selection clipboard'
 
