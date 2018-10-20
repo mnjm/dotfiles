@@ -51,3 +51,9 @@ call plug#begin("~/.vim/plugins")
 " Vim Commentary from tpope
 Plug 'tpope/vim-commentary'
 call plug#end()
+
+" My Vim Bindings
+nnoremap ,t :tabe<Space>.<CR>
+nnoremap ,v :vs<Space>.<CR>
+nnoremap o o<Esc>
+nnoremap O O<Esc>
