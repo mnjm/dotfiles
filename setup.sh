@@ -42,14 +42,14 @@ ln -i zsh_alias ~/.zsh_alias
 
 # Setup the Terminal Theme
 tput setaf 6; echo 'Setting Up Zsh Terminal Theme'; tput sgr0
-ln -i my_amuse ~/.oh-my-zsh/themes/amuse.zsh-theme
+ln -i my_amuse ~/.oh-my-zsh/themes/my_amuse.zsh-theme
 
 # Setuo the Tmux Configuration
 tput setaf 6; echo 'Setting Up Tmux Configuration'; tput sgr0
 ln -i 'tmux.conf' ~/.tmux.conf
 
 # Source Zshrc
-tput setaf 6; echo "Updating the your terminal right now using $(tput sgr0) \
+tput setaf 6; echo "Update your terminal right now using $(tput sgr0) \
     '. ~/.zshrc $(tput setaf 6)' Command."; tput sgr0
 
 ###################################################################################
