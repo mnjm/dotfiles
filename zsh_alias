@@ -2,7 +2,7 @@
 export PATH=$PATH:$HOME/.local/bin/
 
 # Xclip to work with Selection Clipboard
-alias xclips='xclip -selection clipboard'
+alias copi='xclip -selection clipboard'
 
 # Edit zshrc
 alias vzrc="vim ~/.zshrc"
@@ -21,3 +21,6 @@ alias workspace="cd ~/Workspace"
 
 # File Open
 alias fopen='xdg-open'
+
+# Python3 Alias
+alias py='python3'
