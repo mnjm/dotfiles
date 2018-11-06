@@ -17,7 +17,7 @@ alias szrc="source ~/.zshrc"
 alias vvimrc="vim ~/.vimrc"
 
 # Workspace
-alias workspace="cd ~/Workspace"
+alias wrksp="cd ~/Workspace"
 
 # File Open
 alias fopen='xdg-open'
