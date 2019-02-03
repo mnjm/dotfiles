@@ -5,6 +5,9 @@
 " For no reason
 set nocompatible
 
+" Change leader key
+let mapleader='.'
+
 " Colorscheme
 colorscheme koehler
 
@@ -56,8 +59,6 @@ Plug 'tpope/vim-commentary'
 " Vim Surround from tpope
 Plug 'tpope/vim-surround'
 call plug#end()
-
-set t_Co=256
 
 " My Vim Bindings
 nnoremap <leader>t :tabe<Space>.<CR>

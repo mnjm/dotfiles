@@ -1,3 +1,12 @@
+# Editor
+export EDITOR=vim
+export VISUAL=$EDITOR
+
+# Enable control-x-e to edit command in editor
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey '^xe' edit-command-line
+
 export DOTFILES="$HOME/Workspace/dotfiles"
 
 # Setting Up Oh My Zsh
@@ -9,7 +18,6 @@ plugins=(
   git
   extract
   python
-  vi-mode
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -17,10 +25,9 @@ source ~/.zsh_alias
 
 # Setting Up Zsh
 setopt no_beep                  # No Beeps Please
-setopt rm_star_wait             # rm * will wait for 10secs
 setopt list_types               # List File Types in Completion
 setopt hist_ignore_dups         # Ignore Duplicate Commands in Histroy File
 setopt hist_verify              # DONT KNOW
 setopt hist_expire_dups_first   # Duplicates will be removed first
 setopt extended_history         # Save start and elapsed time in history
-setopt auto_pushd
+setopt auto_pushd               # Use pushd instead of cd

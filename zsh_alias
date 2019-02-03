@@ -7,6 +7,12 @@ alias copi='xclip -selection clipboard'
 # Safe remove alias
 alias rm='$DOTFILES/scripts/rm_script.sh'
 
+# Clipboard editor
+alias vclip='$DOTFILES/scripts/vim_clipboard_editor.sh'
+
+# Copy path of file
+alias ppath='readlink -f'
+
 # Edit zshrc
 alias vzrc="vim ~/.zshrc"
 
