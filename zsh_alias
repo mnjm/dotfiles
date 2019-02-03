@@ -4,6 +4,9 @@ export PATH=$PATH:$HOME/.local/bin/
 # Xclip to work with Selection Clipboard
 alias copi='xclip -selection clipboard'
 
+# Safe remove alias
+alias rm='$DOTFILES/scripts/rm_script.sh'
+
 # Edit zshrc
 alias vzrc="vim ~/.zshrc"
 
@@ -24,3 +27,6 @@ alias fopen='xdg-open'
 
 # Python3 Alias
 alias py='python3'
+
+# Notebook
+alias notebook='~/.local/bin/jupyter-notebook .'

@@ -1,3 +1,5 @@
+export DOTFILES="$HOME/Workspace/dotfiles"
+
 # Setting Up Oh My Zsh
 export ZSH="$HOME/.oh-my-zsh"
 

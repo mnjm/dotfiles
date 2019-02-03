@@ -30,7 +30,7 @@ set cursorline
 highlight ColorColumn ctermbg=gray
 set colorcolumn=100
 
-" Show Last Command
+" Show Command
 set showcmd
 
 " Load file specific indent files
@@ -42,6 +42,9 @@ set wildmenu
 " Highlight Matching Brackets
 set showmatch
 
+" Correct split setting
+set splitright splitbelow
+
 " Incremental Search and Hightlight
 set incsearch
 set hlsearch
@@ -50,8 +53,17 @@ set hlsearch
 call plug#begin("~/.vim/plugins")
 " Vim Commentary from tpope
 Plug 'tpope/vim-commentary'
+" Vim Surround from tpope
+Plug 'tpope/vim-surround'
 call plug#end()
 
+set t_Co=256
+
 " My Vim Bindings
-nnoremap ,t :tabe<Space>.<CR>
-nnoremap ,v :vs<Space>.<CR>
+nnoremap <leader>t :tabe<Space>.<CR>
+nnoremap <leader>r :vs<Space>.<CR>
+nnoremap <leader>b :sp<Space>.<CR>
+
+" Clipboard copy oaste
+vnoremap <leader>y "+y
+map <leader>p "+p
