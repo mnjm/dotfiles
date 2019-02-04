@@ -6,7 +6,7 @@
 set nocompatible
 
 " Change leader key
-let mapleader='.'
+let mapleader=','
 
 " Colorscheme
 colorscheme koehler
