@@ -9,7 +9,10 @@ set nocompatible
 let mapleader=','
 
 " Colorscheme
-colorscheme koehler
+colorscheme desert
+
+" Shell to use
+set shell=/bin/zsh
 
 " Syntax Highlight
 syntax on
@@ -48,6 +51,9 @@ set showmatch
 " Correct split setting
 set splitright splitbelow
 
+" Auto remove trailing space.
+autocmd FileType c,cpp,py autocmd BufWritePre * %s/\s\+$//e
+
 " Incremental Search and Hightlight
 set incsearch
 set hlsearch
@@ -65,6 +71,16 @@ nnoremap <leader>t :tabe<Space>.<CR>
 nnoremap <leader>r :vs<Space>.<CR>
 nnoremap <leader>b :sp<Space>.<CR>
 
-" Clipboard copy oaste
+" Shift between panes
+nnoremap <C-Left> :tabp<CR>
+nnoremap <C-Right> :tabn<CR>
+
+" Clipboard copy paste
 vnoremap <leader>y "+y
 map <leader>p "+p
+
+" Syntax Highlight
+hi Search ctermfg=0
+
+" Disable print in GUI
+:aunmenu ToolBar.Print

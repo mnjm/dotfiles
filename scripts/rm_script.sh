@@ -4,8 +4,7 @@
 BASEDIR=$(dirname $0)
 
 # Echo Warning
-printf "Do you really want to delete in"
-tput setaf 1; printf " $BASEDIR "; tput sgr 0; printf "file";
+printf "Do you really want to delete "
 tput setaf 1; printf " %s " $@; tput sgr 0; echo "? (Y/?)";
 read -n1 -s choice
 

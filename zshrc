@@ -18,6 +18,7 @@ plugins=(
   git
   extract
   python
+  virtualenv
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -31,3 +32,6 @@ setopt hist_verify              # DONT KNOW
 setopt hist_expire_dups_first   # Duplicates will be removed first
 setopt extended_history         # Save start and elapsed time in history
 setopt auto_pushd               # Use pushd instead of cd
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'

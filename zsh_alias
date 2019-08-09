@@ -31,8 +31,14 @@ alias wrksp="cd ~/Workspace"
 # File Open
 alias fopen='xdg-open'
 
-# Python3 Alias
-alias py='python3'
+# Python Alias
+alias py='python'
 
-# Notebook
-alias notebook='~/.local/bin/jupyter-notebook .'
+# Vim Fzf
+alias vf='vim $(fzf)\n'
+
+# DMS Exports
+alias dmsex='. ~/Workspace/dms/dms_exports.sh'
+
+# Vim DMS Exports
+alias vdmsex='vim ~/Workspace/dms/dms_exports.sh'
