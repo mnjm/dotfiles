@@ -5,15 +5,15 @@
 #################################################################################
 # Zsh
 tput setaf 6; echo 'Installing Zsh'; tput sgr0
-sudo apt install zsh
+sudo apt install zsh -y
 
 # Vim
 tput setaf 6; echo 'Installing Vim'; tput sgr0
-sudo apt install vim
+sudo apt install vim -y
 
 # Tmux
 tput setaf 6; echo 'Installing tmux'; tput sgr0
-sudo apt install tmux
+sudo apt install tmux -y
 
 # Oh-My-Zsh
 tput setaf 6; echo 'Setting up Oh-My-Zsh'; tput sgr0

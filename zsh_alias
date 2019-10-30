@@ -1,3 +1,9 @@
+# Change dir based on stack
+cdir () {
+    set dir_2_change_2 = $(dirs -v | fzf | cut -f2)
+    cd $dir_2_change_2
+}
+
 # Updating the PATH
 export PATH=$PATH:$HOME/.local/bin/
 

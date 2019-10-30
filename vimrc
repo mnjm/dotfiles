@@ -32,8 +32,8 @@ set confirm
 " Highlight Current Line
 set cursorline
 
-" Bar at 100th Column
-highlight ColorColumn ctermbg=gray
+" Bar at 80 Column
+highlight ColorColumn ctermbg=red
 set colorcolumn=100
 
 " Show Command
@@ -52,7 +52,7 @@ set showmatch
 set splitright splitbelow
 
 " Auto remove trailing space.
-autocmd FileType c,cpp,py autocmd BufWritePre * %s/\s\+$//e
+autocmd FileType cc,c,cpp,py autocmd BufWritePre * %s/\s\+$//e
 
 " Incremental Search and Hightlight
 set incsearch
