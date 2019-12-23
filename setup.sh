@@ -11,6 +11,11 @@ sudo apt install zsh -y
 tput setaf 6; echo 'Installing Vim'; tput sgr0
 sudo apt install vim -y
 
+# Fzf
+tput setaf 6; echo 'Installing Fzf'; tput sgr0
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install
+
 # Tmux
 tput setaf 6; echo 'Installing tmux'; tput sgr0
 sudo apt install tmux -y

@@ -64,12 +64,16 @@ call plug#begin("~/.vim/plugins")
 Plug 'tpope/vim-commentary'
 " Vim Surround from tpope
 Plug 'tpope/vim-surround'
+" Fzf
+Plug '~/.fzf'
 call plug#end()
 
 " My Vim Bindings
 nnoremap <leader>t :tabe<Space>.<CR>
 nnoremap <leader>r :vs<Space>.<CR>
 nnoremap <leader>b :sp<Space>.<CR>
+
+nnoremap <leader>f :FZF<CR>
 
 " Shift between panes
 nnoremap <C-Left> :tabp<CR>
