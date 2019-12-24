@@ -1,9 +1,3 @@
-# Change dir based on stack
-cdir () {
-    set dir_2_change_2 = $(dirs -v | fzf | cut -f2)
-    cd $dir_2_change_2
-}
-
 # Updating the PATH
 export PATH=$PATH:$HOME/.local/bin/
 
@@ -19,29 +13,15 @@ alias vclip='$DOTFILES/scripts/vim_clipboard_editor.sh'
 # Copy path of file
 alias ppath='readlink -f'
 
-# Edit zshrc
-alias vzrc="vim ~/.zshrc"
-
-# Edit Alias
-alias vzalias="vim ~/.zsh_alias"
-
-# Source ZshRC and Alias
-alias szrc="source ~/.zshrc"
-
-# Edit VimRc
-alias vvimrc="vim ~/.vimrc"
-
-# Workspace
-alias wrksp="cd ~/Workspace"
-
 # File Open
 alias fopen='xdg-open'
 
 # Python Alias
-alias py='python'
+alias py='python3'
+alias py2='python2'
 
 # Vim Fzf
-alias vf='vim $(fzf)\n'
+alias vf='vim -O $(fzf -m)'
 
 # DMS Exports
 alias dmsex='. ~/Workspace/dms/dms_exports.sh'
