@@ -3,22 +3,26 @@
 #################################################################################
 ##################### Install the applications needed. ##########################
 #################################################################################
-# Zsh
-tput setaf 6; echo 'Installing Zsh'; tput sgr0
-sudo apt install zsh -y
+tput setaf 6; echo 'Installing Zsh, Vim, tmux etc'; tput sgr0
 
-# Vim
-tput setaf 6; echo 'Installing Vim'; tput sgr0
-sudo apt install vim -y
+sudo apt install zsh tmux vim vim-common vim-gnome vim-gui-common vim-runtime vim-tiny curl -y
+sudo apt install git vlc xclip python-dev python-pip python3-dev python3-pip -y
+sudo apt install build-essential cmake libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev -y
+sudo apt install libswscale-dev libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev -y
+sudo apt install libjasper-dev libdc1394-22-dev shutter -y
+python -m pip install pip --upgrade
+python3 -m pip install pip --upgrade
+python -m pip install tensorflow==1.14.0 tensorboard==1.14.0 dlib==19.19.0 --user
+python -m pip install keras scipy scikit-learn opencv-contrib-python==3.4.8.29 --user
+python -m pip install matplotlib
+python3 -m pip install tensorflow==1.14.0 tensorboard==1.14.0 dlib==19.19.0 --user
+python3 -m pip install keras scipy scikit-learn opencv-contrib-python==3.4.8.29 --user
+python3 -m pip install matplotlib
 
 # Fzf
 tput setaf 6; echo 'Installing Fzf'; tput sgr0
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
-
-# Tmux
-tput setaf 6; echo 'Installing tmux'; tput sgr0
-sudo apt install tmux -y
 
 # Oh-My-Zsh
 tput setaf 6; echo 'Setting up Oh-My-Zsh'; tput sgr0
