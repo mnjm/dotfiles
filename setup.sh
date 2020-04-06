@@ -9,15 +9,17 @@ sudo apt install zsh tmux vim vim-common vim-gnome vim-gui-common vim-runtime vi
 sudo apt install git vlc xclip python-dev python-pip python3-dev python3-pip -y
 sudo apt install build-essential cmake libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev -y
 sudo apt install libswscale-dev libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev -y
-sudo apt install libjasper-dev libdc1394-22-dev shutter -y
+sudo apt install libjasper-dev libdc1394-22-dev shutter python-tk python3-tk -y
+sudo apt install unrar android-tools-adb android-tools-fastboot -y
+
 python -m pip install pip --upgrade
 python3 -m pip install pip --upgrade
 python -m pip install tensorflow==1.14.0 tensorboard==1.14.0 dlib==19.19.0 --user
 python -m pip install keras scipy scikit-learn opencv-contrib-python==3.4.8.29 --user
-python -m pip install matplotlib
+python -m pip install matplotlib --user
 python3 -m pip install tensorflow==1.14.0 tensorboard==1.14.0 dlib==19.19.0 --user
 python3 -m pip install keras scipy scikit-learn opencv-contrib-python==3.4.8.29 --user
-python3 -m pip install matplotlib
+python3 -m pip install matplotlib --user
 
 # Fzf
 tput setaf 6; echo 'Installing Fzf'; tput sgr0

@@ -31,6 +31,7 @@ set confirm
 
 " Highlight Current Line
 set cursorline
+hi CursorLine term=standout cterm=bold
 
 " Bar at 80 Column
 highlight ColorColumn ctermbg=red
@@ -64,6 +65,8 @@ call plug#begin("~/.vim/plugins")
 Plug 'tpope/vim-commentary'
 " Vim Surround from tpope
 Plug 'tpope/vim-surround'
+" " harmany between vim and tmux
+" Plug 'christoomey/vim-tmux-navigator'
 " Fzf
 Plug '~/.fzf'
 call plug#end()
@@ -75,9 +78,15 @@ nnoremap <leader>b :sp<Space>.<CR>
 
 nnoremap <leader>f :FZF<CR>
 
-" Shift between panes
-nnoremap <C-Left> :tabp<CR>
-nnoremap <C-Right> :tabn<CR>
+" Shift between tabs
+nnoremap ,a :tabp<CR>
+nnoremap ,d :tabn<CR>
+
+" Move between splits
+nnoremap <C-h> <C-W><C-h>
+nnoremap <C-j> <C-W><C-j>
+nnoremap <C-k> <C-W><C-k>
+nnoremap <C-l> <C-W><C-l>
 
 " Clipboard copy paste
 vnoremap <leader>y "+y
