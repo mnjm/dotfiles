@@ -23,8 +23,5 @@ alias py2='python2'
 # Vim Fzf
 alias vf='vim -O $(fzf -m)'
 
-# DMS Exports
-alias dmsex='. ~/Workspace/dms/dms_exports.sh'
-
-# Vim DMS Exports
-alias vdmsex='vim ~/Workspace/dms/dms_exports.sh'
+# Tmux Fzf New/Attach
+alias tmuxn='tmux new -A -s $(tmux ls | fzf --no-multi --print-query | tail -n 1 | cut -d':' -f1)'

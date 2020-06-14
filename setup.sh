@@ -1,40 +1,26 @@
 #!/bin/sh
-if [ $# -eq 1 ]
- then
-    #################################################################################
-    ##################### Install the applications needed. ##########################
-    #################################################################################
-    tput setaf 6; echo 'Installing essential stuffs'; tput sgr0
-    sudo apt install zsh tmux vim vim-common vim-gnome vim-gui-common vim-runtime vim-tiny curl -y
-    sudo apt install git vlc xclip python-dev python-pip python3-dev python3-pip -y
-    sudo apt install build-essential cmake libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev -y
-    sudo apt install libswscale-dev libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev -y
-    sudo apt install libjasper-dev libdc1394-22-dev shutter python-tk python3-tk -y
-    sudo apt install unrar android-tools-adb android-tools-fastboot -y
-    python -m pip install pip --upgrade
-    python3 -m pip install pip --upgrade
-    python -m pip install tensorflow==1.14.0 tensorboard==1.14.0 dlib==19.19.0 --user
-    python -m pip install keras scipy scikit-learn opencv-contrib-python==3.4.8.29 --user
-    python -m pip install matplotlib --user
-    python3 -m pip install tensorflow==1.14.0 tensorboard==1.14.0 dlib==19.19.0 --user
-    python3 -m pip install keras scipy scikit-learn opencv-contrib-python==3.4.8.29 --user
-    python3 -m pip install matplotlib --user
+if [ $# -eq 1 ]; then
+    # Fresh install
+    sudo apt install zsh tmux vim curl git vlc xclip python3 python3-dev python3-pip python3-tk -y
+    sudo apt install build-essential cmake android-tools-adb android-tools-fastboot -y
+    sudo apt install python-is-python3 -y
+    sudo apt install curl wget unrar rsync -y
+    python3 -m pip install scipy numpy opencv-contrib-python matplotlib --user
+    python3 -m pip install tensorflow tensorboard datetime --user
+
+    # Fzf
+    tput setaf 6; echo 'Installing Fzf'; tput sgr0
+    git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+    ~/.fzf/install
+
+    # Oh-My-Zsh
+    tput setaf 6; echo 'Setting up Oh-My-Zsh'; tput sgr0
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
+    # Vim Plug
+    tput setaf 6; echo 'Setting Up vim Plug'; tput sgr0
+    curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 fi
-
-# Fzf
-tput setaf 6; echo 'Installing Fzf'; tput sgr0
-git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-~/.fzf/install
-
-# Oh-My-Zsh
-tput setaf 6; echo 'Setting up Oh-My-Zsh'; tput sgr0
-sh -c \
-    "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-
-# Vim Plug
-tput setaf 6; echo 'Setting Up vim Plug'; tput sgr0
-curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 #################################################################################
 ################ Setting up the dotfiles in its specific locations ##############
