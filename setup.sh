@@ -1,7 +1,7 @@
 #!/bin/sh
 if [ $# -eq 1 ]; then
     # Fresh install
-    sudo apt install zsh tmux vim curl git vlc xclip python3 python3-dev python3-pip python3-tk -y
+    sudo apt install zsh tmux vim vim-gui-common curl git vlc xclip python3 python3-dev python3-pip python3-tk -y
     sudo apt install build-essential cmake android-tools-adb android-tools-fastboot -y
     sudo apt install python-is-python3 -y
     sudo apt install curl wget unrar rsync -y

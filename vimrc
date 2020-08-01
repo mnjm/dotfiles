@@ -1,99 +1,47 @@
-" ############################################
-" ########### VIM CONFIGURATION ##############
-" ############################################
-
-" For no reason
-set nocompatible
-
-" Change leader key
-let mapleader=','
-
-" Colorscheme
-colorscheme desert
-
-" Shell to use
-set shell=/bin/zsh
-
-" Syntax Highlight
-syntax on
-
-" Indentation
-set tabstop=4
+set nocompatible                                                " For no reason
+let mapleader=','                                               " Change leader key used for custom keybindings
+colorscheme desert                                              " Color scheme
+syntax on                                                       " Highlight syntax
+set tabstop=4                                                   " Indentation
 set shiftwidth=4
 set softtabstop=4
 set expandtab
-
-" Line Numbers
-set relativenumber number
-
-" More readable [Not Saved] Message
-set confirm
-
-" Highlight Current Line
-set cursorline
+set relativenumber number                                       " Line Numbers
+set confirm                                                     " More readable [Not Saved] Message
+set cursorline                                                  " Cursor Line highlight
 hi CursorLine term=standout cterm=bold
-
-" Bar at 80 Column
-highlight ColorColumn ctermbg=red
-set colorcolumn=100
-
-" Show Command
-set showcmd
-
-" Load file specific indent files
-filetype indent on
-
-" Autocompletion for commands
-set wildmenu
-
-" Highlight Matching Brackets
-set showmatch
-
-" Correct split setting
-set splitright splitbelow
-
-" Auto remove trailing space.
-autocmd FileType cc,c,cpp,py autocmd BufWritePre * %s/\s\+$//e
-
-" Incremental Search and Hightlight
-set incsearch
+set colorcolumn=100                                             " Bar at 100th column
+hi ColorColumn ctermbg=red
+set showcmd                                                     " Show Command on bottom left
+filetype indent on                                              " Load file specific indent files
+set wildmenu                                                    " Autocomplete commands/files in command mode
+set showmatch                                                   " Highlight Matching Brackets
+set splitright splitbelow                                       " Sane way of splitting
+" Disable print in GUI
+aunmenu ToolBar.Print
+autocmd FileType cc,c,cpp,py autocmd BufWritePre * %s/\s\+$//e  " Auto remove trailing space c and python codes.
+set incsearch                                                   " Search setting
 set hlsearch
+hi Search ctermfg=0
+set clipboard=unnamedplus                                       " Clipboard
 
 " Plugins
 call plug#begin("~/.vim/plugins")
-" Vim Commentary from tpope
-Plug 'tpope/vim-commentary'
-" Vim Surround from tpope
-Plug 'tpope/vim-surround'
-" " harmany between vim and tmux
-" Plug 'christoomey/vim-tmux-navigator'
-" Fzf
-Plug '~/.fzf'
+Plug 'tpope/vim-commentary'                                     " Vim Commentary from tpope
+Plug 'tpope/vim-surround'                                       " Vim Surround from tpope
+Plug '~/.fzf'                                                   " Fzf
 call plug#end()
 
-" My Vim Bindings
-nnoremap <leader>t :tabe<Space>.<CR>
-nnoremap <leader>r :vs<Space>.<CR>
-nnoremap <leader>b :sp<Space>.<CR>
-
-nnoremap <leader>f :FZF<CR>
-
-" Shift between tabs
-nnoremap ,a :tabp<CR>
-nnoremap ,d :tabn<CR>
-
-" Move between splits
-nnoremap <C-h> <C-W><C-h>
+" Custom key bindings 
+nnoremap <leader>t :tabe<Space>.<CR>                            " Open tab
+nnoremap <leader>r :vs<Space>.<CR>                              " Vertical split
+nnoremap <leader>b :sp<Space>.<CR>                              " Horizontal split
+vnoremap <leader>y "+y                                          " Clipboard yanc
+map <leader>p "+p                                               " Clipboard paste
+nnoremap <leader>f :FZF<CR>                                     " Open FZF
+nnoremap <leader>h :tabp<CR>                                    " Move between tabs easily
+nnoremap <leader>l :tabn<CR>
+nnoremap <C-h> <C-W><C-h>                                       " Move between splits
 nnoremap <C-j> <C-W><C-j>
 nnoremap <C-k> <C-W><C-k>
 nnoremap <C-l> <C-W><C-l>
-
-" Clipboard copy paste
-vnoremap <leader>y "+y
-map <leader>p "+p
-
-" Syntax Highlight
-hi Search ctermfg=0
-
-" Disable print in GUI
-:aunmenu ToolBar.Print

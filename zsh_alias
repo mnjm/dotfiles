@@ -25,3 +25,6 @@ alias vf='vim -O $(fzf -m)'
 
 # Tmux Fzf New/Attach
 alias tmuxn='tmux new -A -s $(tmux ls | fzf --no-multi --print-query | tail -n 1 | cut -d':' -f1)'
+
+# Ls
+alias ls='ls --color=tty --group-directories-first'

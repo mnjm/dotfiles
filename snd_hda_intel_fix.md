@@ -23,4 +23,4 @@
   blacklist snd_soc_skl
   ```
 
-- And **restart** the PC
+- And **restart** the PC `sudo reboot`
