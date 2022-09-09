@@ -1,3 +1,12 @@
+# Exports
+export EDITOR=vim
+export VISUAL=$EDITOR
+export PATH=$PATH:$HOME/bin/
+export PATH=$PATH:$HOME/.local/bin/
+export LC_ALL=en_IN.UTF-8
+export LANG=en_IN.UTF-8
+export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
+
 # Enable control-x-e to edit command in editor
 autoload -U edit-command-line
 zle -N edit-command-line
@@ -6,9 +15,6 @@ bindkey '^xe' edit-command-line
 autoload -U add-zsh-hook
 
 export DOTFILES="$HOME/workspace/dotfiles"
-
-# Running alias
-source ~/.zsh_alias
 
 # Setting Up Zsh setops
 setopt no_beep                  # No Beeps Please
@@ -40,8 +46,9 @@ export PROMPT='${NEWLINE}%(?..%F{red}❌ )%F{14}%n@%m%f%F{white}:%F{green}%~ ${v
 # FZF
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# Exports
-export EDITOR=vim
-export VISUAL=$EDITOR
-export PATH=$PATH:$HOME/bin/
-export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
+# Running scripts
+for sh_file in $DOTFILES/scripts/*.sh; do
+    source $sh_file
+done
+# Running alias
+source ~/.zsh_alias

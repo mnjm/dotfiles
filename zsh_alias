@@ -1,29 +1,16 @@
-# Updating the PATH
-export PATH=$PATH:$HOME/.local/bin/
-
-# Xclip to work with Selection Clipboard
-alias copi='xclip -selection clipboard'
-
-# Safe remove alias
-alias rm='$DOTFILES/scripts/rm_script.sh'
-
-# Clipboard editor
-alias vclip='$DOTFILES/scripts/vim_clipboard_editor.sh'
-
-# Copy path of file
-alias ppath='readlink -f'
-
-# File Open
-alias fopen='xdg-open'
-
-# Python Alias
-alias py='python3'
-
-# Vim Fzf
-alias vf='vim -O $(fzf -m)'
-
-# Tmux Fzf New/Attach
-alias tmuxn='tmux new -A -s $(tmux ls | fzf --no-multi --print-query | tail -n 1 | cut -d':' -f1)'
-
-# Ls
-alias ls='ls --color=tty --group-directories-first'
+alias ls='ls --color=tty --group-directories-first'             # ls
+alias ll='ls -alF'
+alias grep='grep --color=auto'
+alias ..='cd ..'
+alias copi='xclip -selection clipboard'                         # Xclip to work with Selection Clipboard
+alias rm='safe_rm'
+alias ppath='readlink -f'                                       # Copy path of file
+alias fopen='xdg-open'                                          # Open file graphically
+alias py='python3'                                              # Python Alias
+alias vf='vim -O $(fzf -m)'                                     # Select a file using fzf and open it in vim
+alias tmux='tmux -u'
+alias tmuxn='tmux new -A -s $(tmux ls | fzf --no-multi \
+    --print-query | tail -n 1 | cut -d':' -f1)'                 # Select/open session using fzf
+alias g='git'                                                   # git
+alias gs='git status'
+alias gd='git diff'
