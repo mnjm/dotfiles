@@ -9,7 +9,7 @@ alert_local "Installing packages"
 sudo apt install zsh zsh-autosuggestions zsh-doc tmux vim vim-gui-common curl git vlc xclip python3 python3-dev python3-pip python3-tk -y
 sudo apt install build-essential cmake android-tools-adb android-tools-fastboot -y
 sudo apt install curl wget unrar rsync -y
-sudo apt install nala
+sudo apt install nala htop -y
 python3 -m pip install scipy numpy opencv-contrib-python matplotlib --user
 python3 -m pip install tensorflow tensorboard datetime --user
 
