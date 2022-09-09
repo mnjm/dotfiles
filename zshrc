@@ -6,6 +6,9 @@ export PATH=$PATH:$HOME/.local/bin/
 export LC_ALL=en_IN.UTF-8
 export LANG=en_IN.UTF-8
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
+export HISTFILE=~/.zsh_history
+export HISTSIZE=10000
+export SAVEHIST=10000
 
 # Enable control-x-e to edit command in editor
 autoload -U edit-command-line

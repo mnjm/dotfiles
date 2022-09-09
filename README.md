@@ -3,6 +3,5 @@ Dotfiles for my vim and zsh setup.
 # Dependencies
 1. Vim
 2. Zsh
-3. Oh My Zsh
-4. xclip
-5. Vim Plug
+3. xclip
+4. Vim Plug

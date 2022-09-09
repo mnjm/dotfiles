@@ -6,7 +6,7 @@ alert_local() {
 
 # Fresh install
 alert_local "Installing packages"
-sudo apt install zsh tmux vim vim-gui-common curl git vlc xclip python3 python3-dev python3-pip python3-tk -y
+sudo apt install zsh zsh-autosuggestions zsh-doc tmux vim vim-gui-common curl git vlc xclip python3 python3-dev python3-pip python3-tk -y
 sudo apt install build-essential cmake android-tools-adb android-tools-fastboot -y
 sudo apt install curl wget unrar rsync -y
 sudo apt install nala
@@ -31,6 +31,7 @@ vim +PlugInstall +qall
 # Setup Zshrc
 alert_local 'Setting Up Zsh'
 ln -i zshrc ~/.zshrc
+touch ~/.zsh_history
 
 # Setup Zsh_alias
 alert_local 'Setting Up Alias'
@@ -45,3 +46,7 @@ mkdir -p ~/.tmux
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 alert_local 'Installing tmux plugins'
 ~/.tmux/plugins/tpm/tpm && ~/.tmux/plugins/tpm/bin/install_plugins
+
+# Change shell to zsh
+alert_local "Changing default sh to zsh"
+chsh -s $(which zsh)
