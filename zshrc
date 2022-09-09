@@ -7,6 +7,7 @@ autoload -U add-zsh-hook
 
 export DOTFILES="$HOME/workspace/dotfiles"
 
+# Running alias
 source ~/.zsh_alias
 
 # Setting Up Zsh setops
@@ -32,7 +33,7 @@ zstyle ':vcs_info:*' check-for-changes true
 zstyle ':vcs_info:*' unstagedstr ' %F{red}%B❗%b%f'
 zstyle ':vcs_info:*' stagedstr ' %F{yellow}%B✛%b%f'
 zstyle ':vcs_info:git:*' formats '%F{119}↝  %b%f%c%u'
-zstyle ':vcs_info:git:*' actionformats '%F{119}↝  %b performing %a%f %c%u'
+zstyle ':vcs_info:git:*' actionformats '%F{119}↝  %b%f performing %F{119}%a%f %c%u'
  
 export PROMPT='${NEWLINE}%(?..%F{red}❌ )%F{14}%n@%m%f%F{white}:%F{green}%~ ${vcs_info_msg_0_} ${NEWLINE}%F{172}$ %f'
 
