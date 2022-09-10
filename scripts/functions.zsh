@@ -27,5 +27,11 @@ function vclip() {
     cat /tmp/clipboard | xclip -selection clipboard -i
 
     # Remove the clipboard file
-    rm /tmp/clipboard
+    /bin/rm /tmp/clipboard
+}
+
+# take = mkdir + cd
+function take() {
+    mkdir -p $1
+    cd $1
 }
