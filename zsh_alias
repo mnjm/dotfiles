@@ -13,3 +13,4 @@ alias tmuxn='tmux new -A -s $(tmux ls | fzf --no-multi \
 alias g='git'                                                   # git
 alias gs='git status'
 alias gd='git diff'
+alias extract='$DOTFILES/scripts/extract.zsh'                   # Oh-my-zsh extract script

@@ -75,7 +75,7 @@ bindkey '^ ' autosuggest-accept # Ctrl+space to accept the suggestion
 _source_if_file_exists ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Running scripts
-for sh_file in $DOTFILES/scripts/*.zsh; do
+for sh_file in $DOTFILES/scripts/functions/*.zsh; do
     source $sh_file
 done
 # Running alias
