@@ -34,8 +34,8 @@ call plug#end()
 
 " Custom key bindings 
 nnoremap <leader>t :tabe<Space>.<CR>                            " Open tab
-nnoremap <leader>r :vs<Space>.<CR>                              " Vertical split
-nnoremap <leader>b :sp<Space>.<CR>                              " Horizontal split
+nnoremap <leader>\| :vs<Space>.<CR>                             " Vertical split
+nnoremap <leader>- :sp<Space>.<CR>                              " Horizontal split
 vnoremap <leader>y "+y                                          " Clipboard yanc
 map <leader>p "+p                                               " Clipboard paste
 nnoremap <leader>f :FZF<CR>                                     " Open FZF

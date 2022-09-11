@@ -5,7 +5,7 @@ alert_local() {
     tput setaf $color; echo $1; tput sgr0
 }
 
-# # Fresh install
+# Fresh install
 alert_local "Installing packages"
 sudo apt install zsh zsh-doc tmux vim vim-gui-common curl git vlc xclip python3 python3-dev python3-pip python3-tk -y
 sudo apt install build-essential cmake android-tools-adb android-tools-fastboot -y
@@ -18,14 +18,14 @@ python3 -m pip install tensorflow tensorboard datetime --user
 alert_local 'Installing Fzf'
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 if [ -f ~/.fzf/install ]; then
-    ~/.fzf/install
+    ~/.fzf/install --all --no-bash
 else
     alert_local "Fzf installation failed" 1
 fi
 
 Setup Vimrc
 alert_local 'Setting Up Vim'
-ln -i vimrc ~/.vimrc
+ln -s vim/vimrc ~/.vimrc
 # Vim Plug
 alert_local 'Setting Up vim Plug'
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -35,7 +35,7 @@ vim +PlugInstall +qall
 
 # Setup Zshrc
 alert_local 'Setting Up Zsh'
-ln -i zshrc ~/.zshrc
+ln -s zsh/zshrc ~/.zshrc
 touch ~/.zsh_history
 
 # Setup Zsh Plugins
@@ -45,13 +45,9 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosugges
 # Zsh Syntax Highlight
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.zsh/zsh-syntax-highlighting
 
-# Setup Zsh_alias
-alert_local 'Setting Up Alias'
-ln -i zsh_alias ~/.zsh_alias
-
 # Setuo the Tmux Configuration
 alert_local 'Setting Up Tmux Configuration'
-ln -i 'tmux.conf' ~/.tmux.conf
+ln -s tmux/tmux.conf ~/.tmux.conf
 # Tmux Plugin Manager
 alert_local 'Setting up Tmux Plugin Manager'
 mkdir -p ~/.tmux

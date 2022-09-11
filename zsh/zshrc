@@ -10,7 +10,7 @@ export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 export HISTFILE=~/.zsh_history
 export HISTSIZE=10000
 export SAVEHIST=10000
-export DOTFILES="$HOME/workspace/dotfiles"
+export DOTFILES="$HOME/workspace/dotfiles" # Location where dotfiles cloned. Alternatively can be exported in ~/.zshrc_local file.
 
 _alert_local() {
     color=${2:-6}
@@ -74,9 +74,16 @@ _source_if_file_exists ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 bindkey '^ ' autosuggest-accept # Ctrl+space to accept the suggestion
 _source_if_file_exists ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-# Running scripts
-for sh_file in $DOTFILES/scripts/functions/*.zsh; do
-    source $sh_file
-done
-# Running alias
-source ~/.zsh_alias
+# Loading local zshrc
+local zshrc_local=~/.zshrc_local
+[ -f "$zshrc_local" ] && source $zshrc_local
+
+# Running scripts and alias
+if [[ -v DOTFILES ]]; then
+    for sh_file in $DOTFILES/zsh/scripts/functions/*.zsh; do
+        source $sh_file
+    done
+    _source_if_file_exists $DOTFILES/zsh/zsh_alias
+else
+    _alert_local "ERROR: \$DOTFILES not set. Cant load functions and aliases" 1
+fi
