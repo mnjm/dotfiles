@@ -1,4 +1,4 @@
-alias ls='ls --color=auto --group-directories-first'             # ls
+alias ls='ls --color=auto --group-directories-first'            # ls
 alias ll='ls -alF'
 alias grep='grep --color=auto'
 alias ..='cd ..'
@@ -14,3 +14,7 @@ alias g='git'                                                   # git
 alias gs='git status'
 alias gd='git diff'
 alias extract='$DOTFILES/zsh/scripts/extract.zsh'               # Oh-my-zsh extract script
+
+o_vim=$(which vim)
+alias vim=nvim                                                  # Replace vim with nvim
+alias _vim=$o_vim                                               # original vim alias

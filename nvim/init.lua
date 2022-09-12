@@ -1,11 +1,14 @@
 ------------------------------------------
 -------- Neo-Vim Configurations ----------
 -- Neo-Vim wevbsite: https://neovim.io/ --
+-------------- LANG: lua -----------------
 ------------------------------------------
 
 local g   = vim.g
 local o   = vim.o
 local A   = vim.api
+-- Disable arrow key movements in vim. encourage using hjkl movements
+local hardass = true
 
 -- Enabling 24-bit color in Terminal UI
 o.termguicolors = true
@@ -47,8 +50,8 @@ o.hlsearch = true
 o.clipboard = 'unnamedplus'
 
 -- Map Leader Key building --
-g.mapleader = ","
-g.maplocalleader = ","
+g.mapleader = " "
+g.maplocalleader = " "
 
 local _au = A.nvim_create_augroup('mm', { clear = true })
 
@@ -86,7 +89,7 @@ map('v', '<leader>y', '"+y')
 -- Clipboard paste
 map('x', '<leader>p', '"+p')
 -- Open Fzf
-map('n', '<leader>f', '<CMD>FZF<CR>')
+map('n', '<leader>f', '<CMD>Telescope find_files<CR>')
 -- Move between tabs easily
 map('n', '<leader>h', '<CMD>tabp<CR>')
 map('n', '<leader>l', '<CMD>tabn<CR>')
@@ -96,22 +99,50 @@ map('n', '<C-j>', '<C-W><C-j>')
 map('n', '<C-k>', '<C-W><C-k>')
 map('n', '<C-l>', '<C-W><C-l>')
 
--- local ok, _ = pcall(vim.cmd, 'colorscheme base16-tomorrow-night')
-local ok, _ = pcall(vim.cmd, 'colorscheme base16-monokai')
+if hardass then
+    map({'n', 'v', 'c', 'n'}, '<Up>',  '<Nop>')
+    map({'n', 'v', 'c', 'n'}, '<Down>',  '<Nop>')
+    map({'n', 'v', 'c', 'n'}, '<Left>',  '<Nop>')
+    map({'n', 'v', 'c', 'n'}, '<Right>',  '<Nop>')
+end
+
+
+vim.cmd[[colorscheme base16-google-dark]]
 
 -----------------------------------------
 ------------- Plugins -------------------
 -----------------------------------------
 return require('packer').startup(function()
+
     -- Packer can manage itself
     use 'wbthomason/packer.nvim'
+
+    -- Plenary: Lua module most plugins use
+    use 'nvim-lua/plenary.nvim'
+
     -- Vim commentary
     use 'tpope/vim-commentary'
+
     -- Vim Surround
     use 'tpope/vim-surround'
+
     -- Colorschemes
     use 'RRethy/nvim-base16'
-    -- FZF
+
+    -- Telescope / FZF
     -- use { "~/.fzf", run = ":call fzf#install()" }
-    use { "junegunn/fzf", run = ":call fzf#install()" }
+    -- use { "junegunn/fzf", run = ":call fzf#install()" }
+    use { 'nvim-telescope/telescope.nvim', tag = '0.1.0' }
+    use { 'nvim-telescope/telescope-fzf-native.nvim',
+            run = 'make',
+            config = function()
+                require('telescope').load_extension('fzf')
+            end
+        }
+
+    use { 'kyazdani42/nvim-web-devicons',
+            config = function()
+                require('nvim-web-devicons').setup()
+            end,
+        }
 end)

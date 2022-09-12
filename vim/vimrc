@@ -1,5 +1,6 @@
-set nocompatible                                                " For no reason
-let mapleader=','                                               " Change leader key used for custom keybindings
+set nocompatible                                                " No vi pls
+let mapleader=' '                                               " Change leader key used for custom keybindings
+set termguicolors
 colorscheme desert                                              " Color scheme
 syntax on                                                       " Highlight syntax
 set tabstop=4                                                   " Indentation
@@ -7,6 +8,7 @@ set shiftwidth=4
 set softtabstop=4
 set expandtab
 set relativenumber number                                       " Line Numbers
+set numberwidth=2
 set confirm                                                     " More readable [Not Saved] Message
 set cursorline                                                  " Cursor Line highlight
 hi CursorLine term=standout cterm=bold
