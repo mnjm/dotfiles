@@ -1,4 +1,5 @@
 #!/bin/sh
+export DOTFILES=$PWD
 
 alert_local() {
     color=${2:-6}
@@ -35,7 +36,7 @@ fi
 ############################################################
 ###################### VIM Text Editor #####################
 ############################################################
-Setup Vimrc
+# Setup Vimrc
 alert_local 'Setting Up Vim'
 . ./vim/setup_vim.sh || alert_local "Vim setup failed" 1
 

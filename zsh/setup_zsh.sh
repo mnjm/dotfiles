@@ -2,7 +2,7 @@
 
 # TODO: Do pull if cloned
 
-ln -s zsh/zshrc ~/.zshrc
+ln -vs $DOTFILES/zsh/zshrc ~/.zshrc
 touch ~/.zsh_history
 # Setup Zsh Plugins
 mkdir -p ~/.zsh
