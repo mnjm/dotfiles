@@ -8,7 +8,7 @@ set shiftwidth=4
 set softtabstop=4
 set expandtab
 set relativenumber number                                       " Line Numbers
-set numberwidth=2
+set numberwidth=3
 set confirm                                                     " More readable [Not Saved] Message
 set cursorline                                                  " Cursor Line highlight
 hi CursorLine term=standout cterm=bold

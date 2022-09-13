@@ -44,4 +44,4 @@ o.hlsearch = true
 -- Makes neovim and host OS clipboard play nicely with each other
 o.clipboard = 'unnamedplus'
 
-vim.cmd[[colorscheme base16-google-dark]]
+vim.cmd[[colorscheme base16-da-one-black]]
