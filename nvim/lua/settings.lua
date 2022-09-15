@@ -4,6 +4,7 @@
 -- Ref: https://neovim.io/doc/user/options.html
 
 local o   = vim.o
+local A = vim.api
 
 -- Enabling 24-bit color in Terminal UI
 o.termguicolors = true
@@ -44,4 +45,36 @@ o.hlsearch = true
 -- Makes neovim and host OS clipboard play nicely with each other
 o.clipboard = 'unnamedplus'
 
+-- Highlight trailing junks in the code. Run :set list to display
+o.listchars = 'trail:⬄,tab:➡ '
+
 vim.cmd[[colorscheme base16-da-one-black]]
+
+---------------------------------------------------------------------------------------------------
+----------------------------------- Autocmds ------------------------------------------------------
+---------------------------------------------------------------------------------------------------
+local _au = A.nvim_create_augroup('mm', { clear = true })
+
+-- Highlight the region on yank
+A.nvim_create_autocmd('TextYankPost', {
+    group = _au,
+    callback = function()
+        vim.highlight.on_yank({ higroup = 'Visual', timeout = 250 })
+    end,
+})
+
+-- Auto remove trailing spaces and lines in c and python codes while saving.
+-- use ":noa w" to save without trimming
+patterns = {[[%s/\s\+$//e]], [[%s/\($\n\s*\)\+\%$//]]}
+files = { "*.c", "*.py", "*.cc", "*.cpp" },
+A.nvim_create_autocmd({ "BufWritePre" }, {
+    pattern = files,
+    callback = function()
+        local save = vim.fn.winsaveview()
+        for _, v in pairs(patterns) do
+            A.nvim_exec(string.format("keepjumps keeppatterns silent! %s", v), false)
+        end
+        vim.fn.winrestview(save)
+    end,
+    group = _au
+})

@@ -1,5 +1,5 @@
 # Exports
-export EDITOR=vim
+export EDITOR=nvim
 export VISUAL=$EDITOR
 export PATH=$PATH:$HOME/bin/
 export PATH=$PATH:$HOME/.local/bin/
@@ -56,7 +56,7 @@ precmd() { vcs_info }
 
 # Format the vcs_info_msg_0_ variable to display git info
 zstyle ':vcs_info:*' enable git svn
-zstyle ':vcs_info:*' check-for-changes true 
+zstyle ':vcs_info:*' check-for-changes true
 zstyle ':vcs_info:*' unstagedstr ' %F{red}%B❗%b%f'
 zstyle ':vcs_info:*' stagedstr ' %F{yellow}%B✛%b%f'
 zstyle ':vcs_info:git:*' formats '%F{119}↝  %b%f%c%u %F{210}%m%f'

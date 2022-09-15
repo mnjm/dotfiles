@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+
+# remove broken symlinks
+find -L ~/.config/nvim -type l -exec rm -- {} +
 mkdir -p ~/.config/nvim/lua
 mkdir -p ~/.config/nvim/plugin
 find $DOTFILES/nvim         -maxdepth 1 -type f -name "*.lua" -exec cp -vs "{}" ~/.config/nvim/ ';'
