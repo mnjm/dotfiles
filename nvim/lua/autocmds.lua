@@ -13,11 +13,19 @@ A.nvim_create_autocmd('TextYankPost', {
         vim.highlight.on_yank({ higroup = 'Visual', timeout = 250 })
     end,
 })
--- Auto remove trailing space c and python codes while saving.
--- TODO: Add removing trailing lines and :w resets the cursor location. Fix that
+
+-- Auto remove trailing spaces and lines in c and python codes while saving.
+patterns = {[[%s/\s\+$//e]], [[%s/\($\n\s*\)\+\%$//]]}
+files = { "*.c", "*.py", "*.cc", "*.cpp" }, 
 A.nvim_create_autocmd({ "BufWritePre" }, {
-  pattern = { "*.c", "*.py", "*.cc", "*.cpp" }, -- <== Add file types here to remove trailing spaces when saving buffers
-  command = [[%s/\s\+$//e]],
-  group = _au
+    pattern = files, 
+    callback = function()
+        local save = vim.fn.winsaveview()
+        for _, v in pairs(patterns) do
+            A.nvim_exec(string.format("keepjumps keeppatterns silent! %s", v), false)
+        end
+        vim.fn.winrestview(save)
+    end,
+    group = _au
 })
 
