@@ -3,7 +3,8 @@
 -------------------------------------------
 
 -- Disable arrow key movements in vim. encourage using hjkl movements
-local hardass = true
+-- See plugin/hardass_mode.lua
+vim.g.mm_hardass_mode = true
 
 -- Map Leader Key building --
 vim.g.mapleader = " "
@@ -36,11 +37,3 @@ map('n', '<C-h>', '<C-W><C-h>')
 map('n', '<C-j>', '<C-W><C-j>')
 map('n', '<C-k>', '<C-W><C-k>')
 map('n', '<C-l>', '<C-W><C-l>')
-
-if hardass then
-    map({'n', 'v', 'i'}, '<Up>',  '<Nop>')
-    map({'n', 'v', 'i'}, '<Down>',  '<Nop>')
-    map({'n', 'v', 'i'}, '<Left>',  '<Nop>')
-    map({'n', 'v', 'i'}, '<Right>',  '<Nop>')
-end
-

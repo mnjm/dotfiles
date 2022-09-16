@@ -7,7 +7,7 @@ alias rm='safe_rm'
 alias ppath='readlink -f'                                       # Copy path of file
 alias gopen='xdg-open'                                          # Open file graphically
 alias py='python3'                                              # Python Alias
-alias vf='vim -O $(fzf -m)'                                     # Select a file using fzf and open it in vim
+alias vf='nvim +"Telescope find_files"'                         # Open nvim with telescope to fzf find a file
 alias tmuxn='tmux new -A -s $(tmux ls | fzf --no-multi \
     --print-query | tail -n 1 | cut -d':' -f1)'                 # Select/open session using fzf
 alias g='git'                                                   # git
