@@ -19,7 +19,8 @@ local highlights = {
     {'SLInsertMode', {fg = "#000000", bg="#6bb8ff", gui="bold"}},
     {'SLTerminalMode', {fg = "#000000", bg="#b3684f", gui="bold"}},
     {'SLVisualMode', {fg = "#000000", bg="#fa7883", gui="bold"}},
-    {'SLTrail', {fg = "#ffffff", bg="#585858"}}
+    {'SLTrail', {fg = "#ffffff", bg="#585858"}},
+    {'SLGitInfo', {fg = "#87ff5f", bg="#585858"}}
 }
 for _, highlight in pairs(highlights) do
     local name = highlight[1]
@@ -79,6 +80,18 @@ local function update_mode_colors()
   return mode_color
 end
 
+-- Get git info
+local function gitinfo()
+    -- use fallback because it doesn't set this variable on the initial `BufEnter`
+    local signs = vim.b.gitsigns_status_dict or {head = '', added = 0, changed = 0, removed = 0}
+    local is_head_empty = signs.head == ''
+    if is_head_empty then
+        return ""
+    else
+        return string.format(" on ↝ %s (+%s -%s ~%s) ", signs.head, signs.added, signs.removed, signs.changed)
+    end
+end
+
 -- Get filepath with flags(modified, readonly, helpfile, preview)
 local function filepath()
     return " %<%f%m%r%h%w "
@@ -107,6 +120,8 @@ statusline.active = function()
     local mode_color = update_mode_colors()
     return table.concat {
         mode_color, mode(),
+        "%#SLDefault#", " ",
+        "%#SLGitInfo#", gitinfo(),
         "%#SLDefault#", "%=",
         mode_color, filepath(),
         "%#SLDefault#", "%=",

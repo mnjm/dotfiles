@@ -37,4 +37,8 @@ return require('packer').startup(function()
                 require('nvim-web-devicons').setup()
             end,
         }
+    use {
+        'lewis6991/gitsigns.nvim',
+        tag = 'release'
+    }
 end)
