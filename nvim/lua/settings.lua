@@ -43,7 +43,7 @@ o.incsearch = true
 o.hlsearch = true
 
 -- Makes neovim and host OS clipboard play nicely with each other
-o.clipboard = 'unnamedplus'
+-- o.clipboard = 'unnamedplus'
 
 -- Highlight trailing junks in the code. Run :set list to display
 o.listchars = 'trail:⬄,tab:➡ '

@@ -10,6 +10,6 @@ function _G.dump(...)
     print(unpack(objects))
 end
 
+require('plugins')
 require('settings')
 require('keybindings')
-require('plugins')

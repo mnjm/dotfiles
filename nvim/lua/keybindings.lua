@@ -26,12 +26,12 @@ map('n', '<leader>-', '<CMD>sp .<CR>')
 -- Clipboard yank
 map('v', '<leader>y', '"+y')
 -- Clipboard paste
-map('x', '<leader>p', '"+p')
+map('n', '<leader>p', '"+p')
 -- Open Fzf
 map('n', '<leader>f', '<CMD>Telescope find_files<CR>')
 -- Move between tabs easily
-map('n', '<leader>h', '<CMD>tabp<CR>')
-map('n', '<leader>l', '<CMD>tabn<CR>')
+map('n', '<C-Left>', '<CMD>tabp<CR>')
+map('n', '<C-Right>', '<CMD>tabn<CR>')
 -- Move between splits
 map('n', '<C-h>', '<C-W><C-h>')
 map('n', '<C-j>', '<C-W><C-j>')

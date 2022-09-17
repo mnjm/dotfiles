@@ -120,13 +120,11 @@ statusline.active = function()
     local mode_color = update_mode_colors()
     return table.concat {
         mode_color, mode(),
-        "%#SLDefault#", " ",
         "%#SLGitInfo#", gitinfo(),
         "%#SLDefault#", "%=",
         mode_color, filepath(),
         "%#SLDefault#", "%=",
         "%#SLTrail#", filetype(),
-        "%#SLDefault#", " ",
         "%#SLTrail#", lineinfo(),
         mode_color, buffernumber()
     }
