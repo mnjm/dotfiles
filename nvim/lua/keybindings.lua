@@ -10,8 +10,19 @@ vim.g.mm_hardass_mode = true
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+------------------------ Some functions for keybinding --------------------------
 local function map(m, k, v)
     vim.keymap.set(m, k, v, { silent = true, noremap = true })
+end
+
+local find_cursor = function()
+    if vim.w.mm_cursor_hl_id then
+        vim.fn.matchdelete(vim.w.mm_cursor_hl_id)
+        vim.w.mm_cursor_hl_id = nil
+        return
+    end
+    local pattern = "\\k*\\%#\\k*"
+    vim.w.mm_cursor_hl_id = vim.fn.matchadd("MMCursorHL", pattern, 1)
 end
 
 -- Fix n and N. Keeping cursor in center
@@ -37,3 +48,9 @@ map('n', '<C-h>', '<C-W><C-h>')
 map('n', '<C-j>', '<C-W><C-j>')
 map('n', '<C-k>', '<C-W><C-k>')
 map('n', '<C-l>', '<C-W><C-l>')
+-- Find and highlight cursor
+-- Highlight group to highlight cursor
+vim.cmd("hi MMCursorHL guibg=red guifg=blue")
+
+-- Function to highlight cursor
+map('n', '<leader>c', find_cursor)
