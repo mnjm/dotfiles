@@ -18,4 +18,4 @@ alias extract='$DOTFILES/zsh/scripts/extract.zsh'               # Oh-my-zsh extr
 o_vim=$(which vim)
 alias vim=nvim                                                  # Replace vim with nvim
 alias _vim=$o_vim                                               # original vim alias
-alias py=python3                                                # Python alias
+alias mv='mv -vi'						                        # Confirm before moving [Safe]

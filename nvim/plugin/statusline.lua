@@ -1,11 +1,12 @@
 -- Useful link
+--
 -- https://nuxsh.is-a.dev/blog/custom-nvim-statusline.html
 -- https://elianiva.my.id/post/neovim-lua-statusline
 
 -- Set display status line always
 vim.o.laststatus = 2
 -- Turn off shows default insert/replace modes
-vim.o.showmode = false
+vim.o.showmode = true
 
 -- [Mode] filename [+] on ~> git-branch
 -- C:columnnumber L:linenumber (%percentage of doc) B:buffernumber
@@ -32,52 +33,57 @@ end
 
 -- Show mode
 local modes = {
-  ["n"] = "NORMAL",
-  ["no"] = "NORMAL",
-  ["v"] = "VISUAL",
-  ["V"] = "VISUAL LINE",
-  [""] = "VISUAL BLOCK",
-  ["s"] = "SELECT",
-  ["S"] = "SELECT LINE",
-  [""] = "SELECT BLOCK",
-  ["i"] = "INSERT",
-  ["ic"] = "INSERT",
-  ["R"] = "REPLACE",
-  ["Rv"] = "VISUAL REPLACE",
-  ["c"] = "COMMAND",
-  ["cv"] = "VIM EX",
-  ["ce"] = "EX",
-  ["r"] = "PROMPT",
-  ["rm"] = "MOAR",
-  ["r?"] = "CONFIRM",
-  ["!"] = "SHELL",
-  ["t"] = "TERMINAL",
+    ["n"] = "NORMAL",
+    ["no"] = "NORMAL",
+    ["v"] = "VISUAL",
+    ["V"] = "VISUAL LINE",
+    [""] = "VISUAL BLOCK",
+    ["s"] = "SELECT",
+    ["S"] = "SELECT LINE",
+    [""] = "SELECT BLOCK",
+    ["i"] = "INSERT",
+    ["ic"] = "INSERT",
+    ["R"] = "REPLACE",
+    ["Rv"] = "VISUAL REPLACE",
+    ["c"] = "COMMAND",
+    ["cv"] = "VIM EX",
+    ["ce"] = "EX",
+    ["r"] = "PROMPT",
+    ["rm"] = "MOAR",
+    ["r?"] = "CONFIRM",
+    ["!"] = "SHELL",
+    ["t"] = "TERMINAL",
 }
 
 -- Get the current mode
 local function mode()
-  local current_mode = vim.api.nvim_get_mode().mode
-  return string.format(" %s ", modes[current_mode]):upper()
+    local current_mode = vim.api.nvim_get_mode().mode
+    -- print('Current_mode:'..modes[current_mode])
+    current_mode = modes[current_mode]
+    if current_mode == nil then
+        current_mode = "?"
+    end
+    return string.format(" %s ", current_mode)
 end
 
 -- Set mode highlight groups
 local function update_mode_colors()
-  local current_mode = vim.api.nvim_get_mode().mode
-  local mode_color = "%#SLDefault#"
-  if current_mode == "n" then
-      mode_color = "%#SLNormalMode#"
-  elseif current_mode == "i" or current_mode == "ic" then
-      mode_color = "%#SLInsertMode#"
-  elseif current_mode == "v" or current_mode == "V" or current_mode == "" then
-      mode_color = "%#SLInsertMode#"
-  elseif current_mode == "R" then
-      mode_color = "%#SLReplaceMode#"
-  elseif current_mode == "c" then
-      mode_color = "%#SLCommandMode#"
-  elseif current_mode == "t" then
-      mode_color = "%#SLTerminalMode#"
-  end
-  return mode_color
+    local current_mode = vim.api.nvim_get_mode().mode
+    local mode_color = "%#SLDefault#"
+    if current_mode == "n" then
+        mode_color = "%#SLNormalMode#"
+    elseif current_mode == "i" or current_mode == "ic" then
+        mode_color = "%#SLInsertMode#"
+    elseif current_mode == "v" or current_mode == "V" or current_mode == "" then
+        mode_color = "%#SLInsertMode#"
+    elseif current_mode == "R" then
+        mode_color = "%#SLReplaceMode#"
+    elseif current_mode == "c" then
+        mode_color = "%#SLCommandMode#"
+    elseif current_mode == "t" then
+        mode_color = "%#SLTerminalMode#"
+    end
+    return mode_color
 end
 
 -- Get git info
@@ -130,7 +136,12 @@ statusline.active = function()
     }
 end
 statusline.inactive = function()
-    return "%=%F%="
+    return table.concat {
+        "%#SLDefault#", "%=",
+        "%#SLTrail#", filepath(),
+        "%#SLDefault#", "%=",
+        "%#SLTrail#", buffernumber()
+    }
 end
 
 local _au = vim.api.nvim_create_augroup('status_line', { clear = true })

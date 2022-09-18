@@ -1,3 +1,11 @@
+# Dual boot Time fix [Ubuntu and windows]
+
+[Link](https://itsfoss.com/wrong-time-dual-boot/)
+
+***Run below command on ubuntu side***
+```shell
+timedatectl set-local-rtc 1
+```
 # Replace Firefox-snap with Firefox-deb
 
 **Reason to replace: Snap-firefox is unstable and startup is longer**
@@ -29,3 +37,12 @@ sudo apt install firefox -y
 ```shell
 echo 'Unattended-Upgrade::Allowed-Origins:: "LP-PPA-mozillateam:${distro_codename}";' | sudo tee /etc/apt/apt.conf.d/51unattended-upgrades-firefox
 ```
+# Install Nerd Fonts
+
+- [Download Link](https://www.nerdfonts.com/font-downloads). Prefer: UbuntuMono Nerd Font
+- Unzip the file and place it in ~/.fonts
+- CD to ~/.fonts and run `fc-cache -fv`
+
+# Change Terminal colors
+- Open preference and change colors in the profiles.
+- Useful to display dirs properly in `ls --colors=auto`

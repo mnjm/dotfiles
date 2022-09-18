@@ -6,6 +6,8 @@
 local o   = vim.o
 local A = vim.api
 
+vim.cmd[[colorscheme base16-da-one-black]]
+
 -- Enabling 24-bit color in Terminal UI
 o.termguicolors = true
 
@@ -13,7 +15,7 @@ o.termguicolors = true
 o.timeoutlen = 500
 
 -- Number of screen lines to keep above and below the cursor
-o.scrolloff = 8
+o.scrolloff = 4
 
 -- Better editor UI --
 o.number = true
@@ -48,8 +50,10 @@ o.hlsearch = true
 -- Highlight trailing junks in the code. Run :set list to display
 o.listchars = 'trail:⬄,tab:➡ '
 
-vim.cmd[[colorscheme base16-da-one-black]]
-
+-- Spell checking
+o.spelllang = 'en_us'
+o.complete = string.format("%s,kspell", o.complete)
+--
 ---------------------------------------------------------------------------------------------------
 ----------------------------------- Autocmds ------------------------------------------------------
 ---------------------------------------------------------------------------------------------------
@@ -76,5 +80,13 @@ A.nvim_create_autocmd({ "BufWritePre" }, {
         end
         vim.fn.winrestview(save)
     end,
+    group = _au
+})
+
+-- Enable spell checking in certail filetypes by default
+filetypes = {"gitcommit", "text", "markdown"}
+A.nvim_create_autocmd('FileType', {
+    pattern = filetypes,
+    command = 'setlocal spell',
     group = _au
 })
