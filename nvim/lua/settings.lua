@@ -34,7 +34,7 @@ o.softtabstop = -1 -- If negative, shiftwidth value is used
 o.expandtab = true
 o.smartindent = true
 o.autoindent = true
-o.wrap = true -- This wraps txt to next line
+o.wrap = false -- This wraps txt to next line
 o.showmatch = true -- Highlight matching brackets
 -- Sane way of spitting buffers
 o.splitright = true
@@ -84,7 +84,7 @@ A.nvim_create_autocmd({ "BufWritePre" }, {
 })
 
 -- Enable spell checking in certail filetypes by default
-filetypes = {"gitcommit", "text", "markdown"}
+filetypes = {"gitcommit", "markdown"}
 A.nvim_create_autocmd('FileType', {
     pattern = filetypes,
     command = 'setlocal spell',

@@ -15,14 +15,15 @@ local function map(m, k, v)
     vim.keymap.set(m, k, v, { silent = true, noremap = true })
 end
 
+-- Highlight group to highlight cursor
 vim.cmd("hi MMCursorHL guibg=#6bb8ff guifg=#000000")
+-- Function to highlight cursor
 local find_cursor = function()
     local pattern = "\\k*\\%#\\k*"
     local time = 100
     local blink = 3
     for i = 1, blink, 1
     do
-        print(i)
         local hl_id = vim.fn.matchadd("MMCursorHL", pattern, 1)
         vim.cmd('redraw')
         vim.loop.sleep(time)
@@ -56,7 +57,4 @@ map('n', '<C-j>', '<C-W><C-j>')
 map('n', '<C-k>', '<C-W><C-k>')
 map('n', '<C-l>', '<C-W><C-l>')
 -- Find and highlight cursor
--- Highlight group to highlight cursor
-
--- Function to highlight cursor
 map('n', '<leader>c', find_cursor)

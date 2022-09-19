@@ -1,11 +1,13 @@
 alias ls='ls --color=auto --group-directories-first'            # ls
 alias ll='ls -alF'
-alias grep='grep --color=auto'
+alias grep='grep --color=auto'                                  # Grep with colors
 alias ..='cd ..'
 alias copi='xclip -selection clipboard'                         # Xclip to work with Selection Clipboard
 alias rm='safe_rm'
+alias mv='mv -vi'						                        # Confirm overwrite before moving
+alias cp='cp -vi'                                               # Confirm overwrite before copying
 alias ppath='readlink -f'                                       # Copy path of file
-alias gopen='xdg-open'                                          # Open file graphically
+alias gopen='xdg-open $1 2>/dev/null'                           # Open file graphically
 alias py='python3'                                              # Python Alias
 alias vf='nvim +"Telescope find_files"'                         # Open nvim with telescope to fzf find a file
 alias tmuxn='tmux new -A -s $(tmux ls | fzf --no-multi \
@@ -13,9 +15,13 @@ alias tmuxn='tmux new -A -s $(tmux ls | fzf --no-multi \
 alias g='git'                                                   # git
 alias gs='git status'
 alias gd='git diff'
+alias gl='git log'
+alias gb='git branch'
+alias gc='git commit'
+alias gbc='git checkout'
 alias extract='$DOTFILES/zsh/scripts/extract.zsh'               # Oh-my-zsh extract script
 
 o_vim=$(which vim)
 alias vim=nvim                                                  # Replace vim with nvim
 alias _vim=$o_vim                                               # original vim alias
-alias mv='mv -vi'						                        # Confirm before moving [Safe]
+alias dirs='dirs -v'                                            # Show pushd stack with numbers. cd to a dir in stack by cd ~<no>
