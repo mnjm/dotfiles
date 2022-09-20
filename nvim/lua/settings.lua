@@ -6,10 +6,12 @@
 local o   = vim.o
 local A = vim.api
 
-vim.cmd[[colorscheme base16-da-one-black]]
 
 -- Enabling 24-bit color in Terminal UI
 o.termguicolors = true
+
+-- colorscheme
+vim.cmd[[colorscheme PaperColor]]
 
 -- Wait 'timeoutlen'ms to receive next keystroke after pressing a binding key(ex. ctrl-f)
 o.timeoutlen = 500

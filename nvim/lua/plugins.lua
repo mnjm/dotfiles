@@ -19,11 +19,9 @@ return require('packer').startup(function()
     use 'tpope/vim-surround'
 
     -- Colorschemes
-    use 'RRethy/nvim-base16'
+    use 'NLKNguyen/papercolor-theme'
 
     -- Telescope / FZF
-    -- use { "~/.fzf", run = ":call fzf#install()" }
-    -- use { "junegunn/fzf", run = ":call fzf#install()" }
     use { 'nvim-telescope/telescope.nvim', tag = '0.1.0' }
     use { 'nvim-telescope/telescope-fzf-native.nvim',
             run = 'make',
@@ -37,8 +35,26 @@ return require('packer').startup(function()
                 require('nvim-web-devicons').setup()
             end,
         }
+
+    -- Git Plugin
     use {
         'lewis6991/gitsigns.nvim',
         tag = 'release'
     }
+
+    -- TreeSitter - For better syntax highlighting
+    use 'nvim-treesitter/nvim-treesitter'
+
+    -- LSP - Config
+    use 'neovim/nvim-lspconfig'
+
+    -- LSP - Autocomplete
+    use 'hrsh7th/nvim-cmp'
+    use 'hrsh7th/cmp-nvim-lsp'
+    use 'hrsh7th/cmp-buffer'
+    use 'hrsh7th/cmp-path'
+
+    -- Snip tools
+    use 'L3MON4D3/LuaSnip'
+    use 'saadparwaiz1/cmp_luasnip'
 end)

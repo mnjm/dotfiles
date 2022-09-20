@@ -20,9 +20,9 @@ vim.cmd("hi MMCursorHL guibg=#6bb8ff guifg=#000000")
 -- Function to highlight cursor
 local find_cursor = function()
     local pattern = "\\k*\\%#\\k*"
-    local time = 100
-    local blink = 3
-    for i = 1, blink, 1
+    local time = 50
+    local blink = 6
+    for _ = 1, blink, 1
     do
         local hl_id = vim.fn.matchadd("MMCursorHL", pattern, 1)
         vim.cmd('redraw')
@@ -45,7 +45,7 @@ map('n', '<leader>-', '<CMD>sp .<CR>')
 -- Clipboard yank
 map('v', '<leader>y', '"+y')
 -- Clipboard paste
-map('n', '<leader>p', '"+p')
+map({'v', 'n'}, '<leader>p', '"+p')
 -- Open Fzf
 map('n', '<leader>f', '<CMD>Telescope find_files<CR>')
 -- Move between tabs easily
@@ -58,3 +58,5 @@ map('n', '<C-k>', '<C-W><C-k>')
 map('n', '<C-l>', '<C-W><C-l>')
 -- Find and highlight cursor
 map('n', '<leader>c', find_cursor)
+-- Delete but dont put the deleted thing into the register
+map('v', '<leader>d', '\"_d')

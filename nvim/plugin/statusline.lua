@@ -13,21 +13,21 @@ vim.o.showmode = true
 
 -- StatusLine highlight groups -- Colorscheme=da-one-black
 local highlights = {
-    {'SLDefault', {fg = "#ffffff", bg="#282828"}},
-    {'SLNormalMode', {fg = "#000000", bg="#98c379", gui="bold"}},
-    {'SLReplaceMode', {fg = "#000000", bg="#ff9470", gui="bold"}},
-    {'SLCommandMode', {fg = "#000000", bg="#ffc387", gui="bold"}},
-    {'SLInsertMode', {fg = "#000000", bg="#6bb8ff", gui="bold"}},
+    {'SLDefault', {fg = "#ffffff", bg="#282828", gui=nil}},
+    {'SLNormalMode', {fg = "#000000", bg="#5faf00", gui="bold"}},
+    {'SLReplaceMode', {fg = "#000000", bg="#d7875f", gui="bold"}},
+    {'SLCommandMode', {fg = "#000000", bg="#ffaf00", gui="bold"}},
+    {'SLInsertMode', {fg = "#000000", bg="#5fafd7", gui="bold"}},
     {'SLTerminalMode', {fg = "#000000", bg="#b3684f", gui="bold"}},
-    {'SLVisualMode', {fg = "#000000", bg="#fa7883", gui="bold"}},
-    {'SLTrail', {fg = "#ffffff", bg="#585858"}},
-    {'SLGitInfo', {fg = "#87ff5f", bg="#585858"}}
+    {'SLVisualMode', {fg = "#000000", bg="#ff5faf", gui="bold"}},
+    {'SLTrail', {fg = "#ffffff", bg="#585858", gui=nil}},
+    {'SLGitInfo', {fg = "#87ff5f", bg="#585858", gui=nil}}
 }
 for _, highlight in pairs(highlights) do
     local name = highlight[1]
     local fg = highlight[2].fg
     local bg = highlight[2].bg
-    local gui = highlight[1].gui == nil and "" or string.format("gui=%s", highlight[2].gui)
+    local gui = highlight[2].gui == nil and "" or string.format("gui=%s", highlight[2].gui)
     vim.cmd(string.format('hi %s guibg=%s guifg=%s %s', name, bg, fg, gui))
 end
 
