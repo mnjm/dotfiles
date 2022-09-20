@@ -11,17 +11,18 @@ vim.o.showmode = true
 -- [Mode] filename [+] on ~> git-branch
 -- C:columnnumber L:linenumber (%percentage of doc) B:buffernumber
 
--- StatusLine highlight groups -- Colorscheme=da-one-black
+-- StatusLine highlight groups -- Colorscheme=PaperColor-dark
 local highlights = {
     {'SLDefault', {fg = "#ffffff", bg="#282828", gui=nil}},
     {'SLNormalMode', {fg = "#000000", bg="#5faf00", gui="bold"}},
     {'SLReplaceMode', {fg = "#000000", bg="#d7875f", gui="bold"}},
     {'SLCommandMode', {fg = "#000000", bg="#ffaf00", gui="bold"}},
     {'SLInsertMode', {fg = "#000000", bg="#5fafd7", gui="bold"}},
-    {'SLTerminalMode', {fg = "#000000", bg="#b3684f", gui="bold"}},
     {'SLVisualMode', {fg = "#000000", bg="#ff5faf", gui="bold"}},
+    {'SLUnknownMode', {fg = "#000000", bg="#b3684f", gui="bold"}},
     {'SLTrail', {fg = "#ffffff", bg="#585858", gui=nil}},
-    {'SLGitInfo', {fg = "#87ff5f", bg="#585858", gui=nil}}
+    {'SLGitInfo', {fg = "#ffffff", bg="#585858", gui=nil}},
+    {'SLFileInfo', {fg = "#000000", bg="#00afaf", gui="bold"}},
 }
 for _, highlight in pairs(highlights) do
     local name = highlight[1]
@@ -33,68 +34,56 @@ end
 
 -- Show mode
 local modes = {
-    ["n"] = "NORMAL",
-    ["no"] = "NORMAL",
-    ["v"] = "VISUAL",
-    ["V"] = "VISUAL LINE",
-    [""] = "VISUAL BLOCK",
-    ["s"] = "SELECT",
-    ["S"] = "SELECT LINE",
-    [""] = "SELECT BLOCK",
-    ["i"] = "INSERT",
-    ["ic"] = "INSERT",
-    ["R"] = "REPLACE",
-    ["Rv"] = "VISUAL REPLACE",
-    ["c"] = "COMMAND",
-    ["cv"] = "VIM EX",
-    ["ce"] = "EX",
-    ["r"] = "PROMPT",
-    ["rm"] = "MOAR",
-    ["r?"] = "CONFIRM",
-    ["!"] = "SHELL",
-    ["t"] = "TERMINAL",
+    ["n"] = {"NORMAL", 'SLNormalMode'},
+    ["no"] = {"NORMAL", 'SLNormalMode'},
+    ["v"] = {"VISUAL", 'SLVisualMode'},
+    ["V"] = {"V-LINE", 'SLVisualMode'},
+    [""] = {"V-BLOCK", 'SLVisualMode'},
+    ["s"] = {"SELECT"},
+    ["S"] = {"S-LINE"},
+    [""] = {"S-BLOCK"},
+    ["i"] = {"INSERT", "SLInsertMode"},
+    ["ic"] = {"INSERT", "SLInsertMode"},
+    ["R"] = {"REPLACE", "SLReplaceMode"},
+    ["Rv"] = {"V-REPLACE", "SLReplaceMode"},
+    ["c"] = {"COMMAND", "SLCommandMode"},
+    ["cv"] = {"VIM EX"},
+    ["ce"] = {"EX"},
+    ["r"] = {"PROMPT"},
+    ["rm"] = {"MOAR"},
+    ["r?"] = {"CONFIRM"},
+    ["!"] = {"SHELL"},
+    ["t"] = {"TERMINAL"},
 }
 
 -- Get the current mode
-local function mode()
+local function get_mode()
     local current_mode = vim.api.nvim_get_mode().mode
-    -- print('Current_mode:'..modes[current_mode])
     current_mode = modes[current_mode]
     if current_mode == nil then
-        current_mode = "?"
+        current_mode = {"  ?  ", "SLUnknownMode"}
     end
-    return string.format(" %s ", current_mode)
-end
-
--- Set mode highlight groups
-local function update_mode_colors()
-    local current_mode = vim.api.nvim_get_mode().mode
-    local mode_color = "%#SLDefault#"
-    if current_mode == "n" then
-        mode_color = "%#SLNormalMode#"
-    elseif current_mode == "i" or current_mode == "ic" then
-        mode_color = "%#SLInsertMode#"
-    elseif current_mode == "v" or current_mode == "V" or current_mode == "" then
-        mode_color = "%#SLInsertMode#"
-    elseif current_mode == "R" then
-        mode_color = "%#SLReplaceMode#"
-    elseif current_mode == "c" then
-        mode_color = "%#SLCommandMode#"
-    elseif current_mode == "t" then
-        mode_color = "%#SLTerminalMode#"
+    if current_mode[2] == nil then
+        current_mode[2] = "SLUnknownMode"
     end
-    return mode_color
+    return string.format(" %s ", current_mode[1]), current_mode[2]
 end
 
 -- Get git info
 local function gitinfo()
     -- use fallback because it doesn't set this variable on the initial `BufEnter`
-    local signs = vim.b.gitsigns_status_dict or {head = '', added = 0, changed = 0, removed = 0}
-    local is_head_empty = signs.head == ''
-    if is_head_empty then
+    local head, added, changed, removed = "", 0, 0, 0
+    local signs = vim.b.gitsigns_status_dict
+    if signs then
+        head = signs.head
+        added = signs.added or 0
+        changed = signs.changed or 0
+        removed = signs.removed or 0
+    end
+    if "" == head then
         return ""
     else
-        return string.format(" on ↝ %s (+%s -%s ~%s) ", signs.head, signs.added, signs.removed, signs.changed)
+        return string.format(" +%s -%s ~%s  %s ", added, removed, changed, head)
     end
 end
 
@@ -105,7 +94,11 @@ end
 
 -- Get filetype
 local function filetype()
-    return string.format("FT:%s ", vim.bo.filetype:gsub("^%l", string.upper))
+    local file_name, file_ext = vim.fn.expand("%:t"), vim.fn.expand("%:e")
+    local icon = require'nvim-web-devicons'.get_icon(file_name, file_ext, { default = true })
+    local ftype = vim.bo.filetype
+    if ftype == '' then return '' end
+    return string.format(' %s %s ', icon, ftype):lower()
 end
 
 -- Get column, linenumber and percent of document
@@ -113,7 +106,7 @@ local function lineinfo()
   if vim.bo.filetype == "alpha" then
     return ""
   end
-  return " C:%c L:%l (%p%%) "
+  return " Ln:%l(%p%%) "
 end
 
 -- Display current buffer number
@@ -121,21 +114,22 @@ local function buffernumber()
     return " B:%n "
 end
 
-statusline = {}
-statusline.active = function()
-    local mode_color = update_mode_colors()
+Statusline = {}
+Statusline.active = function()
+    local mode, mode_color = get_mode()
+    mode_color = "%#"..mode_color.."#"
     return table.concat {
-        mode_color, mode(),
+        mode_color, mode,
         "%#SLGitInfo#", gitinfo(),
         "%#SLDefault#", "%=",
-        mode_color, filepath(),
+        "%#SLFileInfo#", filepath(),
         "%#SLDefault#", "%=",
         "%#SLTrail#", filetype(),
         "%#SLTrail#", lineinfo(),
         mode_color, buffernumber()
     }
 end
-statusline.inactive = function()
+Statusline.inactive = function()
     return table.concat {
         "%#SLDefault#", "%=",
         "%#SLTrail#", filepath(),
@@ -147,11 +141,11 @@ end
 local _au = vim.api.nvim_create_augroup('status_line', { clear = true })
 vim.api.nvim_create_autocmd({'WinEnter', 'BufEnter'}, {
     pattern = "*",
-    command = 'setlocal statusline=%!v:lua.statusline.active()',
+    command = 'setlocal statusline=%!v:lua.Statusline.active()',
     group = _au
 })
 vim.api.nvim_create_autocmd({'WinLeave', 'BufLeave'}, {
     pattern = "*",
-    command = 'setlocal statusline=%!v:lua.statusline.inactive()',
+    command = 'setlocal statusline=%!v:lua.Statusline.inactive()',
     group = _au
 })
