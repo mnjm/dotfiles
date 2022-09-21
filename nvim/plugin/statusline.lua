@@ -4,12 +4,9 @@
 -- https://elianiva.my.id/post/neovim-lua-statusline
 
 -- Set display status line always
-vim.o.laststatus = 2
+vim.o.laststatus = 3
 -- Turn off shows default insert/replace modes
 vim.o.showmode = true
-
--- [Mode] filename [+] on ~> git-branch
--- C:columnnumber L:linenumber (%percentage of doc) B:buffernumber
 
 -- StatusLine highlight groups -- Colorscheme=PaperColor-dark
 local highlights = {
@@ -70,30 +67,56 @@ local function get_mode()
 end
 
 -- Get git info
-local function gitinfo()
+local function get_gitinfo()
     -- use fallback because it doesn't set this variable on the initial `BufEnter`
     local head, added, changed, removed = "", 0, 0, 0
     local signs = vim.b.gitsigns_status_dict
+    local gitinfo = ""
     if signs then
-        head = signs.head
+        head = signs.head or ""
         added = signs.added or 0
         changed = signs.changed or 0
         removed = signs.removed or 0
     end
-    if "" == head then
-        return ""
-    else
-        return string.format(" +%s -%s ~%s  %s ", added, removed, changed, head)
+    if head ~= "" then
+        local fmt = { {added, '+'}, {removed, '-'}, {changed, '~'} }
+        for _, v in ipairs(fmt) do
+            if v[1] ~= 0 then
+                gitinfo = string.format("%s %s%s", gitinfo, v[2], v[1])
+            end
+        end
+        gitinfo = string.format("%s  %s ", gitinfo, head)
     end
+    return gitinfo
+    -- return string.format(" +%s -%s ~%s  %s ", added, removed, changed, head)
+end
+
+-- Get lsp info
+local function get_lspinfo()
+    local ret = ""
+    local map = {
+        {vim.diagnostic.severity.ERROR, 'Err'},
+        {vim.diagnostic.severity.WARN, 'Wrn'},
+        -- {vim.diagnostic.severity.INFO, 'Info'},
+        -- {vim.diagnostic.severity.HINT, 'Hint'},
+    }
+    for _, s in ipairs(map) do
+        local count = #vim.diagnostic.get(0, {severity = s[1]})
+        if count ~=0 then
+            ret = string.format("%s %s:%s ", ret, s[2], count)
+        end
+    end
+    ret = ret ~= "" and string.format("%s|", ret) or ""
+    return ret
 end
 
 -- Get filepath with flags(modified, readonly, helpfile, preview)
-local function filepath()
+local function get_filepath()
     return " %<%f%m%r%h%w "
 end
 
 -- Get filetype
-local function filetype()
+local function get_filetype()
     local file_name, file_ext = vim.fn.expand("%:t"), vim.fn.expand("%:e")
     local icon = require'nvim-web-devicons'.get_icon(file_name, file_ext, { default = true })
     local ftype = vim.bo.filetype
@@ -102,15 +125,15 @@ local function filetype()
 end
 
 -- Get column, linenumber and percent of document
-local function lineinfo()
+local function get_lineinfo()
   if vim.bo.filetype == "alpha" then
     return ""
   end
-  return " Ln:%l(%p%%) "
+  return " %c:%l(%p%%) "
 end
 
 -- Display current buffer number
-local function buffernumber()
+local function get_buffernumber()
     return " B:%n "
 end
 
@@ -118,23 +141,25 @@ Statusline = {}
 Statusline.active = function()
     local mode, mode_color = get_mode()
     mode_color = "%#"..mode_color.."#"
+    local lspinfo = get_lspinfo()
     return table.concat {
         mode_color, mode,
-        "%#SLGitInfo#", gitinfo(),
+        "%#SLGitInfo#", get_gitinfo(),
         "%#SLDefault#", "%=",
-        "%#SLFileInfo#", filepath(),
+        "%#SLFileInfo#", get_filepath(),
         "%#SLDefault#", "%=",
-        "%#SLTrail#", filetype(),
-        "%#SLTrail#", lineinfo(),
-        mode_color, buffernumber()
+        "%#SLTrail#", lspinfo,
+        "%#SLTrail#", get_filetype(),
+        "%#SLTrail#", get_lineinfo(),
+        mode_color, get_buffernumber()
     }
 end
 Statusline.inactive = function()
     return table.concat {
         "%#SLDefault#", "%=",
-        "%#SLTrail#", filepath(),
+        "%#SLTrail#", get_filepath(),
         "%#SLDefault#", "%=",
-        "%#SLTrail#", buffernumber()
+        "%#SLTrail#", get_buffernumber()
     }
 end
 

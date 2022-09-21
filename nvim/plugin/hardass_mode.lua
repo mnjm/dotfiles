@@ -3,7 +3,7 @@
 ---------------------------------------------------------------------
 -- If enabled, arrow navigations will be disabled.
 
--- -- Uses vim.g.mm_hardass_mode global variable to enable/disable the mode
+-- Uses vim.g.mm_hardass_mode global variable to enable/disable the mode
 if vim.g.mm_hardass_mode == nil then
     vim.g.mm_hardass_mode = false
 end

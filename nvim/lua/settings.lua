@@ -55,7 +55,10 @@ o.listchars = 'trail:⬄,tab:➡ '
 -- Spell checking
 o.spelllang = 'en_us'
 o.complete = string.format("%s,kspell", o.complete)
---
+
+-- Mouse support
+vim.opt.mouse = 'a'
+
 ---------------------------------------------------------------------------------------------------
 ----------------------------------- Autocmds ------------------------------------------------------
 ---------------------------------------------------------------------------------------------------
@@ -71,11 +74,11 @@ A.nvim_create_autocmd('TextYankPost', {
 
 -- Auto remove trailing spaces and lines in c and python codes while saving.
 -- use ":noa w" to save without trimming
-patterns = {[[%s/\s\+$//e]], [[%s/\($\n\s*\)\+\%$//]]}
-files = { "*.c", "*.py", "*.cc", "*.cpp" },
 A.nvim_create_autocmd({ "BufWritePre" }, {
-    pattern = files,
+    pattern = { "*.c", "*.py", "*.cc", "*.cpp" }, -- Here goes file tyoes
     callback = function()
+        -- Patterns to remove trailing whitespaces and newlines
+        local patterns = {[[%s/\s\+$//e]], [[%s/\($\n\s*\)\+\%$//]]}
         local save = vim.fn.winsaveview()
         for _, v in pairs(patterns) do
             A.nvim_exec(string.format("keepjumps keeppatterns silent! %s", v), false)
@@ -86,9 +89,8 @@ A.nvim_create_autocmd({ "BufWritePre" }, {
 })
 
 -- Enable spell checking in certail filetypes by default
-filetypes = {"gitcommit", "markdown"}
 A.nvim_create_autocmd('FileType', {
-    pattern = filetypes,
+    pattern = {"gitcommit", "markdown"}, -- Filetypes (Vim specific) here
     command = 'setlocal spell',
     group = _au
 })
