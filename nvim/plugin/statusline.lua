@@ -3,7 +3,7 @@
 -- https://nuxsh.is-a.dev/blog/custom-nvim-statusline.html
 -- https://elianiva.my.id/post/neovim-lua-statusline
 
--- Set display status line always
+-- Set display status line always but only 1 for all windows
 vim.o.laststatus = 3
 -- Turn off shows default insert/replace modes
 vim.o.showmode = true
@@ -18,7 +18,7 @@ local highlights = {
     {'SLVisualMode', {fg = "#000000", bg="#ff5faf", gui="bold"}},
     {'SLUnknownMode', {fg = "#000000", bg="#b3684f", gui="bold"}},
     {'SLTrail', {fg = "#ffffff", bg="#585858", gui=nil}},
-    {'SLGitInfo', {fg = "#ffffff", bg="#585858", gui=nil}},
+    {'SLOtherInfo', {fg = "#000000", bg="#5f8787", gui=nil}},
     {'SLFileInfo', {fg = "#000000", bg="#00afaf", gui="bold"}},
 }
 for _, highlight in pairs(highlights) do
@@ -106,7 +106,7 @@ local function get_lspinfo()
             ret = string.format("%s %s:%s ", ret, s[2], count)
         end
     end
-    ret = ret ~= "" and string.format("%s|", ret) or ""
+    ret = ret ~= "" and string.format("%s", ret) or ""
     return ret
 end
 
@@ -144,11 +144,11 @@ Statusline.active = function()
     local lspinfo = get_lspinfo()
     return table.concat {
         mode_color, mode,
-        "%#SLGitInfo#", get_gitinfo(),
+        "%#SLOtherInfo#", get_gitinfo(),
         "%#SLDefault#", "%=",
         "%#SLFileInfo#", get_filepath(),
         "%#SLDefault#", "%=",
-        "%#SLTrail#", lspinfo,
+        "%#SLOtherInfo#", lspinfo,
         "%#SLTrail#", get_filetype(),
         "%#SLTrail#", get_lineinfo(),
         mode_color, get_buffernumber()
@@ -163,14 +163,18 @@ Statusline.inactive = function()
     }
 end
 
-local _au = vim.api.nvim_create_augroup('status_line', { clear = true })
-vim.api.nvim_create_autocmd({'WinEnter', 'BufEnter'}, {
-    pattern = "*",
-    command = 'setlocal statusline=%!v:lua.Statusline.active()',
-    group = _au
-})
-vim.api.nvim_create_autocmd({'WinLeave', 'BufLeave'}, {
-    pattern = "*",
-    command = 'setlocal statusline=%!v:lua.Statusline.inactive()',
-    group = _au
-})
+if vim.o.laststatus == 2 then
+    local _au = vim.api.nvim_create_augroup('status_line', { clear = true })
+    vim.api.nvim_create_autocmd({'WinEnter', 'BufEnter'}, {
+        pattern = "*",
+        command = 'setlocal statusline=%!v:lua.Statusline.active()',
+        group = _au
+    })
+    vim.api.nvim_create_autocmd({'WinLeave', 'BufLeave'}, {
+        pattern = "*",
+        command = 'setlocal statusline=%!v:lua.Statusline.inactive()',
+        group = _au
+    })
+else
+    vim.cmd('set statusline=%!v:lua.Statusline.active()')
+end
