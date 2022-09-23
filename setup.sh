@@ -60,10 +60,14 @@ _alert_local 'Installing nvim'
 ./nvim/setup_nvim.sh || _alert_local "Nvim setup failed" 1
 
 ############################################################
+###################### Alacritty ###########################
+############################################################
+_alert_local 'Installing alacritty'
+./Alacritty/setup_alacritty.sh || _alert_local "Alacritty setup failed" 1
+
+############################################################
 ################### Change Shell  ##########################
 ############################################################
 # Change shell to zsh
 _alert_local "Changing default sh to zsh"
-chsh -s $(which zsh)
-
-_alert_local "Relaunch terminal now"
+_alert_local "Run this and relaunch terminal 'chsh -s $(which zsh)'"
