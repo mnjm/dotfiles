@@ -48,6 +48,7 @@ map('v', '<leader>y', '"+y')
 map({'v', 'n'}, '<leader>p', '"+p')
 -- Open Fzf
 map('n', '<leader>f', '<CMD>Telescope find_files<CR>')
+map('n', '<leader>b', '<CMD>Telescope file_browser<CR>')
 -- Move between tabs easily
 map('n', '<C-Left>', '<CMD>tabp<CR>')
 map('n', '<C-Right>', '<CMD>tabn<CR>')

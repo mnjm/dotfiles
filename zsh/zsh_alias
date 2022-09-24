@@ -12,16 +12,19 @@ alias py='python3'                                              # Python Alias
 alias vf='nvim +"Telescope find_files"'                         # Open nvim with telescope to fzf find a file
 alias tmuxn='tmux new -A -s $(tmux ls | fzf --no-multi \
     --print-query | tail -n 1 | cut -d':' -f1)'                 # Select/open session using fzf
+
 alias g='git'                                                   # git
 alias gs='git status'
 alias gd='git diff'
+alias gdt='git difftool -y'
 alias gl='git log'
 alias gb='git branch'
 alias gc='git commit'
 alias gbc='git checkout'
-alias extract='$DOTFILES/zsh/scripts/extract.zsh'               # Oh-my-zsh extract script
 
 o_vim=$(which vim)
 alias vim=nvim                                                  # Replace vim with nvim
 alias _vim=$o_vim                                               # original vim alias
+
 alias dirs='dirs -v'                                            # Show pushd stack with numbers. cd to a dir in stack by cd ~<no>
+alias extract='$DOTFILES/zsh/scripts/extract.zsh'               # Oh-my-zsh extract script

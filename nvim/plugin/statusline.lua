@@ -176,5 +176,5 @@ if vim.o.laststatus == 2 then
         group = _au
     })
 else
-    vim.cmd('set statusline=%!v:lua.Statusline.active()')
+    vim.opt.statusline='%!v:lua.Statusline.active()'
 end

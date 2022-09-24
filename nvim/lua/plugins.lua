@@ -5,12 +5,19 @@
 -- :PackerInstall - to install new packages
 -- :PackerSync - to sync packages
 return require('packer').startup(function()
-
+    -----------------------------------------------------------------------------------------------
+    ------------------------------------- Plugins -------------------------------------------------
+    -----------------------------------------------------------------------------------------------
     -- Packer can manage itself
     use 'wbthomason/packer.nvim'
-
     -- Plenary: Lua module most plugins use
     use 'nvim-lua/plenary.nvim'
+    -- dev icons that most nvim plugins use
+    use { 'kyazdani42/nvim-web-devicons',
+            config = function()
+                require('nvim-web-devicons').setup()
+            end,
+        }
 
     -- Vim commentary
     use 'tpope/vim-commentary'
@@ -29,11 +36,10 @@ return require('packer').startup(function()
                 require('telescope').load_extension('fzf')
             end
         }
-
-    use { 'kyazdani42/nvim-web-devicons',
+    use {"nvim-telescope/telescope-file-browser.nvim",
             config = function()
-                require('nvim-web-devicons').setup()
-            end,
+                require('telescope').load_extension('file_browser')
+            end
         }
 
     -- Git Plugin
@@ -45,7 +51,7 @@ return require('packer').startup(function()
     -- TreeSitter - For better syntax highlighting
     use 'nvim-treesitter/nvim-treesitter'
 
-    -- LSP - Config
+    -- LSP - Config'
     use 'neovim/nvim-lspconfig'
 
     -- LSP - Autocomplete
@@ -57,4 +63,7 @@ return require('packer').startup(function()
     -- Snip tools
     use 'L3MON4D3/LuaSnip'
     use 'saadparwaiz1/cmp_luasnip'
+
+    -- Symbols navigation
+    use 'simrat39/symbols-outline.nvim'
 end)
