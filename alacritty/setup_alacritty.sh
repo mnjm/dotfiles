@@ -38,4 +38,8 @@ cp extra/completions/_alacritty ~/.zsh/zsh_functions
 _alert_local "Add 'fpath+=~/.zsh/zsh_functions' line into ur zshrc_local (~/.zshrc_local)"
 
 mkdir -p ~/.config/alacritty
+
+# Download https://github.com/eendroroy/alacritty-theme
+git -C ~/.config/alacritty/colorschemes pull || git clone https://github.com/eendroroy/alacritty-theme.git ~/.config/alacritty/colorschemes
+
 ln -vs $DOTFILES/alacritty/alacritty.yml ~/.config/alacritty/alacritty.yml || ls -l ~/.config/alacritty/alacritty.yml

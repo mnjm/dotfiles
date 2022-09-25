@@ -16,7 +16,7 @@ sudo apt install curl wget unrar rsync -y
 sudo apt install nala htop -y
 sudo apt install ninja-build gettext libtool-bin autoconf automake -y
 sudo apt install g++ pkg-config unzip doxygen -y
-sudo apt install ghostwriter ripgrep -y
+sudo apt install ripgrep net-tools -y
 python3 -m pip install scipy numpy opencv-contrib-python matplotlib --user
 python3 -m pip install tensorflow tensorboard datetime --user
 

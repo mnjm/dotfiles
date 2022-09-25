@@ -20,7 +20,8 @@ alias gdt='git difftool -y'
 alias gl='git log'
 alias gb='git branch'
 alias gc='git commit'
-alias gbc='git checkout'
+alias gco='git checkout'
+alias ga='git add'
 
 o_vim=$(which vim)
 alias vim=nvim                                                  # Replace vim with nvim

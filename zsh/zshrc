@@ -10,14 +10,13 @@ export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 export HISTFILE=~/.zsh_history
 export HISTSIZE=10000
 export SAVEHIST=10000
+
 # System Specific exports
 # Alternatively these can be exported in ~/.zshrc_local file.
 # Location where dotfiles cloned
 export DOTFILES="$HOME/workspace/dotfiles"
 # Location where tmux plugin manager is stored.
 export TMUX_PLUGIN_MANAGER_PATH=$HOME/.tmux/plugins
-# Dont load default ranger config
-export RANGER_LOAD_DEFAULT_RC=FALSE
 
 _alert_local() {
     color=${2:-6}
@@ -77,7 +76,14 @@ export PROMPT='${NEWLINE}%(?..%F{red}X )%F{14}%n%f%F{white}@%f%F{202}%m%f%F{whit
 _source_if_file_exists ~/.fzf.zsh
 
 # Highlight completions
+autoload -U compinit
 zstyle ':completion:*' menu select
+zmodload zsh/complist
+compinit
+_comp_options+=(globdots)		# Include hidden files.
+
+# Fix somecases where backspace doenst work
+bindkey -v '^?' backward-delete-char
 
 # Zsh Plugins
 _source_if_file_exists ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
