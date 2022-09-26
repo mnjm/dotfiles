@@ -1,5 +1,9 @@
 # Safe Remove
 function safe_rm() {
+    _alert_local 'Moving files to Trash. To use rm, Use \\rm instead of rm to bypass alias'
+    trash -vI "$@"
+}
+function safe_rm_bk() {
     # Echo Warning
     printf "Do you really want to delete "
     tput setaf 1; printf " %s " $@; tput sgr 0; echo "? (Y/?)";
@@ -34,7 +38,7 @@ function vclip() {
 }
 
 # colored man pape
-function man ()
+function man()
 {
     env LESS_TERMCAP_mb=$(printf "\e[1;31m") LESS_TERMCAP_md=$(printf "\e[1;31m") LESS_TERMCAP_me=$(printf "\e[0m") LESS_TERMCAP_se=$(printf "\e[0m") LESS_TERMCAP_so=$(printf "\e[1;44;33m") LESS_TERMCAP_ue=$(printf "\e[0m") LESS_TERMCAP_us=$(printf "\e[1;32m") man "$@"
 }

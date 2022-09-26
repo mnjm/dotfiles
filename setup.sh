@@ -20,6 +20,15 @@ sudo apt install ripgrep net-tools -y
 python3 -m pip install scipy numpy opencv-contrib-python matplotlib --user
 python3 -m pip install tensorflow tensorboard datetime --user
 
+# Install trash-d (replacement for rm to trash the files instead of actually deleting them)
+_alert_local "Installing trash-d"
+mkdir -p ~/softwares/trash-d
+pushd ~/softwares/trash-d
+wget -t10 https://github.com/rushsteve1/trash-d/releases/download/18/trash-d-18-x86_64.deb ||
+    _alert_local "trash-d download failed!" 1
+sudo dpkg -i ./trash-d-18-x86_64.deb || _alert_local "trash-d install failed!" 1
+popd
+
 #############################################################
 #################### FZF: Fuzzy File Finder #################
 #############################################################
