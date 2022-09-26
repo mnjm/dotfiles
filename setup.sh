@@ -20,7 +20,10 @@ sudo apt install ripgrep net-tools -y
 python3 -m pip install scipy numpy opencv-contrib-python matplotlib --user
 python3 -m pip install tensorflow tensorboard datetime --user
 
-# Install trash-d (replacement for rm to trash the files instead of actually deleting them)
+#############################################################
+########## Other packages not available in apt ##############
+#############################################################
+# trash-d (replacement for rm to trash the files instead of actually deleting them)
 _alert_local "Installing trash-d"
 mkdir -p ~/softwares/trash-d
 pushd ~/softwares/trash-d
@@ -29,9 +32,6 @@ wget -t10 https://github.com/rushsteve1/trash-d/releases/download/18/trash-d-18-
 sudo dpkg -i ./trash-d-18-x86_64.deb || _alert_local "trash-d install failed!" 1
 popd
 
-#############################################################
-#################### FZF: Fuzzy File Finder #################
-#############################################################
 # Fzf
 _alert_local 'Installing Fzf'
 git -C ~/.fzf pull || git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
@@ -40,6 +40,16 @@ if [ -f ~/.fzf/install ]; then
 else
     _alert_local "Fzf installation failed" 1
 fi
+
+# lf - file manager
+_alert_local "Installing lf"
+mkdir -p ~/softwares/lf
+pushd ~/softwares/lf
+wget -t10 https://github.com/gokcehan/lf/releases/download/r27/lf-linux-amd64.tar.gz || 
+    _alert_local "lf download failed!" 1
+tar -xf ./lf-linux-amd64.tar.gz
+_link_file ./lf $HOME/.local/bin/lf
+popd
 
 ############################################################
 ###################### VIM Text Editor #####################

@@ -1,5 +1,5 @@
 alias ls='ls --color=auto --group-directories-first'            # ls
-alias ll='ls -alF --color=auto --group-directories-first'
+alias ll='ls -alFh --color=auto --group-directories-first'
 alias grep='grep --color=auto'                                  # Grep with colors
 alias ..='cd ..'
 alias copi='xclip -selection clipboard'                         # Xclip to work with Selection Clipboard
@@ -23,9 +23,6 @@ alias gc='git commit'
 alias gco='git checkout'
 alias ga='git add'
 
-o_vim=$(which vim)
 alias vim=nvim                                                  # Replace vim with nvim
-alias _vim=$o_vim                                               # original vim alias
-
 alias dirs='dirs -v'                                            # Show pushd stack with numbers. cd to a dir in stack by cd ~<no>
 alias extract='$DOTFILES/zsh/scripts/extract.zsh'               # Oh-my-zsh extract script

@@ -18,23 +18,22 @@ export DOTFILES="$HOME/workspace/dotfiles"
 # Location where tmux plugin manager is stored.
 export TMUX_PLUGIN_MANAGER_PATH=$HOME/.tmux/plugins
 
-_alert_local() {
-    color=${2:-6}
-    tput setaf $color; echo $1; tput sgr0
-}
+# Running scripts and alias
+if [[ -v DOTFILES ]]; then
+    source $DOTFILES/setup_utils.sh
+    _source_if_file_exists $DOTFILES/zsh/scripts/functions.zsh
+    _source_if_file_exists $DOTFILES/zsh/zsh_alias
+else
+    _alert_local "ERROR: \$DOTFILES not set. Cant load functions and aliases" 1
+fi
 
-_source_if_file_exists() {
-    if [ -f "$1" ]; then
-        source $1
-    else
-        _alert_local "File $1 doenst exists" 1
-    fi
-}
+# bind ctrl+o to lfcd
+bindkey -s '^o' '^ulfcd\n'
 
 # Enable control-x-e to edit command in editor
 autoload -U edit-command-line
 zle -N edit-command-line
-bindkey '^xe' edit-command-line # Prefer opening vim rather than zsh's vi-mode
+bindkey '^e' edit-command-line # Prefer opening vim rather than zsh's vi-mode
 
 autoload -U add-zsh-hook
 
@@ -47,6 +46,8 @@ setopt hist_expire_dups_first   # Duplicates will be removed first
 setopt extended_history         # Save start and elapsed time in history
 setopt auto_pushd               # Use pushd instead of cd
 setopt prompt_subst             # Enable prompt subsitution
+setopt auto_cd                  # perform a cd if cmd is a directory
+setopt pushd_ignore_dups        # Ignore dupicates in pushd stack
 
 # Setting up prompt
 NEWLINE=$'\n'
@@ -73,7 +74,7 @@ zstyle ':vcs_info:git*+set-message:*' hooks git-untracked
 export PROMPT='${NEWLINE}%(?..%F{red}X )%F{14}%n%f%F{white}@%f%F{202}%m%f%F{white}:%f%F{green}%~ ${vcs_info_msg_0_} ${NEWLINE}%F{172}$ %f'
 
 # FZF
-_source_if_file_exists ~/.fzf.zsh
+_source_if_file_exists_err ~/.fzf.zsh
 
 # Highlight completions
 autoload -U compinit
@@ -86,19 +87,9 @@ _comp_options+=(globdots)		# Include hidden files.
 bindkey -v '^?' backward-delete-char
 
 # Zsh Plugins
-_source_if_file_exists ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+_source_if_file_exists_err ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 bindkey '^ ' autosuggest-accept # Ctrl+space to accept the suggestion
-_source_if_file_exists ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+_source_if_file_exists_err ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Loading local zshrc
-local zshrc_local=~/.zshrc_local
-[ -f "$zshrc_local" ] && source $zshrc_local
-
-# Running scripts and alias
-if [[ -v DOTFILES ]]; then
-    local zshrc_functions=$DOTFILES/zsh/scripts/functions.zsh
-    [ -f "$zshrc_functions" ] && source $zshrc_functions
-    _source_if_file_exists $DOTFILES/zsh/zsh_alias
-else
-    _alert_local "ERROR: \$DOTFILES not set. Cant load functions and aliases" 1
-fi
+_source_if_file_exists ~/.zshrc_local

@@ -7,7 +7,7 @@
 
 # Clone / Pull alacritty
 mkdir -p ~/softwares
-git -C ~/softwares/alacritty pull || git clone https://github.com/alacritty/alacritty.git ~/softwares/alacritty
+_git_clone_pull https://github.com/alacritty/alacritty.git ~/softwares/alacritty
 
 pushd ~/softwares/alacritty
 
@@ -42,4 +42,4 @@ mkdir -p ~/.config/alacritty
 # Download https://github.com/eendroroy/alacritty-theme
 git -C ~/.config/alacritty/colorschemes pull || git clone https://github.com/eendroroy/alacritty-theme.git ~/.config/alacritty/colorschemes
 
-ln -vs $DOTFILES/alacritty/alacritty.yml ~/.config/alacritty/alacritty.yml || ls -l ~/.config/alacritty/alacritty.yml
+_link_file $DOTFILES/alacritty/alacritty.yml ~/.config/alacritty/alacritty.yml
