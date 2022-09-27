@@ -10,7 +10,9 @@ Includes my configurations for
 
 - alacritty
 
-- and tmux
+- tmux
+
+- and setup scripts to install packages I use frequently
 
 ### My Zsh Prompt
 

@@ -43,13 +43,7 @@ fi
 
 # lf - file manager
 _alert_local "Installing lf"
-mkdir -p ~/softwares/lf
-pushd ~/softwares/lf
-wget -t10 https://github.com/gokcehan/lf/releases/download/r27/lf-linux-amd64.tar.gz || 
-    _alert_local "lf download failed!" 1
-tar -xf ./lf-linux-amd64.tar.gz
-_link_file ./lf $HOME/.local/bin/lf
-popd
+./lf/setup_lf.sh || _alert_local "Lf setup failed" 1
 
 ############################################################
 ###################### VIM Text Editor #####################
