@@ -29,13 +29,13 @@
 
 - Use [pyright]([GitHub - microsoft/pyright: Static type checker for Python](https://github.com/microsoft/pyright))
 
-- To install run `python3 -m pip install pyright`
-
-- And run `pyright --help` once to install node if not installed already
+- To install
   
-  - or using `python3 -m pyright --help`
+  - `sudo apt install nodejs npm`
+  
+  - `sudo npm -g install pyright`
 
-# C, C++ (C based langulages)
+- # C, C++ (C based langulages)
 
 - Use clangd
 

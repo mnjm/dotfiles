@@ -27,13 +27,10 @@ else
     _alert_local "ERROR: \$DOTFILES not set. Cant load functions and aliases" 1
 fi
 
-# bind ctrl+o to lfcd
-bindkey -s '^o' '^ulfcd\n'
 
 # Enable control-x-e to edit command in editor
 autoload -U edit-command-line
 zle -N edit-command-line
-bindkey '^e' edit-command-line # Prefer opening vim rather than zsh's vi-mode
 
 autoload -U add-zsh-hook
 
@@ -83,13 +80,15 @@ zmodload zsh/complist
 compinit
 _comp_options+=(globdots)		# Include hidden files.
 
-# Fix somecases where backspace doenst work
-bindkey -v '^?' backward-delete-char
-
 # Zsh Plugins
 _source_if_file_exists_err ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-bindkey '^ ' autosuggest-accept # Ctrl+space to accept the suggestion
 _source_if_file_exists_err ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+bindkey '^ ' autosuggest-accept         # Ctrl+space to accept the suggestion
+bindkey -s '^b' '^ulfcd\n'              # bind ctrl+o to lfcd
+bindkey '^o' fzf-cd-widget              # bind ctrl+o to lfcd
+bindkey '^e' edit-command-line          # Prefer opening vim rather than zsh's vi-mode
+bindkey '^?' backward-delete-char       # Fix somecases where backspace doenst work
 
 # Loading local zshrc
 _source_if_file_exists ~/.zshrc_local

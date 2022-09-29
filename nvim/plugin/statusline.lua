@@ -7,6 +7,8 @@
 vim.o.laststatus = 3
 -- Turn off shows default insert/replace modes
 vim.o.showmode = true
+-- disable displaying command line
+vim.o.cmdheight = 0
 
 -- StatusLine highlight groups -- Colorscheme=PaperColor-dark
 local highlights = {
@@ -137,6 +139,20 @@ local function get_buffernumber()
     return " B:%n "
 end
 
+-- Winbar
+local set_winbar = function()
+    local wins = vim.api.nvim_tabpage_list_wins(0) -- get windows in the current tabpage
+    if #wins > 1 then -- if more than 1 windows in the current tabpage
+        vim.opt.winbar = table.concat {
+            "%#SLFileInfo#", " %<%t%m%r ",
+            "%#SLDefault#", "%=",
+            "%#SLNormalMode#", get_buffernumber()
+        }
+        return
+    end
+    vim.opt.winbar = ""
+end
+
 Statusline = {}
 Statusline.active = function()
     local mode, mode_color = get_mode()
@@ -177,4 +193,11 @@ if vim.o.laststatus == 2 then
     })
 else
     vim.opt.statusline='%!v:lua.Statusline.active()'
+    -- Winbar
+    local _au = vim.api.nvim_create_augroup('winbar', { clear = true })
+    vim.api.nvim_create_autocmd({'WinEnter', 'WinLeave'}, {
+        pattern = "*",
+        callback = set_winbar,
+        group = _au
+    })
 end

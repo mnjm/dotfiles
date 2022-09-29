@@ -6,7 +6,7 @@ Includes my configurations for
 
 - neovim
 
-- vim - venilla config with some nicities for fallback in case my neovim config is broken
+- vim - venilla config with some nicities for fallback in case my neovim config breaks
 
 - alacritty
 

@@ -76,7 +76,7 @@ _alert_local 'Installing nvim'
 ###################### Alacritty ###########################
 ############################################################
 _alert_local 'Installing alacritty'
-./Alacritty/setup_alacritty.sh || _alert_local "Alacritty setup failed" 1
+./alacritty/setup_alacritty.sh || _alert_local "Alacritty setup failed" 1
 
 ############################################################
 ################### Change Shell  ##########################

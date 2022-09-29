@@ -5,7 +5,8 @@
 --- Treesitter
 require('nvim-treesitter.configs').setup {
     -- A list of parser names, or "all"
-    ensure_installed = 'all', -- Only include parsers that are maintained
+    ensure_installed = "all", -- Only include parsers that are maintained
+    -- ensure_installed = {"c", "cpp", "lua", "python", "bash", "yaml"}, -- Only include parsers that are maintained
 
     -- Install parsers synchronously (only applied to `ensure_installed`)
     sync_install = false,
@@ -152,7 +153,9 @@ cmp.setup({
         ['<CR>'] = cmp.mapping.confirm({ select = false }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
     }),
     sources = cmp.config.sources({
-        { name = 'buffer' },
+        { name = 'buffer' , option = {
+            get_bufnrs = function() return vim.api.nvim_list_bufs() end, -- completions from all open buffers
+        }},
         { name = 'nvim_lsp' },
         { name = 'luasnip' }, -- For luasnip users.
     }, {
