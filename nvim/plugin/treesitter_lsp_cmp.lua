@@ -105,6 +105,11 @@ require('lspconfig').clangd.setup{
     on_attach = on_attach,
     capabilities = capabilities,
 }
+-- LSP Configuration for rust
+require('lspconfig').rust_analyzer.setup{
+    on_ttach = on_attach,
+    capabilities = capabilities,
+}
 
 ---------------------------------------------------------------------------------------------------
 ------------------------------ Completion Engine Stuff --------------------------------------------

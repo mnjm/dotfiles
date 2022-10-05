@@ -18,12 +18,7 @@
 ## Lua
 
 - Use [sumneko_lua]([GitHub - sumneko/lua-language-server: A language server that offers Lua language support - programmed in Lua](https://github.com/sumneko/lua-language-server))
-
-- Download linux x64 tar file from release link in the github repo
-
-- Extract it and add the `<extracted>/bin` to `$PATH`
-
-- nvim looks for lsp-language-server in `$PATH`
+- Check `other/useful_scripts/install_sumneko_lau_lsp_server.sh` to intall lua-lsp server
 
 ## Python
 
@@ -35,7 +30,7 @@
   
   - `sudo npm -g install pyright`
 
-- # C, C++ (C based langulages)
+## C, C++ (C based langulages)
 
 - Use clangd
 
@@ -43,4 +38,10 @@
 
 - clangd relies on a [JSON compilation database](https://clang.llvm.org/docs/JSONCompilationDatabase.html) specified as compile_commands.json, see [Getting started](https://clangd.llvm.org/installation#compile_commandsjson)
 
-- 
+## Rust
+- Use rust-analyser
+- Run this command to install
+```bash
+curl -L https://github.com/rust-lang/rust-analyzer/releases/latest/download/rust-analyzer-x86_64-unknown-linux-gnu.gz | gunzip -c - > ~/.local/bin/rust-analyzer
+chmod +x ~/.local/bin/rust-analyzer
+```

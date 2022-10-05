@@ -84,11 +84,12 @@ _comp_options+=(globdots)		# Include hidden files.
 _source_if_file_exists_err ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 _source_if_file_exists_err ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-bindkey '^ ' autosuggest-accept         # Ctrl+space to accept the suggestion
-bindkey -s '^b' '^ulfcd\n'              # bind ctrl+o to lfcd
-bindkey '^o' fzf-cd-widget              # bind ctrl+o to lfcd
-bindkey '^e' edit-command-line          # Prefer opening vim rather than zsh's vi-mode
-bindkey '^?' backward-delete-char       # Fix somecases where backspace doenst work
+bindkey '^ ' autosuggest-accept                      # Ctrl+space to accept the suggestion
+bindkey -s '^b' '^ulfcd\n'                           # bind ctrl+o to lfcd
+bindkey '^o' fzf-cd-widget                           # bind ctrl+o to lfcd
+bindkey '^e' edit-command-line                       # Prefer opening vim rather than zsh's vi-mode
+bindkey '^?' backward-delete-char                    # Fix somecases where backspace doenst work
+bindkey -M menuselect '^[[Z' reverse-menu-complete   # 'Shift-tab' to reverse through menu select
 
 # Loading local zshrc
 _source_if_file_exists ~/.zshrc_local
