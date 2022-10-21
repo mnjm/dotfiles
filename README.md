@@ -20,3 +20,12 @@ Minimal with [syntax highlighting](https://github.com/zsh-users/zsh-syntax-highl
 ![Zsh-Prompt](https://github.com/mnjm/dotfiles/blob/assets/zsh_prompt.png?raw=true)
 
 Checkout my [.zshrc](https://github.com/mnjm/dotfiles/blob/master/zsh/zshrc)
+
+# Installation
+
+```
+sudo apt install git
+git clone https://github.com/mnjm/dotfiles.git
+cd dotfiles
+./setup.sh
+```

@@ -1,0 +1,7 @@
+scipy
+numpy
+opencv-contrib-python
+matplotlib
+tensorflow
+tensorboard
+datetime

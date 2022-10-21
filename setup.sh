@@ -6,19 +6,22 @@ export DOTFILES=$PWD
 . $DOTFILES/setup_utils.sh
 
 #############################################################
-######################### Apt Packages ######################
+######################### Apt+Pip Packages ##################
 #############################################################
 _alert_local "Installing apt packages"
-sudo apt install zsh zsh-doc tmux vim vim-gui-common git vlc xclip -y
-sudo apt install python3 python3-dev python3-pip python3-tk -y
-sudo apt install build-essential cmake android-tools-adb android-tools-fastboot -y
-sudo apt install curl wget unrar rsync -y
-sudo apt install nala htop -y
-sudo apt install ninja-build gettext libtool-bin autoconf automake -y
-sudo apt install g++ pkg-config unzip doxygen -y
-sudo apt install ripgrep net-tools -y
-python3 -m pip install scipy numpy opencv-contrib-python matplotlib --user
-python3 -m pip install tensorflow tensorboard datetime --user
+xargs -a apt-packages.txt sudo apt install -y
+_alert_local "Installing pip packages"
+xargs -a pip-packages.txt python3 -m pip install --user
+#
+#############################################################
+######################### Nerd Font #########################
+#############################################################
+_alert_local "Installing Nerd Fonts"
+mkdir -p ~/.fonts
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.2.2/UbuntuMono.zip -O /tmp/UbuntuMono.zip
+unzip /tmp/UbuntuMono.zip -d "$HOME/.fonts/UbuntuMono"
+fc-cache -fv || _alert_local "Fonts install failed" 1
+rm /tmp/UbuntuMono.zip
 
 ############################################################
 ###################### VIM Text Editor #####################
@@ -78,6 +81,4 @@ fi
 _alert_local "Installing lf"
 ./lf/setup_lf.sh || _alert_local "Lf setup failed" 1
 
-# Change shell to zsh
-_alert_local "Changing default sh to zsh"
 _alert_local "Run this and relaunch terminal 'chsh -s $(which zsh)'"

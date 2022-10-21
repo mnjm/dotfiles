@@ -16,8 +16,6 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 source $HOME/.cargo/env
 rustup override set stable
 rustup update stable
-# Install dependencies
-sudo apt install cmake pkg-config libfreetype6-dev libfontconfig1-dev libxcb-xfixes0-dev libxkbcommon-dev python3 -y
 cargo build --release
 # Terminfo for alacritty
 sudo tic -xe alacritty,alacritty-direct extra/alacritty.info
