@@ -1,0 +1,25 @@
+[/]
+custom-list=['__dummy__', 'custom0']
+
+[custom-keybindings/custom0]
+binding=['<Super>p']
+command='rofi -show run'
+name='rofi'
+
+[media-keys]
+terminal=['<Primary><Alt>t', '<Super>Return']
+www=['<Super>w']
+
+[wm]
+close=['<Alt>F4', '<Shift><Super>c']
+maximize=['<Super>Up']
+move-to-monitor-left=@as []
+move-to-monitor-right=@as []
+move-to-workspace-left=['<Primary><Super>Left']
+move-to-workspace-right=['<Primary><Super>Right']
+push-tile-down=@as []
+push-tile-up=@as []
+switch-monitor=['XF86Display']
+switch-to-workspace-left=['<Shift><Super>Left']
+switch-to-workspace-right=['<Shift><Super>Right']
+unmaximize=['<Super>Down']

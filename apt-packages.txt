@@ -39,3 +39,4 @@ ghostwriter
 nodejs
 npm
 clangd
+rofi

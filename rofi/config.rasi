@@ -1,0 +1,6 @@
+configuration {
+ modi: "window,drun,ssh,combi";
+ font: "UbuntuMono 12";
+ combi-modi: "window,drun,ssh";
+ }
+@theme "/usr/share/rofi/themes/android_notification.rasi"
