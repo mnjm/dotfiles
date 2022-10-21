@@ -11,7 +11,7 @@ _git_clone_pull https://github.com/alacritty/alacritty.git ~/softwares/alacritty
 
 pushd ~/softwares/alacritty
 
-# Install alacritty
+Install alacritty
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 source $HOME/.cargo/env
 rustup override set stable
@@ -30,16 +30,14 @@ sudo update-desktop-database
 sudo mkdir -p /usr/local/share/man/man1
 gzip -c extra/alacritty.man | sudo tee /usr/local/share/man/man1/alacritty.1.gz > /dev/null
 gzip -c extra/alacritty-msg.man | sudo tee /usr/local/share/man/man1/alacritty-msg.1.gz > /dev/null
-
-popd
-
+# Autocompletions
 mkdir -p ~/.zsh/zsh_functions/
 cp extra/completions/_alacritty ~/.zsh/zsh_functions
-_alert_local "Add 'fpath+=~/.zsh/zsh_functions' line into ur zshrc_local (~/.zshrc_local)"
+
+popd
 
 mkdir -p ~/.config/alacritty
 
 # Download https://github.com/eendroroy/alacritty-theme
-git -C ~/.config/alacritty/colorschemes pull || git clone https://github.com/eendroroy/alacritty-theme.git ~/.config/alacritty/colorschemes
-
+_git_clone_pull https://github.com/eendroroy/alacritty-theme.git ~/.config/alacritty/colorschemes
 _link_file $DOTFILES/alacritty/alacritty.yml ~/.config/alacritty/alacritty.yml

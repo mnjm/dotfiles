@@ -13,4 +13,6 @@ _alert_local "Downloading/Updating zsh-autosuggestions"
 _git_clone_pull https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
 # Zsh Syntax Highlight
 _alert_local "Downloading/Updating zsh-syntx-highlighting"
-_git_clone_pull https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.zsh/zsh-syntax-highlighting
+ _git_clone_pull https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.zsh/zsh-syntax-highlighting
+
+ mkdir -p ~/.zsh/zsh_functions

@@ -91,5 +91,8 @@ bindkey '^e' edit-command-line                       # Prefer opening vim rather
 bindkey '^?' backward-delete-char                    # Fix somecases where backspace doenst work
 bindkey -M menuselect '^[[Z' reverse-menu-complete   # 'Shift-tab' to reverse through menu select
 
+# Load zsh_functions
+fpath+=~/.zsh/zsh_functions
+
 # Loading local zshrc
 _source_if_file_exists ~/.zshrc_local

@@ -20,31 +20,6 @@ sudo apt install ripgrep net-tools -y
 python3 -m pip install scipy numpy opencv-contrib-python matplotlib --user
 python3 -m pip install tensorflow tensorboard datetime --user
 
-#############################################################
-########## Other packages not available in apt ##############
-#############################################################
-# trash-d (replacement for rm to trash the files instead of actually deleting them)
-_alert_local "Installing trash-d"
-mkdir -p ~/softwares/trash-d
-pushd ~/softwares/trash-d
-wget -t10 https://github.com/rushsteve1/trash-d/releases/download/18/trash-d-18-x86_64.deb ||
-    _alert_local "trash-d download failed!" 1
-sudo dpkg -i ./trash-d-18-x86_64.deb || _alert_local "trash-d install failed!" 1
-popd
-
-# Fzf
-_alert_local 'Installing Fzf'
-git -C ~/.fzf pull || git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-if [ -f ~/.fzf/install ]; then
-    ~/.fzf/install --all --no-bash
-else
-    _alert_local "Fzf installation failed" 1
-fi
-
-# lf - file manager
-_alert_local "Installing lf"
-./lf/setup_lf.sh || _alert_local "Lf setup failed" 1
-
 ############################################################
 ###################### VIM Text Editor #####################
 ############################################################
@@ -78,9 +53,31 @@ _alert_local 'Installing nvim'
 _alert_local 'Installing alacritty'
 ./alacritty/setup_alacritty.sh || _alert_local "Alacritty setup failed" 1
 
-############################################################
-################### Change Shell  ##########################
-############################################################
+#############################################################
+########## Other packages not available in apt ##############
+#############################################################
+# trash-d (replacement for rm to trash the files instead of actually deleting them)
+_alert_local "Installing trash-d"
+mkdir -p ~/softwares/trash-d
+pushd ~/softwares/trash-d
+wget -t10 https://github.com/rushsteve1/trash-d/releases/download/18/trash-d-18-x86_64.deb ||
+    _alert_local "trash-d download failed!" 1
+sudo dpkg -i ./trash-d-18-x86_64.deb || _alert_local "trash-d install failed!" 1
+popd
+
+# Fzf
+_alert_local 'Installing Fzf'
+git -C ~/.fzf pull || git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+if [ -f ~/.fzf/install ]; then
+    ~/.fzf/install --all --no-bash
+else
+    _alert_local "Fzf installation failed" 1
+fi
+
+# lf - file manager
+_alert_local "Installing lf"
+./lf/setup_lf.sh || _alert_local "Lf setup failed" 1
+
 # Change shell to zsh
 _alert_local "Changing default sh to zsh"
 _alert_local "Run this and relaunch terminal 'chsh -s $(which zsh)'"

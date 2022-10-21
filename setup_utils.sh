@@ -34,5 +34,5 @@ _link_file() {
 _git_clone_pull() {
     rmt=$1
     lcl=$2
-    git -C "$lcl" pull || git clone $rmt $src
+    git -C "$lcl" pull || git clone "$rmt" "$lcl"
 }
