@@ -1,3 +1,9 @@
+_path_add() {
+    if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
+        PATH="${PATH:+"$PATH:"}$1"
+    fi
+}
+
 _alert_local() {
     color=${2:-6}
     tput setaf $color; echo $1; tput sgr0

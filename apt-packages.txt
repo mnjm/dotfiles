@@ -40,3 +40,4 @@ nodejs
 npm
 clangd
 rofi
+deluge
