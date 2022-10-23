@@ -1,12 +1,13 @@
 #!/usr/bin/env bash
 
-. $DOTFILES/setup_utils.sh
+. $DOTFILES/install/setup_utils.sh
 
-# # Install and setup neovim
+# Install and setup neovim
 mkdir -p ~/softwares
 pushd ~/softwares
 wget "https://github.com/neovim/neovim/releases/download/v0.8.0/nvim-linux64.deb"
 sudo dpkg -i nvim-linux64.deb
+rm nvim-linux64.deb
 popd
 
 # Install packer.nvim (Package Manager for nvim)
@@ -15,8 +16,7 @@ git -C ~/.local/share/nvim/site/pack/packer/start/packer.nvim pull ||\
     ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 
 # Setting up configurations
-nvim +"source $DOTFILES/nvim/lua/plugins.lua" +PackerSync +qall # TODO: Test This
-$DOTFILES/nvim/create_links_lua.sh
+nvim +"source $DOTFILES/nvim/.config/nvim/lua/plugins.lua" +PackerSync +qall # TODO: Test This
 
 # Lua LSP
 mkdir -p ~/softwares/lua-language-server

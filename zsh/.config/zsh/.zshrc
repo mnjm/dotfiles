@@ -20,9 +20,9 @@ zshrclcl="~/.zshrc_local"
 
 # Running scripts and alias
 if [[ -v DOTFILES ]]; then
-    source $DOTFILES/setup_utils.sh
-    _source_if_file_exists $DOTFILES/zsh/scripts/functions.zsh
-    _source_if_file_exists $DOTFILES/zsh/zsh_alias
+    source $DOTFILES/install/setup_utils.sh
+    _source_if_file_exists $HOME/.config/zsh/scripts/functions.zsh
+    _source_if_file_exists $HOME/.config/zsh/zsh_alias
 else
     _alert_local "ERROR: \$DOTFILES not set. Cant load functions and aliases" 1
     exit

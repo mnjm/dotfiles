@@ -23,9 +23,11 @@ Checkout my [.zshrc](https://github.com/mnjm/dotfiles/blob/master/zsh/zshrc)
 
 # Installation
 
-```
+```shell
 sudo apt install git
 git clone https://github.com/mnjm/dotfiles.git
-cd dotfiles
-./setup.sh
+export DOTFILES=$PWD/dotfiles
+cd dotfiles/install
+./install_dotfiles.sh # to install dotfiles
+./install_apps.sh # to install apps
 ```

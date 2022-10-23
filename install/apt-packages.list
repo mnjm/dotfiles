@@ -41,3 +41,5 @@ npm
 clangd
 rofi
 deluge
+stow
+tree

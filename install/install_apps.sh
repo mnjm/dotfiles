@@ -3,15 +3,16 @@
 # TODO: Test
 export DOTFILES=$PWD
 
-. $DOTFILES/setup_utils.sh
+. $DOTFILES/install/setup_utils.sh
 
 #############################################################
 ######################### Apt+Pip Packages ##################
 #############################################################
 _alert_local "Installing apt packages"
-xargs -a apt-packages.txt sudo apt install -y
+sudo apt install nala -y
+xargs -a apt-packages.list sudo nala install -y
 _alert_local "Installing pip packages"
-xargs -a pip-packages.txt python3 -m pip install --user
+xargs -a pip-packages.list python3 -m pip install --user
 #
 #############################################################
 ######################### Nerd Font #########################
@@ -28,33 +29,33 @@ rm /tmp/UbuntuMono.zip
 ############################################################
 # Setup Vimrc
 _alert_local 'Setting Up Vim'
-./vim/setup_vim.sh || _alert_local "Vim setup failed" 1
+./setup_vim.sh || _alert_local "Vim setup failed" 1
 
 ############################################################
 ######################## ZSH Shell #########################
 ############################################################
  # Setup Zshrc
 _alert_local 'Setting Up Zsh'
-./zsh/setup_zsh.sh || _alert_local "Zsh setup failed" 1
+./setup_zsh.sh || _alert_local "Zsh setup failed" 1
 
 ############################################################
 ############### TMUX: Terminal Mutiplexer ##################
 ############################################################
  # Setup the Tmux Configuration
 _alert_local 'Setting Up Tmux Configuration'
-./tmux/setup_tmux.sh || _alert_local "Tmux setup failed" 1
+./setup_tmux.sh || _alert_local "Tmux setup failed" 1
 
 ############################################################
 ################### Neo-Vim Text Editor ####################
 ############################################################
 _alert_local 'Installing nvim'
-./nvim/setup_nvim.sh || _alert_local "Nvim setup failed" 1
+./setup_nvim.sh || _alert_local "Nvim setup failed" 1
 
 ############################################################
 ###################### Alacritty ###########################
 ############################################################
 _alert_local 'Installing alacritty'
-./alacritty/setup_alacritty.sh || _alert_local "Alacritty setup failed" 1
+./setup_alacritty.sh || _alert_local "Alacritty setup failed" 1
 
 #############################################################
 ########## Other packages not available in apt ##############
@@ -79,6 +80,6 @@ fi
 
 # lf - file manager
 _alert_local "Installing lf"
-./lf/setup_lf.sh || _alert_local "Lf setup failed" 1
+curl -L https://github.com/gokcehan/lf/releases/latest/download/lf-linux-amd64.tar.gz | tar xzC ~/.local/bin
 
 _alert_local "Run this and relaunch terminal 'chsh -s $(which zsh)'"

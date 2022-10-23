@@ -1,0 +1,21 @@
+[user]
+	email = manjunat.mohan@gmail.com
+    name = Manjunath Mohan
+[alias]
+    l = log --pretty=oneline --graph --abbrev-commit
+    ll = log --graph --abbrev-commit
+    s = status -s
+    ss = status
+    d = diff
+    dt = difftool -y
+    b = branch
+    c = commit
+    a = add
+    co = checkout
+    p = push
+[difftool]
+    prompt = true
+[diff]
+    tool = nvimdiff
+[difftool "nvimdiff"]
+    cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""

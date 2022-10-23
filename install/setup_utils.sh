@@ -42,3 +42,7 @@ _git_clone_pull() {
     lcl=$2
     git -C "$lcl" pull || git clone "$rmt" "$lcl"
 }
+
+stow-dotfiles() {
+    stow -v --dir=$DOTFILES --target=$HOME --no-folding $1
+}
