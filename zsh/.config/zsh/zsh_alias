@@ -1,5 +1,5 @@
 alias ls='ls --color=auto --group-directories-first'            # ls
-alias ll='ls -alFh --color=auto --group-directories-first'
+alias ll='ls -lAFh --color=auto --group-directories-first'
 alias grep='grep --color=auto'                                  # Grep with colors
 alias ..='cd ..'
 alias copi='xclip -selection clipboard'                         # Xclip to work with Selection Clipboard
