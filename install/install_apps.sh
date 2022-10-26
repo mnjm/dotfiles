@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-# TODO: Test
 export DOTFILES=$PWD
 
 . $DOTFILES/install/setup_utils.sh
@@ -19,7 +18,7 @@ xargs -a pip-packages.list python3 -m pip install --user
 #############################################################
 _alert_local "Installing Nerd Fonts"
 mkdir -p ~/.fonts
-wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.2.2/UbuntuMono.zip -O /tmp/UbuntuMono.zip
+curl -kL https://github.com/ryanoasis/nerd-fonts/releases/download/v2.2.2/UbuntuMono.zip -o /tmp/UbuntuMono.zip
 unzip /tmp/UbuntuMono.zip -d "$HOME/.fonts/UbuntuMono"
 fc-cache -fv || _alert_local "Fonts install failed" 1
 rm /tmp/UbuntuMono.zip
@@ -64,7 +63,7 @@ _alert_local 'Installing alacritty'
 _alert_local "Installing trash-d"
 mkdir -p ~/softwares/trash-d
 pushd ~/softwares/trash-d
-wget -t10 https://github.com/rushsteve1/trash-d/releases/download/18/trash-d-18-x86_64.deb ||
+curl -kLO https://github.com/rushsteve1/trash-d/releases/download/18/trash-d-18-x86_64.deb ||
     _alert_local "trash-d download failed!" 1
 sudo dpkg -i ./trash-d-18-x86_64.deb || _alert_local "trash-d install failed!" 1
 popd
@@ -81,5 +80,18 @@ fi
 # lf - file manager
 _alert_local "Installing lf"
 curl -L https://github.com/gokcehan/lf/releases/latest/download/lf-linux-amd64.tar.gz | tar xzC ~/.local/bin
+
+# marktext
+_alert_local "Installing marktext markdown editor"
+mkdir -p ~/softwares/marktext
+pushd ~/softwares/marktext
+curl -kLO https://github.com/marktext/marktext/releases/latest/download/marktext-amd64.deb
+sudo dpkg -i ./marktext-amd64.deb || _alert_local "marktext install failed!" 1
+popd
+
+#############################################################
+################### Flatpak Packages ########################
+#############################################################
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
 _alert_local "Run this and relaunch terminal 'chsh -s $(which zsh)'"

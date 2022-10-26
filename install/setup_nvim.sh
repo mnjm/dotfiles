@@ -5,7 +5,7 @@
 # Install and setup neovim
 mkdir -p ~/softwares
 pushd ~/softwares
-wget "https://github.com/neovim/neovim/releases/download/v0.8.0/nvim-linux64.deb"
+curl -kLO "https://github.com/neovim/neovim/releases/download/v0.8.0/nvim-linux64.deb"
 sudo dpkg -i nvim-linux64.deb
 rm nvim-linux64.deb
 popd
