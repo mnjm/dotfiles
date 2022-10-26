@@ -3,11 +3,9 @@
 . $DOTFILES/install/setup_utils.sh
 
 # Install and setup neovim
-mkdir -p ~/softwares
-pushd ~/softwares
+take ~/softwares
 curl -kLO "https://github.com/neovim/neovim/releases/download/v0.8.0/nvim-linux64.deb"
 sudo dpkg -i nvim-linux64.deb
-rm nvim-linux64.deb
 popd
 
 # Install packer.nvim (Package Manager for nvim)
@@ -19,8 +17,7 @@ git -C ~/.local/share/nvim/site/pack/packer/start/packer.nvim pull ||\
 nvim +"source $DOTFILES/nvim/.config/nvim/lua/plugins.lua" +PackerSync +qall # TODO: Test This
 
 # Lua LSP
-mkdir -p ~/softwares/lua-language-server
-pushd ~/softwares/lua-language-server
+take ~/softwares/lua-language-server
 curl -L https://github.com/sumneko/lua-language-server/releases/download/3.5.6/lua-language-server-3.5.6-linux-x64.tar.gz | tar xz
 _link_file ./bin/lua-language-server ~/.local/bin/lua-language-server
 popd

@@ -22,7 +22,7 @@ zshrclcl="~/.zshrc_local"
 if [[ -v DOTFILES ]]; then
     source $DOTFILES/install/setup_utils.sh
     _source_if_file_exists $HOME/.config/zsh/scripts/functions.zsh
-    _source_if_file_exists $HOME/.config/zsh/zsh_alias
+    _source_if_file_exists $HOME/.config/zsh/alias
 else
     _alert_local "ERROR: \$DOTFILES not set. Cant load functions and aliases" 1
     exit
@@ -92,7 +92,8 @@ _source_if_file_exists_err ~/.config/zsh/zsh-autosuggestions/zsh-autosuggestions
 _source_if_file_exists_err ~/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 bindkey '^ ' autosuggest-accept                      # Ctrl+space to accept the suggestion
-bindkey -s '^b' '^ulfcd\n'                           # bind ctrl+o to lfcd
+bindkey -s '^b' '^ulfcd\n'                           # bind ctrl+b to lfcd
+bindkey -s '^t' '^utmuxn\n'                           # bind ctrl+b to lfcd
 bindkey '^o' fzf-cd-widget                           # bind ctrl+o to lfcd
 bindkey '^e' edit-command-line                       # Prefer opening vim rather than zsh's vi-mode
 bindkey '^?' backward-delete-char                    # Fix somecases where backspace doenst work

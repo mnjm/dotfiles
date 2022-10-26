@@ -61,8 +61,7 @@ _alert_local 'Installing alacritty'
 #############################################################
 # trash-d (replacement for rm to trash the files instead of actually deleting them)
 _alert_local "Installing trash-d"
-mkdir -p ~/softwares/trash-d
-pushd ~/softwares/trash-d
+take ~/softwares/
 curl -kLO https://github.com/rushsteve1/trash-d/releases/download/18/trash-d-18-x86_64.deb ||
     _alert_local "trash-d download failed!" 1
 sudo dpkg -i ./trash-d-18-x86_64.deb || _alert_local "trash-d install failed!" 1
@@ -82,11 +81,17 @@ _alert_local "Installing lf"
 curl -L https://github.com/gokcehan/lf/releases/latest/download/lf-linux-amd64.tar.gz | tar xzC ~/.local/bin
 
 # marktext
-_alert_local "Installing marktext markdown editor"
-mkdir -p ~/softwares/marktext
-pushd ~/softwares/marktext
-curl -kLO https://github.com/marktext/marktext/releases/latest/download/marktext-amd64.deb
-sudo dpkg -i ./marktext-amd64.deb || _alert_local "marktext install failed!" 1
+# _alert_local "Installing marktext markdown editor"
+# take ~/softwares
+# curl -kLO https://github.com/marktext/marktext/releases/latest/download/marktext-amd64.deb
+# sudo dpkg -i ./marktext-amd64.deb || _alert_local "marktext install failed!" 1
+# popd
+
+# obisidian
+_alert_local "Installing obisidian"
+take ~/softwares
+curl -kLO https://github.com/obsidianmd/obsidian-releases/releases/download/v1.0.0/obsidian_1.0.0_amd64.deb
+sudo dpkg -i obsidian_1.0.0_amd64.deb || _alert_local "obisidian install failed!" 1
 popd
 
 #############################################################

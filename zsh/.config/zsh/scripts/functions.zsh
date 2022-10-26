@@ -16,12 +16,6 @@ function safe_rm_bk() {
     fi
 }
 
-# take = mkdir + cd
-function take() {
-    mkdir -p $1
-    cd $1
-}
-
 # Open clipboard through vim
 function vclip() {
     # Create temp clipboard file
@@ -51,5 +45,16 @@ function lfcd() {
     if [ -f "$tmp" ]; then
         dir="$(cat "$tmp")"
         [ -d "$dir" ] && [ "$dir" != "$(pwd)" ] && cd "$dir"
+    fi
+}
+
+# tmux + fzf session selector
+function tmuxn()
+{
+    if [ -z "$TMUX" ]; then
+        sname=$(tmux ls | cut -d: -f1 | fzf --no-multi --print-query --preview "tmux capture-pane -pt {}" | tail -n1)
+        tmux new -A -s $sname
+    else
+        _alert_local "Cant open tmux-session inside another tmux-session. Use tmux-session-switcher instead" 1
     fi
 }

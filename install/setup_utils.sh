@@ -46,3 +46,9 @@ _git_clone_pull() {
 stow-dotfiles() {
     stow -v --dir=$DOTFILES --target=$HOME --no-folding $1
 }
+#
+# take = mkdir + pushd
+function take() {
+    mkdir -p $1
+    pushd $1
+}

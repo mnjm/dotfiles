@@ -6,10 +6,8 @@
 
 
 # Clone / Pull alacritty
-mkdir -p ~/softwares
-_git_clone_pull https://github.com/alacritty/alacritty.git ~/softwares/alacritty
-
-pushd ~/softwares/alacritty
+take ~/softwares/alacritty
+_git_clone_pull https://github.com/alacritty/alacritty.git .
 
 # Install rust
 _alert_local "Installing rust"
