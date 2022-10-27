@@ -2,20 +2,29 @@
 	email = manjunat.mohan@gmail.com
     name = Manjunath Mohan
 [alias]
-    l = log --pretty=oneline --graph --abbrev-commit
-    ll = log --graph --abbrev-commit
+    l = !git --no-pager log --pretty=oneline --graph --abbrev-commit --color=always | less -R
+    ll = !git log --graph --abbrev-commit --color=always | less -R
     s = status -s
     ss = status
     d = diff
+    ds = diff --staged
     dt = difftool -y
     b = branch
     c = commit
     a = add
     co = checkout
     p = push
+[core]
+    pager = less -F
+    editor = nvim
+    excludesfile = ~/.gitignore
+[color]
+    ui = auto
 [difftool]
     prompt = true
 [diff]
     tool = nvimdiff
 [difftool "nvimdiff"]
     cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
+[help]
+    autocorrect = 1

@@ -47,14 +47,3 @@ function lfcd() {
         [ -d "$dir" ] && [ "$dir" != "$(pwd)" ] && cd "$dir"
     fi
 }
-
-# tmux + fzf session selector
-function tmuxn()
-{
-    if [ -z "$TMUX" ]; then
-        sname=$(tmux ls | cut -d: -f1 | fzf --no-multi --print-query --preview "tmux capture-pane -pt {}" | tail -n1)
-        tmux new -A -s $sname
-    else
-        _alert_local "Cant open tmux-session inside another tmux-session. Use tmux-session-switcher instead" 1
-    fi
-}

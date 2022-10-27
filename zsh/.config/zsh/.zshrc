@@ -21,8 +21,9 @@ zshrclcl="~/.zshrc_local"
 # Running scripts and alias
 if [[ -v DOTFILES ]]; then
     source $DOTFILES/install/setup_utils.sh
-    _source_if_file_exists $HOME/.config/zsh/scripts/functions.zsh
-    _source_if_file_exists $HOME/.config/zsh/alias
+    _source_if_file_exists_err $HOME/.config/zsh/scripts/functions.zsh
+    _source_if_file_exists_err $HOME/.config/zsh/scripts/tmux_session_switcher.zsh
+    _source_if_file_exists_err $HOME/.config/zsh/alias
 else
     _alert_local "ERROR: \$DOTFILES not set. Cant load functions and aliases" 1
     exit
@@ -79,6 +80,9 @@ export PROMPT='${NEWLINE}%(?..%F{red}X )%F{14}%n%f%F{white}@%f%F{202}%m%f%F{whit
 
 # FZF
 _source_if_file_exists_err ~/.fzf.zsh
+
+# autojump
+_source_if_file_exists /usr/share/autojump/autojump.sh
 
 # Highlight completions
 autoload -U compinit
