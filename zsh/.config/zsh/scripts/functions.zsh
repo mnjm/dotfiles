@@ -22,7 +22,7 @@ function vclip() {
     xclip -selection clipboard -o > /tmp/clipboard
 
     # Call vim to edit
-    vim /tmp/clipboard
+    $EDITOR /tmp/clipboard
 
     # Move contents back to clipboard
     cat /tmp/clipboard | xclip -selection clipboard -i

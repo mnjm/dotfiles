@@ -61,11 +61,7 @@ _alert_local 'Installing alacritty'
 #############################################################
 # trash-d (replacement for rm to trash the files instead of actually deleting them)
 _alert_local "Installing trash-d"
-take ~/softwares/
-curl -kLO https://github.com/rushsteve1/trash-d/releases/download/18/trash-d-18-x86_64.deb ||
-    _alert_local "trash-d download failed!" 1
-sudo dpkg -i ./trash-d-18-x86_64.deb || _alert_local "trash-d install failed!" 1
-popd
+_download_install_deb trash-d https://github.com/rushsteve1/trash-d/releases/download/18/trash-d-18-x86_64.deb
 
 # Fzf
 _alert_local 'Installing Fzf'
@@ -82,17 +78,15 @@ curl -L https://github.com/gokcehan/lf/releases/latest/download/lf-linux-amd64.t
 
 # marktext
 # _alert_local "Installing marktext markdown editor"
-# take ~/softwares
-# curl -kLO https://github.com/marktext/marktext/releases/latest/download/marktext-amd64.deb
-# sudo dpkg -i ./marktext-amd64.deb || _alert_local "marktext install failed!" 1
-# popd
+# _download_install_deb marktext https://github.com/marktext/marktext/releases/latest/download/marktext-amd64.deb
 
 # obisidian
 _alert_local "Installing obisidian"
-take ~/softwares
-curl -kLO https://github.com/obsidianmd/obsidian-releases/releases/download/v1.0.0/obsidian_1.0.0_amd64.deb
-sudo dpkg -i obsidian_1.0.0_amd64.deb || _alert_local "obisidian install failed!" 1
-popd
+_download_install_deb obsidian https://github.com/obsidianmd/obsidian-releases/releases/download/v1.0.0/obsidian_1.0.0_amd64.deb
+
+# git-delta
+_alert_local "Installing git-delta"
+_download_install_deb git-delta https://github.com/dandavison/delta/releases/download/0.14.0/git-delta_0.14.0_amd64.deb
 
 #############################################################
 ################### Flatpak Packages ########################

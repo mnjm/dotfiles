@@ -1,12 +1,33 @@
-_path_add() {
-    if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
-        PATH="${PATH:+"$PATH:"}$1"
-    fi
+# take = mkdir + pushd
+take() {
+    mkdir -p $1
+    pushd $1
 }
 
 _alert_local() {
     color=${2:-6}
     tput setaf $color; echo $1; tput sgr0
+}
+
+_download_install_deb() {
+    # AGRGS
+    name=$1
+    url=$2
+    downloadto="$HOME/softwares"
+
+    urltail=${url##*/}
+    lclfile="$downloadto/$urltail"
+    # echo $name $url $urltail #lclfile
+    
+    mkdir -p $downloadto
+    curl -kL $url --output $lclfile || _alert_local "$name download failed" 1
+    sudo dpkg -i $lclfile || _alert_local "$name install failed" 1
+}
+
+_path_add() {
+    if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
+        PATH="${PATH:+"$PATH:"}$1"
+    fi
 }
 
 _source_if_file_exists_err() {
@@ -45,10 +66,4 @@ _git_clone_pull() {
 
 stow-dotfiles() {
     stow -v --dir=$DOTFILES --target=$HOME --no-folding $1
-}
-#
-# take = mkdir + pushd
-function take() {
-    mkdir -p $1
-    pushd $1
 }

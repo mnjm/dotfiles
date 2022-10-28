@@ -3,10 +3,7 @@
 . $DOTFILES/install/setup_utils.sh
 
 # Install and setup neovim
-take ~/softwares
-curl -kLO "https://github.com/neovim/neovim/releases/download/v0.8.0/nvim-linux64.deb"
-sudo dpkg -i nvim-linux64.deb
-popd
+_download_install_deb neovim "https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.deb"
 
 # Install packer.nvim (Package Manager for nvim)
 git -C ~/.local/share/nvim/site/pack/packer/start/packer.nvim pull ||\
