@@ -1,6 +1,7 @@
 [user]
     email = manjunat.mohan@gmail.com
     name = Manjunath Mohan
+
 [alias]
     l = !git --no-pager log --pretty=oneline --graph --abbrev-commit --color=always | less -R
     ll = !git log --graph --abbrev-commit --color=always | less -R
@@ -14,33 +15,47 @@
     a = add
     co = checkout
     p = push
+    pu = pull
     amend = commit --amend --reuse-message=HEAD
+
 [core]
     pager = delta
     editor = nvim
     excludesfile = ~/.gitignore
+
 [color]
     ui = auto
+
 [difftool]
     prompt = true
+
 [diff]
     tool = nvimdiff
     colorMoved = default
+
 [difftool "nvimdiff"]
     cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
+
 [help]
     autocorrect = 1
+
 [interactive]
     diffFilter = delta --color-only
+
 [add.interactive]
     useBuiltin = false # required for git 2.37.0
+
 [include]
     path = ~/.git-delta_themes.config
+
 [delta]
     features = calochortus-lyallii
     navigate = true    # use n and N to move between diff sections
     light = false      # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
     side-by-side = true
+
 [merge]
     conflictstyle = diff3
 
+[init]
+	defaultBranch = main
