@@ -9,6 +9,9 @@ export HISTFILE=~/.cache/zsh_history
 export HISTSIZE=10000
 export SAVEHIST=10000
 export TMUX_PLUGIN_MANAGER_PATH=$HOME/.tmux/plugins
+export LESS='-R'
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export MANROFFOPT="-c"
 
 # System Specific exports. Alternatively these can be exported in ~/.zshrc_local file.
 # Location where dotfiles cloned

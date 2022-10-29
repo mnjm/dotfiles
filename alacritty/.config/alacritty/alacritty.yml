@@ -6,7 +6,7 @@ shell:
   args:
     - --login
     - -c
-    - tmux -u attach || tmux -u new -As default
+    - tmux -u new -As default
 
 window:
   dimensions:

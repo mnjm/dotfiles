@@ -73,6 +73,10 @@ else
 fi
 
 # lf - file manager
+_alert_local "Installing bat"
+_download_install_deb bat https://github.com/sharkdp/bat/releases/download/v0.22.1/bat_0.22.1_amd64.deb
+
+# lf - file manager
 _alert_local "Installing lf"
 curl -L https://github.com/gokcehan/lf/releases/latest/download/lf-linux-amd64.tar.gz | tar xzC ~/.local/bin
 

@@ -1,5 +1,6 @@
 [/]
 custom-list=['__dummy__', 'custom0']
+looking-glass-keybinding=@as []
 
 [custom-keybindings/custom0]
 binding=['<Super>p']
@@ -7,11 +8,12 @@ command='rofi -show run'
 name='rofi'
 
 [media-keys]
+screensaver=['<Control><Alt>l', '<Super>l']
 terminal=['<Primary><Alt>t', '<Super>Return']
 www=['<Super>w']
 
 [wm]
-close=['<Alt>F4', '<Shift><Super>c']
+close=['<Alt>F4', '<Shift><Super>q']
 maximize=['<Super>Up']
 move-to-monitor-left=@as []
 move-to-monitor-right=@as []

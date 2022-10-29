@@ -45,3 +45,5 @@ tree
 virt-manager
 flatpak
 autojump
+syncthing
+fd-find

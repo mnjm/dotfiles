@@ -74,7 +74,7 @@ A.nvim_create_autocmd('TextYankPost', {
 -- Auto remove trailing spaces and lines in c and python codes while saving.
 -- use ":noa w" to save without trimming
 A.nvim_create_autocmd({ "BufWritePre" }, {
-    pattern = { "*.c", "*.py", "*.cc", "*.cpp" }, -- Here goes file tyoes
+    pattern = {"*.c", "*.cc", "*.cpp", "*.h", "*.hpp", "*.py", "*.lua"}, -- Here goes file tyoes
     callback = function()
         -- Patterns to remove trailing whitespaces and newlines
         local patterns = {[[%s/\s\+$//e]], [[%s/\($\n\s*\)\+\%$//]]}
