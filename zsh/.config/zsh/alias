@@ -1,5 +1,6 @@
-alias ls='ls --color=auto --group-directories-first'                                    # ls
-alias ll='ls -lAFh --color=auto --group-directories-first'
+alias ls='ls --color=auto --group-directories-first'                                   # ls
+alias l='exa --color=auto --group-directories-first'                                   # ls
+alias ll='exa -laFh --color=auto --group-directories-first'
 alias grep='grep --color=auto'                                                          # Grep with colors
 alias ..='cd ..'
 alias copi='xclip -selection clipboard'                                                 # Xclip to work with Selection Clipboard
@@ -12,8 +13,8 @@ alias py='python3'                                                              
 alias vf='nvim +"Telescope find_files"'                                                 # Open nvim with telescope to fzf find a file
 alias g='git'                                                                           # git
 alias vim=nvim                                                                          # Replace vim with nvim
+alias v=nvim
 alias dirs='dirs -v'                                                                    # Show pushd stack with numbers. cd to a dir in stack by cd ~<no>
 alias extract='$HOME/.config/zsh/scripts/extract.zsh'                                   # Oh-my-zsh extract script
 alias otrash='xdg-open trash:/// 2>/dev/null'                                           # Open trash
 alias ffzf="fzf --preview 'bat --style=numbers --color=always --line-range :500 {}'"    # fzf file find with preview
-alias gdiffp=git_diff_previewer

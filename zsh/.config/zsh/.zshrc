@@ -4,13 +4,14 @@ export VISUAL=$EDITOR
 export LC_ALL=en_IN.UTF-8
 export LANG=en_IN.UTF-8
 export TERM="xterm-256color"
-export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 export HISTFILE=~/.cache/zsh_history
 export HISTSIZE=10000
 export SAVEHIST=10000
 export TMUX_PLUGIN_MANAGER_PATH=$HOME/.tmux/plugins
 export LESS='-R'
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
+export FZF_CTRL_T_OPTS="--preview='bat --style=numbers --color=always --line-range :500 {}'"
 export MANROFFOPT="-c"
 
 # System Specific exports. Alternatively these can be exported in ~/.zshrc_local file.
@@ -100,8 +101,12 @@ _source_if_file_exists_err ~/.config/zsh/zsh-syntax-highlighting/zsh-syntax-high
 
 bindkey '^ ' autosuggest-accept                      # Ctrl+space to accept the suggestion
 bindkey -s '^b' '^ulfcd\n'                           # bind ctrl+b to lfcd
-bindkey -s '^t' '^utmuxn\n'                           # bind ctrl+b to lfcd
 bindkey '^o' fzf-cd-widget                           # bind ctrl+o to lfcd
 bindkey '^e' edit-command-line                       # Prefer opening vim rather than zsh's vi-mode
 bindkey '^?' backward-delete-char                    # Fix somecases where backspace doenst work
 bindkey -M menuselect '^[[Z' reverse-menu-complete   # 'Shift-tab' to reverse through menu select
+
+# run neofetch
+if [[ $(who | wc -l) -eq 2 ]]; then
+    neofetch
+fi

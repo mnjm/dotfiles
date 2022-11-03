@@ -6,17 +6,15 @@ function safe_rm() {
 
 # Open clipboard through vim
 function vclip() {
-    # Create temp clipboard file
-    xclip -selection clipboard -o > /tmp/clipboard
-
+    tmp="/tmp/clipboard"
+    # Copy clipboard to the temp file
+    xclip -selection clipboard -o > $tmp
     # Call vim to edit
-    $EDITOR /tmp/clipboard
-
+    $EDITOR $tmp
     # Move contents back to clipboard
-    cat /tmp/clipboard | xclip -selection clipboard -i
-
-    # Remove the clipboard file
-    /bin/rm /tmp/clipboard
+    cat $tmp | xclip -selection clipboard -i
+    # Trap to remove temp file when system shutdown
+    trap 'rm -f $tmp >/dev/null 2>&1' HUP INT QUIT TERM PWR EXIT
 }
 
 # Use lf to switch directories
@@ -38,12 +36,12 @@ function git_diff_previewer() {
         return 1
     fi
     # uses fzf and delta
-    previewer="git diff $@ --color=always -- {-1} | delta --color-only"
+    previewer="git diff $@ --color=always -- {-1} | delta"
     selected=$(git diff $@ --name-only | fzf --height 100% -m --ansi --preview $previewer --preview-window top,90%,border-bottom)
     git diff $@ --color=always -- $selected
 }
 
 # help
 function help() {
-    "$@" --help 2>&1 | bat --plain --language=help
+    man "$@" || "$@" --help 2>&1 | bat --plain --language=help
 }

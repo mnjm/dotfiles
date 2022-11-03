@@ -15,13 +15,19 @@
     a = add
     co = checkout
     p = push
-    pu = pull
+    pl = pull
     amend = commit --amend --reuse-message=HEAD
+    f = fuzzy
 
 [core]
     pager = delta
     editor = nvim
     excludesfile = ~/.gitignore
+
+[pager]
+    diff = delta --side-by-side
+    d = delta --side-by-side
+    ds = delta --side-by-side
 
 [color]
     ui = auto
@@ -52,7 +58,7 @@
     features = calochortus-lyallii
     navigate = true    # use n and N to move between diff sections
     light = false      # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
-    side-by-side = true
+    side-by-side = false
 
 [merge]
     conflictstyle = diff3

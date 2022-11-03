@@ -3,7 +3,7 @@ function tmuxn()
 {
     sessions=$(tmux ls 2>/dev/null)
     selected=$(echo $sessions | cut -d: -f1 | ~/.fzf/bin/fzf --reverse --no-multi --print-query \
-        --preview "tmux capture-pane -pt {}" | tail -n1)
+        --preview "tmux capture-pane -pt {}" --preview-window right,90% | tail -n1)
     if [ -z "$TMUX" ]; then
         tmux new -As $selected
     else
