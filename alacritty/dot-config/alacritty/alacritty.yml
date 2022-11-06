@@ -76,10 +76,10 @@ key_bindings:
   - { key: End,       mods: Shift,   mode: ~Alt,        action: ScrollToBottom }
   - { key: F11,                                         action: ToggleFullscreen}
   - { key: Insert,    mods: Shift,                      action: PasteSelection }
-  - { key: V,         mods: Control|Shift, action: Paste                       }
-  - { key: C,         mods: Control|Shift, action: Copy                        }
-  - { key: Key0,      mods: Control,       action: ResetFontSize               }
-  - { key: Plus,      mods: Control,       action: IncreaseFontSize            }
-  - { key: Minus,     mods: Control,       action: DecreaseFontSize            }
-  - { key: T,   mods: Control|Shift, action: SpawnNewInstance }
-  - { key: N,   mods: Control|Shift, action: SpawnNewInstance }
+  - { key: V,         mods: Control|Shift,              action: Paste            }
+  - { key: C,         mods: Control|Shift,              action: Copy             }
+  - { key: Key0,      mods: Control,                    action: ResetFontSize    }
+  - { key: Plus,      mods: Control,                    action: IncreaseFontSize }
+  - { key: Minus,     mods: Control,                    action: DecreaseFontSize }
+  - { key: T,         mods: Control|Shift,              action: SpawnNewInstance }
+  - { key: N,         mods: Control|Shift,              action: SpawnNewInstance }
