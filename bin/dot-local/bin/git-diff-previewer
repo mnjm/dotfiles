@@ -1,0 +1,11 @@
+#!/usr/bin/env zsh
+gdir=$(git rev-parse --git-dir 2>/dev/null | wc -l)
+if [ $gdir -eq 0 ]; then
+    _alert_local "Not in a git repo" 1
+    return 1
+fi
+# uses fzf and delta
+previewer="git diff $@ --color=always -- {-1} | delta"
+selected=$(git diff $@ --name-only | fzf --height 100% -m --ansi --preview $previewer --preview-window top,90%,border-bottom)
+git diff $@ --color=always -- $selected
+unset gdir previewer selected

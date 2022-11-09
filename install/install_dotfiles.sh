@@ -6,13 +6,16 @@ if ! command -v stow &>/dev/null; then
     sudo apt install stow -y
 fi
 
-stow-dotfiles alacritty
-stow-dotfiles lf
-stow-dotfiles nvim
-stow-dotfiles rofi
-stow-dotfiles tmux
-stow-dotfiles vim
-stow-dotfiles zsh
-stow-dotfiles git
-# stow-dotfiles marktext
-stow-dotfiles htop
+stdt="$DOTFILES/bin/dot-local/bin/stow-dotfiles"
+$stdt alacritty
+$stdt bin
+$stdt git
+$stdt htop
+$stdt lf
+# $stdt marktext
+$stdt neofetch
+$stdt nvim
+$stdt rofi
+$stdt tmux
+$stdt vim
+$stdt zsh

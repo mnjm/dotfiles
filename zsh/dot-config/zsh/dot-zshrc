@@ -25,8 +25,7 @@ zshrclcl="~/.zshrc_local"
 # Running scripts and alias
 if [[ -v DOTFILES ]]; then
     source $DOTFILES/install/setup_utils.sh
-    _source_if_file_exists_err $HOME/.config/zsh/scripts/functions.zsh
-    _source_if_file_exists_err $HOME/.config/zsh/scripts/tmux_session_switcher.zsh
+    _source_if_file_exists_err $HOME/.config/zsh/functions.zsh
     _source_if_file_exists_err $HOME/.config/zsh/alias
 else
     _alert_local "ERROR: \$DOTFILES not set. Cant load functions and aliases" 1
