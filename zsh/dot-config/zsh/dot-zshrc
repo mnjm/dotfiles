@@ -107,5 +107,5 @@ bindkey -M menuselect '^[[Z' reverse-menu-complete   # 'Shift-tab' to reverse th
 
 # run neofetch
 if [[ $(who | wc -l) -eq 2 ]]; then
-    neofetch
+    macchina
 fi

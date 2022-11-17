@@ -51,6 +51,15 @@ _alert_local 'Installing nvim'
 ./setup_nvim.sh || _alert_local "Nvim setup failed" 1
 
 ############################################################
+####################  Rust Install #########################
+############################################################
+_alert_local "Installing rust"
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+source $HOME/.cargo/env
+rustup override set stable
+rustup update stable
+
+############################################################
 ###################### Alacritty ###########################
 ############################################################
 _alert_local 'Installing alacritty'
@@ -96,6 +105,10 @@ _download_install_deb obsidian https://github.com/obsidianmd/obsidian-releases/r
 # git-delta
 _alert_local "Installing git-delta"
 _download_install_deb git-delta https://github.com/dandavison/delta/releases/download/0.14.0/git-delta_0.14.0_amd64.deb
+
+# macchina
+_alert_local "Installing macchina"
+cargo install macchina
 
 #############################################################
 ################### Flatpak Packages ########################

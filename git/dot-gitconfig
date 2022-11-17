@@ -18,6 +18,7 @@
     pl = pull
     amend = commit --amend --reuse-message=HEAD
     f = fuzzy
+    fs = fuzzy status
 
 [core]
     pager = delta

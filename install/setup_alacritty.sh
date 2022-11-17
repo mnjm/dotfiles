@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# WARNING: This script is deprecated. Checkout https://github.com/alacritty/alacritty/blob/master/INSTALL.md
+# Checkout https://github.com/alacritty/alacritty/blob/master/INSTALL.md if it doesnt work
 
 . $DOTFILES/install/setup_utils.sh
 
@@ -8,13 +8,6 @@
 # Clone / Pull alacritty
 take ~/softwares/alacritty
 _git_clone_pull https://github.com/alacritty/alacritty.git .
-
-# Install rust
-_alert_local "Installing rust"
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-source $HOME/.cargo/env
-rustup override set stable
-rustup update stable
 
 # Build alacritty
 _alert_local "Building alacritty"

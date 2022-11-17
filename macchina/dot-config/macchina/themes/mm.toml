@@ -1,0 +1,50 @@
+
+# mezora theme - sauce for macchina cli
+
+spacing=2
+padding=1
+separator=""
+separator_color="blue"
+key_color="cyan"
+prefer_small_ascii = true
+
+[palette]
+type="Full"
+visible=true
+glyph="  ⬤  "
+
+[box]
+title=""
+border="thick"
+visible=true
+
+[bar]
+glyph="⬤ "
+hide_delimiters=true
+visible=true
+
+[randomize]
+key_color=false
+separator_color=false
+
+[custom_ascii]
+color="green"
+path="~/.config/macchina/themes/ascii-mint.txt"
+
+[keys]
+host=" Host"
+machine=" Model"
+kernel=" Kernel"
+distro="ﰨ Distro"
+de="節DE"
+wm="缾WM"
+local_ip=" IP"
+packages=" Packages"
+terminal=" Terminal"
+uptime=" Uptime"
+shell=" Shell"
+cpu=" Cpu"
+cpu_load=" Cpu"
+memory=" Memory"
+battery=" Battery"
+backlight=" Brightness"
