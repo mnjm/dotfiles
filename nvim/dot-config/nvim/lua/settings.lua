@@ -35,7 +35,7 @@ o.softtabstop = -1 -- If negative, shiftwidth value is used
 o.expandtab = true
 o.smartindent = true
 o.autoindent = true
-o.wrap = false
+o.wrap = true
 o.showmatch = true -- Highlight matching brackets
 -- Sane way of spitting buffers
 o.splitright = true
