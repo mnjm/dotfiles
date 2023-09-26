@@ -87,6 +87,11 @@ _source_if_file_exists_err ~/.fzf.zsh
 # autojump
 _source_if_file_exists /usr/share/autojump/autojump.sh
 
+# pyenv
+if [ -d "$PYENV_ROOT" ]; then
+    eval "$(pyenv virtualenv-init -)"
+fi
+
 # Highlight completions
 autoload -U compinit
 zstyle ':completion:*' menu select
