@@ -66,4 +66,7 @@ return require('packer').startup(function()
 
     -- Symbols navigation
     use 'simrat39/symbols-outline.nvim'
+
+    -- TODO Highlighter
+    use "folke/todo-comments.nvim"
 end)

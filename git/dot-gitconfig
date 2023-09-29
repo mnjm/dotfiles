@@ -5,6 +5,7 @@
 [alias]
     l = log --pretty=oneline --graph --abbrev-commit
     ll = log --graph --abbrev-commit
+    lt = log --graph --abbrev-commit --tags
     s = status -s
     ss = status
     d = diff

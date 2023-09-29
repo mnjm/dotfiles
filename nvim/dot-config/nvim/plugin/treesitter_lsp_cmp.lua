@@ -15,7 +15,7 @@ require('nvim-treesitter.configs').setup {
     auto_install = true,
 
     -- List of parsers to ignore installing (for "all")
-    ignore_install = {},
+    ignore_install = { 'unison' },
 
     ---- If you need to change the installation directory of the parsers (see -> Advanced Setup)
     -- parser_install_dir = "/some/path/to/store/parsers", -- Remember to run vim.opt.runtimepath:append("/some/path/to/store/parsers")!
@@ -70,7 +70,8 @@ end
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 -- LSP Configurations for Lua (for nvim)
 -- sumneko_lua link: https://github.com/sumneko/lua-language-server
-require('lspconfig').sumneko_lua.setup {
+-- sumneko_lua is deprecated. using lua_ls
+require('lspconfig').lua_ls.setup {
     on_attach = on_attach,
     capabilities = capabilities,
     settings = {
