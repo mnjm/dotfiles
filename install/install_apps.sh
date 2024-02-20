@@ -74,6 +74,10 @@ _alert_local 'Installing alacritty'
 #############################################################
 ########## Other packages not available in apt ##############
 #############################################################
+# Go 
+_alert_local "Installing go"
+rm -rf /usr/local/go && tar -C /usr/local -xzf go1.22.0.linux-amd64.tar.gz
+
 # trash-d (replacement for rm to trash the files instead of actually deleting them)
 _alert_local "Installing trash-d"
 _download_install_deb trash-d https://github.com/rushsteve1/trash-d/releases/download/18/trash-d-18-x86_64.deb
@@ -99,10 +103,6 @@ _download_install_deb bat https://github.com/sharkdp/bat/releases/download/v0.22
 # lf - file manager
 _alert_local "Installing lf"
 curl -L https://github.com/gokcehan/lf/releases/latest/download/lf-linux-amd64.tar.gz | tar xzC ~/.local/bin
-
-# marktext
-# _alert_local "Installing marktext markdown editor"
-# _download_install_deb marktext https://github.com/marktext/marktext/releases/latest/download/marktext-amd64.deb
 
 # obisidian
 _alert_local "Installing obisidian"

@@ -47,6 +47,8 @@ o.hlsearch = true
 
 -- Makes neovim and host OS clipboard play nicely with each other
 -- o.clipboard = 'unnamedplus'
+-- Prefer having seperate clipboards for others and vim, relying on vim specific register to copy
+-- stuff to global clipboard.
 
 -- Highlight trailing junks in the code. Run :set list to display
 o.listchars = 'trail:⬄,tab:➡ '
