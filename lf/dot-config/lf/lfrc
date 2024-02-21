@@ -17,3 +17,68 @@ cmd open ${{
         *) for f in $fx; do setsid $OPENER $f > /dev/null 2> /dev/null & done;;
     esac
 }}
+
+cmd delete-safe ${{
+    tput setaf 3;
+	printf "\n%s\n\t" "$fx"
+	printf "send to trash?[y/N]"
+	read ans
+	[ $ans = "y" ] && trash -rf -- $fx && echo "Moved to trash."
+    tput sgr0
+}}
+
+cmd delete-unsafe ${{
+    tput setaf 1;
+	printf "\n%s\n\t" "$fx"
+	printf "permanent delete?[y/N]"
+	read ans
+	[ $ans = "y" ] && rm -rf -- $fx && echo "Removed."
+    tput sgr0
+}}
+
+cmd mkfile ${{
+  printf "File Name: "
+  read ans
+  $EDITOR $ans
+}}
+
+cmd chmod ${{
+  printf "Mode Bits: "
+  read ans
+
+  for file in "$fx"
+  do
+    chmod $ans $file
+  done
+
+  lf -remote 'send reload'
+}}
+
+cmd sudomkfile ${{
+  printf "(sudo) File Name: "
+  read ans
+  sudo $EDITOR $ans
+}}
+
+cmd fzf_jump ${{
+    res="$(find . -maxdepth 3 | fzf --reverse --header='Jump to location')"
+    if [ -n "$res" ]; then
+        if [ -d "$res" ]; then
+            cmd="cd"
+        else
+            cmd="select"
+        fi
+        res="$(printf '%s' "$res" | sed 's/\\/\\\\/g;s/"/\\"/g')"
+        lf -remote "send $id $cmd \"$res\""
+    fi
+}}
+
+# bindings
+map e
+map gw cd ~/workspace
+map D delete-safe
+map R delete-unsafe
+map <enter> open
+map <c-f> fzf_jump
+map <c-r> reload
+map Y $printf "%s" "$fx" | xclip -selection clipboard
