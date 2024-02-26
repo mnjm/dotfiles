@@ -27,24 +27,6 @@ local function map(m, k, v)
     vim.keymap.set(m, k, v, { silent = true, noremap = true })
 end
 
--- Highlight group to highlight cursor
-vim.cmd("hi MMCursorHL guibg=#6bb8ff guifg=#000000")
--- Function to highlight cursor
-local find_cursor = function()
-    local pattern = "\\k*\\%#\\k*"
-    local time = 50
-    local blink = 6
-    for _ = 1, blink, 1
-    do
-        local hl_id = vim.fn.matchadd("MMCursorHL", pattern, 1)
-        vim.cmd('redraw')
-        vim.loop.sleep(time)
-        vim.fn.matchdelete(hl_id)
-        vim.cmd('redraw')
-        vim.loop.sleep(time)
-    end
-end
-
 -- Fix n and N. Keeping cursor in center
 map('n', 'n', 'nzz')
 map('n', 'N', 'Nzz')
@@ -66,8 +48,6 @@ map('n', '<C-h>', '<C-W><C-h>')
 map('n', '<C-j>', '<C-W><C-j>')
 map('n', '<C-k>', '<C-W><C-k>')
 map('n', '<C-l>', '<C-W><C-l>')
--- Find and highlight cursor
-map('n', '<leader>c', find_cursor)
 -- Delete but dont put the deleted thing into the register
 map('v', '<leader>d', '\"_d')
 
