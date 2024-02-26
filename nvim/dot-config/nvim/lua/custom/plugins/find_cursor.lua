@@ -17,3 +17,5 @@ local find_cursor = function()
 end
 -- Find and highlight cursor
 vim.keymap.set('n', '<leader>c', find_cursor, { desc = 'Find Cursor' })
+
+return {}

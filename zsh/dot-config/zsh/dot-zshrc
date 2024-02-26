@@ -110,6 +110,9 @@ bindkey '^o' fzf-cd-widget                           # bind ctrl+o to lfcd
 bindkey '^e' edit-command-line                       # Prefer opening vim rather than zsh's vi-mode
 bindkey '^?' backward-delete-char                    # Fix somecases where backspace doenst work
 bindkey -M menuselect '^[[Z' reverse-menu-complete   # 'Shift-tab' to reverse through menu select
+bindkey  "^[[H"   beginning-of-line
+bindkey  "^[[F"   end-of-line
+bindkey  "^[[3~"  delete-char
 
 # run neofetch
 if [[ $(who | wc -l) -eq 2 ]]; then

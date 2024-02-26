@@ -5,14 +5,6 @@ local A = vim.api
 
 local _au = A.nvim_create_augroup('mm', { clear = true })
 
--- Highlight the region on yank
-A.nvim_create_autocmd('TextYankPost', {
-    group = _au,
-    callback = function()
-        vim.highlight.on_yank({ higroup = 'Visual', timeout = 250 })
-    end,
-})
-
 -- Auto remove trailing spaces and lines in c and python codes while saving.
 -- use ":noa w" to save without trimming
 A.nvim_create_autocmd({ "BufWritePre" }, {
@@ -35,3 +27,5 @@ A.nvim_create_autocmd('FileType', {
     command = 'setlocal spell',
     group = _au
 })
+
+return {}

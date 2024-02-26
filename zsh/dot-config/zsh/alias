@@ -16,3 +16,4 @@ alias vim=nvim                                                                  
 alias v=nvim
 alias dirs='dirs -v'                                                                    # Show pushd stack with numbers. cd to a dir in stack by cd ~<no>
 alias ffzf="fzf --preview 'bat --style=numbers --color=always --line-range :500 {}'"    # fzf file find with preview
+alias tree='tree -C'

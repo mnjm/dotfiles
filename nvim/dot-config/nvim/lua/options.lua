@@ -66,4 +66,11 @@ vim.o.termguicolors = true
 vim.o.spelllang = 'en_us'
 vim.o.complete = string.format("%s,kspell", vim.o.complete)
 
+-- Set display status line always but only 1 for all windows
+vim.o.laststatus = 3
+-- Turn off shows default insert/replace modes
+vim.o.showmode = true
+-- disable displaying command line
+vim.o.cmdheight = 0
+
 -- vim: ts=2 sts=2 sw=2 et
