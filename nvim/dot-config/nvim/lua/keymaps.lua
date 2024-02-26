@@ -1,6 +1,18 @@
--------------------------------------------
---------------- Key Bindings --------------
--------------------------------------------
+-- [[ Basic Keymaps ]]
+
+-- Keymaps for better default experience
+-- See `:help vim.keymap.set()`
+vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
+
+-- Remap for dealing with word wrap
+vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+
+-- Diagnostic keymaps
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
+vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
+vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 
 -- Disable arrow key movements in vim. encourage using hjkl movements
 -- See plugin/hardass_mode.lua
@@ -46,10 +58,6 @@ map('n', '<leader>-', '<CMD>sp .<CR>')
 map('v', '<leader>y', '"+y')
 -- Clipboard paste
 map({'v', 'n'}, '<leader>p', '"+p')
--- Open Fzf
-map('n', '<leader>f', '<CMD>Telescope find_files<CR>')
-map('n', '<leader>fb', '<CMD>Telescope file_browser<CR>')
-map('n', '<leader>b', '<CMD>Telescope buffers<CR>')
 -- Move between tabs easily
 map('n', '<C-Left>', '<CMD>tabp<CR>')
 map('n', '<C-Right>', '<CMD>tabn<CR>')
@@ -62,3 +70,5 @@ map('n', '<C-l>', '<C-W><C-l>')
 map('n', '<leader>c', find_cursor)
 -- Delete but dont put the deleted thing into the register
 map('v', '<leader>d', '\"_d')
+
+-- vim: ts=2 sts=2 sw=2 et
