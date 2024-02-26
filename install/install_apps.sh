@@ -38,13 +38,6 @@ _alert_local 'Setting Up Zsh'
 ./setup_zsh.sh || _alert_local "Zsh setup failed" 1
 
 ############################################################
-############### TMUX: Terminal Mutiplexer ##################
-############################################################
- # Setup the Tmux Configuration
-_alert_local 'Setting Up Tmux Configuration'
-./setup_tmux.sh || _alert_local "Tmux setup failed" 1
-
-############################################################
 ################### Neo-Vim Text Editor ####################
 ############################################################
 _alert_local 'Installing nvim'
