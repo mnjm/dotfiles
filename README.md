@@ -21,6 +21,8 @@ Minimal with [syntax highlighting](https://github.com/zsh-users/zsh-syntax-highl
 
 Checkout my [.zshrc](https://github.com/mnjm/dotfiles/blob/master/zsh/zshrc)
 
+Some custom scripts [here](https://github.com/mnjm/dotfiles/tree/63c199ce6afdda70aecc617dc95cd707c99cbad1/bin/dot-local/bin)
+
 # Installation
 
 ```shell
