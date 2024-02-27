@@ -17,7 +17,7 @@
     co = checkout
     p = push
     pl = pull
-    amend = commit --amend --reuse-message=HEAD
+    amend = commit --amend
     f = fuzzy
     fs = fuzzy status
 
