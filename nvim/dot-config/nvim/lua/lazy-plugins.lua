@@ -136,6 +136,12 @@ require('lazy').setup({
     },
     build = ':TSUpdate',
   },
+  {
+    "lmburns/lf.nvim",
+    dependencies = {
+      'akinsho/toggleterm.nvim'
+    },
+  },
 
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.

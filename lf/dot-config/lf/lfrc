@@ -42,6 +42,8 @@ cmd mkfile ${{
   $EDITOR $ans
 }}
 
+cmd new $touch "$@"
+
 cmd chmod ${{
   printf "Mode Bits: "
   read ans

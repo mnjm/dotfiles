@@ -14,7 +14,7 @@ A.nvim_create_autocmd({ "BufWritePre" }, {
         local patterns = {[[%s/\s\+$//e]], [[%s/\($\n\s*\)\+\%$//]]}
         local save = vim.fn.winsaveview()
         for _, v in pairs(patterns) do
-            A.nvim_exec(string.format("keepjumps keeppatterns silent! %s", v), false)
+            A.nvim_exec2(string.format("keepjumps keeppatterns silent! %s", v), {output = false})
         end
         vim.fn.winrestview(save)
     end,

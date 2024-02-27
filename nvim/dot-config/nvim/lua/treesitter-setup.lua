@@ -17,7 +17,7 @@ vim.defer_fn(function()
     highlight = { enable = true },
     indent = { enable = true },
     incremental_selection = {
-      enable = true,
+      enable = false,
       keymaps = {
         init_selection = '<c-space>',
         node_incremental = '<c-space>',
