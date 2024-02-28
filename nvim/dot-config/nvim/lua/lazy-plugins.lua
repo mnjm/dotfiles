@@ -8,8 +8,6 @@ require('lazy').setup({
   -- NOTE: First, some plugins that don't require any configuration
 
   -- Git related plugins
-  'tpope/vim-fugitive',
-  'tpope/vim-rhubarb',
   'tpope/vim-surround',
 
   -- Detect tabstop and shiftwidth automatically
@@ -79,8 +77,7 @@ require('lazy').setup({
     },
   },
 
-{ "ellisonleao/gruvbox.nvim", priority = 1000 , config = true, opts = ...},
-
+  { "ellisonleao/gruvbox.nvim", priority = 1000 , config = true, opts = ...},
   {
     -- Set lualine as statusline
     'nvim-lualine/lualine.nvim',
@@ -111,6 +108,7 @@ require('lazy').setup({
   -- Fuzzy Finder (files, lsp, etc)
   {
     'nvim-telescope/telescope.nvim',
+    event = 'VeryLazy',
     branch = '0.1.x',
     dependencies = {
       'nvim-lua/plenary.nvim',
@@ -126,8 +124,11 @@ require('lazy').setup({
           return vim.fn.executable 'make' == 1
         end,
       },
+      { 'nvim-telescope/telescope-ui-select.nvim' },
     },
   },
+  -- Highlight todo, notes, etc in comments
+  { 'folke/todo-comments.nvim', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
 
   {
     -- Highlight, edit, and navigate code

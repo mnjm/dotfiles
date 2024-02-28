@@ -43,6 +43,6 @@ map('n', '<C-l>', '<C-W><C-l>', "Go to right split")
 -- Delete but dont put the deleted thing into the register
 map('v', '<leader>d', '\"_d', "[d]elete without adding it to register")
 -- Clear highlights
-map('n', '<leader>h', "<CMD>noh<CR>", "Clear [H]ighlights")
+map('n', '<ESC>', "<CMD>nohlsearch<CR>", "Clear search highlights")
 
 -- vim: ts=2 sts=2 sw=2 et
