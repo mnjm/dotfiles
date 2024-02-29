@@ -17,5 +17,3 @@ local find_cursor = function()
 end
 -- Find and highlight cursor
 vim.keymap.set('n', '<leader>fc', find_cursor, { desc = '[F]ind [C]ursor' })
-
-return {}

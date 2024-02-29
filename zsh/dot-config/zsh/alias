@@ -10,7 +10,6 @@ alias cp='cp -vi'                                                               
 alias ppath='readlink -f'                                                               # Copy path of file
 alias gopen='xdg-open $1 2>/dev/null'                                                   # Open file graphically
 alias py='python3'                                                                      # Python Alias
-alias vf='nvim +"Telescope find_files"'                                                 # Open nvim with telescope to fzf find a file
 alias g='git'                                                                           # git
 alias vim=nvim                                                                          # Replace vim with nvim
 alias v=nvim
