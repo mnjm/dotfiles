@@ -77,7 +77,16 @@ require('lazy').setup({
     },
   },
 
-  { "ellisonleao/gruvbox.nvim", priority = 1000 , config = true, opts = ...},
+  {
+    "pappasam/papercolor-theme-slim",
+    priority = 1000,
+    lazy = false,
+    config = function()
+      vim.o.background = "dark"
+      vim.cmd.colorscheme 'PaperColorSlim'
+    end
+  },
+
   {
     -- Set lualine as statusline
     'nvim-lualine/lualine.nvim',
@@ -86,7 +95,7 @@ require('lazy').setup({
     opts = {
       options = {
         icons_enabled = true,
-        theme = 'gruvbox',
+        theme = 'molokai',
         component_separators = '|',
         section_separators = '',
       },
@@ -159,6 +168,4 @@ require('lazy').setup({
   { import = 'custom.plugins' },
 }, {})
 
-vim.o.background = "dark" -- or "light" for light mode
-vim.cmd([[colorscheme gruvbox]])
 -- vim: ts=2 sts=2 sw=2 et
