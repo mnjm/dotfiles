@@ -47,3 +47,5 @@ nnoremap <C-h> <C-W><C-h>                                       " Move between s
 nnoremap <C-j> <C-W><C-j>
 nnoremap <C-k> <C-W><C-k>
 nnoremap <C-l> <C-W><C-l>
+nnoremap n nzz
+nnoremap N Nzz
