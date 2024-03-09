@@ -23,7 +23,7 @@ require('lazy').setup {
 
   require 'kickstart/plugins/treesitter',
 
-  require 'custom/plugins/papercolor-slim',
+  require 'custom/plugins/colorscheme',
 
   require 'custom/plugins/lualine',
 
