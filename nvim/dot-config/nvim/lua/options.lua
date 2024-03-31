@@ -77,7 +77,6 @@ vim.opt.scrolloff = 4
 -- NOTE: You should make sure your terminal supports this
 vim.opt.termguicolors = true
 
-
 -- Set display status line always but only 1 for all windows
 vim.opt.laststatus = 2
 -- -- Turn off shows default insert/replace modes

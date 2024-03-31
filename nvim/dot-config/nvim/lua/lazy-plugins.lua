@@ -6,6 +6,9 @@ require('lazy').setup {
   -- "gc" to comment visual regions/lines
   { 'numToStr/Comment.nvim', opts = {} },
 
+  -- Icons
+  { 'nvim-tree/nvim-web-devicons' },
+
   -- modular approach: using `require 'path/name'` will
   -- include a plugin definition from file lua/path/name.lua
 
@@ -25,7 +28,10 @@ require('lazy').setup {
 
   require 'custom/plugins/colorscheme',
 
-  require 'custom/plugins/lualine',
+  -- require 'custom/plugins/lualine',
+  require 'custom/plugins/bottomline',
+
+  require 'custom/plugins/topline',
 
   require 'custom/plugins/lf',
 

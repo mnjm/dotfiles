@@ -35,6 +35,7 @@ local nordic = {
     priority = 1000,
     config = function()
       require 'nordic' .load()
+      vim.cmd("hi Normal guifg=#c0c8d8 guibg=#000000")
     end
   }
 }
@@ -46,6 +47,7 @@ local kanagawa = {
     lazy = false,
     config = function()
       vim.cmd.colorscheme 'kanagawa-dragon'
+      vim.cmd("hi Normal guifg=#c0c8d8 guibg=#000000")
     end
   }
 }
