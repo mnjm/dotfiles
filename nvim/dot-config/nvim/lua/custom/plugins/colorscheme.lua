@@ -22,6 +22,7 @@ local papercolor = {
         vim.cmd.colorscheme 'PaperColorSlim'
         vim.cmd("hi CurSearch guibg=#15F5BA guifg=#000000")
         vim.cmd("hi IncSearch guibg=#FDBF60 guifg=#000000")
+        vim.cmd("hi CursorLine gui=bold")
       end
     },
     -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`

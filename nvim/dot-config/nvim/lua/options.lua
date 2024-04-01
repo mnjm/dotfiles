@@ -69,6 +69,7 @@ vim.opt.inccommand = 'split'
 
 -- Show which line your cursor is on
 vim.opt.cursorline = true
+-- Make the cursorline build
 vim.opt.colorcolumn = "100"
 
 -- Minimal number of screen lines to keep above and below the cursor.

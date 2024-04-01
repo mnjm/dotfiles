@@ -1,13 +1,28 @@
 -- Highlight group to highlight cursor
-vim.cmd("hi MMCursorHL guibg=#6bb8ff guifg=#000000")
--- Function to highlight cursor
+
+local config = {
+    map_to = "<leader>cf",
+    keymap_desc = "[C]ursor [F]ind",
+    ticks = 6,
+    time_ms = 50,
+    highlight_size = 20,
+}
+
+
 local find_cursor = function()
-    local pattern = "\\k*\\%#\\k*"
-    local time = 50
-    local blink = 6
+    -- get cursor pos
+    local pos = vim.fn.getpos('.')
+    local ln, col = pos[2], pos[3]
+    if not ln or not col then return end
+    -- highlight
+    local size = math.floor(config.highlight_size / 2)
+    local left = col - size
+    if left < 1 then left = 1 end
+    local time = config.time_ms
+    local blink = config.ticks
     for _ = 1, blink, 1
     do
-        local hl_id = vim.fn.matchadd("MMCursorHL", pattern, 1)
+        local hl_id = vim.fn.matchaddpos("CurSearch", { {ln, left, size*2} }, 1)
         vim.cmd('redraw')
         vim.loop.sleep(time)
         vim.fn.matchdelete(hl_id)
@@ -15,5 +30,6 @@ local find_cursor = function()
         vim.loop.sleep(time)
     end
 end
+
 -- Find and highlight cursor
-vim.keymap.set('n', '<leader>fc', find_cursor, { desc = '[F]ind [C]ursor' })
+vim.keymap.set('n', config.map_to, find_cursor, { desc = config.keymap_desc })

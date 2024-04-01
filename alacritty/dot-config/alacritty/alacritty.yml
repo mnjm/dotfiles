@@ -12,7 +12,7 @@ window:
   padding:
    x: 2
    y: 2
-  decorations: none
+  decorations: full
   opacity: 1.0
   startup_mode: Windowed
   # Window title
