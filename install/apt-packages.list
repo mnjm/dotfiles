@@ -18,6 +18,7 @@ flatpak
 g++
 gettext
 git
+git-filter-repo
 htop
 libfontconfig1-dev
 libfreetype6-dev

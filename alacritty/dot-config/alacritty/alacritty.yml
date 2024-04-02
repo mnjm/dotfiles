@@ -14,7 +14,7 @@ window:
    y: 2
   decorations: full
   opacity: 1.0
-  startup_mode: Windowed
+  startup_mode: Fullscreen
   # Window title
   title: Alacritty
   # Allow terminal applications to change Alacritty's window title.
