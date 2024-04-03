@@ -1,0 +1,30 @@
+#!/usr/bin/env zsh
+
+source $DOTFILES/install/setup_utils.sh
+app=$1
+op=${2:-"stow"}
+src=$DOTFILES
+tgt=$HOME
+
+appPath=$src/$app
+if [ ! -d "$appPath" ]; then
+    _alert_local "dotfiles for $app couldnt be found" 1
+    return 13;
+fi
+
+case $op in
+    stow) flag="--stow" ;;
+    unstow) flag="--delete" ;;
+    restow) flag="--restow" ;;
+    *) ;;
+esac
+
+if [ -z "$flag" ]; then
+    _alert_local "Unknown operation" 1
+    return 12;
+fi
+
+# Link the first level of config files
+stow -v $flag --dir=$src --target=$tgt --no-folding $app
+
+unset app flag op src tgt appPath
