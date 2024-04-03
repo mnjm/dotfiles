@@ -83,6 +83,6 @@ vim.opt.laststatus = 2
 -- -- Turn off shows default insert/replace modes
 vim.opt.showmode = true
 -- -- disable displaying command line
-vim.opt.cmdheight = 1 -- 0 Not workin
+vim.opt.cmdheight = 0 -- 0 Not workin
 
 -- vim: ts=2 sts=2 sw=2 et
