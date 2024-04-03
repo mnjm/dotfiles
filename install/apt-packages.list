@@ -19,6 +19,7 @@ g++
 gettext
 git
 git-filter-repo
+gzip
 htop
 libfontconfig1-dev
 libfreetype6-dev
@@ -41,6 +42,7 @@ python3-tk
 ripgrep
 rofi
 rsync
+scdoc
 stow
 syncthing
 tmux
