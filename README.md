@@ -27,11 +27,8 @@ cd dotfiles/install
 ![NeoVim](https://github.com/mnjm/github-media-repo/blob/042d8b324ca4d03228d31cb0cbac69248a2eb860/dotfiles/neovim.png)
 
 **Plugins**
-
     - Theme : [PaperColor-Slim](https://github.com/pappasam/papercolor-theme-slim)
-
     - Statusline : [bottomline.nvim](https://github.com/bottomline.nvim)
-
     - Tabline : [topline.nvim](https://github.com/topline.nvim)
 
 ### Zsh Prompt
