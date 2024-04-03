@@ -52,7 +52,7 @@ font:
 
 # Color schemes
 import:
-  - ~/.config/alacritty/colorschemes/themes/blood_moon.yaml
+  - ~/.config/alacritty/blood_moon_theme.yml
 
 cursor:
   style:

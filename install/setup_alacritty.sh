@@ -30,5 +30,3 @@ cp extra/completions/_alacritty ~/.config/zsh/zsh_functions
 popd
 
 mkdir -p ~/.config/alacritty
-# Download https://github.com/eendroroy/alacritty-theme
-_git_clone_pull https://github.com/eendroroy/alacritty-theme.git ~/.config/alacritty/colorschemes
