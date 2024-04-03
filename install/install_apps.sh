@@ -28,20 +28,20 @@ rm /tmp/UbuntuMono.zip
 ############################################################
 # Setup Vimrc
 _alert_local 'Setting Up Vim'
-./setup_vim.sh || _alert_local "Vim setup failed" 1
+./vim.sh || _alert_local "Vim setup failed" 1
 
 ############################################################
 ######################## ZSH Shell #########################
 ############################################################
  # Setup Zshrc
 _alert_local 'Setting Up Zsh'
-./setup_zsh.sh || _alert_local "Zsh setup failed" 1
+./zsh.sh || _alert_local "Zsh setup failed" 1
 
 ############################################################
 ################### Neo-Vim Text Editor ####################
 ############################################################
 _alert_local 'Installing nvim'
-./setup_nvim.sh || _alert_local "Nvim setup failed" 1
+./nvim.sh || _alert_local "Nvim setup failed" 1
 
 ############################################################
 ####################  Rust Install #########################
@@ -62,7 +62,7 @@ curl https://pyenv.run | bash
 ###################### Alacritty ###########################
 ############################################################
 _alert_local 'Installing alacritty'
-./setup_alacritty.sh || _alert_local "Alacritty setup failed" 1
+./alacritty.sh || _alert_local "Alacritty setup failed" 1
 
 #############################################################
 ########## Other packages not available in apt ##############
