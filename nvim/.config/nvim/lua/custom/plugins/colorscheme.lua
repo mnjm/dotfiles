@@ -37,7 +37,7 @@ local nordic = {
     priority = 1000,
     config = function()
       require 'nordic' .load()
-      vim.cmd("hi Normal guifg=#c0c8d8 guibg=#000000")
+      -- vim.cmd("hi Normal guifg=#c0c8d8 guibg=#000000")
     end
   }
 }
@@ -62,10 +62,25 @@ local catppuccin = {
   }
 }
 
+local onedark = {
+  {
+    "navarasu/onedark.nvim",
+    priority = 1000,
+    lazy = false,
+    config = function()
+      require("onedark").setup {
+        style = "warmer",
+      }
+      vim.cmd.colorscheme "onedark"
+      vim.cmd("hi Normal guibg=#1c1c1c")
+    end
+  }
+}
 -- NOTE: Enable colorscheme here
-return papercolor
+-- return papercolor
 -- return kanagawa
 -- return tokyonight
 -- return catppuccin
 -- return nordic
+return onedark
 -- vim: ts=2 sts=2 sw=2 et
