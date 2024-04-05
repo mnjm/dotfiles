@@ -5,6 +5,7 @@ autojump
 automake
 build-essential
 clangd
+cloc
 cmake
 copyq
 curl

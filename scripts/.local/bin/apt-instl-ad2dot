@@ -14,7 +14,7 @@ dotfiles_apt_file=$DOTFILES/install/apt-packages.list
 _alert_local "Attempting to install $app and if successful will add it to $dotfiles_apt_file"
 
 # install space seperated app
-sudo apt install "$app" -y 
+sudo apt install "$app"
 
 # if install successful
 if [ $? -eq 0 ]; then

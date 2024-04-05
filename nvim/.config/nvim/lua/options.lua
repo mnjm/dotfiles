@@ -79,7 +79,7 @@ vim.opt.scrolloff = 4
 vim.opt.termguicolors = true
 
 -- Set display status line always but only 1 for all windows
-vim.opt.laststatus = 2
+vim.opt.laststatus = 3
 -- -- Turn off shows default insert/replace modes
 vim.opt.showmode = true
 -- -- disable displaying command line
