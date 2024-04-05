@@ -18,7 +18,7 @@ xargs -a pip-packages.list python3 -m pip install --user
 #############################################################
 _alert_local "Installing Nerd Fonts"
 mkdir -p ~/.fonts
-curl -kL https://github.com/ryanoasis/nerd-fonts/releases/download/v2.2.2/UbuntuMono.zip -o /tmp/UbuntuMono.zip
+curl -kL https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.2/UbuntuMono.zip -o /tmp/UbuntuMono.zip
 unzip /tmp/UbuntuMono.zip -d "$HOME/.fonts/UbuntuMono"
 fc-cache -fv || _alert_local "Fonts install failed" 1
 rm /tmp/UbuntuMono.zip

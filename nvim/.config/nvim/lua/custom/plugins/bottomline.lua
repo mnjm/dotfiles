@@ -7,8 +7,8 @@ return {
       highlights = {
         BLMode = { fg="#282c34", bg="#98c379", bold=true },
       },
-      seperators = { '',  '' },
-      -- seperators = { '',  '' },
+      -- seperators = { '',  '' },
+      seperators = { '',  '' },
       git_symbols = { branch = "" },
       display_buf_no = true,
     },
