@@ -73,6 +73,10 @@ local onedark = {
       }
       vim.cmd.colorscheme "onedark"
       vim.cmd("hi Normal guibg=#1c1c1c")
+      vim.cmd("hi IncSearch guibg=#15F5BA guifg=#000000")
+      vim.cmd("hi Visual guibg=#15F5BA guifg=#000000")
+      vim.cmd("hi CurSearch guibg=#FDBF60 guifg=#000000")
+      vim.cmd("hi CursorLine gui=bold")
     end
   }
 }

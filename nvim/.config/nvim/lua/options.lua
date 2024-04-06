@@ -47,7 +47,7 @@ vim.opt.softtabstop = -1 -- If negative, shiftwidth value is used
 vim.opt.expandtab = true
 vim.opt.smartindent = true
 vim.opt.autoindent = true
-vim.opt.wrap = true
+vim.opt.wrap = false
 vim.opt.showmatch = true -- Highlight matching brackets
 
 -- Configure how new splits should be opened
@@ -83,6 +83,6 @@ vim.opt.laststatus = 3
 -- -- Turn off shows default insert/replace modes
 vim.opt.showmode = true
 -- -- disable displaying command line
-vim.opt.cmdheight = 0 -- 0 Not workin
+vim.opt.cmdheight = 0
 
 -- vim: ts=2 sts=2 sw=2 et

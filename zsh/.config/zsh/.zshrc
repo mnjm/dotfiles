@@ -70,8 +70,8 @@ zstyle ':vcs_info:*' enable git svn
 zstyle ':vcs_info:*' check-for-changes true
 zstyle ':vcs_info:*' unstagedstr ' %F{red}%B!%b%f'
 zstyle ':vcs_info:*' stagedstr ' %F{yellow}%B+%b%f'
-zstyle ':vcs_info:git:*' formats '%F{119}↝  %b%f%c%u %F{210}%m%f'
-zstyle ':vcs_info:git:*' actionformats '%F{119}↝  %b%f performing %F{119}%a%f %c%u %F{210}%m%f'
+zstyle ':vcs_info:git:*' formats '%F{119}  %b%f%c%u %F{210}%m%f'
+zstyle ':vcs_info:git:*' actionformats '%F{119}  %b%f performing %F{119}%a%f %c%u %F{210}%m%f'
 zstyle ':vcs_info:git*+set-message:*' hooks git-untracked
 +vi-git-untracked() {
   if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) == 'true' ]] && \
