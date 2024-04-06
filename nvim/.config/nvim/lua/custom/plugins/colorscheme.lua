@@ -62,6 +62,26 @@ local catppuccin = {
   }
 }
 
+local monokai_pro = {
+  {
+    "loctvl842/monokai-pro.nvim", name = "monokai_pro", priority = 1000,
+    config = function()
+      require("monokai-pro").setup({
+        terminal_colors = false,
+        styles = {
+          comment = { italic = false }
+        },
+        filter = "spectrum"
+      })
+      vim.cmd("colorscheme monokai-pro-spectrum")
+      vim.cmd("hi IncSearch guibg=#15F5BA guifg=#000000")
+      vim.cmd("hi Visual guibg=#15F5BA guifg=#000000")
+      vim.cmd("hi CurSearch guibg=#FDBF60 guifg=#000000")
+      vim.cmd("hi CursorLine gui=bold")
+    end
+  }
+}
+
 local onedark = {
   {
     "navarasu/onedark.nvim",
@@ -69,10 +89,15 @@ local onedark = {
     lazy = false,
     config = function()
       require("onedark").setup {
-        style = "warmer",
+        style = "warm",
       }
       vim.cmd.colorscheme "onedark"
       vim.cmd("hi Normal guibg=#1c1c1c")
+      vim.cmd('hi @lsp.type.comment guifg=#808080')
+      vim.cmd('hi @lua.lsp.comment guifg=#808080')
+      vim.cmd('hi @comment guifg=#808080')
+      vim.cmd('hi Comment guifg=#808080')
+      vim.cmd('hi SpecialComment guifg=#808080')
       vim.cmd("hi IncSearch guibg=#15F5BA guifg=#000000")
       vim.cmd("hi Visual guibg=#15F5BA guifg=#000000")
       vim.cmd("hi CurSearch guibg=#FDBF60 guifg=#000000")
@@ -86,5 +111,8 @@ local onedark = {
 -- return tokyonight
 -- return catppuccin
 -- return nordic
-return onedark
+-- return onedark
+return monokai_pro
+
+
 -- vim: ts=2 sts=2 sw=2 et

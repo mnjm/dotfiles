@@ -3,6 +3,7 @@ return {
     'mnjm/topline.nvim',
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     opts = {
+      enable = true,
       seperator = { pre = '', post = '' },
       -- seperator = { pre = '', post = '' },
       close_icon = " 󰅘 ",
