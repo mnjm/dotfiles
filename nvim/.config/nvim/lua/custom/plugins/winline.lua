@@ -1,7 +1,7 @@
 return {
   {
-    'mnjm/winline.nvim',
-    name = "winline.nvim",
+    -- 'mnjm/winline.nvim',
+    dir = "/home/manjunath/workspace/winline.nvim",
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     opts = {
       enable = true,

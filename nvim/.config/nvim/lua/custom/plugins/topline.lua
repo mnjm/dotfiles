@@ -1,6 +1,7 @@
 return {
   {
-    'mnjm/topline.nvim',
+    -- 'mnjm/topline.nvim',
+    dir = "/home/manjunath/workspace/topline.nvim",
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     opts = {
       enable = true,

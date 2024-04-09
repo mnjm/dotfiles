@@ -1,6 +1,7 @@
 return {
   {
-    'mnjm/bottomline.nvim',
+    -- 'mnjm/bottomline.nvim',
+    dir = "/home/manjunath/workspace/bottomline.nvim",
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     -- See `:help lualine.txt`
     opts = {
