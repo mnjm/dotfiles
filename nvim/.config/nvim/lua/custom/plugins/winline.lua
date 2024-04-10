@@ -9,7 +9,9 @@ return {
       enable_icons = true,
       close_icon = "󱎘",
       display_buf_no = true,
-      seperators = { '',  '' },
+      -- seperators = { '',  '' },
+      -- seperators = { '',  '' },
+      seperators = { '',  '' },
     }
   },
 }

@@ -31,10 +31,10 @@ A.nvim_create_autocmd('FileType', {
 })
 
 -- if incase cmdheight is set to 0, show statusline in somecases
-local cmdheight = A.nvim_get_option_value('cmdheight', {})
-if cmdheight == 0 then
-    A.nvim_create_autocmd({'RecordingEnter','CmdlineEnter'}, {
-        command = "set cmdheight=1", desc = "Show cmd height when recording" })
-    A.nvim_create_autocmd({'RecordingLeave', 'CmdlineLeave'}, {
-        command = "set cmdheight=0", desc = "Show cmd height when recording" })
-end
+-- local cmdheight = A.nvim_get_option_value('cmdheight', {})
+-- if cmdheight == 0 then
+--     A.nvim_create_autocmd({'RecordingEnter','CmdlineEnter'}, {
+--         command = "set cmdheight=1", desc = "Show cmd height when recording" })
+--     A.nvim_create_autocmd({'RecordingLeave', 'CmdlineLeave'}, {
+--         command = "set cmdheight=0", desc = "Show cmd height when recording" })
+-- end
