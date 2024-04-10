@@ -24,7 +24,7 @@ cd dotfiles/install
 
 ### NeoVim
 
-![NeoVim](https://github.com/mnjm/github-media-repo/blob/main/dotfiles/neovim.png)
+![NeoVim](https://github.com/mnjm/github-media-repo/blob/main/dotfiles/neovim.png?raw=true)
 
 **Plugins**
     - Theme : [PaperColor-Slim](https://github.com/pappasam/papercolor-theme-slim)
@@ -33,10 +33,10 @@ cd dotfiles/install
 
 ### Zsh Prompt
 
-![Zsh-Prompt](https://github.com/mnjm/github-media-repo/blob/main/dotfiles/zsh_prompt.png)
+![Zsh-Prompt](https://github.com/mnjm/github-media-repo/blob/main/dotfiles/zsh_prompt.png?raw=true)
 
 Minimal with [syntax highlighting](https://github.com/zsh-users/zsh-syntax-highlighting), [autosuggestions](https://github.com/zsh-users/zsh-autosuggestions) and git info
 
 ### TMUX
 
-![TMUX](https://github.com/mnjm/github-media-repo/blob/main/dotfiles/tmux.jpg)
+![TMUX](https://github.com/mnjm/github-media-repo/blob/main/dotfiles/tmux.jpg?raw=true)
