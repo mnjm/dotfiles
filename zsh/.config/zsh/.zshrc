@@ -13,6 +13,8 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 export FZF_CTRL_T_OPTS="--preview='bat --style=numbers --color=always --line-range :500 {}'"
 export MANROFFOPT="-c"
+export FZF_CTRL_T_COMMAND="fdfind -H"
+export FZF_ALT_C_COMMAND="fdfind -t d -H --exclude '**/.git/'"
 
 # System Specific exports. Alternatively these can be exported in ~/.zshrc_local file.
 # Location where dotfiles cloned

@@ -117,11 +117,11 @@ local onedark = {
 }
 -- NOTE: Enable colorscheme here
 -- return papercolor
-return kanagawa
+-- return kanagawa
 -- return tokyonight
 -- return catppuccin
 -- return nordic
--- return onedark
+return onedark
 -- return monokai_pro
 
 -- vim: ts=2 sts=2 sw=2 et

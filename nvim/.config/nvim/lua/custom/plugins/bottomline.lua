@@ -13,8 +13,14 @@ return {
       },
       -- seperators = { '',  '' },
       -- seperators = { '',  '' },
-      seperators = { '',  '' },
+      seperators = { '',  '' },
       git_symbols = { branch = "" },
+      lsp_symbols = {
+        error = " ",
+        warn = " ",
+        info = " ",
+        hint = " ",
+      },
     },
   },
 }
