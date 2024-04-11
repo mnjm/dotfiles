@@ -102,10 +102,11 @@ return {
           { name = 'luasnip' },
           { name = 'buffer' , option = {
             get_bufnrs = function() return vim.api.nvim_list_bufs() end, -- completions from all open buffers
-        }},
+          }},
         },
       }
     end,
   },
 }
+
 -- vim: ts=2 sts=2 sw=2 et
