@@ -7,8 +7,10 @@ if ! command -v stow &>/dev/null; then
 fi
 
 stdt="$DOTFILES/bin/dot-local/bin/stow-dotfiles"
+
 $stdt alacritty
 $stdt bin
+$stdt fd
 $stdt git
 $stdt htop
 $stdt lf
