@@ -1,3 +1,10 @@
+--------------------------------------------------------------------------------------------------
+---------------------------------------- mnjm's NeoVim Config ------------------------------------
+--------------------------------------------------------------------------------------------------
+-- Author - mnjm - github.com/mnjm
+-- Repo - github.com/mnjm/dotfiles
+-- derived from kickstart.nvim
+
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 

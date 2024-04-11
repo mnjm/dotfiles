@@ -1,7 +1,10 @@
 --------------------------------------------------------------------------------------------------
 ---------------------------------------- mnjm's NeoVim Config ------------------------------------
 --------------------------------------------------------------------------------------------------
+-- Author - mnjm - github.com/mnjm
+-- Repo - github.com/mnjm/dotfiles
 -- derived from kickstart.nvim
+
 -- Set leader first!!
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
@@ -22,6 +25,6 @@ require 'lazy-bootstrap'
 require 'lazy-plugins'
 
 -- [[ "After" configurations - utils, plugin configs autocmds etc ]]
-require 'custom'
+require 'after'
 
 -- vim: ts=2 sts=2 sw=2 et

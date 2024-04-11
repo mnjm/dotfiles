@@ -1,3 +1,9 @@
+--------------------------------------------------------------------------------------------------
+---------------------------------------- mnjm's NeoVim Config ------------------------------------
+--------------------------------------------------------------------------------------------------
+-- Author - mnjm - github.com/mnjm
+-- Repo - github.com/mnjm/dotfiles
+
 -- Highlight group to highlight cursor
 
 local config = {
@@ -22,6 +28,7 @@ local find_cursor = function()
     local blink = config.ticks
     for _ = 1, blink, 1
     do
+---@diagnostic disable-next-line: param-type-mismatch
         local hl_id = vim.fn.matchaddpos("CurSearch", { {ln, left, size*2} }, 1)
         vim.cmd('redraw')
         vim.loop.sleep(time)

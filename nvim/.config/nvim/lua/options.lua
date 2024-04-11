@@ -1,3 +1,10 @@
+--------------------------------------------------------------------------------------------------
+---------------------------------------- mnjm's NeoVim Config ------------------------------------
+--------------------------------------------------------------------------------------------------
+-- Author - mnjm - github.com/mnjm
+-- Repo - github.com/mnjm/dotfiles
+-- derived from kickstart.nvim
+
 -- [[ Setting options ]]
 -- Make line numbers default
 vim.opt.number = true

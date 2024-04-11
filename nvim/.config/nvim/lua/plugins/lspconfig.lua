@@ -1,3 +1,10 @@
+--------------------------------------------------------------------------------------------------
+---------------------------------------- mnjm's NeoVim Config ------------------------------------
+--------------------------------------------------------------------------------------------------
+-- Author - mnjm - github.com/mnjm
+-- Repo - github.com/mnjm/dotfiles
+-- derived from kickstart.nvim
+
 return {
   { -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
