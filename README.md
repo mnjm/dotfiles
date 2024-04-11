@@ -26,6 +26,8 @@ cd dotfiles/install
 
 ![NeoVim](https://github.com/mnjm/github-media-repo/blob/main/dotfiles/neovim.png?raw=true)
 
+Colorscheme - [Kanagawa.nvim](https://github.com/rebelot/kanagawa.nvim)
+
 **Plugins**
     - Theme : [PaperColor-Slim](https://github.com/pappasam/papercolor-theme-slim)
     - Statusline : [bottomline.nvim](https://github.com/bottomline.nvim)
