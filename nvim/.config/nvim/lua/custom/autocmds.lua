@@ -3,7 +3,16 @@
 ---------------------------------------------------------------------------------------------------
 local A = vim.api
 
-local _au = A.nvim_create_augroup('mm', { clear = true })
+local _au = A.nvim_create_augroup('mnjm', { clear = true })
+
+-- Highlight the yanked text
+vim.api.nvim_create_autocmd('TextYankPost', {
+  desc = 'Highlight when yanking (copying) text',
+  group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
+  callback = function()
+    vim.highlight.on_yank({higroup="CurSearch", timeout=250})
+  end,
+})
 
 -- Auto remove trailing spaces and lines in c and python codes while saving.
 -- use ":noa w" to save without trimming

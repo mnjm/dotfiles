@@ -75,13 +75,11 @@ vim.opt.colorcolumn = "100"
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 4
 
--- NOTE: You should make sure your terminal supports this
+-- set to false if true color is not supported
 vim.opt.termguicolors = true
 
 -- Set display status line always but only 1 for all windows
 vim.opt.laststatus = 3
--- -- Turn off shows default insert/replace modes
-vim.opt.showmode = true
 -- -- disable displaying command line
 vim.opt.cmdheight = 0
 

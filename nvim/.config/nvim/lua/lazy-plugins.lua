@@ -1,12 +1,9 @@
 require('lazy').setup {
 
-  'tpope/vim-surround', -- ops on surrounding objs like ysiw) adds () around inner world
+  'tpope/vim-surround', -- operates on surrounding objs like ysiw) adds () around inner world
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
-  -- "gc" to comment visual regions/lines
-  { 'numToStr/Comment.nvim', opts = {} },
-  -- Icons
-  { 'nvim-tree/nvim-web-devicons' },
-
+  { 'numToStr/Comment.nvim', opts = {} }, -- commet plugin gc comments on selectd lines gcc on current line
+  { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_fonts },
   require 'kickstart/plugins/gitsigns',
   require 'kickstart/plugins/which-key',
   require 'kickstart/plugins/telescope',
@@ -19,7 +16,6 @@ require('lazy').setup {
   require 'custom/plugins/topline',
   require 'custom/plugins/winline',
   require 'custom/plugins/lf',
-
 }
 
 -- vim: ts=2 sts=2 sw=2 et
