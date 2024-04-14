@@ -109,9 +109,9 @@ wget -O - https://raw.githubusercontent.com/laurent22/joplin/dev/Joplin_install_
 _alert_local "Installing git-delta"
 _download_install_deb git-delta https://github.com/dandavison/delta/releases/download/0.17.0/git-delta_0.17.0_amd64.deb
 
-# macchina
-_alert_local "Installing macchina"
-cargo install macchina
+# fastfetch
+_alert_local "Installing fastfetch"
+_download_install_deb fastfetch https://github.com/fastfetch-cli/fastfetch/releases/download/2.9.1/fastfetch-linux-amd64.deb
 
 #############################################################
 ################### Flatpak Packages ########################

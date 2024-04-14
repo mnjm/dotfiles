@@ -117,7 +117,7 @@ bindkey  "^[[H"   beginning-of-line                  # alacritty + tmux fix
 bindkey  "^[[F"   end-of-line
 bindkey  "^[[3~"  delete-char
 
-# run macchina once
+# run fastfetch once
 if [[ $(who | wc -l) -eq 2 ]]; then
-    macchina
+    fastfetch
 fi
