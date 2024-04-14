@@ -17,6 +17,7 @@ local tokyonight = {
     end
   }
 }
+
 local papercolor = {
   { -- You can easily change to a different colorscheme.
     -- Change the name of the colorscheme plugin below, and then
@@ -107,7 +108,7 @@ local onedark = {
     lazy = false,
     config = function()
       require("onedark").setup {
-        style = "warm",
+        style = "cool",
       }
       vim.cmd.colorscheme "onedark"
       vim.cmd("hi Normal guibg=#1c1c1c")

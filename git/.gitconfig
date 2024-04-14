@@ -45,7 +45,7 @@
     cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
 
 [help]
-    autocorrect = 1
+    autocorrect = 0
 
 [interactive]
     diffFilter = delta --color-only
@@ -66,4 +66,4 @@
     conflictstyle = diff3
 
 [init]
-	defaultBranch = main
+    defaultBranch = main

@@ -76,7 +76,7 @@ vim.opt.inccommand = 'split'
 
 -- Show which line your cursor is on
 vim.opt.cursorline = true
--- Make the cursorline build
+-- highlight column in 100th column
 vim.opt.colorcolumn = "100"
 
 -- Minimal number of screen lines to keep above and below the cursor.
@@ -89,5 +89,12 @@ vim.opt.termguicolors = true
 vim.opt.laststatus = 3
 -- -- disable displaying command line
 vim.opt.cmdheight = 0
+
+-- netrw changes
+vim.g.netrw_banner = 0 -- hide banner
+vim.g.netrw_liststyle = 3 -- show tree like listing
+-- vim.g.netrw_browse_split = 4 -- open file in prev focused window
+vim.g.netrw_altv = 1
+-- vim.g.netrw_winsize = 15 -- default window size when netrw is opened
 
 -- vim: ts=2 sts=2 sw=2 et
