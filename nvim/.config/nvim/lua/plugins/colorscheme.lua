@@ -108,7 +108,7 @@ local onedark = {
     lazy = false,
     config = function()
       require("onedark").setup {
-        style = "cool",
+        style = "warmer",
       }
       vim.cmd.colorscheme "onedark"
       vim.cmd("hi Normal guibg=#1c1c1c")

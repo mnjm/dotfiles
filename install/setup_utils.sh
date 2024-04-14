@@ -18,7 +18,7 @@ _download_install_deb() {
     urltail=${url##*/}
     lclfile="$downloadto/$urltail"
     # echo $name $url $urltail #lclfile
-    
+
     mkdir -p $downloadto
     curl -kL $url --output $lclfile || _alert_local "$name download failed" 1
     sudo dpkg -i $lclfile || _alert_local "$name install failed" 1

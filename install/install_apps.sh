@@ -89,21 +89,25 @@ _alert_local 'Installing git-fuzzy'
 _git_clone_pull https://github.com/bigH/git-fuzzy.git ~/.config/git/git-fuzzy
 _link_file ~/.config/git/git-fuzzy/bin/git-fuzzy ~/.local/bin/git-fuzzy
 
-# lf - file manager
+# bat - alternative to cat
 _alert_local "Installing bat"
-_download_install_deb bat https://github.com/sharkdp/bat/releases/download/v0.22.1/bat_0.22.1_amd64.deb
+_download_install_deb bat https://github.com/sharkdp/bat/releases/download/v0.24.0/bat-musl_0.24.0_amd64.deb
+
 
 # lf - file manager
 _alert_local "Installing lf"
 curl -L https://github.com/gokcehan/lf/releases/latest/download/lf-linux-amd64.tar.gz | tar xzC ~/.local/bin
 
 # obisidian
-_alert_local "Installing obisidian"
-_download_install_deb obsidian https://github.com/obsidianmd/obsidian-releases/releases/download/v1.0.0/obsidian_1.0.0_amd64.deb
+# _alert_local "Installing obisidian"
+# _download_install_deb obsidian https://github.com/obsidianmd/obsidian-releases/releases/download/v1.0.0/obsidian_1.0.0_amd64.deb
+
+_alert_local "Installing alacritty"
+wget -O - https://raw.githubusercontent.com/laurent22/joplin/dev/Joplin_install_and_update.sh | bash
 
 # git-delta
 _alert_local "Installing git-delta"
-_download_install_deb git-delta https://github.com/dandavison/delta/releases/download/0.14.0/git-delta_0.14.0_amd64.deb
+_download_install_deb git-delta https://github.com/dandavison/delta/releases/download/0.17.0/git-delta_0.17.0_amd64.deb
 
 # macchina
 _alert_local "Installing macchina"
