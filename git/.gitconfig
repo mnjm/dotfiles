@@ -20,6 +20,7 @@
     amend = commit --amend
     f = fuzzy
     fs = fuzzy status
+    link = !git-link.sh
 
 [core]
     pager = delta
