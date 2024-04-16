@@ -23,6 +23,7 @@ require('lazy').setup {
   require 'plugins/topline',
   require 'plugins/winline',
   require 'plugins/lf',
+  require 'plugins/oil',
 }
 
 -- vim: ts=2 sts=2 sw=2 et
