@@ -18,7 +18,11 @@ return {
       display_buf_no = true,
       -- seperators = { '',  '' },
       -- seperators = { '',  '' },
-      seperators = { '',  '' },
+      -- seperators = { '',  '' },
+      highlights = {
+        -- WinLineFill = {},
+        -- WinLineInactiveFill = {},
+      }
     }
   },
 }
