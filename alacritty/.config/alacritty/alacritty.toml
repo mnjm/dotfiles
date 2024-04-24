@@ -127,7 +127,7 @@ program = "/usr/bin/zsh"
 decorations = "full"
 decorations_theme_variant = "dark"
 dynamic_title = true
-opacity = 1.0
+opacity = 0.85
 startup_mode = "Fullscreen"
 title = "Alacritty"
 

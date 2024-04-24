@@ -124,13 +124,31 @@ local onedark = {
     end
   }
 }
--- NOTE: Enable colorscheme here
+local onedark_pro = {
+  {
+    "olimorris/onedarkpro.nvim",
+    priority = 1000,
+    lazy = false,
+    config = function()
+      require("onedarkpro").setup( {
+        options = { transparency = true },
+      })
+      vim.cmd("colorscheme onedark")
+      vim.cmd("hi IncSearch guibg=#15F5BA guifg=#000000")
+      vim.cmd("hi Visual guibg=#15F5BA guifg=#000000")
+      vim.cmd("hi CurSearch guibg=#FDBF60 guifg=#000000")
+      vim.cmd("hi CursorLine gui=bold")
+    end,
+  }
+}
+
 -- return papercolor
 -- return kanagawa
 -- return tokyonight
 -- return catppuccin
 -- return nordic
-return onedark
+-- return onedark
+return onedark_pro
 -- return monokai_pro
 
 -- vim: ts=2 sts=2 sw=2 et
