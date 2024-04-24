@@ -93,7 +93,6 @@ _link_file ~/.config/git/git-fuzzy/bin/git-fuzzy ~/.local/bin/git-fuzzy
 _alert_local "Installing bat"
 _download_install_deb bat https://github.com/sharkdp/bat/releases/download/v0.24.0/bat-musl_0.24.0_amd64.deb
 
-
 # lf - file manager
 _alert_local "Installing lf"
 curl -L https://github.com/gokcehan/lf/releases/latest/download/lf-linux-amd64.tar.gz | tar xzC ~/.local/bin
@@ -112,6 +111,10 @@ _download_install_deb git-delta https://github.com/dandavison/delta/releases/dow
 # fastfetch
 _alert_local "Installing fastfetch"
 _download_install_deb fastfetch https://github.com/fastfetch-cli/fastfetch/releases/download/2.9.1/fastfetch-linux-amd64.deb
+
+# joplin
+_alert_local "Installing joplin"
+wget -O - https://raw.githubusercontent.com/laurent22/joplin/dev/Joplin_install_and_update.sh | bash
 
 #############################################################
 ################### Flatpak Packages ########################
