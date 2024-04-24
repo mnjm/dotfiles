@@ -16,6 +16,7 @@ return {
       highlights = {
         BLMode = { fg="#282c34", bg="#98c379", bold=true },
         BLLine = { link="BLMode" },
+        BLFill = {},
       },
       -- seperators = { '',  '' },
       -- seperators = { '',  '' },

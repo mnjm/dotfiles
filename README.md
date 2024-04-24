@@ -15,6 +15,8 @@ Includes my configurations files for
 sudo apt install git
 git clone https://github.com/mnjm/dotfiles.git
 export DOTFILES=$PWD/dotfiles
+mkdir -p ~/.config/zsh
+echo "export DOTFILES=$DOTFILES" > ~/.config/zsh/.zshrc_local
 cd dotfiles/install
 ./install_dotfiles.sh # to install dotfiles
 ./install_apps.sh # to install apps

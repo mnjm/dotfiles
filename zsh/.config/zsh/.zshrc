@@ -7,7 +7,6 @@ export TERM="xterm-256color"
 export HISTFILE=~/.cache/zsh_history
 export HISTSIZE=10000
 export SAVEHIST=10000
-export TMUX_PLUGIN_MANAGER_PATH=$HOME/.tmux/plugins
 export LESS='-R'
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export MANROFFOPT="-c"
@@ -17,12 +16,8 @@ export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 export FZF_CTRL_T_OPTS="--preview='bat --style=numbers --color=always --line-range :500 {}'"
 
 # System Specific exports. Alternatively these can be exported in ~/.zshrc_local file.
-# Location where dotfiles cloned
-export DOTFILES="$HOME/workspace/dotfiles"
-
-# Loading local zshrc
-zshrclcl="~/.zshrc_local"
-[ -f "$zshrclcl" ] && source $zshrclcl
+zshrclcl=$HOME/.config/zsh/.zshrc_local
+[ -f "$zshrclcl" ] && . $zshrclcl
 
 # Running scripts and alias
 if [[ -v DOTFILES ]]; then
