@@ -17,6 +17,7 @@ return {
         BLMode = { fg="#282c34", bg="#98c379", bold=true },
         BLLine = { link="BLMode" },
         BLFill = {},
+        BLFileType = {fg = "#000000", bg = "#878787", bold = false},
       },
       -- seperators = { '',  '' },
       -- seperators = { '',  '' },

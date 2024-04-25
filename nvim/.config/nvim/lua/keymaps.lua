@@ -5,9 +5,10 @@
 -- Repo - github.com/mnjm/dotfiles
 -- derived from kickstart.nvim
 
+vim.keymap.set('i', '<C-o>', '<C-\\><C-o>', { desc = '{}<C-/>h -> {|}' })
+
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
-
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })
