@@ -5,8 +5,7 @@
 -- Repo - github.com/mnjm/dotfiles
 -- derived from kickstart.nvim
 
-vim.keymap.set('i', '<C-o>', '<C-\\><C-o>', { desc = '{}<C-/>h -> {|}' })
-
+vim.keymap.set('i', '<C-o>', '<C-\\><C-o>', { desc = 'Execute single command in insert mode, but dont move cursor' })
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 -- Diagnostic keymaps

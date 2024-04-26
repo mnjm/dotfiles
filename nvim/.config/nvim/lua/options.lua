@@ -77,7 +77,7 @@ vim.opt.inccommand = 'split'
 -- Show which line your cursor is on
 vim.opt.cursorline = true
 -- highlight column in 100th column
-vim.opt.colorcolumn = "100"
+vim.opt.colorcolumn = "101"
 
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 4
