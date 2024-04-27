@@ -1,4 +1,4 @@
-import = ["/home/manjunath/.config/alacritty/blood_moon_theme.toml"]
+import = ["~/.config/alacritty/blood_moon_theme.toml"]
 
 [cursor]
 blink_timeout = 5
@@ -127,7 +127,7 @@ program = "/usr/bin/zsh"
 decorations = "full"
 decorations_theme_variant = "dark"
 dynamic_title = true
-opacity = 0.80
+opacity = 0.85
 startup_mode = "Fullscreen"
 title = "Alacritty"
 

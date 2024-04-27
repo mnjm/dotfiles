@@ -1,6 +1,11 @@
---------------------------------------------------------------------------------------------------
----------------------------------------- mnjm's NeoVim Config ------------------------------------
---------------------------------------------------------------------------------------------------
+-- '##::::'##:'##::: ##:::::::'##:'##::::'##:'####::'######:::::'##::: ##:'########::'#######::'##::::'##:'####:'##::::'##:
+--  ###::'###: ###:: ##::::::: ##: ###::'###: ####:'##... ##:::: ###:: ##: ##.....::'##.... ##: ##:::: ##:. ##:: ###::'###:
+--  ####'####: ####: ##::::::: ##: ####'####:. ##:: ##:::..::::: ####: ##: ##::::::: ##:::: ##: ##:::: ##:: ##:: ####'####:
+--  ## ### ##: ## ## ##::::::: ##: ## ### ##:'##:::. ######::::: ## ## ##: ######::: ##:::: ##: ##:::: ##:: ##:: ## ### ##:
+--  ##. #: ##: ##. ####:'##::: ##: ##. #: ##:..:::::..... ##:::: ##. ####: ##...:::: ##:::: ##:. ##:: ##::: ##:: ##. #: ##:
+--  ##:.:: ##: ##:. ###: ##::: ##: ##:.:: ##:::::::'##::: ##:::: ##:. ###: ##::::::: ##:::: ##::. ## ##:::: ##:: ##:.:: ##:
+--  ##:::: ##: ##::. ##:. ######:: ##:::: ##:::::::. ######::::: ##::. ##: ########:. #######::::. ###::::'####: ##:::: ##:
+-- ..:::::..::..::::..:::......:::..:::::..:::::::::......::::::..::::..::........:::.......::::::...:::::....::..:::::..::
 -- Author - mnjm - github.com/mnjm
 -- Repo - github.com/mnjm/dotfiles
 
@@ -101,29 +106,6 @@ local monokai_pro = {
   }
 }
 
-local onedark = {
-  {
-    "navarasu/onedark.nvim",
-    priority = 1000,
-    lazy = false,
-    config = function()
-      require("onedark").setup {
-        style = "warmer",
-      }
-      vim.cmd.colorscheme "onedark"
-      vim.cmd("hi Normal guibg=#1c1c1c")
-      vim.cmd('hi @lsp.type.comment guifg=#808080')
-      vim.cmd('hi @lua.lsp.comment guifg=#808080')
-      vim.cmd('hi @comment guifg=#808080')
-      vim.cmd('hi Comment guifg=#808080')
-      vim.cmd('hi SpecialComment guifg=#808080')
-      vim.cmd("hi IncSearch guibg=#15F5BA guifg=#000000")
-      vim.cmd("hi Visual guibg=#15F5BA guifg=#000000")
-      vim.cmd("hi CurSearch guibg=#FDBF60 guifg=#000000")
-      vim.cmd("hi CursorLine gui=bold")
-    end
-  }
-}
 local onedark_pro = {
   {
     "olimorris/onedarkpro.nvim",
@@ -138,7 +120,29 @@ local onedark_pro = {
       vim.cmd("hi Visual guibg=#15F5BA guifg=#000000")
       vim.cmd("hi CurSearch guibg=#FDBF60 guifg=#000000")
       vim.cmd("hi CursorLine gui=bold")
+      vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
     end,
+  }
+}
+
+local rose_pine = {
+  {
+    "rose-pine/neovim",
+    name = "rose-pine",
+    config = function()
+      require('rose-pine').setup({
+        disable_background = true,
+        styles = {
+          italic = false,
+        },
+      })
+
+      vim.cmd("colorscheme rose-pine")
+      vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+      vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+      vim.api.nvim_set_hl(0, "NormalMC", { bg = "none" })
+      vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
+    end
   }
 }
 
@@ -147,8 +151,8 @@ local onedark_pro = {
 -- return tokyonight
 -- return catppuccin
 -- return nordic
--- return onedark
 return onedark_pro
+-- return rose_pine
 -- return monokai_pro
 
 -- vim: ts=2 sts=2 sw=2 et
