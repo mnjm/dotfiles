@@ -3,7 +3,7 @@
 --------------------------------------------------------------------------------------------------
 -- Author - mnjm - github.com/mnjm
 -- Repo - github.com/mnjm/dotfiles
--- derived from kickstart.nvim
+-- Derived from kickstart.nvim - https://github.com/dam9000/kickstart-modular.nvim
 
 -- Set leader first!!
 vim.g.mapleader = ' '

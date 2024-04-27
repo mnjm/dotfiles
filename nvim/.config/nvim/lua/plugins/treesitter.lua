@@ -3,7 +3,6 @@
 --------------------------------------------------------------------------------------------------
 -- Author - mnjm - github.com/mnjm
 -- Repo - github.com/mnjm/dotfiles
--- derived from kickstart.nvim
 
 return {
   { -- Highlight, edit, and navigate code

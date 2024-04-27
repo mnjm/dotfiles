@@ -11,6 +11,7 @@
     d = diff
     ds = diff --staged
     dt = difftool -y
+    dts = difftool -y --staged
     b = branch
     c = commit
     a = add

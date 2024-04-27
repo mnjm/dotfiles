@@ -3,7 +3,6 @@
 --------------------------------------------------------------------------------------------------
 -- Author - mnjm - github.com/mnjm
 -- Repo - github.com/mnjm/dotfiles
--- derived from kickstart.nvim
 
 return {
   { -- Adds git related signs to the gutter, as well as utilities for managing changes

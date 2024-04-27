@@ -3,8 +3,6 @@
 --------------------------------------------------------------------------------------------------
 -- Author - mnjm - github.com/mnjm
 -- Repo - github.com/mnjm/dotfiles
--- derived from kickstart.nvim
-
 
 -- NOTE: Plugins can also be configured to run lua code when they are loaded.
 --
