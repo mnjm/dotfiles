@@ -31,3 +31,4 @@ alias vim=nvim                                                    # Replace vim 
 alias v=nvim
 alias dirs='dirs -v'                                              # Show pushd stack with numbers. cd to a dir in stack by cd ~<no>
 alias fd='fdfind'                                                 # fd is better than find
+alias rsync='rsync --info=progress2 --human-readable'             # rsync

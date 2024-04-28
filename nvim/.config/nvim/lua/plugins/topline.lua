@@ -11,8 +11,7 @@
 
 return {
   {
-    -- 'mnjm/topline.nvim',
-    dir = "/home/manjunath/workspace/topline.nvim",
+    'mnjm/topline.nvim',
     dependencies = { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_fonts },
     opts = {
       enable = true,

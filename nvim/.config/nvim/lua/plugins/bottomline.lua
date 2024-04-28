@@ -11,8 +11,7 @@
 
 return {
   {
-    -- 'mnjm/bottomline.nvim',
-    dir = "/home/manjunath/workspace/bottomline.nvim",
+    'mnjm/bottomline.nvim',
     dependencies = { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_fonts },
     -- See `:help lualine.txt`
     opts = {
