@@ -9,6 +9,10 @@
 -- Author - mnjm - github.com/mnjm
 -- Repo - github.com/mnjm/dotfiles
 
+-- Set leader first!!
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
+
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 

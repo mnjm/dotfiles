@@ -8,21 +8,29 @@
 -- ..:::::..::..::::..:::......:::..:::::..:::::::::......::::::..::::..::........:::.......::::::...:::::....::..:::::..::
 -- Author - mnjm - github.com/mnjm
 -- Repo - github.com/mnjm/dotfiles
--- Derived from kickstart.nvim - https://github.com/dam9000/kickstart-modular.nvim
 
--- Have nerd fonts?
-vim.g.have_nerd_fonts = true
-
--- [[ Setting options ]]
-require 'options'
-
--- [[ Basic Keymaps ]]
-require 'keymaps'
-
--- [[ Install and Configure plugins ]]
-require 'lazy-plugins'
-
--- [[ "After" configurations - utils, plugin configs autocmds etc ]]
-require 'after'
-
+return {
+  {
+    'stevearc/oil.nvim',
+    event = #vim.fn.argv() > 0 and "VeryLazy" or "UIEnter",
+    opts = {
+      default_file_explorer = true,
+      keymaps = {
+        ["g?"] = "actions.show_help",
+        ["<CR>"] = "actions.select",
+        ["<C-r>"] = "actions.refresh",
+        ["-"] = "actions.parent",
+        ["_"] = "actions.open_cwd",
+        ["`"] = "actions.cd",
+        ["~"] = "actions.tcd",
+        ["gs"] = "actions.change_sort",
+        ["gx"] = "actions.open_external",
+        ["g."] = "actions.toggle_hidden",
+        ["g\\"] = "actions.toggle_trash",
+      },
+      use_default_keymaps = false,
+    },
+    dependencies = { "nvim-tree/nvim-web-devicons", enabled = vim.g.have_nerd_fonts },
+  },
+}
 -- vim: ts=2 sts=2 sw=2 et

@@ -13,20 +13,16 @@ return {
   {
     -- 'mnjm/winline.nvim',
     dir = "/home/manjunath/workspace/winline.nvim",
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    dependencies = { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_fonts },
     opts = {
       enable = true,
       always_show = false,
-      enable_icons = true,
-      close_icon = "󱎘",
+      enable_icons = vim.g.have_nerd_fonts,
+      close_icon = vim.g.have_nerd_fonts and "󱎘" or "[x]",
       display_buf_no = true,
       -- seperators = { '',  '' },
       -- seperators = { '',  '' },
       -- seperators = { '',  '' },
-      highlights = {
-        -- WinLineFill = {},
-        -- WinLineInactiveFill = {},
-      }
     }
   },
 }

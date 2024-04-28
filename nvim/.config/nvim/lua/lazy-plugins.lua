@@ -34,7 +34,7 @@ require('lazy').setup {
   require 'plugins/bottomline',
   require 'plugins/topline',
   require 'plugins/winline',
-  { 'stevearc/oil.nvim', opts = {}, dependencies = { 'nvim-tree/nvim-web-devicons' } },
+  require 'plugins/oil',
 }
 
 -- vim: ts=2 sts=2 sw=2 et

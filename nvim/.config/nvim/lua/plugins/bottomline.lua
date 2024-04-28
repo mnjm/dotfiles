@@ -13,11 +13,11 @@ return {
   {
     -- 'mnjm/bottomline.nvim',
     dir = "/home/manjunath/workspace/bottomline.nvim",
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    dependencies = { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_fonts },
     -- See `:help lualine.txt`
     opts = {
       enable = true,
-      enable_icons = true,
+      enable_icons = vim.g.have_nerd_fonts,
       highlights = {
         BLMode = { fg="#282c34", bg="#98c379", bold=true },
         BLLine = { link="BLMode" },
@@ -26,7 +26,7 @@ return {
       },
       -- seperators = { '',  '' },
       -- seperators = { '',  '' },
-      seperators = { '',  '' },
+      seperators = vim.g.have_nerd_fonts and { '',  '' } or nil,
       git_symbols = { branch = "" },
       lsp_symbols = {
         error = " ",

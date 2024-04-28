@@ -13,13 +13,14 @@ return {
   {
     -- 'mnjm/topline.nvim',
     dir = "/home/manjunath/workspace/topline.nvim",
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    dependencies = { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_fonts },
     opts = {
       enable = true,
+      enable_icons = vim.g.have_nerd_fonts,
       -- seperator = { pre = '', post = '' },
       -- seperator = { pre = '', post = '' },
       -- seperator = { pre = '',  post = '' },
-      close_icon = " 󰅘 ",
+      close_icon = vim.g.have_nerd_fonts and " 󰅘 " or "[x]",
       highlights = {
         TopLineClose = { fg = "#d70000", bg = "#000000" },
       },
