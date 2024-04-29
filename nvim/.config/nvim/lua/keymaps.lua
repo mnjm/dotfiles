@@ -24,16 +24,12 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 --
 -- Tab navigations
 vim.keymap.set('n', '<leader>t', '<CMD>tabe .<CR>', { desc = "Open a new [t]ab"})
-vim.keymap.set('n', '<C-Left>', '<CMD>tabp<CR>', { desc = "Go to [Left] tab"})
-vim.keymap.set('n', '<C-Right>', '<CMD>tabn<CR>', { desc = "Go to [Prev] tab"})
+vim.keymap.set('n', '<C-,>', '<CMD>tabp<CR>', { desc = "Go to [Left] tab"})
+vim.keymap.set('n', '<C-.>', '<CMD>tabn<CR>', { desc = "Go to [Prev] tab"})
 
 -- Window navigations
 vim.keymap.set('n', '<leader>|', '<CMD>vs .<CR>', { desc = "Vertical split"})
 vim.keymap.set('n', '<leader>-', '<CMD>sp .<CR>', { desc = "Horizontal split"})
-vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
-vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
-vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
-vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
 -- Keeping cursor in center
 vim.keymap.set('n', 'n', 'nzz')

@@ -1,30 +1,47 @@
 [alias]
+    alias = config --get-regexp ^alias
+    ; pretty log listing
     l = log --pretty=oneline --graph --abbrev-commit
     ll = log --graph --abbrev-commit
     lt = log --graph --abbrev-commit --tags
+    ; minimal status
     s = status -s
     ss = status
+    ; diff alias
     d = diff
     ds = diff --staged
     dt = difftool -y
     dts = difftool -y --staged
     dpreview = !git-diff-previewer
+    ; nicities
     b = branch
     c = commit
-    a = !git add -A && git status -s
+    au = !git add -u && git status -s
+    ad = add
     co = checkout
     p = push
     pl = pull
     amend = commit --amend
+    stl = stash list
+    ; its all fuzzy
     f = fuzzy
     fs = fuzzy status
+    ; get link of the repo
     link = !git-link
-    stashes = stash list
-    wip = !"f() { git commit -am '[WIP] ' && git commit --amend; }; f"
+    ; create temp wip commit
+    wip = !"f() { git commit -am '[WIP]' && git commit --amend; }; f"
+    ; remove last commit stage the changes
     uncommit = reset --soft HEAD^
-    undo = reset --mixed HEAD^
-    unstage = reset -q --
+    ; remove last commit and unstage the changes
+    undo-commit = reset --mixed HEAD^
+    ; remove untracked changes
+    restore-file-2-staged = restore --worktree
+    ; restore file to HEAD
+    restore-file-2-head = restore --staged --worktree
+    ; rebase
+    rb = rebase
     rbi = rebase --interactive
+    rba = rebase --abort
 
 [core]
     pager = delta
