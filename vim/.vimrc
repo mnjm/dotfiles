@@ -74,5 +74,5 @@ inoremap <C-o> <C-\><C-o>
 nnoremap <C-u> <C-u>zz
 nnoremap <C-d> <C-d>zz
 " Clear highlight
-nnoremap <silent> \ <cmd>noh<CR>
+nnoremap <esc><esc> <cmd>silent! nohls<cr>
 nnoremap <C-o> <C-\><C-o>

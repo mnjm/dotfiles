@@ -19,3 +19,9 @@ function lfcd() {
 function help() {
     man "$@" || "$@" --help 2>&1 | bat --plain --language=help
 }
+
+# cd previous
+function cdp() {
+    selected="$(dirs -v | sed 's/\s/:/' | fzf -d: --with-nth 2..)"
+    cd "+$(echo $selected | cut -d: -f1)"
+}

@@ -1,7 +1,3 @@
-[user]
-    email = manjunat.mohan@gmail.com
-    name = Manjunath Mohan
-
 [alias]
     l = log --pretty=oneline --graph --abbrev-commit
     ll = log --graph --abbrev-commit
@@ -12,16 +8,23 @@
     ds = diff --staged
     dt = difftool -y
     dts = difftool -y --staged
+    dpreview = !git-diff-previewer
     b = branch
     c = commit
-    a = add
+    a = !git add -A && git status -s
     co = checkout
     p = push
     pl = pull
     amend = commit --amend
     f = fuzzy
     fs = fuzzy status
-    link = !git-link.sh
+    link = !git-link
+    stashes = stash list
+    wip = !"f() { git commit -am '[WIP] ' && git commit --amend; }; f"
+    uncommit = reset --soft HEAD^
+    undo = reset --mixed HEAD^
+    unstage = reset -q --
+    rbi = rebase --interactive
 
 [core]
     pager = delta

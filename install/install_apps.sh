@@ -103,6 +103,7 @@ curl -L https://github.com/gokcehan/lf/releases/latest/download/lf-linux-amd64.t
 
 _alert_local "Installing alacritty"
 wget -O - https://raw.githubusercontent.com/laurent22/joplin/dev/Joplin_install_and_update.sh | bash
+_link_file ~/.joplin/Joplin.AppImage ~/.local/bin/joplin
 
 # git-delta
 _alert_local "Installing git-delta"
