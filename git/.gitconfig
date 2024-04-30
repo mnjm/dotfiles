@@ -16,8 +16,8 @@
     ; nicities
     b = branch
     c = commit
-    au = !git add -u && git status -s
-    ad = add
+    a = add -v
+    au = add -uv
     co = checkout
     p = push
     pl = pull
@@ -29,7 +29,7 @@
     ; get link of the repo
     link = !git-link
     ; create temp wip commit
-    wip = !"f() { git commit -am '[WIP]' && git commit --amend; }; f"
+    wip = !"f() { git commit -am '[WIP]' && git commit --amend --quiet; }; f"
     ; remove last commit stage the changes
     uncommit = reset --soft HEAD^
     ; remove last commit and unstage the changes

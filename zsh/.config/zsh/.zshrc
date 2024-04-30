@@ -33,7 +33,6 @@ fi
 # Update $PATH
 _path_add $HOME/.local/bin
 _path_add $HOME/.cargo/bin
-_path_add /usr/local/go/bin
 
 # Load zsh_functions
 fpath+=~/.config/zsh/zsh_function

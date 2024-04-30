@@ -12,7 +12,7 @@ Includes my configurations files for
 # Installation
 
 ```bash
-sudo apt install git
+sudo apt install git stow vim -y
 git clone https://github.com/mnjm/dotfiles.git
 export DOTFILES=$PWD/dotfiles
 mkdir -p ~/.config/zsh

@@ -1,16 +1,24 @@
 #!/usr/bin/env zsh
 
 source $DOTFILES/install/setup_utils.sh
+
+fail() {
+    _alert_local $1 1
+    exit 11
+}
+
+ignore_files=".git install misc"
 app=$1
 op=${2:-"stow"}
 src=$DOTFILES
 tgt=$HOME
 
 appPath=$src/$app
-if [ ! -d "$appPath" ]; then
-    _alert_local "dotfiles for $app couldnt be found" 1
-    return 13;
-fi
+[ ! -d "$appPath" ] && fail "dotfiles for $app not found"
+
+# Ignore apps
+echo $ignore_files | grep -wq $app
+[ "$?" -eq 0 ] && fail "cannot stow $app, it is in \$ignore_files"
 
 case $op in
     stow) flag="--stow" ;;
@@ -19,10 +27,7 @@ case $op in
     *) ;;
 esac
 
-if [ -z "$flag" ]; then
-    _alert_local "Unknown operation" 1
-    return 12;
-fi
+[ -z "$flag" ] && fail "Unknown operation"
 
 # Link the first level of config files
 stow -v $flag --dir=$src --target=$tgt --no-folding $app
