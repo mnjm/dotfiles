@@ -22,6 +22,8 @@ function help() {
 
 # cd previous
 function cdp() {
-    selected="$(dirs -v | sed 's/\s/:/' | fzf -d: --with-nth 2..)"
-    cd "+$(echo $selected | cut -d: -f1)"
+    selected="$(dirs -v | sed 's/\s/:/' | fzf -d: --with-nth 2.. --reverse --no-multi)"
+    if [[ -n $selected ]]; then
+        cd "+$(echo $selected | cut -d: -f1)"
+    fi
 }

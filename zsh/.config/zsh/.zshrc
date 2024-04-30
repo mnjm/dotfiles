@@ -10,9 +10,10 @@ export SAVEHIST=10000
 export LESS='-R'
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export MANROFFOPT="-c"
+export FZF_TMUX_OPTS="-p 85%"
 export FZF_CTRL_T_COMMAND="fdfind -H --exclude '**/.git/'"
 export FZF_ALT_C_COMMAND="fdfind -t d -H --exclude '**/.git/'"
-export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
+export FZF_DEFAULT_OPTS='--height 50% --layout=reverse --border'
 export FZF_CTRL_T_OPTS="--preview='bat --style=numbers --color=always --line-range :500 {}'"
 
 # System Specific exports. Alternatively these can be exported in ~/.zshrc_local file.
