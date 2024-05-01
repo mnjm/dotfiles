@@ -13,6 +13,11 @@ alias ..='cd ..'
 # clipboard copy
 alias copi='xclip -selection clipboard'                           # Xclip to work with Selection Clipboard
 
+# Safe Remove
+function safe_rm() {
+    _alert_local 'Moving files to Trash. To use rm, Use \\rm instead of rm to bypass alias'
+    trash -vI "$@"
+}
 # replace rm with trash
 alias rm='safe_rm'
 
@@ -32,3 +37,9 @@ alias v=nvim
 alias vi=nvim
 alias fd='fdfind'                                                 # fd is better than find
 alias rsync='rsync --info=progress2 --human-readable'             # rsync
+
+# help
+function help() {
+    man "$@" || "$@" --help 2>&1 | bat --plain --language=help
+}
+

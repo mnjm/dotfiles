@@ -20,15 +20,12 @@ export FZF_CTRL_T_OPTS="--preview='bat --style=numbers --color=always --line-ran
 zshrclcl=$HOME/.config/zsh/.zshrc_local
 [ -f "$zshrclcl" ] && . $zshrclcl
 
-# Running scripts and alias
-if [[ -v DOTFILES ]]; then
-    source $DOTFILES/install/setup_utils.sh
-    _source_if_file_exists_err $HOME/.config/zsh/functions.zsh
-    _source_if_file_exists_err $HOME/.config/zsh/alias
-else
-    _alert_local "ERROR: \$DOTFILES not set. Cant load functions and aliases" 1
-    exit
+if [[ ! -v DOTFILES ]]; then
+    tput setaf 1; echo "ERROR: \$DOTFILES not set. Quiting zshrc"; tput sgr0
+    return
 fi
+source $DOTFILES/install/setup_utils.sh
+_source_if_file_exists_err $HOME/.config/zsh/alias
 
 # Update $PATH
 _path_add $HOME/.local/bin
@@ -36,10 +33,6 @@ _path_add $HOME/.cargo/bin
 
 # Load zsh_functions
 fpath+=~/.config/zsh/zsh_function
-
-# Enable control-x-e to edit command in editor
-autoload -U edit-command-line
-zle -N edit-command-line
 
 autoload -U add-zsh-hook
 
@@ -54,9 +47,6 @@ setopt auto_pushd               # Use pushd instead of cd
 setopt prompt_subst             # Enable prompt subsitution
 setopt auto_cd                  # perform a cd if cmd is a directory
 setopt pushd_ignore_dups        # Ignore dupicates in pushd stack
-
-# Setting up prompt
-NEWLINE=$'\n'
 
 # Load version control information
 autoload -Uz vcs_info
@@ -77,6 +67,8 @@ zstyle ':vcs_info:git*+set-message:*' hooks git-untracked
     hook_com[misc]='%B?%b'
   fi
 }
+# Setting up prompt
+NEWLINE=$'\n'
 export PROMPT='${NEWLINE}%(?..%F{red}X )%F{14}%n%f%F{white}@%f%F{202}%m%f%F{white}:%f%F{green}%~ ${vcs_info_msg_0_} ${NEWLINE}%F{172}$ %f'
 
 # FZF
@@ -100,15 +92,26 @@ _comp_options+=(globdots)   # Include hidden files.
 # Zsh Plugins
 _source_if_file_exists_err ~/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 _source_if_file_exists_err ~/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+_source_if_file_exists_err $HOME/.config/zsh/widgets.zsh
 
-bindkey '^ ' autosuggest-accept                      # Ctrl+space to accept the suggestion
-bindkey -s '^b' '^ulfcd\n'                           # bind ctrl+b to lfcd
-bindkey '^o' fzf-cd-widget                           # ctrl+o to fzf-cd-widgetj
-bindkey '^p' fzf-cdprev-widget                       # ctrl+p to fzf-cdprev-widget
-bindkey '^f' fzf-file-widget                         # bind ctrl+f to fzf-sel
-bindkey '^e' edit-command-line                       # Prefer opening vim rather than zsh's vi-mode
-bindkey '^?' backward-delete-char                    # Fix somecases where backspace doenst work
 bindkey -M menuselect '^[[Z' reverse-menu-complete   # 'Shift-tab' to reverse through menu select
+bindkey '^ ' autosuggest-accept                      # Ctrl+space to accept the suggestion
+
+# Fzf bindings
+zle -N _fzf-cdprev-widget
+bindkey '^o' fzf-cd-widget                           # ctrl+o to fzf-cd-widgetj
+bindkey '^p' _fzf-cdprev-widget                      # ctrl+p to fzf-cdprev-widget
+bindkey '^f' fzf-file-widget                         # bind ctrl+f to fzf-sel
+
+zle -N _lfcd-widget
+bindkey '^x^o' _lfcd-widget                            # lf + cd
+
+# Enable control-e to edit command in editor
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey '^e' edit-command-line                       # Prefer opening vim rather than zsh's vi-mode
+
+bindkey '^?' backward-delete-char                    # Fix somecases where backspace doenst work
 bindkey  "^[[H"   beginning-of-line                  # alacritty + tmux fix
 bindkey  "^[[F"   end-of-line
 bindkey  "^[[3~"  delete-char
