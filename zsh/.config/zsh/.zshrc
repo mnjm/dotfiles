@@ -103,7 +103,8 @@ _source_if_file_exists_err ~/.config/zsh/zsh-syntax-highlighting/zsh-syntax-high
 
 bindkey '^ ' autosuggest-accept                      # Ctrl+space to accept the suggestion
 bindkey -s '^b' '^ulfcd\n'                           # bind ctrl+b to lfcd
-bindkey '^o' fzf-cd-widget                           # bind ctrl+o to fzf-cd
+bindkey '^o' fzf-cd-widget                           # ctrl+o to fzf-cd-widgetj
+bindkey '^p' fzf-cdprev-widget                       # ctrl+p to fzf-cdprev-widget
 bindkey '^f' fzf-file-widget                         # bind ctrl+f to fzf-sel
 bindkey '^e' edit-command-line                       # Prefer opening vim rather than zsh's vi-mode
 bindkey '^?' backward-delete-char                    # Fix somecases where backspace doenst work

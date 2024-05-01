@@ -29,6 +29,6 @@ alias py='python3'                                                # Python Alias
 alias g='git'                                                     # git
 alias vim=nvim                                                    # Replace vim with nvim
 alias v=nvim
-alias dirs='dirs -v'                                              # Show pushd stack with numbers. cd to a dir in stack by cd ~<no>
+alias vi=nvim
 alias fd='fdfind'                                                 # fd is better than find
 alias rsync='rsync --info=progress2 --human-readable'             # rsync

@@ -21,9 +21,19 @@ function help() {
 }
 
 # cd previous
-function cdp() {
-    selected="$(dirs -v | sed 's/\s/:/' | fzf -d: --with-nth 2.. --reverse --no-multi)"
-    if [[ -n $selected ]]; then
-        cd "+$(echo $selected | cut -d: -f1)"
+function _fzf-cdprev-widget() {
+    setopt localoptions pipefail no_aliases 2> /dev/null
+    dir="$(dirs -p | fzf-tmux -p 85% --reverse --no-multi)"
+    if [[ -z $dir ]]; then
+        zle redisplay
+        return 0
     fi
+    zle push-line
+    BUFFER="builtin cd -- $dir"
+    zle accept-line
+    local ret=$?
+    unset dir
+    zle reset-prompt
+    return $ret
 }
+zle -N _fzf-cdprev-widget fzf-cdprev-widget
