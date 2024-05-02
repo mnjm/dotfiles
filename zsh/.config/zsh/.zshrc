@@ -74,9 +74,6 @@ export PROMPT='${NEWLINE}%(?..%F{red}X )%F{14}%n%f%F{white}@%f%F{202}%m%f%F{whit
 # FZF
 _source_if_file_exists_err ~/.fzf.zsh
 
-# autojump
-_source_if_file_exists /usr/share/autojump/autojump.sh
-
 # pyenv
 if [ -d "$PYENV_ROOT" ]; then
     eval "$(pyenv virtualenv-init -)"
@@ -103,14 +100,17 @@ bindkey '^o' fzf-cd-widget                           # ctrl+o to fzf-cd-widgetj
 bindkey '^p' _fzf-cdprev-widget                      # ctrl+p to fzf-cdprev-widget
 bindkey '^f' fzf-file-widget                         # bind ctrl+f to fzf-sel
 
-zle -N _lfcd-widget
-bindkey '^x^o' _lfcd-widget                            # lf + cd
+zle -N _lf-cd-widget
+bindkey '^xo' _lf-cd-widget                         # lf + cd
+zle -N _lf-file-picker-widget
+bindkey '^xf' _lf-file-picker-widget
 
 # Enable control-e to edit command in editor
 autoload -U edit-command-line
 zle -N edit-command-line
 bindkey '^e' edit-command-line                       # Prefer opening vim rather than zsh's vi-mode
 
+# some fixes when working with tmux
 bindkey '^?' backward-delete-char                    # Fix somecases where backspace doenst work
 bindkey  "^[[H"   beginning-of-line                  # alacritty + tmux fix
 bindkey  "^[[F"   end-of-line

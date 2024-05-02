@@ -1,6 +1,7 @@
 # ls
-alias ls='ls -A --color=auto --group-directories-first'
-alias l='ls -A --color=auto --group-directories-first'
+alias ls='ls --color=auto --group-directories-first'
+alias l='ls --color=auto --group-directories-first'
+alias la='ls -A --color=auto --group-directories-first'
 alias ll='ls -lAFh --color=auto --group-directories-first'
 
 # colorize
@@ -37,9 +38,16 @@ alias v=nvim
 alias vi=nvim
 alias fd='fdfind'                                                 # fd is better than find
 alias rsync='rsync --info=progress2 --human-readable'             # rsync
+alias belp='bat --plain --language=help'                          # display highlights for help when piped
 
-# help
-function help() {
-    man "$@" || "$@" --help 2>&1 | bat --plain --language=help
+function vclip() {
+    tmp="/tmp/clipboard"
+    # Copy clipboard to the temp file
+    xclip -selection clipboard -o > $tmp
+    # Call vim to edit
+    $EDITOR $tmp
+    # Move contents back to clipboard
+    cat $tmp | xclip -selection clipboard -i
+    # Trap to remove temp file when system shutdown
+    trap 'rm -f $tmp >/dev/null 2>&1' HUP INT QUIT TERM PWR EXIT
 }
-

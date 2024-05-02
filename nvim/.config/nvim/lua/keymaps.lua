@@ -24,8 +24,6 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 --
 -- Tab navigations
 vim.keymap.set('n', '<leader>t', '<CMD>tabe .<CR>', { desc = "Open a new [t]ab"})
-vim.keymap.set('n', '<C-,>', '<CMD>tabp<CR>', { desc = "Go to [Left] tab"})
-vim.keymap.set('n', '<C-.>', '<CMD>tabn<CR>', { desc = "Go to [Prev] tab"})
 
 -- Window navigations
 vim.keymap.set('n', '<leader>|', '<CMD>vs .<CR>', { desc = "Vertical split"})
@@ -41,11 +39,6 @@ vim.keymap.set('n', '<C-d>', '<C-d>zz')
 vim.keymap.set({'v', 'n'}, '<leader>y', '"+y', { desc = "Clipboard [y]ank"})
 -- Clipboard paste
 vim.keymap.set({'v', 'n'}, '<leader>p', '"+p', { desc = "Clipboard [p]aste"})
--- Move between splits
-vim.keymap.set('n', '<C-h>', '<C-W><C-h>', { desc = "Go to left split"})
-vim.keymap.set('n', '<C-j>', '<C-W><C-j>', { desc = "Go to down split"})
-vim.keymap.set('n', '<C-k>', '<C-W><C-k>', { desc = "Go to up split"})
-vim.keymap.set('n', '<C-l>', '<C-W><C-l>', { desc = "Go to right split"})
 -- Delete but dont put the deleted thing into the register
 vim.keymap.set({'n', 'v'}, '<leader>d', '\"_d', { desc = "[d]elete without adding it to register"})
 
