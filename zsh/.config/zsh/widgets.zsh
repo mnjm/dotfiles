@@ -6,26 +6,35 @@ function _fzf-cdprev-widget() {
         zle redisplay
         return 0
     fi
+    # save the command line so it can be update after cd
     zle push-line
-    dir=$(echo $dir | sed 's/ /\\ /g') # escape space
+    # Modify the buffer with cd
+    dir=$(echo $dir | sed 's/ /\\ /g') # escape space if any
     BUFFER="builtin cd -- $dir"
+    # exec BUFFER
     zle accept-line
     local ret=$?
     unset dir
+    # reset to saved line
     zle reset-prompt
     return $ret
 }
 
+# lfcd as widget
 function _lf-cd-widget() {
     local ret=0
     setopt localoptions pipefail no_aliases 2> /dev/null
+    # execute lf
     local selected="$(lf -print-last-dir)"
-    # handle names with spaces
+    # skip pwd
     if [ -d "$selected" ] && [ "$selected" != "$(pwd)" ]; then
-        # cd command
+        # save the line
+        zle push-line
         BUFFER="builtin cd -- ${(q)selected}"
+        # exec cd
         zle accept-line
         ret=$?
+        # reset to saved line
         zle reset-prompt
     else
         zle redisplay
@@ -37,19 +46,20 @@ function _lf-cd-widget() {
 function __lf-file-picker-widget() {
     setopt localoptions pipefail no_aliases 2> /dev/null
     local selected="$(lf -print-selection)"
-    # convert to single line
+    # single line output
     if [ ! -z $selected ]; then
         echo $selected | while read item; do
             echo -n "${(q)item} "
         done
-        echo
     fi
     return $?
 }
 
 function _lf-file-picker-widget() {
+    # call __lf-file-picker-widget and update LBUFFER
     LBUFFER="${LBUFFER}$(__lf-file-picker-widget)"
     local ret=$?
+    # update LBUFFER on command line
     zle reset-prompt
     return $ret
 }

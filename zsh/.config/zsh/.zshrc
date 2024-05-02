@@ -100,10 +100,11 @@ bindkey '^o' fzf-cd-widget                           # ctrl+o to fzf-cd-widgetj
 bindkey '^p' _fzf-cdprev-widget                      # ctrl+p to fzf-cdprev-widget
 bindkey '^f' fzf-file-widget                         # bind ctrl+f to fzf-sel
 
+# lf widgets - lfcd and lf file picker
 zle -N _lf-cd-widget
-bindkey '^xo' _lf-cd-widget                         # lf + cd
 zle -N _lf-file-picker-widget
-bindkey '^xf' _lf-file-picker-widget
+bindkey '^x^o' _lf-cd-widget
+bindkey '^x^f' _lf-file-picker-widget
 
 # Enable control-e to edit command in editor
 autoload -U edit-command-line
