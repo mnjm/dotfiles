@@ -11,8 +11,8 @@ export LESS='-R'
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export MANROFFOPT="-c"
 export FZF_TMUX_OPTS="-p 85%"
-export FZF_CTRL_T_COMMAND="fdfind -H --exclude '**/.git/'"
-export FZF_ALT_C_COMMAND="fdfind -t d -H --exclude '**/.git/'"
+# export FZF_CTRL_T_COMMAND="fdfind -H --exclude '**/.git/'"
+# export FZF_ALT_C_COMMAND="fdfind -t d -H --exclude '**/.git/'"
 export FZF_DEFAULT_OPTS='--height 50% --layout=reverse --border'
 export FZF_CTRL_T_OPTS="--preview='bat --style=numbers --color=always --line-range :500 {}'"
 
@@ -71,9 +71,6 @@ zstyle ':vcs_info:git*+set-message:*' hooks git-untracked
 NEWLINE=$'\n'
 export PROMPT='${NEWLINE}%(?..%F{red}X )%F{14}%n%f%F{white}@%f%F{202}%m%f%F{white}:%f%F{green}%~ ${vcs_info_msg_0_} ${NEWLINE}%F{172}$ %f'
 
-# FZF
-_source_if_file_exists_err ~/.fzf.zsh
-
 # pyenv
 if [ -d "$PYENV_ROOT" ]; then
     eval "$(pyenv virtualenv-init -)"
@@ -90,14 +87,18 @@ _comp_options+=(globdots)   # Include hidden files.
 _source_if_file_exists_err ~/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 _source_if_file_exists_err ~/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 _source_if_file_exists_err $HOME/.config/zsh/widgets.zsh
+# FZF
+_source_if_file_exists_err ~/.fzf.zsh
 
 bindkey -M menuselect '^[[Z' reverse-menu-complete   # 'Shift-tab' to reverse through menu select
 bindkey '^ ' autosuggest-accept                      # Ctrl+space to accept the suggestion
 
 # Fzf bindings
+bindkey '^t' undefined-key
+bindkey '\ec' undefined-key
 zle -N _fzf-cdprev-widget
 bindkey '^o' fzf-cd-widget                           # ctrl+o to fzf-cd-widgetj
-bindkey '^p' _fzf-cdprev-widget                      # ctrl+p to fzf-cdprev-widget
+bindkey '^\' _fzf-cdprev-widget                      # ctrl+p to fzf-cdprev-widget
 bindkey '^f' fzf-file-widget                         # bind ctrl+f to fzf-sel
 
 # lf widgets - lfcd and lf file picker

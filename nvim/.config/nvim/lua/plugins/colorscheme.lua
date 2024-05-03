@@ -121,6 +121,7 @@ local onedark_pro = {
       vim.cmd("hi CurSearch guibg=#FDBF60 guifg=#000000")
       vim.cmd("hi CursorLine gui=bold")
       vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+      vim.api.nvim_set_hl(0, "LineNr", { fg = "#abb2bf" })
     end,
   }
 }

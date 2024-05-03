@@ -28,13 +28,14 @@ function _lf-cd-widget() {
     local selected="$(lf -print-last-dir)"
     # skip pwd
     if [ -d "$selected" ] && [ "$selected" != "$(pwd)" ]; then
-        # save the line
+        # save the command line so that it can be auto-restored later
         zle push-line
+        # change command line to cd
         BUFFER="builtin cd -- ${(q)selected}"
-        # exec cd
+        # exec command line
         zle accept-line
         ret=$?
-        # reset to saved line
+        # reset to saved line and restore
         zle reset-prompt
     else
         zle redisplay
@@ -42,11 +43,11 @@ function _lf-cd-widget() {
     return $ret
 }
 
-# lf file picker
+# lf files picker - paste selected files into command line
 function __lf-file-picker-widget() {
     setopt localoptions pipefail no_aliases 2> /dev/null
     local selected="$(lf -print-selection)"
-    # single line output
+    # space seperate selected (and escape ' ' if any)
     if [ ! -z $selected ]; then
         echo $selected | while read item; do
             echo -n "${(q)item} "
