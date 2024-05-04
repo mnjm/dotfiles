@@ -1,7 +1,8 @@
 # cd previous using fzf
 function _fzf-cdprev-widget() {
     setopt localoptions pipefail no_aliases 2> /dev/null
-    dir="$(dirs -p | fzf-tmux -p 85% --reverse --no-multi)"
+    # skip the first entry and fzf through pushd dir stack
+    dir="$(dirs -p | tail -n +2 | fzf-tmux -p 85% --reverse --no-multi)"
     if [[ -z $dir ]]; then
         zle redisplay
         return 0

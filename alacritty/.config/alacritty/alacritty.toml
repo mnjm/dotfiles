@@ -120,7 +120,7 @@ history = 10000
 multiplier = 3
 
 [shell]
-args = ["--login", "-c", "tmux -u new -As default"]
+args = ["--login", "-c", "tmux -u attach || tmux -u new -s default"]
 program = "/usr/bin/zsh"
 
 [window]

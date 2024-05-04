@@ -41,6 +41,7 @@ alias rsync='rsync --info=progress2 --human-readable'             # rsync
 alias belp='bat --plain --language=help'                          # display highlights for help when piped
 
 function vclip() {
+    setopt localoptions no_aliases 2> /dev/null
     tmp="/tmp/clipboard"
     # Copy clipboard to the temp file
     xclip -selection clipboard -o > $tmp

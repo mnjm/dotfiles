@@ -1,5 +1,5 @@
 [/]
-custom-list=['custom0', '__dummy__']
+custom-list=['custom1', '__dummy__', 'custom0']
 looking-glass-keybinding=@as []
 
 [custom-keybindings/custom0]
@@ -7,12 +7,17 @@ binding=['<Super>p']
 command='rofi -show drun'
 name='rofi'
 
+[custom-keybindings/custom1]
+binding=['<Super>Return']
+command='alacritty-one-instance'
+name='alacritty-one-instance'
+
 [media-keys]
 kbd-brightness-down=['XF86KbdBrightnessDown', '<Primary>bracketleft']
 kbd-brightness-toggle=['XF86KbdLightOnOff']
 kbd-brightness-up=['XF86KbdBrightnessUp', '<Primary>bracketright']
 screensaver=['<Control><Alt>l', '<Super>l']
-terminal=['<Primary><Alt>t', '<Super>Return']
+terminal=['<Primary><Alt>t']
 www=['<Super>w']
 
 [wm]

@@ -1,7 +1,13 @@
 #!/usr/bin/env bash
 
-# To dump the keybinds to a file
-# dconf dump /org/cinnamon/desktop/keybindings/ > cinnamon_keybindings
+source $DOTFILES/install/setup_utils.sh
 
-# To load the keybindings
-dconf load /org/cinnamon/desktop/keybindings/ < cinnamon_keybindings
+op=$1
+
+case $op in
+    dump) # To dump the keybinds to a file
+        dconf dump /org/cinnamon/desktop/keybindings/ > cinnamon_keybindings ;;
+    load) # To load the keybindings
+        dconf load /org/cinnamon/desktop/keybindings/ < cinnamon_keybindings ;;
+    *) _alert_local "Invalid option: either use dump or load" ;;
+esac
