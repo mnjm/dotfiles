@@ -1,7 +1,15 @@
+# ███████╗██╗     ███████╗    ██╗    ██╗██╗██████╗  ██████╗ ███████╗████████╗███████╗
+# ╚══███╔╝██║     ██╔════╝    ██║    ██║██║██╔══██╗██╔════╝ ██╔════╝╚══██╔══╝██╔════╝
+#   ███╔╝ ██║     █████╗      ██║ █╗ ██║██║██║  ██║██║  ███╗█████╗     ██║   ███████╗
+#  ███╔╝  ██║     ██╔══╝      ██║███╗██║██║██║  ██║██║   ██║██╔══╝     ██║   ╚════██║
+# ███████╗███████╗███████╗    ╚███╔███╔╝██║██████╔╝╚██████╔╝███████╗   ██║   ███████║
+# ╚══════╝╚══════╝╚══════╝     ╚══╝╚══╝ ╚═╝╚═════╝  ╚═════╝ ╚══════╝   ╚═╝   ╚══════╝
+
+
 # cd previous using fzf
 function _fzf-cdprev-widget() {
     setopt localoptions pipefail no_aliases 2> /dev/null
-    # skip the first entry and fzf through pushd dir stack
+    # skip the first entry as it will be PWD. and FZF though the remaing entries
     dir="$(dirs -p | tail -n +2 | fzf-tmux -p 85% --reverse --no-multi)"
     if [[ -z $dir ]]; then
         zle redisplay
@@ -10,13 +18,13 @@ function _fzf-cdprev-widget() {
     # save the command line so it can be update after cd
     zle push-line
     # Modify the buffer with cd
-    dir=$(echo $dir | sed 's/ /\\ /g') # escape space if any
+    dir=$(echo $dir | sed 's/ /\\ /g') # escape space dir if any
     BUFFER="builtin cd -- $dir"
     # exec BUFFER
     zle accept-line
     local ret=$?
     unset dir
-    # reset to saved line
+    # reset to saved line, this will restore from `push-line`
     zle reset-prompt
     return $ret
 }

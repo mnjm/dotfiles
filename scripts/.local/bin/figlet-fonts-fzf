@@ -1,0 +1,5 @@
+#!/usr/bin/env zsh
+
+local fontdir=$(figlet -I2)
+[[ ! -d $fontdir ]] && return 12
+ls "$fontdir"/*.flf | sed 's!.*/\(.*\)\.flf$!\1!' | fzf-tmux -p 85% --reverse --preview="figlet figlet -d \"$fontdir\" -f {}"
