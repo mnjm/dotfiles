@@ -22,7 +22,7 @@
     p = push
     pl = pull
     amend = commit --amend
-    stl = stash list
+    sth = stash
     ; its all fuzzy
     f = fuzzy
     fs = fuzzy status
@@ -42,6 +42,7 @@
     rb = rebase
     rbi = rebase --interactive
     rba = rebase --abort
+    rbc = rebase --continue
 
 [core]
     pager = delta

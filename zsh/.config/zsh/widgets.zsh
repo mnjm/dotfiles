@@ -53,19 +53,18 @@ function _lf-cd-widget() {
 }
 
 # lf files picker - paste selected files into command line
-function __lf-file-picker-widget() {
-    setopt localoptions pipefail no_aliases 2> /dev/null
-    local selected="$(lf -print-selection)"
-    # space seperate selected (and escape ' ' if any)
-    if [ ! -z $selected ]; then
-        echo $selected | while read item; do
-            echo -n "${(q)item} "
-        done
-    fi
-    return $?
-}
-
 function _lf-file-picker-widget() {
+    function __lf-file-picker-widget() {
+        setopt localoptions pipefail no_aliases 2> /dev/null
+        local selected="$(lf -print-selection)"
+        # space seperate selected (and escape ' ' if any)
+        if [ ! -z $selected ]; then
+            echo $selected | while read item; do
+                echo -n "${(q)item} "
+            done
+        fi
+        return $?
+    }
     # call __lf-file-picker-widget and update LBUFFER
     LBUFFER="${LBUFFER}$(__lf-file-picker-widget)"
     local ret=$?
