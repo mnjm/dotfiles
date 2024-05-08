@@ -12,14 +12,22 @@ Includes my configurations files for
 # Installation
 
 ```bash
-sudo apt install git stow vim -y
-git clone https://github.com/mnjm/dotfiles.git
-export DOTFILES=$PWD/dotfiles
-mkdir -p ~/.config/zsh
-echo "export DOTFILES=$DOTFILES" > ~/.config/zsh/.zshrc_local
-cd dotfiles/install
-./install_dotfiles.sh # to install dotfiles
-./install_apps.sh # to install apps
+sudo apt install git -y
+git clone --bare git@github.com:mnjm/dotfiles.git $HOME/.dotfiles-git
+echo ".dotfiles-git" >> ~/.dotfiles-git/info/exclude
+alias config='/usr/bin/git --git-dir=$HOME/.dotfiles-git/ --work-tree=$HOME'
+config checkout
+```
+
+# App Installer
+
+```bash
+$HOME/.dotfiles-misc/install/install_apps.sh
+```
+# Cinnamon Keybindings Installer
+
+```bash
+$HOME/.dotfiles-misc/install/cinnamon-keybindings.sh  load
 ```
 
 # Screenshots

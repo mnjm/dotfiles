@@ -32,7 +32,7 @@ if [[ ! -v DOTFILES ]]; then
     tput setaf 1; echo "ERROR: \$DOTFILES not set. Quiting zshrc"; tput sgr0
     return
 fi
-source $DOTFILES/install/setup_utils.sh
+source $HOME/.dotfiles-misc/install/setup_utils.sh
 _source_if_file_exists_err $HOME/.config/zsh/alias
 
 # Update $PATH

@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-source $DOTFILES/install/setup_utils.sh
+source $HOME/.dotfiles-misc/install/setup_utils.sh
 
 if [ $# -ne 1 ]; then
     _alert_local "I can only install single app at a time :(" 1
@@ -9,7 +9,7 @@ fi
 
 # args
 app=$1
-dotfiles_apt_file=$DOTFILES/install/apt-packages.list
+dotfiles_apt_file=$HOME/.dotfiles-misc/install/apt-packages.list
 
 _alert_local "Attempting to install $app and if successful will add it to $dotfiles_apt_file"
 
