@@ -7,6 +7,7 @@
 # ╚══════╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝
 
 # Exports
+export XDG_CONFIG_HOME=$HOME/.config
 export EDITOR=nvim
 export VISUAL=$EDITOR
 export LC_ALL=en_IN.UTF-8
@@ -19,12 +20,12 @@ export LESS='-R'
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export MANROFFOPT="-c"
 export FZF_TMUX_OPTS="-p 85%"
-# export FZF_CTRL_T_COMMAND="fdfind -H --exclude '**/.git/'"
-# export FZF_ALT_C_COMMAND="fdfind -t d -H --exclude '**/.git/'"
+export FZF_CTRL_T_COMMAND="fdfind -H --exclude '**/.git/'"
+export FZF_ALT_C_COMMAND="fdfind -t d -H --exclude '**/.git/'"
 export FZF_DEFAULT_OPTS='--height 50% --layout=reverse --border'
 export FZF_CTRL_T_OPTS="--preview='bat --style=numbers --color=always --line-range :500 {}'"
 
-# System Specific exports. Alternatively these can be exported in ~/.zshrc_local file.
+# NOTE: System Specific exports [Not tracked in dotfiles]
 zshrclcl=$HOME/.config/zsh/.zshrc_local
 [ -f "$zshrclcl" ] && . $zshrclcl
 
@@ -56,7 +57,7 @@ setopt prompt_subst             # Enable prompt subsitution
 setopt auto_cd                  # perform a cd if cmd is a directory
 setopt pushd_ignore_dups        # Ignore dupicates in pushd stack
 
-# Load version control information
+# Load version control information to display it in prompt
 autoload -Uz vcs_info
 precmd() { vcs_info }
 
@@ -95,7 +96,7 @@ _comp_options+=(globdots)   # Include hidden files.
 _source_if_file_exists_err ~/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 _source_if_file_exists_err ~/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 _source_if_file_exists_err $HOME/.config/zsh/widgets.zsh
-# FZF
+# Fzf
 _source_if_file_exists_err ~/.fzf.zsh
 
 bindkey -M menuselect '^[[Z' reverse-menu-complete   # 'Shift-tab' to reverse through menu select

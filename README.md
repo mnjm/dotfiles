@@ -2,12 +2,13 @@
 
 Includes my configurations files for
 
-- [neovim](https://github.com/mnjm/dotfiles/tree/main/nvim/.config/nvim)
-- [zsh](https://github.com/mnjm/dotfiles/tree/main/zsh/.config/zsh)
-- [vim](https://github.com/mnjm/dotfiles/blob/main/vim/.vimrc) - vanilla config with some niceties for fallback in case my neovim config breaks
-- [alacritt](https://github.com/mnjm/dotfiles/tree/main/alacritty/.config/alacritty)
-- [tmux](https://github.com/mnjm/dotfiles/blob/main/tmux/.tmux.conf)
-- a few handy shell [scripts](https://github.com/mnjm/dotfiles/tree/main/scripts/.local/bin)
+- [neovim](https://github.com/mnjm/dotfiles/tree/main/.config/nvim)
+- [zsh](https://github.com/mnjm/dotfiles/tree/main/.config/zsh)
+- [vim](https://github.com/mnjm/dotfiles/blob/main/.vimrc) - vanilla config with some niceties for fallback in case my neovim config breaks
+- [alacritt](https://github.com/mnjm/dotfiles/tree/main/.config/alacritty)
+- [tmux](https://github.com/mnjm/dotfiles/blob/main/.tmux.conf)
+- few handy shell [scripts](https://github.com/mnjm/dotfiles/tree/main/.local/bin)
+- app install [scripts](https://github.com/mnjm/dotfiles/tree/main/.dotfiles-misc/install)
 
 # Installation
 

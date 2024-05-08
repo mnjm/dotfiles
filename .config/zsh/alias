@@ -15,6 +15,9 @@ alias ll='ls -lAFh --color=auto --group-directories-first'
 alias grep='grep --color=auto'                                    # Grep with colors
 alias tree='tree -C'
 
+# dotfiles git bare alias 
+alias config='/usr/bin/git --git-dir=$HOME/.dotfiles-git/ --work-tree=$HOME'
+
 # ez backtracking
 alias ..='cd ..'
 
