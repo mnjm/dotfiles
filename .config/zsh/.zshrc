@@ -17,8 +17,7 @@ export HISTFILE=~/.cache/zsh_history
 export HISTSIZE=10000
 export SAVEHIST=10000
 export LESS='-R'
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"
-export MANROFFOPT="-c"
+export MANPAGER='nvim --appimage-extract-and-run +Man!'
 export FZF_TMUX_OPTS="-p 85%"
 export FZF_CTRL_T_COMMAND="fdfind -H --exclude '**/.git/'"
 export FZF_ALT_C_COMMAND="fdfind -t d -H --exclude '**/.git/'"
@@ -29,10 +28,6 @@ export FZF_CTRL_T_OPTS="--preview='bat --style=numbers --color=always --line-ran
 zshrclcl=$HOME/.config/zsh/.zshrc_local
 [ -f "$zshrclcl" ] && . $zshrclcl
 
-if [[ ! -v DOTFILES ]]; then
-    tput setaf 1; echo "ERROR: \$DOTFILES not set. Quiting zshrc"; tput sgr0
-    return
-fi
 source $HOME/.dotfiles-misc/install/setup_utils.sh
 _source_if_file_exists_err $HOME/.config/zsh/alias
 
@@ -93,12 +88,16 @@ compinit
 _comp_options+=(globdots)   # Include hidden files.
 
 # Zsh Plugins
+# auto suggestions
 _source_if_file_exists_err ~/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+# syntax highlighting
 _source_if_file_exists_err ~/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# widgets
 _source_if_file_exists_err $HOME/.config/zsh/widgets.zsh
-# Fzf
+# fzf
 _source_if_file_exists_err ~/.fzf.zsh
 
+# completion and suggesion bindings
 bindkey -M menuselect '^[[Z' reverse-menu-complete   # 'Shift-tab' to reverse through menu select
 bindkey '^ ' autosuggest-accept                      # Ctrl+space to accept the suggestion
 
@@ -126,8 +125,3 @@ bindkey '^?' backward-delete-char                    # Fix somecases where backs
 bindkey  "^[[H"   beginning-of-line                  # alacritty + tmux fix
 bindkey  "^[[F"   end-of-line
 bindkey  "^[[3~"  delete-char
-
-# run fastfetch once
-if [[ $(who | wc -l) -eq 2 ]]; then
-    fastfetch
-fi

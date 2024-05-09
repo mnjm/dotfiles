@@ -5,7 +5,6 @@
 # ███████╗███████╗███████╗    ╚███╔███╔╝██║██████╔╝╚██████╔╝███████╗   ██║   ███████║
 # ╚══════╝╚══════╝╚══════╝     ╚══╝╚══╝ ╚═╝╚═════╝  ╚═════╝ ╚══════╝   ╚═╝   ╚══════╝
 
-
 # cd previous using fzf
 function _fzf-cdprev-widget() {
     setopt localoptions pipefail no_aliases 2> /dev/null
