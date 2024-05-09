@@ -31,8 +31,8 @@ scdoc < extra/man/alacritty.5.scd | gzip -c | sudo tee /usr/local/share/man/man5
 scdoc < extra/man/alacritty-bindings.5.scd | gzip -c | sudo tee /usr/local/share/man/man5/alacritty-bindings.5.gz > /dev/null
 
 # Autocompletions
-mkdir -p ~/.zsh/zsh_functions/
-cp extra/completions/_alacritty ~/.config/zsh/zsh_functions
+mkdir -p ~/.config/zsh/zsh_functions/
+cp extra/completions/_alacritty ~/.config/zsh/zsh_functions/
 
 popd
 

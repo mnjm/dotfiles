@@ -36,7 +36,7 @@ _path_add $HOME/.local/bin
 _path_add $HOME/.cargo/bin
 
 # Load zsh_functions
-fpath+=~/.config/zsh/zsh_function
+fpath+=~/.config/zsh/zsh_functions
 
 autoload -U add-zsh-hook
 
