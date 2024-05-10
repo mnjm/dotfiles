@@ -17,6 +17,7 @@ sudo apt install git -y
 git clone --bare git@github.com:mnjm/dotfiles.git $HOME/.dotfiles-git
 echo ".dotfiles-git" >> ~/.dotfiles-git/info/exclude
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles-git/ --work-tree=$HOME'
+config config --local status.showUntrackedFiles no
 config checkout
 ```
 
@@ -28,7 +29,7 @@ $HOME/.dotfiles-misc/install/install_apps.sh
 # Cinnamon Keybindings Installer
 
 ```bash
-$HOME/.dotfiles-misc/install/cinnamon-keybindings.sh  load
+$HOME/.dotfiles-misc/install/cinnamon-keybindings.sh install
 ```
 
 # Screenshots
