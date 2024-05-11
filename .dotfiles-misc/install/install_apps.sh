@@ -65,11 +65,6 @@ else
     _alert_local "Fzf installation failed" 1
 fi
 
-# Git-Fuzzy
-_alert_local 'Installing git-fuzzy'
-_git_clone_pull https://github.com/bigH/git-fuzzy.git ~/.config/git/git-fuzzy
-_link_file ~/.config/git/git-fuzzy/bin/git-fuzzy ~/.local/bin/git-fuzzy
-
 # bat - alternative to cat
 _alert_local "Installing bat"
 _download_install_deb bat https://github.com/sharkdp/bat/releases/download/v0.24.0/bat-musl_0.24.0_amd64.deb

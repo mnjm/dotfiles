@@ -1,9 +1,8 @@
 [alias]
     alias = config --get-regexp ^alias
     ; pretty log listing
-    l = log --pretty=oneline --graph --abbrev-commit
-    ll = log --graph --abbrev-commit
-    lt = log --graph --abbrev-commit --tags
+    l = !git log --pretty=oneline --graph --abbrev-commit --decorate=short --color=always | less -R
+    ll = !git log --graph --abbrev-commit --decorate=short --color=always | less -R
     ; minimal status
     s = status -s
     ss = status
@@ -17,23 +16,22 @@
     b = branch
     c = commit
     a = add -v
-    au = add -uv
+    au = add -vu
     co = checkout
     p = push
-    pl = pull
+    pl = pull --ff-only
     amend = commit --amend
     sth = stash
-    ; its all fuzzy
-    f = fuzzy
-    fs = fuzzy status
+    f = fetch
+    fa = fetch --all
     ; get link of the repo
     link = !git-link
     ; create temp wip commit
     wip = !"f() { git add -Av && git commit -m '[WIP]' && git commit --amend --quiet; }; f"
     ; remove last commit stage the changes
     uncommit = reset --soft HEAD^
-    ; remove last commit and unstage the changes
-    undo-commit = reset --mixed HEAD^
+    ; unstage all changes
+    unstage = reset --mixed HEAD
     ; remove untracked changes
     restore-file-2-staged = restore --worktree
     ; restore file to HEAD

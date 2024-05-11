@@ -16,7 +16,6 @@ export TERM="xterm-256color"
 export HISTFILE=~/.cache/zsh_history
 export HISTSIZE=10000
 export SAVEHIST=10000
-export LESS='-R'
 export MANPAGER='nvim --appimage-extract-and-run +Man!'
 export FZF_TMUX_OPTS="-p 85%"
 export FZF_CTRL_T_COMMAND="fdfind -H --exclude '**/.git/'"
