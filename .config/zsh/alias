@@ -39,6 +39,10 @@ alias cp='cp -vi'
 # find real abosolute path of the file
 alias ppath='readlink -f'
 
+# tmux sessionizer
+alias tms='tmux-sessionizer select'
+alias tms-add='tmux-sessionizer add'
+
 # shortcuts
 alias gopen='xdg-open $1 2>/dev/null'                             # Open file graphically
 alias py='python3'                                                # Python Alias

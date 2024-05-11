@@ -1,0 +1,84 @@
+#!/usr/bin/env bash
+
+PROJECTS_LIST_FILE="$HOME/.projects-tmuxs.list"
+
+source $HOME/.dotfiles-misc/install/setup_utils.sh
+
+display_help() {
+    _alert_local "TMUX Sessionizer - fzf based tmux session/project switcher"
+    echo "Options:"
+    echo "add <name> <path> - adds the entry to the switcher list"
+    echo "select - opens tmux session switcher"
+}
+
+add_to_file() {
+    # adds an entry into Project list file
+    local name=$1
+    local path=$2
+    if [ -z $2 ]; then
+        path=$PWD
+    fi
+    if [ -z $1 ]; then
+        name=$(basename $path)
+    fi
+    name=$(echo $name | tr '.' '_')
+    # add a new entry to PROJECTS_LIST_FILE
+    echo "$name $path" >> $PROJECTS_LIST_FILE
+    _alert_local "Added $name -> $path to $PROJECTS_LIST_FILE"
+}
+
+tmux_sessionzier_previewer() {
+    # function reserved to be called as fzf previewer
+    local name="${1% *}"
+    local path="${1#* }"
+    if tmux has-session -t $name 2>/dev/null; then
+        tmux capture-pane -e -pt $name
+    else
+        _alert_local "Directory: $path"
+        _alert_local "--------------------------------"
+        ls --color=always $path
+    fi
+}
+
+list_entries_wo_duplicates() {
+    # removes duplicates whoes session already exists
+    cat $PROJECTS_LIST_FILE | while read entry; do
+        local name="${entry% *}"
+        if ! tmux has-session -t $name 2>/dev/null; then
+            echo $entry
+        fi
+    done
+}
+
+selector() {
+    # TMUX fzf session swithcer
+    local tmp=$(mktemp tmux-session-switcher-XXXXX.list -p /tmp)
+    tmux list-sessions -F "#{session_name}" 2>> /dev/null > "$tmp"
+    list_entries_wo_duplicates >> "$tmp"
+    trap 'rm -f $tmp >/dev/null 2>&1' HUP INT QUIT TERM PWR EXIT
+    # fzf through entries
+    local selected=$( cat $tmp | fzf --height 100% --reverse --no-multi \
+        --print-query --delimiter=' ' --with-nth=1 \
+        --preview "tmux-sessionizer __preview__ {}" --preview-window right,90% | tail -n1 )
+    # split name and path
+    local name=$(echo $selected | cut -f1 -d' ')
+    local path=$(echo $selected | cut -f2 -d' ')
+    [ -z $path ] && path="$HOME"
+    if [[ -n $selected ]]; then
+        if [ -z "$TMUX" ]; then
+            tmux new -As $name -c $path
+        else
+            if  ! tmux has-session -t $name 2>/dev/null; then
+                tmux new -ds $name -c $path
+            fi
+            tmux switch-client -t $name
+        fi
+    fi
+}
+
+case $1 in
+    add) add_to_file $2 $3;;
+    select) selector ;;
+    __preview__) tmux_sessionzier_previewer "$2";;
+    *) display_help ;;
+esac
