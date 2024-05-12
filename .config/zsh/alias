@@ -40,7 +40,7 @@ alias cp='cp -vi'
 alias ppath='readlink -f'
 
 # tmux sessionizer
-alias tms='tmux-sessionizer switch'
+alias tms='TMUX_SEZ_FZF_COMMAND="fzf-tmux -p 90%" tmux-sessionizer switch'
 alias tms-add='tmux-sessionizer add'
 
 # shortcuts

@@ -65,6 +65,11 @@ else
     _alert_local "Fzf installation failed" 1
 fi
 
+# tmux-sessionzier
+mkdir -p ~/softwares
+git -C ~/softwares/tmux-sessionizer pull || git clone --depth 1 https://github.com/mnjm/tmux-sessionizer.git ~/softwares/tmux-sessionizer
+_link_file ~/softwares/tmux-sessionizer/tmux-sessionizer ~/.local/bin/tmux-sessionizer
+
 # bat - alternative to cat
 _alert_local "Installing bat"
 _download_install_deb bat https://github.com/sharkdp/bat/releases/download/v0.24.0/bat-musl_0.24.0_amd64.deb
