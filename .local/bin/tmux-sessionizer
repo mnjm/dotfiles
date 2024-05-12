@@ -1,17 +1,31 @@
 #!/usr/bin/env bash
 
-PROJECTS_LIST_FILE="$HOME/.projects-tmuxs.list"
+#  /$$$$$$$$ /$$      /$$ /$$   /$$ /$$   /$$        /$$$$$$                               /$$                     /$$
+# |__  $$__/| $$$    /$$$| $$  | $$| $$  / $$       /$$__  $$                             |__/                    |__/
+#    | $$   | $$$$  /$$$$| $$  | $$|  $$/ $$/      | $$  \__/  /$$$$$$   /$$$$$$$ /$$$$$$$ /$$  /$$$$$$  /$$$$$$$  /$$ /$$$$$$$$  /$$$$$$   /$$$$$$
+#    | $$   | $$ $$/$$ $$| $$  | $$ \  $$$$/       |  $$$$$$  /$$__  $$ /$$_____//$$_____/| $$ /$$__  $$| $$__  $$| $$|____ /$$/ /$$__  $$ /$$__  $$
+#    | $$   | $$  $$$| $$| $$  | $$  >$$  $$        \____  $$| $$$$$$$$|  $$$$$$|  $$$$$$ | $$| $$  \ $$| $$  \ $$| $$   /$$$$/ | $$$$$$$$| $$  \__/
+#    | $$   | $$\  $ | $$| $$  | $$ /$$/\  $$       /$$  \ $$| $$_____/ \____  $$\____  $$| $$| $$  | $$| $$  | $$| $$  /$$__/  | $$_____/| $$
+#    | $$   | $$ \/  | $$|  $$$$$$/| $$  \ $$      |  $$$$$$/|  $$$$$$$ /$$$$$$$//$$$$$$$/| $$|  $$$$$$/| $$  | $$| $$ /$$$$$$$$|  $$$$$$$| $$
+#    |__/   |__/     |__/ \______/ |__/  |__/       \______/  \_______/|_______/|_______/ |__/ \______/ |__/  |__/|__/|________/ \_______/|__/
+#
+# Auther: mnjm (github.com/mnjm)
 
-source $HOME/.dotfiles-misc/install/setup_utils.sh
+PROJECTS_LIST_FILE=${TMUX_SESSIONIZIER_LIST_FILE:-"$HOME/.projects-tmux-sessionizer.list"}
 
-display_help() {
-    _alert_local "TMUX Sessionizer - fzf based tmux session/project switcher"
-    echo "Options:"
-    echo "add <name> <path> - adds the entry to the switcher list"
-    echo "select - opens tmux session switcher"
+pretty_print() {
+    color=${2:-6}
+    tput setaf $color; echo $1; tput sgr0
 }
 
-add_to_file() {
+display_help() {
+    pretty_print "TMUX Sessionizer - fzf based tmux session/project switcher"
+    echo "Options:"
+    echo "add <name> <path> - adds the entry to the switcher list (<name> - session name, <path> - dir where tmux session should start from)"
+    echo "switch - opens tmux session switcher"
+}
+
+add_to_list_file() {
     # adds an entry into Project list file
     local name=$1
     local path=$2
@@ -21,51 +35,58 @@ add_to_file() {
     if [ -z $1 ]; then
         name=$(basename $path)
     fi
+    # dots doesnt work in session_name, replace with _
     name=$(echo $name | tr '.' '_')
     # add a new entry to PROJECTS_LIST_FILE
     echo "$name $path" >> $PROJECTS_LIST_FILE
-    _alert_local "Added $name -> $path to $PROJECTS_LIST_FILE"
+    # Remove any duplicates in the list
+    gawk -i inplace '!a[$0]++' $PROJECTS_LIST_FILE
+    pretty_print "Added $name -> $path to $PROJECTS_LIST_FILE"
 }
 
 tmux_sessionzier_previewer() {
     # function reserved to be called as fzf previewer
-    local name="${1% *}"
-    local path="${1#* }"
+    local name=$(echo $1 | cut -f2 -d' ')
+    local path=$(echo $1 | cut -f3 -d' ')
     if tmux has-session -t $name 2>/dev/null; then
         tmux capture-pane -e -pt $name
     else
-        _alert_local "Directory: $path"
-        _alert_local "--------------------------------"
+        tput setaf 8; echo -n "Session Name: "; tput setaf 3; echo "$name"; tput sgr0
+        tput setaf 8; echo -n "Dir: "; tput setaf 6; echo "$path"; tput sgr0
+        pretty_print "--------------------------------" 8
         ls --color=always $path
     fi
 }
 
-list_entries_wo_duplicates() {
-    # removes duplicates whoes session already exists
-    cat $PROJECTS_LIST_FILE | while read entry; do
+list_sessions() {
+    # echo sessions
+    tmux list-sessions -F "#{session_name}" 2>> /dev/null | while read sess; do
+        echo "t: ${sess}"
+    done
+}
+
+list_file_entries() {
+    cat $PROJECTS_LIST_FILE 2>> /dev/null | while read entry; do
         local name="${entry% *}"
+        # Removes duplicates whose session already exists.
         if ! tmux has-session -t $name 2>/dev/null; then
-            echo $entry
+            echo "d: ${entry}"
         fi
     done
 }
 
-selector() {
-    # TMUX fzf session swithcer
-    local tmp=$(mktemp tmux-session-switcher-XXXXX.list -p /tmp)
-    tmux list-sessions -F "#{session_name}" 2>> /dev/null > "$tmp"
-    list_entries_wo_duplicates >> "$tmp"
-    trap 'rm -f $tmp >/dev/null 2>&1' HUP INT QUIT TERM PWR EXIT
+switch() {
     # fzf through entries
-    local selected=$( cat $tmp | fzf --height 100% --reverse --no-multi \
-        --print-query --delimiter=' ' --with-nth=1 \
+    local selected=$( echo "$(list_sessions) $(list_file_entries)" | fzf --height 100% \
+        --reverse --no-multi --print-query --delimiter=' ' --nth=2 --with-nth=1,2 \
         --preview "tmux-sessionizer __preview__ {}" --preview-window right,90% | tail -n1 )
     # split name and path
-    local name=$(echo $selected | cut -f1 -d' ')
-    local path=$(echo $selected | cut -f2 -d' ')
+    local name=$(echo $selected | cut -f2 -d' ')
+    local path=$(echo $selected | cut -f3 -d' ')
+    local tmux_running=$(pgrep tmux)
     [ -z $path ] && path="$HOME"
     if [[ -n $selected ]]; then
-        if [ -z "$TMUX" ]; then
+        if [ [ -z "$TMUX" ] && [ -z "$tmux_running" ] ]; then
             tmux new -As $name -c $path
         else
             if  ! tmux has-session -t $name 2>/dev/null; then
@@ -77,8 +98,9 @@ selector() {
 }
 
 case $1 in
-    add) add_to_file $2 $3;;
-    select) selector ;;
+    add) add_to_list_file $2 $3;;
+    switch) switch ;;
+    sanitize) sanitize_list_file ;;
     __preview__) tmux_sessionzier_previewer "$2";;
     *) display_help ;;
 esac
