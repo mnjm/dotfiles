@@ -56,7 +56,7 @@ alias belp='bat --plain --language=help'                          # display high
 
 function vclip() {
     setopt localoptions no_aliases 2> /dev/null
-    tmp="/tmp/clipboard"
+    tmp=$(mktemp vclip.XXXXX -p /tmp/)
     # Copy clipboard to the temp file
     xclip -selection clipboard -o > $tmp
     # Call vim to edit
