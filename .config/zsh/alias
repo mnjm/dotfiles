@@ -40,8 +40,9 @@ alias cp='cp -vi'
 alias ppath='readlink -f'
 
 # tmux sessionizer
-alias tms='TMUX_SEZ_FZF_COMMAND="fzf-tmux -p 90%" tmux-sessionizer switch'
-alias tms-add='tmux-sessionizer add'
+alias tmuxs='TMUX_SEZ_FZF_COMMAND="fzf-tmux -p 90%" tmux-sessionizer switch'
+alias tmuxs-add='tmux-sessionizer add'
+alias tmuxs-edit='tmux-sessionizer edit'
 
 # shortcuts
 alias gopen='xdg-open $1 2>/dev/null'                             # Open file graphically
