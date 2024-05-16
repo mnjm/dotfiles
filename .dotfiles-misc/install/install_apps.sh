@@ -48,7 +48,7 @@ _alert_local 'Installing alacritty'
 
 # Go
 _alert_local "Installing go"
-rm -rf ~/softwares/go && curl -L https://go.dev/dl/go1.22.2.linux-amd64.tar.gz | tar xzC ~/softwares
+rm -rf ~/softwares/go && curl -L https://go.dev/dl/go1.22.3.linux-amd64.tar.gz | tar xzC ~/softwares
 _link_file ~/softwares/go/bin/go ~/.local/bin/go
 _link_file ~/softwares/go/bin/gofmt ~/.local/bin/gofmt
 
