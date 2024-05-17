@@ -25,7 +25,4 @@ require 'keymaps'
 -- [[ Install and Configure plugins ]]
 require 'lazy-plugins'
 
--- [[ "After" configurations - utils, plugin configs autocmds etc ]]
-require 'after'
-
 -- vim: ts=2 sts=2 sw=2 et

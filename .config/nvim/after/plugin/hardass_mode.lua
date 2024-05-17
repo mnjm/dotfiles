@@ -60,6 +60,6 @@ end
 set_hardass_key_maps()
 
 -- User command [exposed] to toggle hardass mode
-vim.api.nvim_create_user_command('ToggleHardassMode', toggle_hardass_mode, {})
+vim.api.nvim_create_user_command('HardAssModeToggle', toggle_hardass_mode, {})
 
 -- vim: ts=2 sts=2 sw=2 et
