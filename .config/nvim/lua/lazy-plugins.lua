@@ -26,7 +26,6 @@ require('lazy').setup({
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
   { 'numToStr/Comment.nvim', opts = {} }, -- commet plugin gc comments on selectd lines gcc on current line
   { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_fonts },
-  { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = {} },
   require 'plugins/gitsigns',
   require 'plugins/which-key',
   require 'plugins/telescope',
