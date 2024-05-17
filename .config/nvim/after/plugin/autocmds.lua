@@ -28,7 +28,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 -- Auto remove trailing spaces and lines in c and python codes while saving.
 -- NOTE: use ":noa w" to save without trimming
 A.nvim_create_autocmd({ "BufWritePre" }, {
-  pattern = {"*.c", "*.cc", "*.cpp", "*.h", "*.hpp", "*.py", "*.lua"}, -- Here goes file tyoes
+  pattern = "*",
   desc = "Clean up trailing whitespaces and newlines while saving",
   callback = function()
     -- Patterns to remove trailing whitespaces and newlines
@@ -39,14 +39,6 @@ A.nvim_create_autocmd({ "BufWritePre" }, {
     end
     vim.fn.winrestview(save)
   end,
-  group = _au
-})
-
--- Enable spell checking in certail filetypes by default
-A.nvim_create_autocmd('FileType', {
-  pattern = {"gitcommit", "markdown"}, -- Filetypes (Vim specific) here
-  desc = "Enable spelling on commit ad markdown files",
-  command = 'setlocal spell',
   group = _au
 })
 
