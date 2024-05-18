@@ -90,7 +90,7 @@ vim.opt.wrap = false
 vim.opt.showmatch = true -- Highlight matching brackets
 -- Set display status line always but only 1 for all windows
 vim.opt.laststatus = 3
--- -- disable displaying command line
+-- disable displaying command line
 vim.opt.cmdheight = 0
 
 -- netrw changes

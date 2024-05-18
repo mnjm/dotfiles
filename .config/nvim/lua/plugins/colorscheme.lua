@@ -1,18 +1,20 @@
--- '##::::'##:'##::: ##:::::::'##:'##::::'##:'####::'######:::::'##::: ##:'########::'#######::'##::::'##:'####:'##::::'##:
---  ###::'###: ###:: ##::::::: ##: ###::'###: ####:'##... ##:::: ###:: ##: ##.....::'##.... ##: ##:::: ##:. ##:: ###::'###:
---  ####'####: ####: ##::::::: ##: ####'####:. ##:: ##:::..::::: ####: ##: ##::::::: ##:::: ##: ##:::: ##:: ##:: ####'####:
---  ## ### ##: ## ## ##::::::: ##: ## ### ##:'##:::. ######::::: ## ## ##: ######::: ##:::: ##: ##:::: ##:: ##:: ## ### ##:
---  ##. #: ##: ##. ####:'##::: ##: ##. #: ##:..:::::..... ##:::: ##. ####: ##...:::: ##:::: ##:. ##:: ##::: ##:: ##. #: ##:
---  ##:.:: ##: ##:. ###: ##::: ##: ##:.:: ##:::::::'##::: ##:::: ##:. ###: ##::::::: ##:::: ##::. ## ##:::: ##:: ##:.:: ##:
---  ##:::: ##: ##::. ##:. ######:: ##:::: ##:::::::. ######::::: ##::. ##: ########:. #######::::. ###::::'####: ##:::: ##:
--- ..:::::..::..::::..:::......:::..:::::..:::::::::......::::::..::::..::........:::.......::::::...:::::....::..:::::..::
+--                                           /$$                                                       /$$
+--                                          | $/                                                      |__/
+--  /$$$$$$/$$$$  /$$$$$$$  /$$ /$$$$$$/$$$$|_//$$$$$$$       /$$$$$$$   /$$$$$$   /$$$$$$  /$$    /$$ /$$ /$$$$$$/$$$$
+-- | $$_  $$_  $$| $$__  $$|__/| $$_  $$_  $$ /$$_____/      | $$__  $$ /$$__  $$ /$$__  $$|  $$  /$$/| $$| $$_  $$_  $$
+-- | $$ \ $$ \ $$| $$  \ $$ /$$| $$ \ $$ \ $$|  $$$$$$       | $$  \ $$| $$$$$$$$| $$  \ $$ \  $$/$$/ | $$| $$ \ $$ \ $$
+-- | $$ | $$ | $$| $$  | $$| $$| $$ | $$ | $$ \____  $$      | $$  | $$| $$_____/| $$  | $$  \  $$$/  | $$| $$ | $$ | $$
+-- | $$ | $$ | $$| $$  | $$| $$| $$ | $$ | $$ /$$$$$$$/      | $$  | $$|  $$$$$$$|  $$$$$$/   \  $/   | $$| $$ | $$ | $$
+-- |__/ |__/ |__/|__/  |__/| $$|__/ |__/ |__/|_______/       |__/  |__/ \_______/ \______/     \_/    |__/|__/ |__/ |__/
+--                    /$$  | $$
+--                   |  $$$$$$/
+--                    \______/
 -- Author - mnjm - github.com/mnjm
 -- Repo - github.com/mnjm/dotfiles
 
----@diagnostic disable: unused-local
+local colorschemes = {
 
-local tokyonight = {
-  {
+  tokyonight = {
     "folke/tokyonight.nvim",
     lazy = false,
     priority = 1000,
@@ -20,32 +22,23 @@ local tokyonight = {
     config = function()
       vim.cmd.colorscheme 'tokyonight-night'
     end
-  }
-}
-
-local papercolor = {
-  { -- You can easily change to a different colorscheme.
-    -- Change the name of the colorscheme plugin below, and then
-    -- change the command in the config to whatever the name of that colorscheme is
-    {
-      "pappasam/papercolor-theme-slim",
-      priority = 1000,
-      lazy = false,
-      config = function()
-        vim.o.background = "dark"
-        vim.cmd.colorscheme 'PaperColorSlim'
-        vim.cmd("hi IncSearch guibg=#15F5BA guifg=#000000")
-        vim.cmd("hi Visual guibg=#15F5BA guifg=#000000")
-        vim.cmd("hi CurSearch guibg=#FDBF60 guifg=#000000")
-        vim.cmd("hi CursorLine gui=bold")
-      end
-    },
-    -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`
   },
-}
 
-local nordic = {
-  {
+  papercolor = {
+    "pappasam/papercolor-theme-slim",
+    priority = 1000,
+    lazy = false,
+    config = function()
+      vim.o.background = "dark"
+      vim.cmd.colorscheme 'PaperColorSlim'
+      vim.cmd("hi IncSearch guibg=#15F5BA guifg=#000000")
+      vim.cmd("hi Visual guibg=#15F5BA guifg=#000000")
+      vim.cmd("hi CurSearch guibg=#FDBF60 guifg=#000000")
+      vim.cmd("hi CursorLine gui=bold")
+    end
+  },
+
+  nordic = {
     'AlexvZyl/nordic.nvim',
     lazy = false,
     priority = 1000,
@@ -53,11 +46,9 @@ local nordic = {
       require 'nordic' .load()
       -- vim.cmd("hi Normal guifg=#c0c8d8 guibg=#000000")
     end
-  }
-}
+  },
 
-local kanagawa = {
-  {
+  kanagawa = {
     'rebelot/kanagawa.nvim',
     priority = 1000,
     lazy = false,
@@ -75,19 +66,16 @@ local kanagawa = {
       vim.cmd("hi CurSearch guibg=#FDBF60 guifg=#000000")
       vim.cmd("hi CursorLine gui=bold")
     end
-  }
-}
+ },
 
-local catppuccin = {
-  { "catppuccin/nvim", name = "catppuccin", priority = 1000 ,
+  catppuccin = {
+    "catppuccin/nvim", name = "catppuccin", priority = 1000 ,
     config = function()
       vim.cmd.colorscheme 'catppuccin'
     end
-  }
-}
+  },
 
-local monokai_pro = {
-  {
+  monokai_pro = {
     "loctvl842/monokai-pro.nvim", name = "monokai_pro", priority = 1000,
     config = function()
       require("monokai-pro").setup({
@@ -103,11 +91,9 @@ local monokai_pro = {
       vim.cmd("hi CurSearch guibg=#FDBF60 guifg=#000000")
       vim.cmd("hi CursorLine gui=bold")
     end
-  }
-}
+  },
 
-local onedark_pro = {
-  {
+  onedark_pro = {
     "olimorris/onedarkpro.nvim",
     priority = 1000,
     lazy = false,
@@ -123,11 +109,9 @@ local onedark_pro = {
       vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
       vim.api.nvim_set_hl(0, "LineNr", { fg = "#abb2bf" })
     end,
-  }
-}
+  },
 
-local rose_pine = {
-  {
+  rose_pine = {
     "rose-pine/neovim",
     name = "rose-pine",
     config = function()
@@ -137,23 +121,16 @@ local rose_pine = {
           italic = false,
         },
       })
-
       vim.cmd("colorscheme rose-pine")
       vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
       vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
       vim.api.nvim_set_hl(0, "NormalMC", { bg = "none" })
       vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
     end
-  }
+  },
+
 }
 
--- return papercolor
--- return kanagawa
--- return tokyonight
--- return catppuccin
--- return nordic
-return onedark_pro
--- return rose_pine
--- return monokai_pro
+return colorschemes.onedark_pro
 
 -- vim: ts=2 sts=2 sw=2 et
