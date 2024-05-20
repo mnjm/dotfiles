@@ -2,7 +2,7 @@
 set shellopts '-eu'
 set ifs "\n"
 set scrolloff 5
-set hidden true
+set hidden false
 set drawbox true
 set ignorecase true
 set info size
@@ -20,19 +20,19 @@ cmd open ${{
 
 cmd delete-safe ${{
     tput setaf 3;
-	printf "\n%s\n\t" "$fx"
-	printf "send to trash?[y/N]"
-	read ans
-	[ $ans = "y" ] && trash -rf -- $fx && echo "Moved to trash."
+    printf "\n%s\n\t" "$fx"
+    printf "send to trash?[y/N]"
+    read ans
+    [ $ans = "y" ] && trash -rf -- $fx && echo "Moved to trash."
     tput sgr0
 }}
 
 cmd delete-unsafe ${{
     tput setaf 1;
-	printf "\n%s\n\t" "$fx"
-	printf "permanent delete?[y/N]"
-	read ans
-	[ $ans = "y" ] && rm -rf -- $fx && echo "Removed."
+    printf "\n%s\n\t" "$fx"
+    printf "permanent delete?[y/N]"
+    read ans
+    [ $ans = "y" ] && rm -rf -- $fx && echo "Removed."
     tput sgr0
 }}
 
@@ -45,21 +45,21 @@ cmd mkfile ${{
 cmd new $touch "$@"
 
 cmd chmod ${{
-  printf "Mode Bits: "
-  read ans
+    printf "Mode Bits: "
+    read ans
 
-  for file in "$fx"
-  do
-    chmod $ans $file
-  done
+    for file in "$fx"
+    do
+        chmod $ans $file
+    done
 
-  lf -remote 'send reload'
+    lf -remote 'send reload'
 }}
 
 cmd sudomkfile ${{
-  printf "(sudo) File Name: "
-  read ans
-  sudo $EDITOR $ans
+    printf "(sudo) File Name: "
+    read ans
+    sudo $EDITOR $ans
 }}
 
 cmd fzf_jump ${{
