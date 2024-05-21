@@ -1,8 +1,8 @@
 [alias]
     alias = config --get-regexp ^alias
     ; pretty log listing
-    l = !git --no-pager log --pretty=oneline --graph --decorate=short --color=always | less -R
-    ll = !git --no-pager log --graph --abbrev-commit --decorate=short --color=always | less -R
+    l = !"f() { git --no-pager log --pretty=oneline --abbrev-commit --graph --decorate=short --color=always "$@" | less -R; }; f"
+    ll = !"f() { git --no-pager log --graph --abbrev-commit --decorate=short --color=always "$@" | less -R; }; f"
     ; minimal status
     s = status -s
     ss = status
@@ -43,7 +43,7 @@
     rbc = rebase --continue
 
 [core]
-    pager = delta
+    pager = less
     editor = nvim
     excludesfile = ~/.gitignore
 

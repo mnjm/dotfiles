@@ -8,7 +8,7 @@ set ignorecase true
 set info size
 set icons true
 set autoquit true
-set previewer '~/.local/bin/preview'
+set previewer '~/.config/lf/preview'
 
 cmd open ${{
     test -L $f && f=$(readlink -f $f)
