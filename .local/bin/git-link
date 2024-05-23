@@ -17,9 +17,10 @@ fi
 # Remove trailing .git and print
 link=$(echo "$link" | sed -e 's/\.git$//')
 echo "URL: $link"
-printf "Open in firefox?[y/N]:"
+browser=${BROWSER:-firefox}
+printf "Open in $browser?[y/N]:"
 read ans
 if [ $ans = "y" ]; then
-    firefox -new-tab $link 2>>/dev/null &
+    $browser -new-tab $link 2>>/dev/null &
     disown
 fi

@@ -10,6 +10,7 @@
 export XDG_CONFIG_HOME=$HOME/.config
 export EDITOR=nvim
 export VISUAL=$EDITOR
+export BROWSER=brave-browser
 export LC_ALL=en_IN.UTF-8
 export LANG=en_IN.UTF-8
 export TERM="xterm-256color"
