@@ -1,6 +1,6 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env bash
 
-local alacritty_class_name="Alacritty"
+alacritty_class_name="Alacritty"
 
 fail() {
     notify-send --urgency=normal $1
