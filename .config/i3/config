@@ -185,6 +185,10 @@ bar {
         status_command i3status --config ~/.config/i3/i3status.conf
 }
 
+# open browser
+bindsym $mod+b exec brave-browser
+bindsym $mod+n exec joplin
+
 # Per app border
 for_window [class="Alacritty"] border pixel 0
 
@@ -209,6 +213,7 @@ bindsym $mod+Ctrl+l exec --no-startup-id $i3lockwall
 
 # floating pop up automatically
 for_window [window_role="pop-up"] floating enable
+# joplinbrave-browserbrave-browser
 for_window [window_role="task_dialog"] floating enable
 
 # disable focus follows mouse
@@ -218,7 +223,6 @@ focus_follows_mouse no
 hide_edge_borders smart
 
 # custom volume controls binds
-# TODO add alerts
 # mute
 bindsym $mod+F1 exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 # reduce volume
