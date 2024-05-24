@@ -3,6 +3,7 @@ android-tools-fastboot
 autoconf
 autojump
 automake
+brightnessctl
 build-essential
 clangd
 cloc

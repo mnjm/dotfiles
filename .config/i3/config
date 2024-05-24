@@ -222,10 +222,16 @@ focus_follows_mouse no
 # hide borders if only one window visible
 hide_edge_borders smart
 
-# custom volume controls binds
+# ------------------------------ Volume Controls --------------------------------------------------
 # mute
 bindsym $mod+F1 exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 # reduce volume
 bindsym $mod+F2 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
 # increase volume
 bindsym $mod+F3 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
+
+# ------------------------------ Screen Brightness ------------------------------------------------
+# reduce brightness
+bindsym $mod+F6 exec --no-startup-id brightnessctl set 5%- && $refresh_i3status
+# increase brightness
+bindsym $mod+F7 exec --no-startup-id brightnessctl set +5% && $refresh_i3status
