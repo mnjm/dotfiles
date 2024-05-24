@@ -24,6 +24,7 @@ git
 gzip
 htop
 i3
+i3status
 libfontconfig1-dev
 libfreetype6-dev
 libimage-exiftool-perl
@@ -36,6 +37,7 @@ nala
 neofetch
 net-tools
 ninja-build
+pavucontrol
 pkg-config
 python3
 python3-dev
