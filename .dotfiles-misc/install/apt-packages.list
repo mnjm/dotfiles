@@ -30,6 +30,7 @@ libimage-exiftool-perl
 libtool-bin
 libxcb-xfixes0-dev
 libxkbcommon-dev
+lxappearance
 mediainfo
 nala
 neofetch
