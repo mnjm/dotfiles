@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+chosen=$(printf "  Power Off\n  Restart\n  Suspend\n󰍃  Log Out\n  Lock" | rofi -dmenu -i -theme-str '@import "power.rasi"')
+
+case "$chosen" in
+	"  Power Off") poweroff ;;
+	"  Restart") reboot ;;
+	"  Suspend") systemctl suspend ;;
+	"󰍃 Log Out") i3-msg exit ;;
+	"  Lock") i3lock -i ~/.dotfiles-misc/wallpapers/wallpaper_2.png -t -f ;;
+	*) exit 1 ;;
+esac
