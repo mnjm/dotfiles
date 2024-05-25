@@ -14,7 +14,7 @@ get_screen_brightness() {
     echo "Screen Brightness: $percent%"
 }
 case $1 in
-    up)   brightnessctl set +5% >> /dev/null && notify-send "Increasing screen brightness" "$(get_screen_brightness)";;
-    down)   brightnessctl set 5%- >> /dev/null && notify-send "Reducing screen brightness" "$(get_screen_brightness)";;
+    up)   brightnessctl set +10% >> /dev/null && notify-send "Increasing screen brightness" "$(get_screen_brightness)";;
+    down)   brightnessctl set 10%- >> /dev/null && notify-send "Reducing screen brightness" "$(get_screen_brightness)";;
     *) display_help;;
 esac
