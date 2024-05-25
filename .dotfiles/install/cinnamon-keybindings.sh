@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
-source $HOME/.dotfiles-misc/install/setup_utils.sh
+source $HOME/.dotfiles/install/setup_utils.sh
 
 op=$1
 dconf="/org/cinnamon/desktop/keybinds/"
-kb_file="$HOME/.dotfiles-misc/install/cinnamon-keybindings"
+kb_file="$HOME/.dotfiles/install/cinnamon-keybindings"
 
 case $op in
     save) # To dump the keybinds to a file

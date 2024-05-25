@@ -7,6 +7,6 @@ case "$chosen" in
 	"  Restart") reboot ;;
 	"  Suspend") systemctl suspend ;;
 	"󰍃 Log Out") i3-msg exit ;;
-	"  Lock") i3lock -i ~/.dotfiles-misc/wallpapers/wallpaper_2.png -t -f ;;
+	"  Lock") i3lock -i ~/.dotfiles/wallpapers/wallpaper_2.png -t -f ;;
 	*) exit 1 ;;
 esac

@@ -9,7 +9,7 @@ Includes my configurations files for
 - [tmux](https://github.com/mnjm/dotfiles/blob/main/.config/tmux/tmux.conf)
 - [i3wm](https://github.com/mnjm/dotfiles/blob/main/.config/i3/config)
 - few handy shell [scripts](https://github.com/mnjm/dotfiles/tree/main/.local/bin)
-- app install [scripts](https://github.com/mnjm/dotfiles/tree/main/.dotfiles-misc/install)
+- app install [scripts](https://github.com/mnjm/dotfiles/tree/main/.dotfiles/install)
 
 # Installation
 
@@ -25,12 +25,12 @@ config checkout
 # App Installer
 
 ```bash
-$HOME/.dotfiles-misc/install/install_apps.sh
+$HOME/.dotfiles/install/install_apps.sh
 ```
 # Cinnamon Keybindings Installer
 
 ```bash
-$HOME/.dotfiles-misc/install/cinnamon-keybindings.sh install
+$HOME/.dotfiles/install/cinnamon-keybindings.sh install
 ```
 
 # Screenshots

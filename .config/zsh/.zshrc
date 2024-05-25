@@ -28,7 +28,7 @@ export FZF_CTRL_T_OPTS="--preview='bat --style=numbers --color=always --line-ran
 zshrclcl=$HOME/.config/zsh/.zshrc_local
 [ -f "$zshrclcl" ] && . $zshrclcl
 
-source $HOME/.dotfiles-misc/install/setup_utils.sh
+source $HOME/.dotfiles/install/setup_utils.sh
 _source_if_file_exists_err $HOME/.config/zsh/alias
 
 # Update $PATH

@@ -2,7 +2,7 @@
 
 # Checkout https://github.com/alacritty/alacritty/blob/master/INSTALL.md if it doesnt work
 
-. $HOME/.dotfiles-misc/install/setup_utils.sh
+. $HOME/.dotfiles/install/setup_utils.sh
 
 
 # Clone / Pull alacritty

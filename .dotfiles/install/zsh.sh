@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-. $HOME/.dotfiles-misc/install/setup_utils.sh
+. $HOME/.dotfiles/install/setup_utils.sh
 
 mkdir -p ~/.config/zsh/zsh_function
 mkdir -p ~/.cache

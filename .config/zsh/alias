@@ -16,7 +16,7 @@ alias grep='grep --color=auto'                                    # Grep with co
 alias tree='tree -C'
 
 # dotfiles git bare alias
-alias dot-git='/usr/bin/git --git-dir=$HOME/.dotfiles-git/ --work-tree=$HOME'
+alias dotgit='/usr/bin/git --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME'
 
 # ez backtracking
 alias ..='cd ..'

@@ -2,7 +2,7 @@
 
 export DOTFILES=$PWD
 
-. $HOME/.dotfiles-misc/install/setup_utils.sh
+. $HOME/.dotfiles/install/setup_utils.sh
 
 # Apt + Pip packages
 _alert_local "Installing apt packages"

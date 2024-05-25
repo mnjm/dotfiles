@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-. $HOME/.dotfiles-misc/install/setup_utils.sh
+. $HOME/.dotfiles/install/setup_utils.sh
 
 # install node
 _alert_local "Installing node"
