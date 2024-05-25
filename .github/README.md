@@ -1,17 +1,17 @@
 # mnjm-dotfiles
 
-Includes my configurations files for
+This repository contains configuration files for:
 
-- [neovim](https://github.com/mnjm/dotfiles/tree/main/.config/nvim)
-- [zsh](https://github.com/mnjm/dotfiles/tree/main/.config/zsh)
-- [vim](https://github.com/mnjm/dotfiles/blob/main/.vimrc) - vanilla config with some niceties for fallback in case my neovim config breaks
-- [alacritt](https://github.com/mnjm/dotfiles/tree/main/.config/alacritty)
-- [tmux](https://github.com/mnjm/dotfiles/blob/main/.config/tmux/tmux.conf)
+- [NeoVim](https://github.com/mnjm/dotfiles/tree/main/.config/nvim)
+- [Zsh Shell](https://github.com/mnjm/dotfiles/tree/main/.config/zsh)
+- [Vim](https://github.com/mnjm/dotfiles/blob/main/.vimrc) - a vanilla config with additional settings for fallback
+- [Alacritty](https://github.com/mnjm/dotfiles/tree/main/.config/alacritty)
+- [Tmux](https://github.com/mnjm/dotfiles/blob/main/.config/tmux/tmux.conf)
 - [i3wm](https://github.com/mnjm/dotfiles/blob/main/.config/i3/config)
-- few handy shell [scripts](https://github.com/mnjm/dotfiles/tree/main/.local/bin)
-- app install [scripts](https://github.com/mnjm/dotfiles/tree/main/.dotfiles/install)
+- Useful shell [scripts](https://github.com/mnjm/dotfiles/tree/main/.local/bin)
+- Application installation [scripts](https://github.com/mnjm/dotfiles/tree/main/.dotfiles/install) (for Debian-based systems like Ubuntu and Mint)
 
-# Installation
+## Installation
 
 ```bash
 sudo apt install git -y
@@ -22,36 +22,41 @@ config config --local status.showUntrackedFiles no
 config checkout
 ```
 
-# App Installer
+## Application Installer
 
 ```bash
 $HOME/.dotfiles/install/install_apps.sh
 ```
-# Cinnamon Keybindings Installer
+
+## Cinnamon Keybindings Installer
 
 ```bash
 $HOME/.dotfiles/install/cinnamon-keybindings.sh install
 ```
 
-# Screenshots
+## Screenshots
 
-## NeoVim
+### NeoVim
 
 ![NeoVim](https://github.com/mnjm/github-media-repo/blob/main/dotfiles/neovim.png?raw=true)
 
-Colorscheme - [onedarkpro.nvim](https://github.com/olimorris/onedarkpro.nvim)
+Color scheme - [onedarkpro.nvim](https://github.com/olimorris/onedarkpro.nvim)
 
-### Plugins
+#### Plugins
 - Statusline - [bottomline.nvim](https://github.com/mnjm/bottomline.nvim)
 - Tabline - [topline.nvim](https://github.com/mnjm/topline.nvim)
 - WinLine - [winline.nvim](https://github.com/mnjm/winline.nvim)
 
-## Zsh Prompt
+### Zsh Prompt
 
-![Zsh-Prompt](https://github.com/mnjm/github-media-repo/blob/main/dotfiles/zsh_prompt.png?raw=true)
+![Zsh Prompt](https://github.com/mnjm/github-media-repo/blob/main/dotfiles/zsh_prompt.png?raw=true)
 
-Minimal with [syntax highlighting](https://github.com/zsh-users/zsh-syntax-highlighting), [autosuggestions](https://github.com/zsh-users/zsh-autosuggestions) and git info
+Minimal prompt with [syntax highlighting](https://github.com/zsh-users/zsh-syntax-highlighting), [autosuggestions](https://github.com/zsh-users/zsh-autosuggestions), and git info.
 
-## TMUX
+### TMUX
 
 ![TMUX](https://github.com/mnjm/github-media-repo/blob/main/dotfiles/tmux.jpg?raw=true)
+
+## License
+
+Licensed under the MIT License.
