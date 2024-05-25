@@ -7,6 +7,7 @@ Includes my configurations files for
 - [vim](https://github.com/mnjm/dotfiles/blob/main/.vimrc) - vanilla config with some niceties for fallback in case my neovim config breaks
 - [alacritt](https://github.com/mnjm/dotfiles/tree/main/.config/alacritty)
 - [tmux](https://github.com/mnjm/dotfiles/blob/main/.config/tmux/tmux.conf)
+- [i3wm](https://github.com/mnjm/dotfiles/blob/main/.config/i3/config)
 - few handy shell [scripts](https://github.com/mnjm/dotfiles/tree/main/.local/bin)
 - app install [scripts](https://github.com/mnjm/dotfiles/tree/main/.dotfiles-misc/install)
 
