@@ -56,7 +56,3 @@ Minimal prompt with [syntax highlighting](https://github.com/zsh-users/zsh-synta
 ### TMUX
 
 ![TMUX](https://github.com/mnjm/github-media-repo/blob/main/dotfiles/tmux.jpg?raw=true)
-
-## License
-
-Licensed under the MIT License.
