@@ -13,15 +13,16 @@
     dts = difftool -y --staged
     dpreview = !git-diff-previewer
     ; nicities
-    b = branch
-    c = commit
     a = add -v
     au = add -vu
+    b = branch
+    c = commit
+    cam = commit --amend
     co = checkout
+    sw = switch
     p = push
     pl = pull
-    amend = commit --amend
-    sth = stash
+    st = stash
     f = fetch
     fa = fetch --all
     ; get link of the repo
@@ -45,7 +46,7 @@
 [core]
     pager = less
     editor = nvim
-    excludesfile = ~/.gitignore
+    excludesfile = ~/.config/git/ignore
 
 [pager]
     diff = delta --side-by-side
