@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+
+# requires brightnessctl
+# Note: if perm error run: sudo chmod +s $(which brightnessctl)
+
+screen_dev="intel_backlight"
+kb_dev="platform::kbd_backlight"
+
+display_help() {
+    echo "brightnessctl-wrapper up/down/kbtoggle"
+}
+
+screen-brightness() {
+    brightnessctl --device="$screen_dev" $@
+}
+
+get_screen_brightness() {
+    local current=$(screen-brightness get)
+    local max=$(screen-brightness max)
+    local percent=$(echo "($current*100)/$max" | bc)
+    echo "Screen Brightness: $percent%"
+}
+
+toggle_kb_backlight() {
+    local current=$(brightnessctl --device="$kb_dev" get)
+    if [[ $current -eq "0" ]]; then
+        brightnessctl --device="$kb_dev" set 1 >> /dev/null
+        notify-send "Turning on keyboard backlight"
+    else
+        brightnessctl --device="$kb_dev" set 0 >> /dev/null
+        notify-send "Turning off keyboard backlight"
+    fi
+}
+
+case $1 in
+    up)     screen-brightness set +10% >> /dev/null && notify-send "Increasing screen brightness" "$(get_screen_brightness)" ;;
+    down)   screen-brightness set 10%- >> /dev/null && notify-send "Reducing screen brightness" "$(get_screen_brightness)" ;;
+    kbtoggle) toggle_kb_backlight ;;
+    *) display_help;;
+esac

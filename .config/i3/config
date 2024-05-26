@@ -199,7 +199,10 @@ exec --no-startup-id feh --no-fehbg --bg-fill $HOME/.dotfiles/wallpapers/wallpap
 floating_modifier $mod
 
 # workspace switching
-bindsym $mod+Tab workspace back_and_forth
+bindsym $mod+Tab workspace next
+bindsym $mod+Shift+Tab workspace prev
+bindsym $mod+grave workspace back_and_forth
+
 # `mod-<num>` when on num workspace will focus to prev workspace
 workspace_auto_back_and_forth no
 
@@ -244,9 +247,12 @@ exec --no-startup-id picom -b
 
 # ------------------------------ Screen Brightness ------------------------------------------------
 # reduce brightness
-bindsym $mod+F6 exec --no-startup-id ~/.local/bin/screen-brightness down
+bindsym $mod+F6 exec --no-startup-id ~/.local/bin/brightnessctl-wrapper down
 # increase brightness
-bindsym $mod+F7 exec --no-startup-id ~/.local/bin/screen-brightness up
+bindsym $mod+F7 exec --no-startup-id ~/.local/bin/brightnessctl-wrapper up
+
+# ------------------------------- Keyboard Toggle -------------------------------------------------
+bindsym $mod+F4 exec --no-startup-id ~/.local/bin/brightnessctl-wrapper kbtoggle
 
 # -------------------------------- GET DEM BORDERS OUT OF HERE -------------------------------------
 # Thanks Childz
