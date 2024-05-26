@@ -103,11 +103,11 @@ bindsym $mod+a focus parent
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "1"
-set $ws2 "2"
-set $ws3 "3"
-set $ws4 "4"
-set $ws5 "5"
+set $ws1 "1: "
+set $ws2 "2:󰖟 "
+set $ws3 "3:󰉋 "
+set $ws4 "4:󰠮 "
+set $ws5 "5:󰕼 "
 set $ws6 "6"
 set $ws7 "7"
 set $ws8 "8"
@@ -176,7 +176,13 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        status_command i3status --config ~/.config/i3/i3status.conf
+    status_command i3status --config ~/.config/i3/i3status.conf
+
+    colors {
+        background #1d1f21
+        separator  #282a2e
+        statusline #b4b7b4
+    }
 }
 
 # open browser
@@ -198,8 +204,10 @@ bindsym $mod+Tab workspace back_and_forth
 workspace_auto_back_and_forth no
 
 # open app in their specific workspace
-assign [class="Brave-browser"] 2
-assign [class="Joplin"] 3
+assign [class="Brave-browser"] $ws2
+assign [class="Nemo"] $ws3
+assign [class="Joplin"] $ws4
+assign [class="vlc"] $ws5
 
 # lock screen
 set $i3lockwall i3lock -i ~/.dotfiles/wallpapers/wallpaper_2.png -t -f
