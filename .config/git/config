@@ -42,6 +42,7 @@
     rbi = rebase --interactive
     rba = rebase --abort
     rbc = rebase --continue
+    remote-refresh = remote update --prune
 
 [core]
     pager = less
