@@ -13,6 +13,7 @@ curl
 deluge
 dmenu
 doxygen
+dunst
 exif
 fd-find
 feh
@@ -24,9 +25,9 @@ gettext
 git
 gzip
 htop
-i3-wm
 i3lock
 i3status
+i3-wm
 libfontconfig1-dev
 libfreetype6-dev
 libimage-exiftool-perl
