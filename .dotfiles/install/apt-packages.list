@@ -24,7 +24,8 @@ gettext
 git
 gzip
 htop
-i3
+i3-wm
+i3lock
 i3status
 libfontconfig1-dev
 libfreetype6-dev
