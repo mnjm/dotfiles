@@ -106,16 +106,16 @@ bindsym $mod+a focus parent
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1    "  1  "
-set $ws2    "  2  "
-set $ws3    "  3  "
-set $ws4    "  4  "
-set $ws5    "  5  "
-set $ws6    "  6  "
-set $ws7    "  7  "
-set $ws8    "  8  "
-set $ws9    "  9  "
-set $ws10   "  10  "
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
@@ -181,12 +181,6 @@ bindsym $mod+r mode "resize"
 bar {
     status_command i3status --config ~/.config/i3/i3status.conf
     separator_symbol " "
-
-    colors {
-        background #1d1f21
-        separator  #282a2e
-        statusline #b4b7b4
-    }
 }
 
 # Compositor
@@ -220,6 +214,8 @@ bindsym $mod+Ctrl+l exec --no-startup-id $i3lockwall
 for_window [window_role="pop-up"] floating enable
 # joplinbrave-browserbrave-browser
 for_window [window_role="task_dialog"] floating enable
+# screenshot
+for_window [class="Gnome-screenshot"] floating enable
 
 # disable focus follows mouse
 focus_follows_mouse no

@@ -47,7 +47,7 @@ alias tmuxs='TMUX_SEZ_FZF_COMMAND="fzf-tmux -p 90%" tmux-sessionizer switch'
 alias gopen='xdg-open $1 2>/dev/null'                             # Open file graphically
 alias py='python3'                                                # Python Alias
 alias g='git'                                                     # git
-alias vim=nvim                                                    # Replace vim with nvim
+alias vim=vim                                                     # Replace vim with nvim
 alias v=nvim
 alias vi=nvim
 alias fd='fdfind'                                                 # fd is better than find
