@@ -54,7 +54,6 @@ multiplier = 3
 args = ["--login", "-c", "tmux new-session -As default"]
 program = "/usr/bin/zsh"
 
-
 [colors.bright]
 black = "0x696969"
 blue = "0x007FFF"
