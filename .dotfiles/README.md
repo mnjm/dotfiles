@@ -16,8 +16,8 @@ This repository contains configuration files for:
 ```bash
 sudo apt install git -y
 git clone --bare git@github.com:mnjm/dotfiles.git $HOME/.dotfiles.git
-echo ".dotfiles.git" >> ~/.dotfiles-git/info/exclude
-alias dotgit='/usr/bin/git --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME'
+echo ".dotfiles.git" >> ~/.dotfiles.git/info/exclude
+alias dotgit='git --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME'
 dotgit config --local status.showUntrackedFiles no
 dotgit checkout
 ```
