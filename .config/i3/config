@@ -32,7 +32,7 @@ exec --no-startup-id dex --autostart --environment i3
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork -i $HOME/.config/wallpaper-lockscreen.png -t -f
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
@@ -147,7 +147,7 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 # bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
-bindsym $mod+Shift+e exec --no-startup-id ~/.local/bin/powermenu
+bindsym $mod+Shift+e exec --no-startup-id $HOME/.local/bin/powermenu
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -179,7 +179,7 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-    status_command i3status --config ~/.config/i3/i3status.conf
+    status_command i3status --config $HOME/.config/i3/i3status.conf
     separator_symbol " "
 }
 
@@ -195,7 +195,7 @@ bindsym $mod+n exec $notesapp
 for_window [class="^.*"] border pixel 2
 
 # wallpaper
-exec --no-startup-id feh --no-fehbg --bg-fill $HOME/.dotfiles/wallpapers/wallpaper.jpg
+exec --no-startup-id feh --no-fehbg --bg-fill $HOME/.config/wallpaper.png
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -207,8 +207,7 @@ bindsym $mod+Shift+Tab workspace prev
 bindsym $mod+grave workspace back_and_forth
 
 # lock screen
-set $i3lockwall i3lock -i ~/.dotfiles/wallpapers/wallpaper_2.png -t -f
-bindsym $mod+Ctrl+l exec --no-startup-id $i3lockwall
+bindsym $mod+Ctrl+l exec --no-startup-id loginctl lock-session
 
 # floating pop up automatically
 for_window [window_role="pop-up"] floating enable
@@ -243,13 +242,13 @@ bindsym $mod+F2 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% &
 bindsym $mod+F3 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
 
 ## Keyboard Toggle
-bindsym $mod+F4 exec --no-startup-id ~/.local/bin/brightnessctl-wrapper kbtoggle
+bindsym $mod+F4 exec --no-startup-id $HOME/.local/bin/brightnessctl-wrapper kbtoggle
 
 ## Screen Brightness
 # reduce brightness
-bindsym $mod+F6 exec --no-startup-id ~/.local/bin/brightnessctl-wrapper down
+bindsym $mod+F6 exec --no-startup-id $HOME/.local/bin/brightnessctl-wrapper down
 # increase brightness
-bindsym $mod+F7 exec --no-startup-id ~/.local/bin/brightnessctl-wrapper up
+bindsym $mod+F7 exec --no-startup-id $HOME/.local/bin/brightnessctl-wrapper up
 
 ## Screenshot
 # full screen screenshot
