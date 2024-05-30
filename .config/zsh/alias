@@ -52,4 +52,6 @@ alias v=nvim
 alias vi=nvim
 alias fd='fdfind'                                                 # fd is better than find
 alias rsync='rsync --info=progress2 --human-readable'             # rsync
-alias help-pager='bat --plain --language=help --paging=always'    # display highlights for help when piped
+function help(){
+    $1 --help | bat --plain --language=help --paging=always --file-name "$1 --help"
+}
