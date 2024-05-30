@@ -1,0 +1,3 @@
+#!/usr/bin/env zsh
+
+alacritty  --class "Alacritty-popup" --option 'window.dimensions={columns=120,lines=40}' -e tmux new-session -As popup
