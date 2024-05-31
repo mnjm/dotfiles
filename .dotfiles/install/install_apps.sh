@@ -78,13 +78,11 @@ _download_install_deb bat https://github.com/sharkdp/bat/releases/download/v0.24
 _alert_local "Installing lf"
 curl -L https://github.com/gokcehan/lf/releases/latest/download/lf-linux-amd64.tar.gz | tar xzC ~/.local/bin
 
-# obisidian
-# _alert_local "Installing obisidian"
-# _download_install_deb obsidian https://github.com/obsidianmd/obsidian-releases/releases/download/v1.0.0/obsidian_1.0.0_amd64.deb
-
-_alert_local "Installing joplin"
-wget -O - https://raw.githubusercontent.com/laurent22/joplin/dev/Joplin_install_and_update.sh | bash
-_link_file ~/.joplin/Joplin.AppImage ~/.local/bin/joplin
+_alert_local "Installing Obsidian"
+mkdir -p ~/softwares/
+curl -L -o ~/softwares/Obsidian.appimage https://github.com/obsidianmd/obsidian-releases/releases/download/v1.5.12/Obsidian-1.5.12.AppImage
+chmod +x ~/softwares/Obsidian.appimage
+_link_file ~/softwares/Obsidian.appimage ~/.local/bin/obsidian
 
 # git-delta
 _alert_local "Installing git-delta"

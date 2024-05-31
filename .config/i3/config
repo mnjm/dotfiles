@@ -13,7 +13,7 @@ set $mod Mod4
 # default apps
 set $terminal alacritty
 set $browser brave-browser
-set $notesapp joplin
+set $notesapp ~/softwares/Obsidian.appimage
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -42,7 +42,7 @@ exec --no-startup-id nm-applet
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec $terminal
+bindsym $mod+Return exec --no-startup-id $terminal
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -187,8 +187,8 @@ bar {
 exec --no-startup-id picom -b
 
 # open browser
-bindsym $mod+b exec $browser
-bindsym $mod+n exec $notesapp
+bindsym $mod+b exec --no-startup-id $browser
+bindsym $mod+n exec --no-startup-id $notesapp
 
 # -------------------------------- GET DEM BORDERS OUT OF HERE -------------------------------------
 # Thanks Childz
