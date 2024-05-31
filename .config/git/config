@@ -4,44 +4,40 @@
     l = !"f() { git --no-pager log --pretty=oneline --abbrev-commit --graph --decorate=short --color=always "$@" | less -R; }; f"
     ll = !"f() { git --no-pager log --graph --abbrev-commit --decorate=short --color=always "$@" | less -R; }; f"
     rl = !"f() { git --no-pager reflog --color=always "$@" | less -R; }; f"
-    ; minimal status
     s = status -s
     ss = status
-    ; diff alias
     d = diff
     ds = diff --staged
     dt = difftool -y
     dts = difftool -y --staged
-    dpreview = !git-diff-previewer
-    ; short alias
+    dp = !git-diff-previewer
+    dps = !git-diff-previewer --staged
     a = add -v
     au = add -vu
     b = branch
     c = commit
     cam = commit --amend
-    co = checkout
     sw = switch
+    co = checkout
     p = push
     pl = pull
     st = stash
     f = fetch
     fa = fetch --all
     m = merge --ff-only
-    ; get link of the repo
     link = !git-link
     ; create temp wip commit
     wip = !"f() { git add -Av && git commit -m '[WIP]' && git commit --amend --quiet; }; f"
     ; remove last commit stage the changes
     uncommit = reset --soft HEAD^
     ; unstage all changes
-    unstage = reset --mixed HEAD
+    unstage = reset --mixed HEAD --
     ; remove untracked changes
     restore-file-2-staged = restore --worktree
     ; restore file to HEAD
     restore-file-2-head = restore --staged --worktree
     ; rebase
-    rb = rebase
-    rbi = rebase --interactive
+    rb = rebase --interactive
     rba = rebase --abort
     rbc = rebase --continue
     remote-refresh = remote update --prune
@@ -95,3 +91,5 @@
 
 [pull]
 	ff = only
+[rebase]
+	autosquash = true
