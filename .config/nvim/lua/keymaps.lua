@@ -45,4 +45,10 @@ vim.keymap.set({'n', 'v'}, '<leader>d', '\"_d', { desc = "[d]elete without addin
 -- This map is so that I dont have to think about wheather to move cursor with <C-o> while working with brackets
 vim.keymap.set('i', '<C-o>', '<C-\\><C-o>', { desc = 'Execute single command in insert mode, but dont move cursor' })
 
+-- Diff mode: get / put single line changes
+if vim.opt.diff then
+  vim.keymap.set('n', '<leader>dg', '<CMD>.diffget<CR>', { desc = ":Diffget single line" })
+  vim.keymap.set('n', '<leader>dp', '<CMD>.diffput<CR>', { desc = ":Diffput single line" })
+end
+
 -- vim: ts=2 sts=2 sw=2 et
