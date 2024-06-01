@@ -27,7 +27,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 
 -- Auto remove trailing spaces and lines in c and python codes while saving.
 -- NOTE: use ":noa w" to save without trimming
-A.nvim_create_autocmd({ "BufWritePre" }, {
+A.nvim_create_autocmd("BufWritePre", {
   pattern = "*",
   desc = "Clean up trailing whitespaces and newlines while saving",
   callback = function()
@@ -50,5 +50,17 @@ if cmdheight == 0 then
   A.nvim_create_autocmd({'RecordingLeave',}, {
     command = "set cmdheight=0", desc = "Show cmd height when recording" })
 end
+
+-- Diff mode: get / put single line changes
+A.nvim_create_autocmd("DiffUpdated", {
+  pattern = "*",
+  desc = "Add keybinds for single line get/put <leader>dg <leader>dp",
+  callback = function()
+    vim.keymap.set('n', '<leader>dg', '<CMD>.diffget<CR>', { desc = "[D]iff[G]et single line" })
+    vim.keymap.set('n', '<leader>dp', '<CMD>.diffput<CR>', { desc = "[D]iff[P]ut single line" })
+  end,
+  once = true,
+  group = _au
+})
 
 -- vim: ts=2 sts=2 sw=2 et
