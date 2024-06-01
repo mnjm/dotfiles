@@ -12,8 +12,12 @@ set $mod Mod4
 
 # default apps
 set $terminal alacritty
+
 set $browser brave-browser
+set $browser_win_class Brave-browser
+
 set $notesapp ~/softwares/Obsidian.appimage
+set $notesapp_win_class obsidian
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -262,6 +266,13 @@ bindsym Ctrl+Print exec gnome-screenshot --window
 bindsym $mod+Shift+Return exec ~/.local/bin/alacritty-popup
 for_window [class="Alacritty-popup"] floating enable
 for_window [class="Alacritty-popup"] sticky enable
+
+## Move app to specific workspaces
+assign [class=$browser_win_class] $ws2
+assign [class=$notesapp_win_class] $ws3
+## set tabed as workspace layout for browser and notes
+for_window [workspace=$ws2] layout tabbed
+for_window [workspace=$ws3] layout tabbed
 
 # ----- [[[ Note: need i3 4.22 or higher ]]] -----
 # add 5x inner border
