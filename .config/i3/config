@@ -213,11 +213,8 @@ bindsym $mod+grave workspace back_and_forth
 # lock screen
 bindsym $mod+Ctrl+l exec --no-startup-id loginctl lock-session
 
-# floating pop up automatically
 for_window [window_role="pop-up"] floating enable
-# joplinbrave-browserbrave-browser
 for_window [window_role="task_dialog"] floating enable
-# screenshot
 for_window [class="Gnome-screenshot"] floating enable
 
 # disable focus follows mouse
@@ -273,6 +270,9 @@ assign [class=$notesapp_win_class] $ws3
 ## set tabed as workspace layout for browser and notes
 for_window [workspace=$ws2] layout tabbed
 for_window [workspace=$ws3] layout tabbed
+
+# enable border for floating windows
+for_window [floating] border normal
 
 # ----- [[[ Note: need i3 4.22 or higher ]]] -----
 # add 5x inner border
