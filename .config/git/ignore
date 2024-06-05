@@ -65,3 +65,4 @@ docs/_build/
 *.h5
 *.hdf5
 *.pb
+*.keras
