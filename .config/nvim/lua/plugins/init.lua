@@ -24,8 +24,8 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
   'tpope/vim-surround', -- operates on surrounding objs like ysiw) adds () around inner world
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
-  { 'numToStr/Comment.nvim', opts = {} }, -- commet plugin gc comments on selectd lines gcc on current line
   { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_fonts },
+  { "folke/todo-comments.nvim", dependencies = { "nvim-lua/plenary.nvim" }, },
   require 'plugins/gitsigns',
   require 'plugins/which-key',
   require 'plugins/telescope',
