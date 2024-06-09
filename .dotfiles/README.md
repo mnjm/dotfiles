@@ -4,10 +4,10 @@ This repository contains configuration files for:
 
 - [NeoVim](https://github.com/mnjm/dotfiles/tree/main/.config/nvim)
 - [Zsh Shell](https://github.com/mnjm/dotfiles/tree/main/.config/zsh)
-- [Vim](https://github.com/mnjm/dotfiles/blob/main/.vimrc) - a vanilla config with additional settings for fallback
-- [Alacritty](https://github.com/mnjm/dotfiles/tree/main/.config/alacritty)
-- [Tmux](https://github.com/mnjm/dotfiles/blob/main/.config/tmux/tmux.conf)
 - [i3wm](https://github.com/mnjm/dotfiles/blob/main/.config/i3/config)
+- [Tmux](https://github.com/mnjm/dotfiles/blob/main/.config/tmux/tmux.conf)
+- [Alacritty](https://github.com/mnjm/dotfiles/tree/main/.config/alacritty)
+- [Vim](https://github.com/mnjm/dotfiles/blob/main/.vimrc) - a vanilla config with additional settings for fallback
 - Useful shell [scripts](https://github.com/mnjm/dotfiles/tree/main/.local/bin)
 - Application installation [scripts](https://github.com/mnjm/dotfiles/tree/main/.dotfiles/install) (for Debian-based systems like Ubuntu and Mint)
 

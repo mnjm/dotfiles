@@ -183,55 +183,11 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 
-## Base16 3024
-# Scheme author: Jan T. Sott (http://github.com/idleberg)
-# Template author: Tinted Theming (https://github.com/tinted-theming)
-#
-# You can use these variables anywhere in the i3 configuration file.
-
-set $base00 #101010
-set $base01 #252525
-set $base02 #464646
-set $base03 #525252
-set $base04 #ababab
-set $base05 #b9b9b9
-set $base06 #e3e3e3
-set $base07 #f7f7f7
-set $base08 #7c7c7c
-set $base09 #999999
-set $base0A #a0a0a0
-set $base0B #8e8e8e
-set $base0C #868686
-set $base0D #686868
-set $base0E #747474
-set $base0F #5e5e5e
-
-# Basic color configuration using the Base16 variables for windows and borders.
-# Property Name         Border  BG      Text    Indicator Child Border
-client.focused          $base05 $base0D $base00 $base0D $base0C
-client.focused_inactive $base01 $base01 $base05 $base03 $base01
-client.unfocused        $base01 $base00 $base05 $base01 $base01
-client.urgent           $base08 $base08 $base00 $base08 $base08
-client.placeholder      $base00 $base00 $base05 $base00 $base00
-client.background       $base07
-
 bar {
     bindsym button4 nop
     bindsym button5 nop
     status_command i3status --config $HOME/.config/i3/i3status.conf
     separator_symbol " "
-    colors {
-        background $base00
-        separator  $base01
-        statusline $base04
-
-        # State             Border  BG      Text
-        focused_workspace   $base05 $base0D $base00
-        active_workspace    $base05 $base03 $base00
-        inactive_workspace  $base03 $base01 $base05
-        urgent_workspace    $base08 $base08 $base00
-        binding_mode        $base00 $base0A $base00
-    }
 }
 
 # Compositor
@@ -241,12 +197,9 @@ exec --no-startup-id picom -b
 bindsym $mod+b exec --no-startup-id $browser
 bindsym $mod+n exec --no-startup-id $notesapp
 
-# -------------------------------- GET DEM BORDERS OUT OF HERE -------------------------------------
-# Thanks Childz
-for_window [class="^.*"] border pixel 2
-
 # wallpaper
-exec --no-startup-id feh --no-fehbg --bg-fill $HOME/.config/wallpaper.png
+# exec --no-startup-id feh --no-fehbg --bg-fill $HOME/.config/wallpaper.png
+exec_always --no-startup-id feh --no-fehbg --bg-fill --randomize $HOME/Pictures/wallpapers/*.png
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -317,7 +270,12 @@ assign [class=$notesapp_win_class] $ws3
 ## set tabed as workspace layout for browser and notes
 for_window [workspace=$ws2] layout tabbed
 for_window [workspace=$ws3] layout tabbed
+## Start apps
+exec --no-startup-id $browser
+exec --no-startup-id $notesapp
 
+# set border
+default_border pixel 2
 # enable border for floating windows
 for_window [floating] border normal
 
