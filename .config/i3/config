@@ -281,7 +281,7 @@ for_window [floating] border normal
 
 # ----- [[[ Note: need i3 4.22 or higher ]]] -----
 # add 5x inner border
-gaps inner 5px
+gaps inner 3
 # gaps outer 10px
 smart_gaps on
 # ------------------------------------------------

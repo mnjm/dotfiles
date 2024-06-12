@@ -53,5 +53,5 @@ alias vi=nvim
 alias fd='fdfind'                                                 # fd is better than find
 alias rsync='rsync --info=progress2 --human-readable'             # rsync
 function help(){
-    $1 --help | bat --plain --language=help --paging=always --file-name "$1 --help"
+    "$@" --help | bat --plain --language=help --paging=always --file-name "$1 $2 --help"
 }
