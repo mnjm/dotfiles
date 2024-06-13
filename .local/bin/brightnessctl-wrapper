@@ -31,10 +31,10 @@ toggle_kb_backlight() {
     local current=$(brightnessctl --device="$kb_dev" get)
     if [[ $current -eq "0" ]]; then -
         brightnessctl --device="$kb_dev" set 1 >> /dev/null
-        dunstify -u low -a "Backlight" -i $HOME/.config/dunst/icons/keyboard.png -r 9992 "Turning on keyboard backlight"
+        dunstify -u low -a "Backlight" -i $HOME/.config/dunst/icons/kb-backlight-on.png -r 9992 "Turning on keyboard backlight"
     else
         brightnessctl --device="$kb_dev" set 0 >> /dev/null
-        dunstify -u low -a "Backlight" -i $HOME/.config/dunst/icons/keyboard.png -r 9992 "Turning off keyboard backlight"
+        dunstify -u low -a "Backlight" -i $HOME/.config/dunst/icons/kb-backlight-off.png -r 9992 "Turning off keyboard backlight"
     fi
 }
 

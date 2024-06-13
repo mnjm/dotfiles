@@ -264,9 +264,13 @@ assign [class=$notesapp_win_class] $ws3
 ## set tabed as workspace layout for browser and notes
 for_window [workspace=$ws2] layout tabbed
 for_window [workspace=$ws3] layout tabbed
+
 ## Start apps
 exec --no-startup-id $browser
 exec --no-startup-id $notesapp
+
+## Start laptor battery notifier
+exec --no-startup-id $HOME/.config/i3/battery-warning.sh
 
 # set border
 default_border pixel 2
