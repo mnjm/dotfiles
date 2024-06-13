@@ -10,31 +10,37 @@ display_help() {
     echo "brightnessctl-wrapper up/down/kbtoggle"
 }
 
-screen-brightness() {
-    brightnessctl --device="$screen_dev" $@
-}
-
 get_screen_brightness() {
-    local current=$(screen-brightness get)
-    local max=$(screen-brightness max)
+    local current=$(brightnessctl --device "$screen_dev" get)
+    local max=$(brightnessctl --device "$screen_dev" max)
     local percent=$(echo "($current*100)/$max" | bc)
     echo "Screen Brightness: $percent%"
 }
 
+screen_brightness_up() {
+    brightnessctl --device "$screen_dev" set +10% >> /dev/null && \
+        dunstify -u low -a "Backlight" -i $HOME/.config/dunst/icons/brightness.png -r 9991 "Increasing screen brightness" "$(get_screen_brightness)"
+}
+
+screen_brightness_down() {
+    brightnessctl --device "$screen_dev" set 10%- >> /dev/null && \
+        dunstify -u low -a "Backlight" -i $HOME/.config/dunst/icons/brightness.png -r 9991 "Reducing screen brightness" "$(get_screen_brightness)"
+}
+
 toggle_kb_backlight() {
     local current=$(brightnessctl --device="$kb_dev" get)
-    if [[ $current -eq "0" ]]; then
+    if [[ $current -eq "0" ]]; then -
         brightnessctl --device="$kb_dev" set 1 >> /dev/null
-        notify-send "Turning on keyboard backlight"
+        dunstify -u low -a "Backlight" -i $HOME/.config/dunst/icons/keyboard.png -r 9992 "Turning on keyboard backlight"
     else
         brightnessctl --device="$kb_dev" set 0 >> /dev/null
-        notify-send "Turning off keyboard backlight"
+        dunstify -u low -a "Backlight" -i $HOME/.config/dunst/icons/keyboard.png -r 9992 "Turning off keyboard backlight"
     fi
 }
 
 case $1 in
-    up)     screen-brightness set +10% >> /dev/null && notify-send "Increasing screen brightness" "$(get_screen_brightness)" ;;
-    down)   screen-brightness set 10%- >> /dev/null && notify-send "Reducing screen brightness" "$(get_screen_brightness)" ;;
+    up)     screen_brightness_up ;;
+    down)   screen_brightness_down ;;
     kbtoggle) toggle_kb_backlight ;;
     *) display_help;;
 esac
