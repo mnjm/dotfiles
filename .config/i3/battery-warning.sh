@@ -8,10 +8,10 @@ SLEEP_TIME=2m
 
 # State lookup
 # 0: NORMAL
-# 1: LOW or % < LOW_PERC and dischargin
-# 2: CRITICAL % < CHARGED_PERC and dischargin
+# 1: LOW or % < LOW_PERC and discharging
+# 2: CRITICAL % < CRITICAL_PERC and discharging
 # 3: CHARGING
-# 4: FULL or % > CHARGED_PERC
+# 4: FULL or % > CHARGED_PERC and charging
 
 DISCHARGING=0
 LOW_DISCHARGING=1
@@ -65,7 +65,7 @@ get_state() {
     if is_battery_discharging; then
         if [[ $PERC -le $CRITICAL_PERC ]]; then
             return $CRIT_DISCHARGING
-        elif [[ $PERC -le $LOW_PREC ]]; then
+        elif [[ $PERC -le $LOW_PERC ]]; then
             return $LOW_DISCHARGING
         else
             return $DISCHARGING
