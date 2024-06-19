@@ -1,0 +1,14 @@
+#!/bin/sh
+
+temp=$(sensors | awk '/Core 0/ {gsub(/[[:alpha:]]/, "", $3); printf "%.1f", $3}')
+
+printf " %s°C\n" $temp
+printf " %s°C\n" $temp
+
+if [[ $temp -gt 100 ]]; then
+    printf "#FF0000"
+elif [[ $temp -gt 80 ]]; then
+    printf "#FFFC00"
+else
+    printf "#FFFFFF"
+fi

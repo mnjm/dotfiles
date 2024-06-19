@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+screen_dev="intel_backlight"
+
+current=$(brightnessctl --device "$screen_dev" get)
+max=$(brightnessctl --device "$screen_dev" max)
+percent=$(echo "($current*100)/$max" | bc)
+
+echo "󰃟 ${percent}%"
+echo "󰃟 ${percent}%"

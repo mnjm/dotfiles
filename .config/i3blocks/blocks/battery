@@ -1,0 +1,171 @@
+#!/usr/bin/env bash
+
+# Configuration
+LOW_PERC=20
+CRITICAL_PERC=10
+CHARGED_PERC=95
+
+# TEMP FILE
+TEMP_FILE="/tmp/battery_state"
+
+# State lookup
+# 0: NORMAL
+# 1: LOW or % < LOW_PERC and discharging
+# 2: CRITICAL % < CRITICAL_PERC and discharging
+# 3: CHARGING
+# 4: FULL or % > CHARGED_PERC and charging
+
+DISCHARGING=0
+LOW_DISCHARGING=1
+CRIT_DISCHARGING=2
+CHARGING=3
+FULL=4
+
+ICON_CRIT=$HOME/.config/dunst/icons/battery-critical.png
+ICON_LOW=$HOME/.config/dunst/icons/battery-low.png
+ICON_CHARGING=$HOME/.config/dunst/icons/battery-charging.png
+ICON_DISCHARGING=$HOME/.config/dunst/icons/battery-discharging.png
+ICON_FULL=$HOME/.config/dunst/icons/battery-full.png
+
+
+get_awk_source() {
+    cat <<EOF
+BEGIN {
+    FS="=";
+}
+\$1 ~ /ENERGY_FULL$/ {
+    f += \$2;
+}
+\$1 ~ /ENERGY_NOW\$/ {
+    n += \$2;
+}
+\$1 ~ /CHARGE_FULL$/ {
+    f += \$2;
+}
+\$1 ~ /CHARGE_NOW\$/ {
+    n += \$2;
+}
+END {
+    print int(100*n/f);
+}
+EOF
+}
+
+is_battery_discharging() {
+    grep STATUS=Discharging "${BATTERIES[@]}" && return 0
+    return 1
+} >/dev/null
+
+get_battery_perc() {
+    awk -f <(get_awk_source) "${BATTERIES[@]}"
+}
+
+print_battery_perc() {
+    perc=$1
+    icon="󱉝 "
+    if [[ $perc -gt 95 ]]; then
+        icon="󰁹 "
+    elif [[ $perc -gt 90 ]]; then
+        icon="󰂂 "
+    elif [[ $perc -gt 80 ]]; then
+        icon="󰂁 "
+    elif [[ $perc -gt 70 ]]; then
+        icon="󰂀 "
+    elif [[ $perc -gt 60 ]]; then
+        icon="󰁿 "
+    elif [[ $perc -gt 50 ]]; then
+        icon="󰁾 "
+    elif [[ $perc -gt 40 ]]; then
+        icon="󰁽 "
+    elif [[ $perc -gt 30 ]]; then
+        icon="󰁼 "
+    elif [[ $perc -gt 20 ]]; then
+        icon="󰁻 "
+    elif [[ $perc -gt 10 ]]; then
+        icon="󰁺 "
+    else
+        icon="󰂎 "
+    fi
+
+    if is_battery_discharging; then
+        charging=""
+        if [[ $perc -lt 20 ]]; then
+            color="#FF0000"
+        elif [[ $perc -lt 30 ]]; then
+            color="#FFFC00"
+        else
+            color="#FFFFFF"
+        fi
+    else
+        charging="󱐥"
+        color="#00FF00"
+    fi
+
+    printf "%s %d%% %s\n" $icon $perc $charging
+    printf "%s %d%% %s\n" $icon $perc $charging
+    printf $color
+}
+
+get_state() {
+    PERC=$1
+
+    if is_battery_discharging; then
+        if [[ $PERC -le $CRITICAL_PERC ]]; then
+            return $CRIT_DISCHARGING
+        elif [[ $PERC -le $LOW_PERC ]]; then
+            return $LOW_DISCHARGING
+        else
+            return $DISCHARGING
+        fi
+    else
+        if [[ $PERC -ge $CHARGED_PERC ]]; then
+            return $FULL
+        else
+            return $CHARGING
+        fi
+    fi
+}
+
+if ls /sys/class/power_supply/BAT*/uevent > /dev/null 2>&1; then
+    BATTERIES=( /sys/class/power_supply/BAT*/uevent )
+elif ls /sys/class/power_supply/CMB*/uevent > /dev/null 2>&1; then
+    BATTERIES=( /sys/class/power_supply/CMB*/uevent )
+else
+    echo "󱉝 "
+    exit 1
+fi
+
+if [[ -f "$TEMP_FILE" ]]; then
+    # read old state
+    read -r old_state < $TEMP_FILE
+else
+    old_state=$DISCHARGING
+fi
+
+PERC=$(get_battery_perc)
+get_state $PERC
+state=$?
+
+if [[ $state -ne $old_state ]]; then
+    case $state in
+        $CRIT_DISCHARGING)
+            dunstify -u critical -i $ICON_CRIT "Battery too low (${PERC}%)" "Plug-In to power immediately!"
+            ;;
+        $LOW_DISCHARGING)
+            dunstify -u normal -i $ICON_LOW "Battery low (${PERC}%)" "Plug-In to power ASAP"
+            ;;
+        $CHARGING)
+            dunstify -u low -i $ICON_CHARGING "Power cord inserted (${PERC}%)" "Battery charging"
+            ;;
+        $DISCHARGING)
+            dunstify -u low -i $ICON_DISCHARGING "Power cord removed (${PERC}%)" "Battery discharging"
+            ;;
+        $FULL)
+            dunstify -u normal -i $ICON_FULL "Battery fully charged (${PERC}%)" "Un-plug power cord"
+            ;;
+    esac
+fi
+
+print_battery_perc $PERC
+
+echo "$state" > $TEMP_FILE

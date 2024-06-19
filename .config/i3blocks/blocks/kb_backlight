@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+kb_dev="platform::kbd_backlight"
+state=$(brightnessctl --device="$kb_dev" get)
+
+if [[ $state -eq "1" ]]; then
+    printf "󰛨 \n"
+    printf "󰛨 \n"
+    printf "#FFFC00"
+fi

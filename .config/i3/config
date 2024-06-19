@@ -186,7 +186,7 @@ bindsym $mod+r mode "resize"
 bar {
     bindsym button4 nop
     bindsym button5 nop
-    status_command i3status --config $HOME/.config/i3/i3status.conf
+    status_command i3blocks
     separator_symbol " "
 }
 
@@ -226,24 +226,25 @@ hide_edge_borders smart
 # align window title center
 title_align center
 
-set $refresh_i3status killall -SIGUSR1 i3status
-
 ## Volume Controls
+set $refresh_i3blocks_v pkill -RTMIN+10 i3blocks
 # mute
-bindsym $mod+F1 exec --no-startup-id pactl-wrapper mute && $refresh_i3status
+bindsym $mod+F1 exec --no-startup-id pactl-wrapper mute && $refresh_i3blocks_v
 # reduce volume
-bindsym $mod+F2 exec --no-startup-id pactl-wrapper down && $refresh_i3status
+bindsym $mod+F2 exec --no-startup-id pactl-wrapper down && $refresh_i3blocks_v
 # increase volume
-bindsym $mod+F3 exec --no-startup-id pactl-wrapper up && $refresh_i3status
+bindsym $mod+F3 exec --no-startup-id pactl-wrapper up && $refresh_i3blocks_v
 
 ## Keyboard Toggle
-bindsym $mod+F4 exec --no-startup-id $HOME/.local/bin/brightnessctl-wrapper kbtoggle
+set $refresh_i3blocks_k pkill -RTMIN+12 i3blocks
+bindsym $mod+F4 exec --no-startup-id $HOME/.local/bin/brightnessctl-wrapper kbtoggle && $refresh_i3blocks_k
 
 ## Screen Brightness
+set $refresh_i3blocks_s pkill -RTMIN+11 i3blocks
 # reduce brightness
-bindsym $mod+F6 exec --no-startup-id $HOME/.local/bin/brightnessctl-wrapper down
+bindsym $mod+F6 exec --no-startup-id $HOME/.local/bin/brightnessctl-wrapper down && $refresh_i3blocks_s
 # increase brightness
-bindsym $mod+F7 exec --no-startup-id $HOME/.local/bin/brightnessctl-wrapper up
+bindsym $mod+F7 exec --no-startup-id $HOME/.local/bin/brightnessctl-wrapper up && $refresh_i3blocks_s
 
 ## Screenshot
 # full screen screenshot
@@ -264,13 +265,6 @@ assign [class=$notesapp_win_class] $ws3
 ## set tabed as workspace layout for browser and notes
 for_window [workspace=$ws2] layout tabbed
 for_window [workspace=$ws3] layout tabbed
-
-## Start apps
-exec --no-startup-id $browser
-exec --no-startup-id $notesapp
-
-## Start laptor battery notifier
-exec --no-startup-id $HOME/.config/i3/battery-warning.sh
 
 # set border
 default_border pixel 2
