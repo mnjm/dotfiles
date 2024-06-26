@@ -1,9 +1,16 @@
-#!/bin/sh
+#!/usr/bin/env bash
+
+case $BLOCK_BUTTON in
+    1) setsid alacritty -e btop &;;
+esac
 
 temp=$(sensors | awk '/Core 0/ {gsub(/[[:alpha:]]/, "", $3); printf "%.1f", $3}')
 
 printf " %s°C\n" $temp
 printf " %s°C\n" $temp
+
+temp=${temp%.*}        # Remove everything after the decimal point
+temp=${temp//[^0-9]/}  # Remove non-numeric characters
 
 if [[ $temp -gt 100 ]]; then
     printf "#FF0000"

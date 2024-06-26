@@ -4,6 +4,7 @@ autoconf
 autojump
 automake
 brightnessctl
+btop
 build-essential
 clangd
 cloc
@@ -24,7 +25,6 @@ g++
 gettext
 git
 gzip
-htop
 i3lock
 i3status
 i3-wm
