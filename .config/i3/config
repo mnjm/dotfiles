@@ -52,9 +52,9 @@ bindsym $mod+Return exec --no-startup-id $terminal
 bindsym $mod+Shift+q kill
 
 # start rofi drun (an app launcher with .desktop files)
-bindsym $mod+d exec --no-startup-id rofi -show drun
+bindsym $mod+s exec --no-startup-id rofi -show drun
 # start rofi run (run all apss)
-bindsym $mod+Shift+d exec --no-startup-id rofi -show run
+bindsym $mod+x exec --no-startup-id rofi -show run
 # start rofi window selector
 bindsym $mod+w exec --no-startup-id rofi -show window
 
@@ -92,9 +92,9 @@ bindsym $mod+minus split v
 bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
-bindsym $mod+t layout tabbed
-bindsym $mod+p layout toggle split
+bindsym $mod+Shift+s layout stacking
+bindsym $mod+Shift+t layout tabbed
+bindsym $mod+Shift+p layout toggle split
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
