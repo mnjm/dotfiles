@@ -131,6 +131,6 @@ local colorschemes = {
 
 }
 
-return colorschemes.onedark_pro
+return colorschemes.papercolor
 
 -- vim: ts=2 sts=2 sw=2 et
