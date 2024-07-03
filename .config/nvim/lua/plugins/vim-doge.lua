@@ -19,7 +19,7 @@ return {
     config = function()
       vim.g.doge_doc_standard_python = 'google'
       -- Generate comment for current line
-      vim.keymap.set('n', '<Leader>dg', '<Plug>(doge-generate)', { desc = "[D]ocument Generate" })
+      vim.keymap.set('n', '<Leader>dg', '<Plug>(doge-generate)', { desc = "[D]ocument [G]enerate" })
     end,
   },
 }
