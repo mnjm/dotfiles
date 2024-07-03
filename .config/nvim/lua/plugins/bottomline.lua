@@ -20,14 +20,16 @@ return {
     opts = {
       enable = true,
       enable_icons = vim.g.have_nerd_fonts,
+      center_file_path = false,
       highlights = {
         BLMode = { fg="#282c34", bg="#98c379", bold=true },
         BLLine = { link="BLMode" },
         BLFill = {},
+        BLFile = { fg="#282c34", bg="#5fafd7", bold=true },
         BLFileType = {fg = "#000000", bg = "#878787", bold = false},
       },
-      -- seperators = { '',  '' },
-      -- seperators = { '',  '' },
+      -- seperators = vim.g.have_nerd_fonts and { '',  '' } or nil,
+      -- seperators = vim.g.have_nerd_fonts and { '',  '' } or nil,
       seperators = vim.g.have_nerd_fonts and { '',  '' } or nil,
       git_symbols = { branch = "" },
       lsp_symbols = {
