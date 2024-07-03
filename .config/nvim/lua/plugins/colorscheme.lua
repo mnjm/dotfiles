@@ -32,7 +32,7 @@ local colorschemes = {
       vim.o.background = "dark"
       vim.cmd.colorscheme 'PaperColorSlim'
       vim.cmd("hi IncSearch guibg=#15F5BA guifg=#000000")
-      vim.cmd("hi Visual guibg=#15F5BA guifg=#000000")
+      -- vim.cmd("hi Visual guibg=#15F5BA guifg=#000000")
       vim.cmd("hi CurSearch guibg=#FDBF60 guifg=#000000")
       vim.cmd("hi CursorLine gui=bold")
     end
