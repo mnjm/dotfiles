@@ -1,7 +1,8 @@
-scipy
+datetime
+matplotlib
 numpy
 opencv-contrib-python
-matplotlib
-tensorflow
+scipy
 tensorboard
-datetime
+tensorflow
+types-tensorflow
