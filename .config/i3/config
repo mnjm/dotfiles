@@ -5,12 +5,6 @@ set $mod Mod4
 # default apps
 set $terminal alacritty
 
-set $browser brave-browser
-set $browser_win_class Brave-browser
-
-set $notesapp ~/softwares/Obsidian.appimage
-set $notesapp_win_class obsidian
-
 font pango:UbuntuMono Nerd Font 10
 
 exec --no-startup-id dex --autostart --environment i3
@@ -172,12 +166,6 @@ bar {
 # Compositor
 exec --no-startup-id picom -b
 
-# open browser
-bindsym $mod+b exec --no-startup-id $browser
-
-# open notes
-bindsym $mod+n exec --no-startup-id $notesapp
-
 # powermenu
 bindsym $mod+Shift+e exec --no-startup-id $HOME/.local/bin/powermenu
 
@@ -235,14 +223,6 @@ bindsym Ctrl+Print exec gnome-screenshot --window
 bindsym $mod+Shift+Return exec ~/.local/bin/alacritty-popup
 for_window [class="Alacritty-popup"] floating enable
 for_window [class="Alacritty-popup"] sticky enable
-
-## Move app to specific workspaces
-assign [class=$browser_win_class] $ws2
-assign [class=$notesapp_win_class] $ws3
-
-## set tabed as workspace layout for browser and notes
-for_window [workspace=$ws2] layout tabbed
-for_window [workspace=$ws3] layout tabbed
 
 # set border
 default_border pixel 2
