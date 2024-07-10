@@ -24,6 +24,17 @@ export FZF_ALT_C_COMMAND="fdfind -t d -H --exclude '**/.git/'"
 export FZF_DEFAULT_OPTS='--height 50% --layout=reverse --border'
 export FZF_CTRL_T_OPTS="--preview='bat --style=numbers --color=always --line-range :500 {}'"
 
+# disable default python virtualenv prompt display
+export VIRTUAL_ENV_DISABLE_PROMPT=1
+
+# pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+if [ -d "$PYENV_ROOT" ]; then
+    command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+    eval "$(pyenv init -)"
+    eval "$(pyenv virtualenv-init -)"
+fi
+
 # NOTE: System Specific exports [Not tracked in dotfiles]
 zshrclcl=$HOME/.config/zsh/.zshrc_local
 [ -f "$zshrclcl" ] && . $zshrclcl
@@ -71,14 +82,21 @@ zstyle ':vcs_info:git*+set-message:*' hooks git-untracked
     hook_com[misc]='%B?%b'
   fi
 }
+
+# pyenv prompt
+function py_venv_hook() {
+  if [[ ! -z "$VIRTUAL_ENV" ]];
+  then
+    py_venv="%F{0}%K{33}  ${VIRTUAL_ENV##*/} %f%k "
+  else
+    py_venv=""
+  fi
+  echo -e "$py_venv"
+}
+
 # Setting up prompt
 NEWLINE=$'\n'
-export PROMPT='${NEWLINE}%(?..%F{red}X )%F{14}%n%f%F{white}@%f%F{202}%m%f%F{white}:%f%F{green}%~ ${vcs_info_msg_0_} ${NEWLINE}%F{172}$ %f'
-
-# pyenv
-if [ -d "$PYENV_ROOT" ]; then
-    eval "$(pyenv virtualenv-init -)"
-fi
+export PROMPT='${NEWLINE}$(py_venv_hook)%(?..%F{red} )%F{14}%n%f%F{white}@%f%F{202}%m%f%F{white}:%f%F{green}%~ ${vcs_info_msg_0_} ${NEWLINE}%F{172}$ %f'
 
 # Highlight completions
 autoload -U compinit

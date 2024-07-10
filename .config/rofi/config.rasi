@@ -1,6 +1,6 @@
 configuration {
-  display-drun: "Applications";
-  display-window: "Windows";
+  display-drun: "App:";
+  display-window: "Win:";
   drun-display-format: "{icon} {name}";
   font: "UbuntuMono Nerd Font Medium 12";
   modi: "window,run,drun";
