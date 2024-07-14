@@ -125,7 +125,8 @@ return {
             },
           },
         },
-        -- clangd = {},
+        clangd = {
+        },
         -- gopls = {},
         pyright = {
           settings = {

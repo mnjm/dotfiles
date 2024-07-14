@@ -87,7 +87,7 @@ zstyle ':vcs_info:git*+set-message:*' hooks git-untracked
 function py_venv_hook() {
   if [[ ! -z "$VIRTUAL_ENV" ]];
   then
-    py_venv="%F{0}%K{33}  ${VIRTUAL_ENV##*/} %f%k "
+    py_venv="%F{33}[ ${VIRTUAL_ENV##*/}]%f"
   else
     py_venv=""
   fi
@@ -96,7 +96,7 @@ function py_venv_hook() {
 
 # Setting up prompt
 NEWLINE=$'\n'
-export PROMPT='${NEWLINE}$(py_venv_hook)%(?..%F{red} )%F{14}%n%f%F{white}@%f%F{202}%m%f%F{white}:%f%F{green}%~ ${vcs_info_msg_0_} ${NEWLINE}%F{172}$ %f'
+export PROMPT='${NEWLINE}%(?..%F{red} )%F{14}%n%f%F{white}@%f%F{202}%m%f%F{white}:%f%F{green}%~ ${vcs_info_msg_0_} $(py_venv_hook)${NEWLINE}%F{172}$ %f'
 
 # Highlight completions
 autoload -U compinit
