@@ -45,4 +45,7 @@ vim.keymap.set({'n', 'v'}, '<leader>d', '\"_d', { desc = "[d]elete without addin
 -- This map is so that I dont have to think about wheather to move cursor with <C-o> while working with brackets
 vim.keymap.set('i', '<C-o>', '<C-\\><C-o>', { desc = 'Execute single command in insert mode, but dont move cursor' })
 
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move selected lines up" })
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move selected lines down" })
+
 -- vim: ts=2 sts=2 sw=2 et
