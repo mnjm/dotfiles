@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+fpath=$1
+
+dpath="${fpath%/*}"
+if [ ! -d "$dpath" ];
+then
+    printf "$dpath doesnt exist! wanna create?[y/N]:"
+    read ans
+    if [ $ans = "y" ]; then
+        mkdir -p $dpath
+    fi
+fi
+touch $fpath
