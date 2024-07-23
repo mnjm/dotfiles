@@ -1,6 +1,17 @@
 #!/usr/bin/env bash
 
-# Prints URL of the repo
+
+include_branch=false
+
+# Check if option -b is passed
+while getopts "b" opt; do
+    case $opt in
+        b) include_branch=true ;;
+        \?)
+            echo "Usage: $(basename $0) [-b]" >&2
+            exit 1 ;;
+    esac
+done
 
 link=$(git config --get remote.origin.url)
 
@@ -16,7 +27,14 @@ fi
 
 # Remove trailing .git and print
 link=$(echo "$link" | sed -e 's/\.git$//')
-echo "URL: $link"
+
+# include branch link if -b is passed
+if [[ "$link" == *"github.com"* && "$include_branch" = true ]]; then
+    branch=$(git rev-parse --abbrev-ref HEAD)
+    link="${link}/tree/${branch}"
+fi
+
+echo "Repo URL: $link"
 browser=${BROWSER:-firefox}
 printf "Open in $browser?[y/N]:"
 read ans
