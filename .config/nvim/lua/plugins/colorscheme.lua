@@ -131,6 +131,6 @@ local colorschemes = {
 
 }
 
-return colorschemes.papercolor
+return colorschemes.rose_pine
 
 -- vim: ts=2 sts=2 sw=2 et

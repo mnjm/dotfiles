@@ -62,5 +62,5 @@ _git_clone_pull() {
     rmt=$1
     lcl=$2
     [ -d "$lcl" ] || mkdir -p "$lcl"
-    git -C "$lcl" pull || git clone "$rmt" "$lcl"
+    git -C "$lcl" pull --depth 1 || git clone "$rmt" "$lcl" --depth 1
 }
