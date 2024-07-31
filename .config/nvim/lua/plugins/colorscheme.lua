@@ -32,7 +32,6 @@ local colorschemes = {
       vim.o.background = "dark"
       vim.cmd.colorscheme 'PaperColorSlim'
       vim.cmd("hi IncSearch guibg=#15F5BA guifg=#000000")
-      -- vim.cmd("hi Visual guibg=#15F5BA guifg=#000000")
       vim.cmd("hi CurSearch guibg=#FDBF60 guifg=#000000")
       vim.cmd("hi CursorLine gui=bold")
     end
@@ -131,6 +130,6 @@ local colorschemes = {
 
 }
 
-return colorschemes.rose_pine
+return colorschemes.papercolor
 
 -- vim: ts=2 sts=2 sw=2 et
