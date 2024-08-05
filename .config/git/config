@@ -19,11 +19,8 @@
     cam = commit --amend
     sw = switch
     co = checkout
-    p = push
-    pl = pull
+    please = push --force-with-lease
     st = stash
-    f = fetch
-    fa = fetch --all
     m = merge --ff-only
     link = !git-link
     ; create temp wip commit
