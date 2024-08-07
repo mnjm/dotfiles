@@ -19,7 +19,8 @@
     cam = commit --amend
     sw = switch
     co = checkout
-    please = push --force-with-lease
+    p = push
+    pls = push --force-with-lease
     st = stash
     m = merge --ff-only
     link = !git-link
