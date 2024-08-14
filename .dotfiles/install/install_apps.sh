@@ -6,30 +6,29 @@ export DOTFILES=$PWD
 
 # Apt + Pip packages
 _alert_local "Installing apt packages"
-sudo apt install nala -y
-xargs -a apt-packages.list sudo nala install -y
+xargs -a $HOME/.dotfiles/install/apt-packages.list sudo apt install -y
 _alert_local "Installing pip packages"
-xargs -a pip-packages.list python3 -m pip install --user
+xargs -a $HOME/.dotfiles/install/pip-packages.list python3 -m pip install --user
 
 # Nerd Font
 _alert_local "Installing Nerd Fonts"
 mkdir -p ~/.fonts
-curl -kL https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.2/UbuntuMono.zip -o /tmp/UbuntuMono.zip
+curl -kL https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/UbuntuMono.zip -o /tmp/UbuntuMono.zip
 unzip /tmp/UbuntuMono.zip -d "$HOME/.fonts/UbuntuMono"
 fc-cache -fv || _alert_local "Fonts install failed" 1
 rm /tmp/UbuntuMono.zip
 
 # VIM Text Editor
 _alert_local 'Setting Up Vim'
-./vim.sh || _alert_local "Vim setup failed" 1
+$HOME/.dotfiles/install/vim.sh || _alert_local "Vim setup failed" 1
 
 # ZSH Shell
 _alert_local 'Setting Up Zsh'
-./zsh.sh || _alert_local "Zsh setup failed" 1
+$HOME/.dotfiles/install/zsh.sh || _alert_local "Zsh setup failed" 1
 
 # Neo-Vim Text Editor
 _alert_local 'Installing nvim'
-./nvim.sh || _alert_local "Nvim setup failed" 1
+$HOME/.dotfiles/install/nvim.sh || _alert_local "Nvim setup failed" 1
 
 # Rust Install
 _alert_local "Installing rust"
@@ -44,7 +43,7 @@ curl https://pyenv.run | bash
 
 # Alacritty
 _alert_local 'Installing alacritty'
-./alacritty.sh || _alert_local "Alacritty setup failed" 1
+$HOME/.dotfiles/install/alacritty.sh || _alert_local "Alacritty setup failed" 1
 
 # Go
 _alert_local "Installing go"
