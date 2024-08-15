@@ -213,11 +213,11 @@ bindsym $mod+F7 exec --no-startup-id $HOME/.local/bin/brightnessctl-wrapper up &
 
 ## Screenshot
 # full screen screenshot
-bindsym Print exec gnome-screenshot
+bindsym --release Print exec gnome-screenshot
 # area screenshot
-bindsym Shift+Print exec gnome-screenshot --area
+bindsym --release Shift+Print exec gnome-screenshot --area
 # window screenshot
-bindsym Ctrl+Print exec gnome-screenshot --window
+bindsym --release Ctrl+Print exec gnome-screenshot --window
 
 ## alacritty-popup
 bindsym $mod+Shift+Return exec ~/.local/bin/alacritty-popup
