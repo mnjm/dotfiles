@@ -10,7 +10,7 @@ font pango:UbuntuMono Nerd Font 10
 exec --no-startup-id dex --autostart --environment i3
 
 # Lockscreen
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork -i $HOME/.config/wallpaper-lockscreen.png -t -f
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork -i $HOME/Pictures/wallpapers/0002.png -t -f
 
 # applets
 exec --no-startup-id nm-applet
