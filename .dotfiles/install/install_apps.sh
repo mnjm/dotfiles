@@ -59,7 +59,7 @@ _download_install_deb trash-d https://github.com/rushsteve1/trash-d/releases/dow
 _alert_local 'Installing Fzf'
 git -C ~/.fzf pull || git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 if [ -f ~/.fzf/install ]; then
-    ~/.fzf/install --all --no-bash
+    ~/.fzf/install --all --no-bash && _link_file ~/.local/bin/fzf ~/.fzf/bin/fzf
 else
     _alert_local "Fzf installation failed" 1
 fi
