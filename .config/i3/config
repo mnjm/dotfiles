@@ -5,7 +5,7 @@ set $mod Mod4
 # default apps
 set $terminal alacritty
 
-font pango:UbuntuMono Nerd Font 10
+font pango:UbuntuMono Nerd Font 9
 
 exec --no-startup-id dex --autostart --environment i3
 
