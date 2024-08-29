@@ -7,8 +7,11 @@ export DOTFILES=$PWD
 # Apt + Pip packages
 _alert_local "Installing apt packages"
 xargs -a $HOME/.dotfiles/install/apt-packages.list sudo apt install -y
+_alert_local "Creating python virtual-env"
+python3 -m venv ~/.py_venv/default
+source ~/.py_venv/default/bin/activate
 _alert_local "Installing pip packages"
-xargs -a $HOME/.dotfiles/install/pip-packages.list python3 -m pip install --user
+xargs -a $HOME/.dotfiles/install/pip-packages.list python3 -m pip install
 
 # Nerd Font
 _alert_local "Installing Nerd Fonts"

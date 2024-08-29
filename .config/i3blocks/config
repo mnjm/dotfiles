@@ -17,7 +17,7 @@ label=󰋊
 interval=60
 
 [battery]
-interval=60
+interval=1
 
 [screen_brightness]
 interval=once

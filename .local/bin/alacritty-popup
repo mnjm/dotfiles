@@ -1,3 +1,7 @@
 #!/usr/bin/env zsh
 
-alacritty  --class "Alacritty-popup" --option 'window.dimensions={columns=120,lines=40}' -e tmux new-session -As "_popup"
+if [ -z "$1" ]; then
+    alacritty --class "Alacritty-popup" --option 'window.dimensions={columns=120,lines=40}' -e tmux new-session -As "_popup"
+else
+    alacritty --class "Alacritty-popup" --option 'window.dimensions={columns=120,lines=40}' -e $1
+fi

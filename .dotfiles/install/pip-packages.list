@@ -1,7 +1,10 @@
 datetime
+jupyter
+jupyterlab-vim
 matplotlib
 numpy
 opencv-contrib-python
+scikit-learn
 scipy
 tensorboard
 tensorflow
