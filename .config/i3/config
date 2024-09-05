@@ -191,6 +191,9 @@ hide_edge_borders smart
 # align window title center
 title_align center
 
+# show popup during fullscreen if the popup belongs to the app in the fullscreen
+popup_during_fullscreen smart
+
 ## Volume Controls
 set $refresh_i3blocks_v pkill -RTMIN+10 i3blocks
 # mute
