@@ -23,6 +23,10 @@
     pls = push --force-with-lease
     st = stash
     m = merge --ff-only
+    f = fetch
+    wt = worktree
+    wta = worktree add
+    wtr = worktree remove
     link = !git-link
     ; create temp wip commit
     wip = !"f() { git add -Av && git commit -m '[WIP]' && git commit --amend --quiet; }; f"
