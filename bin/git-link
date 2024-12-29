@@ -38,6 +38,6 @@ browser=${BROWSER:-firefox}
 printf "Open in $browser?[y/N]:"
 read ans
 if [ $ans = "y" ]; then
-    $browser -new-tab $link 2>>/dev/null &
+    open $link&
     disown
 fi
