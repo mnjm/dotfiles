@@ -1,8 +1,0 @@
-#!/usr/bin/env bash
-
-slop=$(slop -f "%x %y %w %h %g %i") || exit 1
-
-for i in $(seq 5 -1 1); do echo "Will start recording in $i"; sleep 1; done
-
-read -r X Y W H G ID <<< $slop
-ffmpeg -f x11grab -s "$W"x"$H" -i :0.0+$X,$Y -f alsa -i pulse $(date +%Y-%m-%d_%H-%M_%S).mp4

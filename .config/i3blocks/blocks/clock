@@ -1,5 +1,0 @@
-#!/bin/sh
-
-# TODO: Add mouse interactions
-
-date '+%d %b %a %I:%M%P'
