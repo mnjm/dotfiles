@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+tmp=$(mktemp vclip.XXXXX -p /tmp/)
+
+pbpaste > $tmp
+
+$EDITOR $tmp
+
+cat $tmp | pbcopy
+
+rm -f $tmp >/dev/null 2>&1

@@ -1,0 +1,23 @@
+[env]
+TERM = "xterm-256color"
+
+[window]
+decorations = "Transparent"
+decorations_theme_variant = "dark"
+dynamic_title = true
+opacity = 1
+startup_mode = "Windowed"
+title = "Alacritty"
+class = { general = "Alacritty", instance = "Alacritty" }
+dimensions = { columns = 140, lines = 50 }
+padding = { x = 0, y = 0}
+
+[cursor]
+blink_timeout = 5
+thickness = 0.15
+unfocused_hollow = true
+style = { blinking = "On", shape="Block" }
+
+[font]
+size = 11.0
+normal.family = "FiraMono Nerd Font Mono"

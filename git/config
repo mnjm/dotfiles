@@ -1,0 +1,99 @@
+[alias]
+    alias = config --get-regexp ^alias
+    ; pretty log listing
+    l = !"f() { git --no-pager log --pretty=oneline --abbrev-commit --graph --decorate=short --color=always "$@" | less -R; }; f"
+    ll = !"f() { git --no-pager log --graph --abbrev-commit --decorate=short --color=always "$@" | less -R; }; f"
+    rl = !"f() { git --no-pager reflog --color=always "$@" | less -R; }; f"
+    s = status -s
+    ss = status
+    d = diff
+    ds = diff --staged
+    dt = difftool -y
+    dts = difftool -y --staged
+    dp = !git-diff-previewer
+    dps = !git-diff-previewer --staged
+    a = add -v
+    au = add -vu
+    b = branch
+    c = commit
+    cam = commit --amend
+    sw = switch
+    co = checkout
+    p = push
+    pls = push --force-with-lease
+    st = stash
+    m = merge --ff-only
+    f = fetch
+    wt = worktree
+    wta = worktree add
+    wtr = worktree remove
+    link = !git-link
+    ; create temp wip commit
+    wip = !"f() { git add -Av && git commit -m '[WIP]' && git commit --amend --quiet; }; f"
+    ; remove last commit stage the changes
+    uncommit = reset --soft HEAD^
+    ; unstage all changes
+    unstage = reset --mixed HEAD --
+    ; remove untracked changes
+    restore-file-2-staged = restore --worktree
+    ; restore file to HEAD
+    restore-file-2-head = restore --staged --worktree
+    ; rebase
+    rb = rebase --interactive
+    rba = rebase --abort
+    rbc = rebase --continue
+    remote-refresh = remote update --prune
+
+[core]
+    pager = less
+    editor = nvim
+    excludesfile = ~/.config/git/ignore
+
+[pager]
+    diff = delta --side-by-side
+    d = delta --side-by-side
+    ds = delta --side-by-side
+
+[color]
+    ui = auto
+
+[difftool]
+    prompt = true
+
+[diff]
+    tool = nvimdiff
+    colorMoved = default
+
+[difftool "nvimdiff"]
+    cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
+
+[help]
+    autocorrect = 0
+
+[interactive]
+    diffFilter = delta --color-only
+
+[add.interactive]
+    useBuiltin = false # required for git 2.37.0
+
+[include]
+    path = ~/.config/git/delta_themes.config
+
+[delta]
+    features = calochortus-lyallii
+    navigate = true    # use n and N to move between diff sections
+    light = false      # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
+    side-by-side = false
+
+[merge]
+    conflictstyle = diff3
+
+[init]
+    defaultBranch = main
+
+[pull]
+	ff = only
+[rebase]
+	autosquash = true
+[advice]
+	addIgnoredFiles = false

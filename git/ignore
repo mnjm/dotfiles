@@ -1,0 +1,69 @@
+### C ###
+*.o
+*.obj
+*.gch
+*.pch
+*.lib
+*.a
+*.la
+*.lo
+*.dll
+*.so
+*.so.*
+*.out
+*.app
+*.idb
+*.pdb
+
+### C++ ###
+*.slo
+
+### Lua ###
+# Compiled Lua sources
+luac.out
+# luarocks build files
+*.src.rock
+# Object files
+*.os
+# Libraries
+*.def
+
+### Python ###
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+# PyBuilder
+.pybuilder/
+target/
+# Jupyter Notebook
+.ipynb_checkpoints
+__pypackages__/
+cython_debug/
+
+# IPython
+profile_default/
+ipython_config.py
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+### Misc ###
+.DS_Store
+*.log
+docs/_build/
+# Environments
+*.env
+# zips
+*.zip
+*.tar.gz
+*tags
+*.swp
+*.pdf
+*~
+
+### TF and Keras ###
+*.h5
+*.hdf5
+*.pb
+*.keras

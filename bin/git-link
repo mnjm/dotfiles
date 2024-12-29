@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+
+include_branch=false
+
+# Check if option -b is passed
+while getopts "b" opt; do
+    case $opt in
+        b) include_branch=true ;;
+        \?)
+            echo "Usage: $(basename $0) [-b]" >&2
+            exit 1 ;;
+    esac
+done
+
+link=$(git config --get remote.origin.url)
+
+if [ "$?" != 0 ]; then
+    echo "Not a git repo."
+    exit 1
+fi
+
+if [[ "$link" =~ ^git@.* ]]; then
+    # SSH to https
+    link="https://$(echo $link | sed -e 's/^git@//' -e 's/:/\//')"
+fi
+
+# Remove trailing .git and print
+link=$(echo "$link" | sed -e 's/\.git$//')
+
+# include branch link if -b is passed
+if [[ "$link" == *"github.com"* && "$include_branch" = true ]]; then
+    branch=$(git rev-parse --abbrev-ref HEAD)
+    link="${link}/tree/${branch}"
+fi
+
+echo "Repo URL: $link"
+browser=${BROWSER:-firefox}
+printf "Open in $browser?[y/N]:"
+read ans
+if [ $ans = "y" ]; then
+    $browser -new-tab $link 2>>/dev/null &
+    disown
+fi

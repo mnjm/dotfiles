@@ -1,0 +1,48 @@
+# ███████╗███████╗██╗  ██╗     █████╗ ██╗     ██╗ █████╗ ███████╗
+# ╚══███╔╝██╔════╝██║  ██║    ██╔══██╗██║     ██║██╔══██╗██╔════╝
+#   ███╔╝ ███████╗███████║    ███████║██║     ██║███████║███████╗
+#  ███╔╝  ╚════██║██╔══██║    ██╔══██║██║     ██║██╔══██║╚════██║
+# ███████╗███████║██║  ██║    ██║  ██║███████╗██║██║  ██║███████║
+# ╚══════╝╚══════╝╚═╝  ╚═╝    ╚═╝  ╚═╝╚══════╝╚═╝╚═╝  ╚═╝╚══════╝
+
+# ls
+alias ls='ls --color=auto'
+alias l='ls --color=auto'
+alias la='ls -A --color=auto'
+alias ll='ls -lAFh --color=auto'
+
+# colorize
+alias grep='grep --color=auto'                                    # Grep with colors
+alias tree='tree -C'
+
+# ez backtracking
+alias ..='cd ..'
+
+# clipboard copy
+alias copi='pbcopy'
+
+# Safe Remove
+function safe_rm() {
+    rm -vI "$@"
+}
+# replace rm with trash
+alias rm='safe_rm'
+
+# safe move and copy
+alias mv='mv -vi'
+alias cp='cp -vi'
+
+# find real abosolute path of the file
+alias ppath='readlink -f'
+
+# shortcuts
+alias gopen='open'                                                # Open file graphically
+alias py='python3'                                                # Python Alias
+alias g='git'                                                     # git
+alias vim=vim                                                     # Replace vim with nvim
+alias v=nvim
+alias vi=nvim
+alias rsync='rsync --info=progress2 --human-readable'             # rsync
+function help(){
+    "$@" --help | bat --plain --language=help --paging=always --file-name "$1 $2 --help"
+}
