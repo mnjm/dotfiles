@@ -12,10 +12,9 @@ M.toggle = function(window, pane)
 
     local success, stdout, stderr = wezterm.run_child_process({
         fd,
-        "-HI",
-        "^.git$",
-        "--max-depth=4",
-        "--prune",
+        "-t", "d",
+        "--max-depth=1",
+        ".",
         workspace
     })
 
@@ -25,10 +24,13 @@ M.toggle = function(window, pane)
     end
 
     for line in stdout:gmatch("([^\n]*)\n?") do
-        local project = line:gsub("/.git.*$", "")
-        local label = project
-        local id = project:gsub(".*/", "")
+        local label = line
+        local id = label:gsub(".*/", "")
         table.insert(projects, { label = tostring(label), id = tostring(id) })
+    end
+
+    if #projects == 0 then
+        wezterm.log_info("No projects in " .. workspace)
     end
 
     window:perform_action(
@@ -39,8 +41,8 @@ M.toggle = function(window, pane)
             else
                 wezterm.log_info("Selected " .. label)
                 win:perform_action(
-                act.SwitchToWorkspace({ name = id, spawn = { cwd = label } }),
-                pane
+                    act.SwitchToWorkspace({ name = id, spawn = { cwd = label } }),
+                    pane
                 )
             end
         end),

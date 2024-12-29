@@ -89,6 +89,11 @@ config.keys = {
         key = "s",
         action = wezterm.action_callback(sessionizer.toggle),
     },
+    {
+        key = 'L',
+        mods = 'LEADER',
+        action = wezterm.action.ShowDebugOverlay
+    },
 }
 
 for i = 0, 9 do
