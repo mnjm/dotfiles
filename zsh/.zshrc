@@ -94,7 +94,7 @@ function py_venv_hook() {
 
 # Setting up prompt
 NEWLINE=$'\n'
-export PROMPT='${NEWLINE}%(?..%F{red} )%F{14}%n%f%F{white}@%f%F{202}%m%f%F{white}:%f%F{green}%~ ${vcs_info_msg_0_} $(py_venv_hook)${NEWLINE}%F{172}$ %f'
+export PROMPT='${NEWLINE}%F{14}%n%f%F{white}@%f%F{202}%m%f%F{white}:%f%F{green}%~ ${vcs_info_msg_0_} $(py_venv_hook)${NEWLINE}%(?.%F{172}$.%F{red}X) %f'
 
 # Highlight completions
 autoload -U compinit

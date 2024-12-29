@@ -1,4 +1,5 @@
 local wezterm = require "wezterm"
+local sessionizer = require("sessionizer")
 
 local config = {}
 
@@ -35,7 +36,7 @@ config.keys = {
     },
     {
         mods = "LEADER",
-        key = "|",
+        key = "\\",
         action = wezterm.action.SplitHorizontal { domain = "CurrentPaneDomain" }
     },
     {
@@ -83,6 +84,11 @@ config.keys = {
         key = "k",
         action = wezterm.action.AdjustPaneSize { "Up", 5 }
     },
+    {
+        mods = "LEADER",
+        key = "s",
+        action = wezterm.action_callback(sessionizer.toggle),
+    },
 }
 
 for i = 0, 9 do
@@ -110,6 +116,13 @@ wezterm.on("update-right-status", function(window, _)
 
     window:set_left_status(wezterm.format {
         { Text = prefix },
+    })
+
+    workspace = " " .. window:active_workspace() .. " "
+    window:set_right_status(wezterm.format {
+        { Background = { AnsiColor = "Black" } },
+        { Attribute = { Intensity = "Half" }},
+        { Text = workspace },
     })
 end)
 

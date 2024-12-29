@@ -112,7 +112,7 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 vim.keymap.set('n', '<leader>t', '<CMD>tabe .<CR>', { desc = "Open a new [t]ab"})
 
 -- Window navigations
-vim.keymap.set('n', '<leader>|', '<CMD>vs .<CR>', { desc = "Vertical split"})
+vim.keymap.set('n', '<leader>\\', '<CMD>vs .<CR>', { desc = "Vertical split"})
 vim.keymap.set('n', '<leader>-', '<CMD>sp .<CR>', { desc = "Horizontal split"})
 
 -- Keeping cursor in center
