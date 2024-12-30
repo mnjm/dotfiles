@@ -87,7 +87,7 @@ config.keys = {
     {
         mods = "LEADER",
         key = "s",
-        action = wezterm.action_callback(sessionizer.toggle),
+        action = wezterm.action_callback(sessionizer.show),
     },
     {
         key = 'L',
