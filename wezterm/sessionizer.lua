@@ -117,7 +117,7 @@ end
 
 M.switch_to_last = function(win, pane)
     local last_workspace = get_last_workspace()
-    if last_workspace then
+    if last_workspace and last_workspace ~= window:active_workspace() then
         set_last_workspace(win)
         win:perform_action(
         act.SwitchToWorkspace {
