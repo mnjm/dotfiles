@@ -18,8 +18,8 @@ export HISTFILE=~/.cache/zsh_history
 export HISTSIZE=10000
 export SAVEHIST=10000
 export FZF_TMUX_OPTS="-p 85%"
-export FZF_CTRL_T_COMMAND="fdfind -H --exclude '**/.git/'"
-export FZF_ALT_C_COMMAND="fdfind -t d -H --exclude '**/.git/'"
+export FZF_CTRL_T_COMMAND="fd -H --exclude '**/.git/'"
+export FZF_ALT_C_COMMAND="fd -t d -H --exclude '**/.git/'"
 export FZF_DEFAULT_OPTS='--height 50% --layout=reverse --border'
 export FZF_CTRL_T_OPTS="--preview='bat --style=numbers --color=always --line-range :500 {}'"
 
