@@ -1,6 +1,12 @@
 local wezterm = require "wezterm"
 local sessionizer = require("sessionizer")
 
+-- maximize window on startup
+wezterm.on("gui-startup", function()
+  local tab, pane, window = wezterm.mux.spawn_window{}
+  window:gui_window():toggle_fullscreen()
+end)
+
 local config = {}
 
 if wezterm.config_builder then
@@ -14,96 +20,24 @@ config.font_size = 14
 
 config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 2000 }
 config.keys = {
-    {
-        mods = "LEADER",
-        key = "t",
-        action = wezterm.action.SpawnTab "CurrentPaneDomain",
-    },
-    {
-        mods = "LEADER",
-        key = "w",
-        action = wezterm.action.CloseCurrentPane { confirm = true }
-    },
-    {
-        mods = "LEADER",
-        key = "<",
-        action = wezterm.action.ActivateTabRelative(-1)
-    },
-    {
-        mods = "LEADER",
-        key = ">",
-        action = wezterm.action.ActivateTabRelative(1)
-    },
-    {
-        mods = "LEADER",
-        key = "\\",
-        action = wezterm.action.SplitHorizontal { domain = "CurrentPaneDomain" }
-    },
-    {
-        mods = "LEADER",
-        key = "-",
-        action = wezterm.action.SplitVertical { domain = "CurrentPaneDomain" }
-    },
-    {
-        mods = "LEADER",
-        key = "LeftArrow",
-        action = wezterm.action.ActivatePaneDirection "Left"
-    },
-    {
-        mods = "LEADER",
-        key = "DownArrow",
-        action = wezterm.action.ActivatePaneDirection "Down"
-    },
-    {
-        mods = "LEADER",
-        key = "UpArrow",
-        action = wezterm.action.ActivatePaneDirection "Up"
-    },
-    {
-        mods = "LEADER",
-        key = "RightArrow",
-        action = wezterm.action.ActivatePaneDirection "Right"
-    },
-    {
-        mods = "LEADER",
-        key = "h",
-        action = wezterm.action.AdjustPaneSize { "Left", 5 }
-    },
-    {
-        mods = "LEADER",
-        key = "l",
-        action = wezterm.action.AdjustPaneSize { "Right", 5 }
-    },
-    {
-        mods = "LEADER",
-        key = "j",
-        action = wezterm.action.AdjustPaneSize { "Down", 5 }
-    },
-    {
-        mods = "LEADER",
-        key = "k",
-        action = wezterm.action.AdjustPaneSize { "Up", 5 }
-    },
-    {
-        mods = "LEADER",
-        key = "s",
-        action = wezterm.action_callback(sessionizer.show),
-    },
-    {
-        mods = "LEADER",
-        key = "S",
-        action = wezterm.action_callback(sessionizer.create_new),
-    },
-    {
-        mods = "LEADER",
-        key = "p",
-        action = wezterm.action_callback(sessionizer.switch_to_last),
-    },
-    {
-        key = 'L',
-        mods = 'LEADER',
-        action = wezterm.action.ShowDebugOverlay
-    },
+    { mods = "LEADER", key = "t", action = wezterm.action.SpawnTab "CurrentPaneDomain", },
+    { mods = "LEADER", key = "w", action = wezterm.action.CloseCurrentPane { confirm = true } },
+    { mods = "LEADER", key = "<", action = wezterm.action.ActivateTabRelative(-1) },
+    { mods = "LEADER", key = ">", action = wezterm.action.ActivateTabRelative(1) },
+    { mods = "LEADER", key = "\\", action = wezterm.action.SplitHorizontal { domain = "CurrentPaneDomain" } },
+    { mods = "LEADER", key = "-", action = wezterm.action.SplitVertical { domain = "CurrentPaneDomain" } },
+    { mods = "LEADER", key = "LeftArrow", action = wezterm.action.ActivatePaneDirection "Left" },
+    { mods = "LEADER", key = "DownArrow", action = wezterm.action.ActivatePaneDirection "Down" },
+    { mods = "LEADER", key = "UpArrow", action = wezterm.action.ActivatePaneDirection "Up" },
+    { mods = "LEADER", key = "RightArrow", action = wezterm.action.ActivatePaneDirection "Right" },
+    { mods = "LEADER", key = "h", action = wezterm.action.AdjustPaneSize { "Left", 5 } },
+    { mods = "LEADER", key = "l", action = wezterm.action.AdjustPaneSize { "Right", 5 } },
+    { mods = "LEADER", key = "j", action = wezterm.action.AdjustPaneSize { "Down", 5 } },
+    { mods = "LEADER", key = "k", action = wezterm.action.AdjustPaneSize { "Up", 5 } },
+    { mods = "LEADER", key = "s", action = wezterm.action_callback(sessionizer.show), },
+    { mods = "LEADER", key = "S", action = wezterm.action_callback(sessionizer.create_new), },
+    { mods = "LEADER", key = "p", action = wezterm.action_callback(sessionizer.switch_to_last), },
+    { mods = 'LEADER', key = "L", action = wezterm.action.ShowDebugOverlay },
 }
 
 for i = 0, 9 do
