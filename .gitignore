@@ -3,3 +3,4 @@
 .zsh_sessions/
 zsh-autosuggestions/
 zsh-syntax-highlighting/
+nvim/lazy-lock.json

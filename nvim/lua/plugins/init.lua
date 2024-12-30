@@ -11,18 +11,34 @@
 --                    \______/
 -- Author - mnjm - github.com/mnjm
 -- Repo - github.com/mnjm/dotfiles
--- Derived from kickstart.nvim - https://github.com/dam9000/kickstart-modular.nvim
+-- derived from kickstart.nvim
 
--- Have nerd fonts?
-vim.g.have_nerd_fonts = true
+-- Install Lazy plugin manager
+local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
+if not vim.loop.fs_stat(lazypath) then
+  local lazyrepo = 'https://github.com/folke/lazy.nvim.git'
+  vim.fn.system { 'git', 'clone', '--filter=blob:none', '--branch=stable', lazyrepo, lazypath }
+end ---@diagnostic disable-next-line: undefined-field
+vim.opt.rtp:prepend(lazypath)
 
--- [[ Setting options ]]
-require 'options'
-
--- [[ Basic Keymaps ]]
-require 'keymaps'
-
--- [[ Install and Configure plugins ]]
-require 'plugins'
-
+require('lazy').setup({
+  'tpope/vim-surround', -- operates on surrounding objs like ysiw) adds () around inner world
+  'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
+  { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_fonts },
+  require 'plugins/todo-comments',
+  require 'plugins/gitsigns',
+  require 'plugins/which-key',
+  require 'plugins/telescope',
+  require 'plugins/lspconfig',
+  require 'plugins/cmp',
+  require 'plugins/treesitter',
+  require 'plugins/colorscheme',
+  require 'plugins/bottomline',
+  require 'plugins/topline',
+  require 'plugins/winline',
+  require 'plugins/oil',
+  require 'plugins/tmux-nav',
+  require 'plugins/lf',
+  require 'plugins/vim-doge',
+})
 -- vim: ts=2 sts=2 sw=2 et

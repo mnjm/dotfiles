@@ -11,18 +11,22 @@
 --                    \______/
 -- Author - mnjm - github.com/mnjm
 -- Repo - github.com/mnjm/dotfiles
--- Derived from kickstart.nvim - https://github.com/dam9000/kickstart-modular.nvim
 
--- Have nerd fonts?
-vim.g.have_nerd_fonts = true
-
--- [[ Setting options ]]
-require 'options'
-
--- [[ Basic Keymaps ]]
-require 'keymaps'
-
--- [[ Install and Configure plugins ]]
-require 'plugins'
+return {
+  {
+    'mnjm/winline.nvim',
+    dependencies = { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_fonts },
+    opts = {
+      enable = true,
+      always_show = false,
+      enable_icons = vim.g.have_nerd_fonts,
+      close_icon = vim.g.have_nerd_fonts and "󱎘" or "[x]",
+      display_buf_no = true,
+      -- seperators = { '',  '' },
+      -- seperators = { '',  '' },
+      -- seperators = { '',  '' },
+    }
+  },
+}
 
 -- vim: ts=2 sts=2 sw=2 et

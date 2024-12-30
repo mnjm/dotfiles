@@ -11,18 +11,16 @@
 --                    \______/
 -- Author - mnjm - github.com/mnjm
 -- Repo - github.com/mnjm/dotfiles
--- Derived from kickstart.nvim - https://github.com/dam9000/kickstart-modular.nvim
 
--- Have nerd fonts?
-vim.g.have_nerd_fonts = true
-
--- [[ Setting options ]]
-require 'options'
-
--- [[ Basic Keymaps ]]
-require 'keymaps'
-
--- [[ Install and Configure plugins ]]
-require 'plugins'
-
+return {
+  {
+    "kkoomen/vim-doge",
+    build = ":call doge#install()",
+    config = function()
+      vim.g.doge_doc_standard_python = 'google'
+      -- Generate comment for current line
+      vim.keymap.set('n', '<Leader>dg', '<Plug>(doge-generate)', { desc = "[D]ocument [G]enerate" })
+    end,
+  },
+}
 -- vim: ts=2 sts=2 sw=2 et
