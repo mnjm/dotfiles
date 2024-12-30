@@ -75,4 +75,27 @@ M.show = function(window, pane)
     )
 end
 
+M.create_new = function(window, pane)
+    window:perform_action(
+        act.PromptInputLine {
+            description = wezterm.format {
+                { Attribute = { Intensity = 'Bold' } },
+                { Foreground = { AnsiColor = 'Fuchsia' } },
+                { Text = 'Enter name for new workspace' },
+            },
+            action = wezterm.action_callback(function(window, pane, line)
+                if line then
+                    window:perform_action(
+                    act.SwitchToWorkspace {
+                        name = line,
+                    },
+                    pane
+                    )
+                end
+            end),
+        },
+        pane
+    )
+end
+
 return M

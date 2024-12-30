@@ -90,6 +90,11 @@ config.keys = {
         action = wezterm.action_callback(sessionizer.show),
     },
     {
+        mods = "LEADER",
+        key = "S",
+        action = wezterm.action_callback(sessionizer.create_new),
+    },
+    {
         key = 'L',
         mods = 'LEADER',
         action = wezterm.action.ShowDebugOverlay
