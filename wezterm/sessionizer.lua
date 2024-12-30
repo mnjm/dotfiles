@@ -39,6 +39,17 @@ local function get_entries()
     return entries
 end
 
+local function set_last_workspace(win)
+    wezterm.log_info("Setting last workspace to " .. win:active_workspace())
+    wezterm.GLOBAL.sessionizer_last_workspace = win:active_workspace()
+end
+
+local function get_last_workspace()
+    local last_workspace = wezterm.GLOBAL.sessionizer_last_workspace
+    wezterm.log_info("Got last workspace as "  .. last_workspace)
+    return last_workspace
+end
+
 M.show = function(window, pane)
     -- get entries
     local entries = get_entries()
@@ -48,54 +59,72 @@ M.show = function(window, pane)
     end
 
     window:perform_action(
-        -- fuzzy search
-        act.InputSelector({
-            action = wezterm.action_callback(function(win, _, path, workspace)
-               if workspace then
-                   -- if path then create a spawn command
-                   local spawn_cmd = nil
-                   if path then
-                       spawn_cmd = { cwd = path }
-                   end
-                   win:perform_action(
-                       act.SwitchToWorkspace({
-                           name = workspace,
-                           spawn = spawn_cmd,
-                       }),
-                       pane
-                   )
-               end
-           end),
-            fuzzy = true,
-            title = "Select workspace",
-            fuzzy_description = "Fuzzy matching workspace:",
-            choices = entries,
-        }),
-        pane
+    -- fuzzy search
+    act.InputSelector({
+        action = wezterm.action_callback(function(win, _, path, workspace)
+            if workspace then
+                -- if path then create a spawn command
+                local spawn_cmd = nil
+                if path then
+                    spawn_cmd = { cwd = path }
+                end
+                set_last_workspace(win)
+                win:perform_action(
+                act.SwitchToWorkspace({
+                    name = workspace,
+                    spawn = spawn_cmd,
+                }),
+                pane
+                )
+            end
+        end),
+        fuzzy = true,
+        title = "Select workspace",
+        fuzzy_description = wezterm.format {
+            { Attribute = { Intensity = 'Bold' } },
+            { Foreground = { AnsiColor = 'Green' } },
+            { Text = 'Fuzzy matching workspace:' },
+        },
+        choices = entries,
+    }),
+    pane
     )
 end
 
-M.create_new = function(window, pane)
-    window:perform_action(
-        act.PromptInputLine {
-            description = wezterm.format {
-                { Attribute = { Intensity = 'Bold' } },
-                { Foreground = { AnsiColor = 'Fuchsia' } },
-                { Text = 'Enter name for new workspace' },
-            },
-            action = wezterm.action_callback(function(window, pane, line)
-                if line then
-                    window:perform_action(
-                    act.SwitchToWorkspace {
-                        name = line,
-                    },
-                    pane
-                    )
-                end
-            end),
+M.create_new = function(win, pane)
+    win:perform_action(
+    act.PromptInputLine {
+        description = wezterm.format {
+            { Attribute = { Intensity = 'Bold' } },
+            { Foreground = { AnsiColor = 'Green' } },
+            { Text = 'Enter name for new workspace' },
         },
-        pane
+        action = wezterm.action_callback(function(win, pane, line)
+            if line then
+                set_last_workspace(win)
+                win:perform_action(
+                act.SwitchToWorkspace {
+                    name = line,
+                },
+                pane
+                )
+            end
+        end),
+    },
+    pane
     )
+end
+
+M.switch_to_last = function(win, pane)
+    local last_workspace = get_last_workspace()
+    if last_workspace then
+        set_last_workspace(win)
+        win:perform_action(
+        act.SwitchToWorkspace {
+            name = last_workspace
+        }, pane 
+        )
+    end
 end
 
 return M
