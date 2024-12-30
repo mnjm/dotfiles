@@ -3,7 +3,9 @@ local wezterm = require("wezterm")
 local act = wezterm.action
 local M = {}
 local fd = "/opt/homebrew/bin/fd"
-local workspace = os.getenv("HOME") .. "/workspace"
+local projects_dir = os.getenv("HOME") .. "/workspace"
+local dir_icon = "  "
+local workspace_icon = "  "
 
 local function get_entries()
     local ws_f_d = {}
@@ -14,7 +16,7 @@ local function get_entries()
         ws_f_d[ws] = true
         -- ignore if current active workspace but dont add folder entry too
         if ws ~= wezterm.mux.get_active_workspace() then
-            table.insert(entries, { label = tostring(ws), id = nil })
+            table.insert(entries, { label = workspace_icon .. tostring(ws), id = nil })
         end
     end
     -- get projects from workspace dir
@@ -23,7 +25,7 @@ local function get_entries()
         "-t", "d",
         "--max-depth=1",
         ".",
-        workspace
+        projects_dir
     })
     if not success then
         wezterm.log_error("Failed to run fd: " .. stderr)
@@ -33,7 +35,7 @@ local function get_entries()
         path = path:gsub("/$", "")  -- Remove trailing slash if present
         local basename = path:match("[^/]+$") -- Extract basename
         if ws_f_d[basename] == nil then
-            table.insert(entries, { label = basename, id = path })
+            table.insert(entries, { label = dir_icon .. basename, id = path })
         end
     end
     return entries
@@ -50,7 +52,7 @@ local function get_last_workspace()
     return last_workspace
 end
 
-M.show = function(window, pane)
+M.show = function(win, pane)
     -- get entries
     local entries = get_entries()
     if #entries == 0 then
@@ -58,7 +60,7 @@ M.show = function(window, pane)
         return
     end
 
-    window:perform_action(
+    win:perform_action(
     -- fuzzy search
     act.InputSelector({
         action = wezterm.action_callback(function(win, _, path, workspace)
@@ -71,7 +73,7 @@ M.show = function(window, pane)
                 set_last_workspace(win)
                 win:perform_action(
                 act.SwitchToWorkspace({
-                    name = workspace,
+                    name = workspace:gsub("^[^%s]+%s*", ""), -- remove icon
                     spawn = spawn_cmd,
                 }),
                 pane
@@ -117,7 +119,7 @@ end
 
 M.switch_to_last = function(win, pane)
     local last_workspace = get_last_workspace()
-    if last_workspace and last_workspace ~= window:active_workspace() then
+    if last_workspace and last_workspace ~= win:active_workspace() then
         set_last_workspace(win)
         win:perform_action(
         act.SwitchToWorkspace {
