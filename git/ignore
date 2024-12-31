@@ -62,7 +62,8 @@ docs/_build/
 *.pdf
 *~
 
-### TF and Keras ###
+### Torch, TF and Keras ###
+*.pth
 *.h5
 *.hdf5
 *.pb
