@@ -13,7 +13,7 @@ if wezterm.config_builder then
     config = wezterm.config_builder()
 end
 
-config.color_scheme = 'Adventure'
+config.color_scheme = 'Colors (base16)'
 config.window_background_opacity = 0.87
 config.font = wezterm.font("UbuntuMono Nerd Font")
 config.font_size = 14
