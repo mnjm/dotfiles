@@ -4,3 +4,4 @@
 zsh-autosuggestions/
 zsh-syntax-highlighting/
 nvim/lazy-lock.json
+./gtk-2.0/*

@@ -3,7 +3,7 @@ local sessionizer = require("sessionizer")
 
 -- maximize window on startup
 wezterm.on("gui-startup", function()
-  local tab, pane, window = wezterm.mux.spawn_window{}
+  local _, _, window = wezterm.mux.spawn_window{}
   window:gui_window():toggle_fullscreen()
 end)
 
@@ -40,12 +40,12 @@ config.keys = {
     { mods = 'LEADER', key = "L", action = wezterm.action.ShowDebugOverlay },
 }
 
-for i = 0, 9 do
+for i = 1, 9 do
     -- leader + number to activate that tab
     table.insert(config.keys, {
         key = tostring(i),
         mods = "LEADER",
-        action = wezterm.action.ActivateTab(i),
+        action = wezterm.action.ActivateTab(i-1),
     })
 end
 
@@ -67,7 +67,7 @@ wezterm.on("update-right-status", function(window, _)
         { Text = prefix },
     })
 
-    workspace = " " .. window:active_workspace() .. " "
+    local workspace = " " .. window:active_workspace() .. " "
     window:set_right_status(wezterm.format {
         { Background = { AnsiColor = "Black" } },
         { Attribute = { Intensity = "Half" }},
