@@ -29,6 +29,9 @@ vim.keymap.set('n', '<leader>t', '<CMD>tabe .<CR>', { desc = "Open a new [t]ab"}
 vim.keymap.set('n', '<leader>\\', '<CMD>vs .<CR>', { desc = "Vertical split"})
 vim.keymap.set('n', '<leader>-', '<CMD>sp .<CR>', { desc = "Horizontal split"})
 
+-- FZF
+vim.keymap.set('n', '<leader>f', '<CMD>FZF<CR>', { desc = 'Run FZF' })
+
 -- Keeping cursor in center
 vim.keymap.set('n', 'n', 'nzz')
 vim.keymap.set('n', 'N', 'Nzz')

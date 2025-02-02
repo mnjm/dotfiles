@@ -96,4 +96,8 @@ vim.g.netrw_liststyle = 3 -- show tree like listing
 vim.g.netrw_altv = 1
 -- vim.g.netrw_winsize = 15 -- default window size when netrw is opened
 
+-- fzf
+-- see https://github.com/junegunn/fzf/blob/master/README-VIM.md
+vim.o.runtimepath = vim.o.runtimepath .. ",/opt/homebrew/opt/fzf"
+
 -- vim: ts=2 sts=2 sw=2 et
