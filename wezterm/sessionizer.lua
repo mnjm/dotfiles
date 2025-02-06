@@ -117,6 +117,29 @@ M.create_new = function(win, pane)
     )
 end
 
+M.rename_workspace = function(win, pane)
+    local current_workspace = wezterm.mux.get_active_workspace()
+    win:perform_action(
+        act.PromptInputLine {
+            description = wezterm.format {
+                { Attribute = { Intensity = 'Bold' } },
+                { Foreground = { AnsiColor = 'Green' } },
+                { Text = 'Enter new name for workspace' },
+            },
+            action = wezterm.action_callback(function(win, pane, line)
+                if line and line ~= "" then
+                    win:perform_action(
+                        act.SwitchToWorkspace { name = line },
+                        pane
+                    )
+                    wezterm.mux.rename_workspace(current_workspace, line)
+                end
+            end),
+        },
+        pane
+    )
+end
+
 M.switch_to_last = function(win, pane)
     local last_workspace = get_last_workspace()
     if last_workspace and last_workspace ~= win:active_workspace() then
@@ -124,7 +147,7 @@ M.switch_to_last = function(win, pane)
         win:perform_action(
         act.SwitchToWorkspace {
             name = last_workspace
-        }, pane 
+        }, pane
         )
     end
 end

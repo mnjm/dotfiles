@@ -36,6 +36,7 @@ config.keys = {
     { mods = "LEADER", key = "k", action = wezterm.action.AdjustPaneSize { "Up", 5 } },
     { mods = "LEADER", key = "s", action = wezterm.action_callback(sessionizer.show), },
     { mods = "LEADER", key = "S", action = wezterm.action_callback(sessionizer.create_new), },
+    { mods = "LEADER", key = "R", action = wezterm.action_callback(sessionizer.rename_workspace), },
     { mods = "LEADER", key = "p", action = wezterm.action_callback(sessionizer.switch_to_last), },
     { mods = 'LEADER', key = "L", action = wezterm.action.ShowDebugOverlay },
 }
