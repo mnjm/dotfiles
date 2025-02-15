@@ -100,4 +100,11 @@ vim.g.netrw_altv = 1
 -- see https://github.com/junegunn/fzf/blob/master/README-VIM.md
 vim.o.runtimepath = vim.o.runtimepath .. ",/opt/homebrew/opt/fzf"
 
+vim.cmd [[
+    hi Normal guibg=NONE ctermbg=NONE
+    hi NormalNC guibg=NONE ctermbg=NONE
+    hi EndOfBuffer guibg=NONE ctermbg=NONE
+    hi LineNr guibg=NONE ctermbg=NONE
+]]
+
 -- vim: ts=2 sts=2 sw=2 et
