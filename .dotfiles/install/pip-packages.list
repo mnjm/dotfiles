@@ -10,4 +10,4 @@ tensorboard
 tensorflow
 torch
 torchvision
-types-tensorflow
+pandas
