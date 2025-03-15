@@ -21,6 +21,8 @@
     co = checkout
     p = push
     pls = push --force-with-lease
+    pu = pull
+    pr = !"f() { git fetch origin pull/"$1"/head:pr/"$1"; }; f"
     st = stash
     m = merge --ff-only
     f = fetch
@@ -97,3 +99,9 @@
 	autosquash = true
 [advice]
 	addIgnoredFiles = false
+[rerere]
+	enabled = true
+[column]
+	ui = auto
+[branch]
+	sort = -committerdate
