@@ -1,7 +1,20 @@
+# Ignore Everything
+*
+
+# Do not ignore contents in these folders
+!alacritty
+!bin
+!git
+!nvim
+!wezterm
+!zsh
+!.gitignore
+!README.md
+
+# Ignore some "inner" files in the above listed folders
 .zcompdump
 .zsh_history
 .zsh_sessions/
 zsh-autosuggestions/
 zsh-syntax-highlighting/
 nvim/lazy-lock.json
-./gtk-2.0/*
