@@ -1,11 +1,51 @@
 #!/usr/bin/env bash
 
-tmp=$(mktemp vclip.XXXXX -p /tmp/)
+tmp=$(mktemp vclip.XXXXX -p /tmp/) || {
+  echo "Failed to create temp file" >&2
+  exit 1
+}
 
-pbpaste > $tmp
+# Ensure we always quote variable expansions
+if [[ "$OSTYPE" == darwin* ]]; then
+  # macOS: no trap, remove temp file at end
+  if command -v pbpaste >/dev/null 2>&1 && command -v pbcopy >/dev/null 2>&1; then
+    pbpaste > "$tmp"
+    "${EDITOR:-vi}" "$tmp"
+    cat "$tmp" | pbcopy
+    rm -f "$tmp" >/dev/null 2>&1
+    exit 0
+  else
+    echo "vclip: pbpaste/pbcopy not found on this macOS system." >&2
+    rm -f "$tmp" >/dev/null 2>&1
+    exit 1
+  fi
 
-$EDITOR $tmp
+elif [[ "$OSTYPE" == linux-gnu* || "$OSTYPE" == linux-musl* ]]; then
+  # Linux: set up trap for cleanup
+  cleanup() {
+    rm -f "$tmp" >/dev/null 2>&1
+  }
+  trap 'cleanup' HUP INT QUIT TERM EXIT
 
-cat $tmp | pbcopy
+  if command -v xclip >/dev/null 2>&1; then
+    xclip -selection clipboard -o > "$tmp"
+    "${EDITOR:-vi}" "$tmp"
+    cat "$tmp" | xclip -selection clipboard -i
+    exit 0
 
-rm -f $tmp >/dev/null 2>&1
+  elif command -v xsel >/dev/null 2>&1; then
+    xsel --clipboard --output > "$tmp"
+    "${EDITOR:-vi}" "$tmp"
+    cat "$tmp" | xsel --clipboard --input
+    exit 0
+
+  else
+    echo "vclip: No clipboard tool found (install xclip or xsel)." >&2
+    exit 1
+  fi
+
+else
+  echo "vclip: Unsupported OS: $OSTYPE" >&2
+  rm -f "$tmp" >/dev/null 2>&1
+  exit 1
+fi

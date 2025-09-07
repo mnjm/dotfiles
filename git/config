@@ -1,7 +1,7 @@
 [alias]
     alias = config --get-regexp ^alias
     ; pretty log listing
-    l = !"f() { git --no-pager log --pretty=oneline --abbrev-commit --graph --decorate=short --color=always "$@" | less -R; }; f"
+    l = !"f() { git --no-pager log --pretty=format:'%C(auto)%h %s %C(green)(%an)%C(auto) %d' --abbrev-commit --graph --decorate=short --color=always "$@" | less -R; }; f"
     ll = !"f() { git --no-pager log --graph --abbrev-commit --decorate=short --color=always "$@" | less -R; }; f"
     rl = !"f() { git --no-pager reflog --color=always "$@" | less -R; }; f"
     s = status -s
@@ -19,16 +19,21 @@
     cam = commit --amend
     sw = switch
     co = checkout
+    cp = cherry-pick
     p = push
     pls = push --force-with-lease
     pu = pull
     pr = !"f() { git fetch origin pull/"$1"/head:pr/"$1"; }; f"
     st = stash
     m = merge --ff-only
+    ; explicitly create merge commit
+    mf = merge --no-ff
     f = fetch
-    wt = worktree
-    wta = worktree add
-    wtr = worktree remove
+    wtl = worktree list
+    ; `git wta <ref>` - add worktree to ../<repo>-<ref> <ref> could be branch, commit or tag (replaces / in ref name with -)
+    wta = "!f() { ref=\"$1\"; repo=$(basename \"$(git rev-parse --show-toplevel)\"); safe_ref=$(printf \"%s\" \"$ref\" | sed 's|/|-|g'); dir=\"../${repo}-${safe_ref}\"; git worktree add \"$dir\" \"$ref\"; }; f"
+    ; `git wtr <ref>` - removes worktree at ../<repo>-<ref> <ref> could be branch, commit or tag
+    wtr = "!f() { ref=\"$1\"; repo=$(basename \"$(git rev-parse --show-toplevel)\"); safe_ref=$(printf \"%s\" \"$ref\" | sed 's|/|-|g'); dir=\"../${repo}-${safe_ref}\"; git worktree remove \"$dir\"; }; f"
     link = !git-link
     ; create temp wip commit
     wip = !"f() { git add -Av && git commit -m '[WIP]' && git commit --amend --quiet; }; f"
@@ -41,9 +46,11 @@
     ; restore file to HEAD
     restore-file-2-head = restore --staged --worktree
     ; rebase
-    rb = rebase --interactive
+    rb = rebase
+    rbi = rebase --interactive
     rba = rebase --abort
     rbc = rebase --continue
+    ; prune off remote tracking branches that are tracked in remote
     remote-refresh = remote update --prune
 
 [core]
@@ -61,13 +68,6 @@
 
 [difftool]
     prompt = true
-
-[diff]
-    tool = nvimdiff
-    colorMoved = default
-
-[difftool "nvimdiff"]
-    cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
 
 [help]
     autocorrect = 0
@@ -94,14 +94,23 @@
     defaultBranch = main
 
 [pull]
-	ff = only
+    ff = only
+
 [rebase]
-	autosquash = true
+    autosquash = true
+
 [advice]
-	addIgnoredFiles = false
+    addIgnoredFiles = false
+
 [rerere]
 	enabled = true
+
 [column]
-	ui = auto
+    ui = auto
+
 [branch]
-	sort = -committerdate
+    sort = -committerdate
+
+[user]
+	email = manjunat.mohan@gmail.com
+	name = Manjunath Mohan

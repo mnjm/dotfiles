@@ -19,7 +19,41 @@ alias tree='tree -C'
 alias ..='cd ..'
 
 # clipboard copy
-alias copi='pbcopy'
+function copi() {
+  if [[ "$OSTYPE" == darwin* ]]; then
+    pbcopy "$@"
+  elif [[ "$OSTYPE" == linux-gnu* || "$OSTYPE" == linux-musl* ]]; then
+    if command -v xclip >/dev/null 2>&1; then
+      xclip -selection clipboard "$@"
+    elif command -v xsel >/dev/null 2>&1; then
+      xsel --clipboard "$@"
+    else
+      echo "copi: No clipboard tool found (install xclip or xsel)" >&2
+      return 1
+    fi
+  else
+    echo "copi: Unsupported OS: $OSTYPE" >&2
+    return 1
+  fi
+}
+
+pasti() {
+  if [[ "$OSTYPE" == darwin* ]]; then
+    pbpaste "$@"
+  elif [[ "$OSTYPE" == linux-gnu* || "$OSTYPE" == linux-musl* ]]; then
+    if command -v xclip >/dev/null 2>&1; then
+      xclip -selection clipboard -o "$@"
+    elif command -v xsel >/dev/null 2>&1; then
+      xsel --clipboard --output "$@"
+    else
+      echo "pasti: No clipboard tool found (install xclip or xsel)" >&2
+      return 1
+    fi
+  else
+    echo "pasti: Unsupported OS: $OSTYPE" >&2
+    return 1
+  fi
+}
 
 # Safe Remove
 function safe_rm() {
@@ -35,14 +69,36 @@ alias cp='cp -vi'
 # find real abosolute path of the file
 alias ppath='readlink -f'
 
+function gopen() {
+  case "$OSTYPE" in
+    darwin*)  # macOS
+      open "$@"
+      ;;
+    linux-gnu*|linux-musl*)
+      if command -v xdg-open >/dev/null 2>&1; then
+        xdg-open "$@"
+      elif command -v gio >/dev/null 2>&1; then
+        gio open "$@"
+      elif grep -qi microsoft /proc/version 2>/dev/null; then
+        # WSL (Windows Subsystem for Linux)
+        explorer.exe "$@"
+      else
+        echo "gopen: No graphical open command found (need xdg-open, gio, or explorer.exe)" >&2
+        return 1
+      fi
+      ;;
+    *)
+      echo "gopen: Unsupported OS ($OSTYPE)" >&2
+      return 1
+      ;;
+  esac
+}
+
 # shortcuts
-alias gopen='open'                                                # Open file graphically
 alias py='python3'                                                # Python Alias
 alias g='git'                                                     # git
-alias vim=vim                                                     # Replace vim with nvim
 alias v=nvim
-alias vi=nvim
-alias rsync='rsync --info=progress2 --human-readable'             # rsync
+alias rsync='rsync --human-readable'                              # rsync
 function help(){
     "$@" --help | bat --plain --language=help --paging=always --file-name "$1 $2 --help"
 }
