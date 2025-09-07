@@ -20,7 +20,7 @@
     sw = switch
     co = checkout
     cp = cherry-pick
-    p = push
+    p = !git push origin $(git branch --show-current)
     pls = push --force-with-lease
     pu = pull
     pr = !"f() { git fetch origin pull/"$1"/head:pr/"$1"; }; f"
