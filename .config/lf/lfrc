@@ -8,7 +8,10 @@ set ignorecase true
 set info size
 set icons true
 set autoquit true
-set previewer '~/.config/lf/preview'
+# set previewer '~/.config/lf/preview'
+# Install pixel and chafa (check pistol config ~/.config/pistol/pistol.conf)
+set previewer '~/.local/bin/pistol'
+set sixel true
 
 cmd open ${{
     test -L $f && f=$(readlink -f $f)
