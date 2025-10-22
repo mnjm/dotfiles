@@ -9,7 +9,7 @@ set info size
 set icons true
 set autoquit true
 # set previewer '~/.config/lf/preview'
-# Install pixel and chafa (check pistol config ~/.config/pistol/pistol.conf)
+# Check https://github.com/wezterm/wezterm/discussions/2423#discussioncomment-9844943. Install pixel and chafa (check pistol config ~/.config/pistol/pistol.conf)
 set previewer '~/.local/bin/pistol'
 set sixel true
 
