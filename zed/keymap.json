@@ -1,0 +1,36 @@
+// Zed keymap
+//
+// For information on binding keys, see the Zed
+// documentation: https://zed.dev/docs/key-bindings
+//
+// To see the default key bindings run `zed: open default keymap`
+// from the command palette.
+[
+    {
+        "context": "Editor && vim_mode == insert",
+        "bindings": {
+            "j j": "vim::NormalBefore",
+        },
+    },
+    {
+        "context": "Editor && vim_mode == normal && !menu",
+        "bindings": {
+            "shift-k": "editor::Hover",
+            "space o": "tab_switcher::Toggle",
+            "space r": "outline::Toggle",
+            "space \\": "pane::SplitVertical",
+            "space -": "pane::SplitHorizontal",
+            "space p": ["workspace::SendKeystrokes", "\" + p"],
+            "space s r": "editor::GoToDefinitionSplit",
+        },
+    },
+    {
+        "context": "Editor && vim_mode == visual && !menu",
+        "bindings": {
+            "shift-k": "editor::MoveLineUp",
+            "shift-j": "editor::MoveLineDown",
+            "space y": ["workspace::SendKeystrokes", "\" + y"],
+            "space p": ["workspace::SendKeystrokes", "\" + p"],
+        },
+    },
+]

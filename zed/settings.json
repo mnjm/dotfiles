@@ -7,108 +7,120 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
-  "agent": {
-    "favorite_models": [],
-    "single_file_review": false,
-    "model_parameters": []
-  },
-  "window_decorations": "client",
-  "tabs": {
-    "file_icons": true,
-    "git_status": false
-  },
-  "tab_bar": {
-    "show_pinned_tabs_in_separate_row": false,
-    "show_tab_bar_buttons": false,
-    "show_nav_history_buttons": false,
-    "show": true
-  },
-  "title_bar": {
-    "show_menus": false,
-    "show_user_picture": false,
-    "show_project_items": true,
-    "show_branch_icon": true
-  },
-  "diagnostics": {
-    "button": true
-  },
-  "status_bar": {
-    "active_language_button": true
-  },
-  "project_panel": {
-    "starts_open": false,
-    "indent_size": 20.0,
-    "folder_icons": false,
-    "entry_spacing": "standard",
-    "dock": "right",
-    "button": true
-  },
-  "use_smartcase_search": true,
-  "search": {
-    "whole_word": false,
-    "regex": true
-  },
-  "colorize_brackets": true,
-  "inlay_hints": {
-    "show_background": false,
-    "show_parameter_hints": true,
-    "show_type_hints": true,
-    "enabled": false
-  },
-  "preferred_line_length": 100,
-  "tab_size": 4,
-  "vim": {
-    "highlight_on_yank_duration": 200,
-    "use_smartcase_find": true
-  },
-  "toolbar": {
-    "selections_menu": true,
-    "breadcrumbs": true
-  },
-  "minimap": {
-    "max_width_columns": 100,
-    "thumb": "hover",
-    "show": "never"
-  },
-  "scrollbar": {
-    "axes": {
-      "horizontal": true
+    "agent": {
+        "default_profile": "write",
+        "default_model": {
+            "effort": "medium",
+            "provider": "zed.dev",
+            "model": "gpt-5.3-codex",
+            "enable_thinking": true,
+        },
+        "favorite_models": [
+            {
+                "provider": "zed.dev",
+                "model": "gpt-5.3-codex",
+                "enable_thinking": false,
+            },
+        ],
+        "single_file_review": false,
+        "model_parameters": [],
     },
-    "selected_symbol": true,
-    "selected_text": true,
-    "search_results": true,
-    "diagnostics": "warning",
-    "git_diff": true
-  },
-  "gutter": {
-    "min_line_number_digits": 0,
-    "runnables": true
-  },
-  "relative_line_numbers": "enabled",
-  "autosave": {
-    "after_delay": {
-      "milliseconds": 1000
-    }
-  },
-  "buffer_font_weight": 300.0,
-  "telemetry": {
-    "diagnostics": false,
-    "metrics": false
-  },
-  "session": {
-    "trust_all_worktrees": true
-  },
-  "agent_servers": {
-    
-  },
-  "vim_mode": true,
-  "base_keymap": "VSCode",
-  "icon_theme": "Zed (Default)",
-  "ui_font_size": 14.0,
-  "buffer_font_size": 12.0,
-  "theme": {
-    "mode": "dark",
-    "light": "macOS Classic Dark",
-    "dark": "macOS Classic Dark"
-  }
+    "window_decorations": "client",
+    "tabs": {
+        "file_icons": true,
+        "git_status": false,
+    },
+    "tab_bar": {
+        "show_pinned_tabs_in_separate_row": false,
+        "show_tab_bar_buttons": false,
+        "show_nav_history_buttons": false,
+        "show": true,
+    },
+    "title_bar": {
+        "show_menus": false,
+        "show_user_picture": false,
+        "show_project_items": true,
+        "show_branch_icon": true,
+    },
+    "diagnostics": {
+        "button": true,
+    },
+    "status_bar": {
+        "active_language_button": true,
+    },
+    "project_panel": {
+        "starts_open": false,
+        "indent_size": 20.0,
+        "folder_icons": false,
+        "entry_spacing": "standard",
+        "dock": "right",
+        "button": true,
+    },
+    "use_smartcase_search": true,
+    "search": {
+        "whole_word": false,
+        "regex": true,
+    },
+    "colorize_brackets": true,
+    "inlay_hints": {
+        "show_background": false,
+        "show_parameter_hints": true,
+        "show_type_hints": true,
+        "enabled": false,
+    },
+    "preferred_line_length": 100,
+    "tab_size": 4,
+    "vim": {
+        "use_system_clipboard": "never",
+        "highlight_on_yank_duration": 300,
+        "use_smartcase_find": true,
+    },
+    "toolbar": {
+        "selections_menu": true,
+        "breadcrumbs": true,
+    },
+    "minimap": {
+        "max_width_columns": 100,
+        "thumb": "hover",
+        "show": "never",
+    },
+    "scrollbar": {
+        "axes": {
+            "horizontal": true,
+        },
+        "selected_symbol": true,
+        "selected_text": true,
+        "search_results": true,
+        "diagnostics": "warning",
+        "git_diff": true,
+    },
+    "gutter": {
+        "min_line_number_digits": 0,
+        "runnables": true,
+    },
+    "relative_line_numbers": "enabled",
+    "autosave": {
+        "after_delay": {
+            "milliseconds": 1000,
+        },
+    },
+    "buffer_font_weight": 300.0,
+    "telemetry": {
+        "diagnostics": false,
+        "metrics": false,
+    },
+    "session": {
+        "trust_all_worktrees": true,
+    },
+    "agent_servers": {},
+    "vim_mode": true,
+    "base_keymap": "VSCode",
+    "icon_theme": "Zed (Default)",
+    "ui_font_size": 14.0,
+    "buffer_font_size": 12.0,
+    "theme": {
+        "mode": "dark",
+        "light": "macOS Classic Dark",
+        "dark": "macOS Classic Dark",
+    },
 }
