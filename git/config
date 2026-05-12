@@ -26,6 +26,8 @@
     pu = pull
     pr = !"f() { git fetch origin pull/"$1"/head:pr/"$1"; }; f"
     st = stash
+    # fixup with search
+    fixup = !"f() { git commit --fixup ":/$*"; }; f"
     m = merge --ff-only
     ; explicitly create merge commit
     mf = merge --no-ff
@@ -43,9 +45,11 @@
     ; unstage all changes
     unstage = reset --mixed HEAD --
     ; remove untracked changes
-    restore-file-2-staged = restore --worktree
+    restore-staged = restore --worktree
     ; restore file to HEAD
-    restore-file-2-head = restore --staged --worktree
+    restore-head = restore --staged --worktree
+    # re setup target branch
+    track-current  = '!b=$(git branch --show-current) && git branch --set-upstream-to=origin/$b $b'
     ; rebase
     rb = rebase
     rbi = rebase --interactive
@@ -111,7 +115,3 @@
 
 [branch]
     sort = -committerdate
-
-[user]
-	email = manjunat.mohan@gmail.com
-	name = Manjunath Mohan
