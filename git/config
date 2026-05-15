@@ -115,5 +115,3 @@
 
 [branch]
     sort = -committerdate
-[coderabbit]
-	machineId = cli/5a74327611f5437c81d338ef9902a486
