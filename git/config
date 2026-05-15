@@ -26,7 +26,7 @@
     pu = pull
     pr = !"f() { git fetch origin pull/"$1"/head:pr/"$1"; }; f"
     st = stash
-    # fixup with search
+    ; fixup with search
     fixup = !"f() { git commit --fixup ":/$*"; }; f"
     m = merge --ff-only
     ; explicitly create merge commit
@@ -48,8 +48,8 @@
     restore-staged = restore --worktree
     ; restore file to HEAD
     restore-head = restore --staged --worktree
-    # re setup target branch
-    track-current  = '!b=$(git branch --show-current) && git branch --set-upstream-to=origin/$b $b'
+    ; re setup target origin branch
+    track-current = '!b=$(git branch --show-current) && git branch --set-upstream-to=origin/$b $b'
     ; rebase
     rb = rebase
     rbi = rebase --interactive
@@ -115,3 +115,5 @@
 
 [branch]
     sort = -committerdate
+[coderabbit]
+	machineId = cli/5a74327611f5437c81d338ef9902a486
