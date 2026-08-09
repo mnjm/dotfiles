@@ -142,3 +142,5 @@ bindkey  "^[[H"   beginning-of-line                  # alacritty + tmux fix
 bindkey  "^[[F"   end-of-line
 bindkey  "^[[3~"  delete-char
 WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'                   # Default WORDCHARS with \ removed so that CTRL-W will remote till \ (path element)
+
+export PATH="$HOME/.local/bin:$PATH"

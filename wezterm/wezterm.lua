@@ -1,10 +1,10 @@
 local wezterm = require "wezterm"
 local sessionizer = require("sessionizer")
 
--- maximize window on startup
+-- maximize window on startup (not fullscreen)
 wezterm.on("gui-startup", function()
   local _, _, window = wezterm.mux.spawn_window{}
-  window:gui_window():toggle_fullscreen()
+  window:gui_window():maximize()
 end)
 
 local config = {}
@@ -16,7 +16,7 @@ end
 config.color_scheme = 'Colors (base16)'
 config.window_background_opacity = 0.87
 config.font = wezterm.font("UbuntuMono Nerd Font")
-config.font_size = 14
+config.font_size = 13
 
 config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 2000 }
 config.keys = {
