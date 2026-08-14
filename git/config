@@ -49,13 +49,13 @@
     ; restore file to HEAD
     restore-head = restore --staged --worktree
     ; re setup target origin branch
-    track-current = '!b=$(git branch --show-current) && git branch --set-upstream-to=origin/$b $b'
+    track-current = !b=$(git branch --show-current) && git branch --set-upstream-to=origin/$b $b
     ; rebase
     rb = rebase
     rbi = rebase --interactive
     rba = rebase --abort
     rbc = rebase --continue
-    ; prune off remote tracking branches that are tracked in remote
+    ; prune off remote tracking branches that are removed in remote
     remote-refresh = remote update --prune
 
 [core]
