@@ -111,7 +111,9 @@ _source_if_file_exists_err ~/.config/zsh/zsh-syntax-highlighting/zsh-syntax-high
 # widgets
 _source_if_file_exists_err $HOME/.config/zsh/widgets.zsh
 # fzf
-_source_if_file_exists_err ~/.fzf.zsh
+if command -v fzf >/dev/null 2>&1; then
+    source <(fzf --zsh)
+fi
 
 # completion and suggesion bindings
 bindkey -M menuselect '^[[Z' reverse-menu-complete   # 'Shift-tab' to reverse through menu select
