@@ -43,6 +43,7 @@ _source_if_file_exists_err $HOME/.config/zsh/alias
 
 # Update $PATH
 _path_add $HOME/.config/bin
+_path_add "$HOME/.local/bin"
 
 # Load zsh_functions
 fpath+=~/.config/zsh/zsh_functions
@@ -142,5 +143,3 @@ bindkey  "^[[H"   beginning-of-line                  # alacritty + tmux fix
 bindkey  "^[[F"   end-of-line
 bindkey  "^[[3~"  delete-char
 WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'                   # Default WORDCHARS with \ removed so that CTRL-W will remote till \ (path element)
-
-export PATH="$HOME/.local/bin:$PATH"
