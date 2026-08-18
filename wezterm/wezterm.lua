@@ -2,8 +2,8 @@ local wezterm = require "wezterm"
 local sessionizer = require("sessionizer")
 
 -- maximize window on startup (not fullscreen)
-wezterm.on("gui-startup", function()
-  local _, _, window = wezterm.mux.spawn_window{}
+wezterm.on("gui-startup", function(cmd)
+  local _, _, window = wezterm.mux.spawn_window(cmd or {})
   window:gui_window():toggle_fullscreen()
 end)
 
