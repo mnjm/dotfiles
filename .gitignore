@@ -7,7 +7,6 @@
 !git
 !nvim
 !wezterm
-!wezterm/wezterm-server.lua
 !zsh
 !.gitignore
 !README.md

@@ -27,7 +27,17 @@ elif [[ "$OSTYPE" == linux-gnu* || "$OSTYPE" == linux-musl* ]]; then
   }
   trap 'cleanup' HUP INT QUIT TERM EXIT
 
-  if command -v xclip >/dev/null 2>&1; then
+  if [[ -n "${WAYLAND_DISPLAY:-}" ]]; then
+    if ! command -v wl-paste >/dev/null 2>&1 || ! command -v wl-copy >/dev/null 2>&1; then
+      echo "vclip: No Wayland clipboard tool found (install wl-clipboard)." >&2
+      exit 1
+    fi
+    wl-paste > "$tmp"
+    "${EDITOR:-vi}" "$tmp"
+    cat "$tmp" | wl-copy
+    exit 0
+
+  elif command -v xclip >/dev/null 2>&1; then
     xclip -selection clipboard -o > "$tmp"
     "${EDITOR:-vi}" "$tmp"
     cat "$tmp" | xclip -selection clipboard -i
@@ -40,7 +50,7 @@ elif [[ "$OSTYPE" == linux-gnu* || "$OSTYPE" == linux-musl* ]]; then
     exit 0
 
   else
-    echo "vclip: No clipboard tool found (install xclip or xsel)." >&2
+    echo "vclip: No X11 clipboard tool found (install xclip or xsel)." >&2
     exit 1
   fi
 
