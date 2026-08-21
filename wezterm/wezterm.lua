@@ -1,5 +1,9 @@
 local wezterm = require "wezterm"
-local sessionizer = require("sessionizer")
+local options = ({ ... })[1]
+options = type(options) == "table" and options or {}
+local sessionizer_enabled = options.sessionizer ~= false
+local server = options.server == true
+local sessionizer = sessionizer_enabled and require("sessionizer") or nil
 
 -- maximize window on startup (not fullscreen)
 wezterm.on("gui-startup", function(cmd)
@@ -34,12 +38,19 @@ config.keys = {
     { mods = "LEADER", key = "l", action = wezterm.action.AdjustPaneSize { "Right", 5 } },
     { mods = "LEADER", key = "j", action = wezterm.action.AdjustPaneSize { "Down", 5 } },
     { mods = "LEADER", key = "k", action = wezterm.action.AdjustPaneSize { "Up", 5 } },
-    { mods = "LEADER", key = "s", action = wezterm.action_callback(sessionizer.show), },
-    { mods = "LEADER", key = "S", action = wezterm.action_callback(sessionizer.create_new), },
-    { mods = "LEADER", key = "R", action = wezterm.action_callback(sessionizer.rename_workspace), },
-    { mods = "LEADER", key = "p", action = wezterm.action_callback(sessionizer.switch_to_last), },
     { mods = 'LEADER', key = "L", action = wezterm.action.ShowDebugOverlay },
 }
+
+if sessionizer_enabled then
+    table.insert(config.keys, { mods = "LEADER", key = "s", action = wezterm.action_callback(sessionizer.show) })
+    table.insert(config.keys, { mods = "LEADER", key = "S", action = wezterm.action_callback(sessionizer.create_new) })
+    table.insert(config.keys, { mods = "LEADER", key = "R", action = wezterm.action_callback(sessionizer.rename_workspace) })
+    table.insert(config.keys, { mods = "LEADER", key = "p", action = wezterm.action_callback(sessionizer.switch_to_last) })
+end
+
+if server then
+    config.default_workspace = "server"
+end
 
 for i = 1, 9 do
     -- leader + number to activate that tab
@@ -68,9 +79,10 @@ wezterm.on("update-right-status", function(window, _)
         { Text = prefix },
     })
 
-    local workspace = " " .. window:active_workspace() .. " "
+    local workspace = " " .. (server and "server" or window:active_workspace()) .. " "
     window:set_right_status(wezterm.format {
-        { Background = { AnsiColor = "Black" } },
+        { Background = { AnsiColor = server and "Red" or "Black" } },
+        { Foreground = { AnsiColor = server and "Black" or "White" } },
         { Attribute = { Intensity = "Half" }},
         { Text = workspace },
     })
