@@ -18,6 +18,9 @@ if wezterm.config_builder then
 end
 
 config.color_scheme = 'Colors (base16)'
+config.colors = {
+    background = '#000000',
+}
 config.window_background_opacity = 0.87
 config.font = wezterm.font("UbuntuMono Nerd Font")
 config.font_size = 13
