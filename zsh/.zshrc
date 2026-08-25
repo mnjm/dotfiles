@@ -1,3 +1,4 @@
+
 #
 # ███████╗███████╗██╗  ██╗██████╗  ██████╗
 # ╚══███╔╝██╔════╝██║  ██║██╔══██╗██╔════╝
@@ -17,7 +18,12 @@ export TERM="xterm-256color"
 export HISTFILE=~/.cache/zsh_history
 export HISTSIZE=10000
 export SAVEHIST=10000
-export FZF_TMUX_OPTS="-p 85%"
+# Use fzf-tmux only when it is installed; otherwise fzf widgets fail inside tmux.
+if command -v fzf-tmux >/dev/null 2>&1 || [[ -x "$HOME/.local/bin/fzf-tmux" ]]; then
+  export FZF_TMUX_OPTS="-p 85%"
+else
+  unset FZF_TMUX_OPTS
+fi
 export FZF_CTRL_T_COMMAND="fd -H --exclude '**/.git/'"
 export FZF_ALT_C_COMMAND="fd -t d -H --exclude '**/.git/'"
 export FZF_DEFAULT_OPTS='--height 50% --layout=reverse --border'
@@ -123,7 +129,9 @@ bindkey '\ec' undefined-key
 zle -N _fzf-cdprev-widget
 bindkey '^o' fzf-cd-widget                           # ctrl+o to fzf-cd-widgetj
 bindkey '^\' _fzf-cdprev-widget                      # ctrl+p to fzf-cdprev-widget
-bindkey '^f' fzf-file-widget                         # bind ctrl+f to fzf-sel
+bindkey -M emacs '^F' fzf-file-widget                # bind ctrl+f to fzf-file-widget
+bindkey -M viins '^F' fzf-file-widget
+bindkey -M vicmd '^F' fzf-file-widget
 
 # lf widgets - lfcd and lf file picker
 zle -N _lf-cd-widget
@@ -144,3 +152,4 @@ bindkey  "^[[3~"  delete-char
 WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'                   # Default WORDCHARS with \ removed so that CTRL-W will remote till \ (path element)
 
 export PATH="$HOME/.local/bin:$PATH"
+eval "$(zoxide init zsh)"
