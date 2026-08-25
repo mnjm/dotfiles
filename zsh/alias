@@ -31,12 +31,19 @@ function copi() {
   if [[ "$OSTYPE" == darwin* ]]; then
     pbcopy "$@"
   elif [[ "$OSTYPE" == linux-gnu* || "$OSTYPE" == linux-musl* ]]; then
-    if command -v xclip >/dev/null 2>&1; then
+    if [[ -n "${WAYLAND_DISPLAY:-}" ]]; then
+      if command -v wl-copy >/dev/null 2>&1; then
+        wl-copy "$@"
+      else
+        echo "copi: No Wayland clipboard tool found (install wl-clipboard)" >&2
+        return 1
+      fi
+    elif command -v xclip >/dev/null 2>&1; then
       xclip -selection clipboard "$@"
     elif command -v xsel >/dev/null 2>&1; then
       xsel --clipboard "$@"
     else
-      echo "copi: No clipboard tool found (install xclip or xsel)" >&2
+      echo "copi: No X11 clipboard tool found (install xclip or xsel)" >&2
       return 1
     fi
   else
@@ -49,12 +56,19 @@ pasti() {
   if [[ "$OSTYPE" == darwin* ]]; then
     pbpaste "$@"
   elif [[ "$OSTYPE" == linux-gnu* || "$OSTYPE" == linux-musl* ]]; then
-    if command -v xclip >/dev/null 2>&1; then
+    if [[ -n "${WAYLAND_DISPLAY:-}" ]]; then
+      if command -v wl-paste >/dev/null 2>&1; then
+        wl-paste "$@"
+      else
+        echo "pasti: No Wayland clipboard tool found (install wl-clipboard)" >&2
+        return 1
+      fi
+    elif command -v xclip >/dev/null 2>&1; then
       xclip -selection clipboard -o "$@"
     elif command -v xsel >/dev/null 2>&1; then
       xsel --clipboard --output "$@"
     else
-      echo "pasti: No clipboard tool found (install xclip or xsel)" >&2
+      echo "pasti: No X11 clipboard tool found (install xclip or xsel)" >&2
       return 1
     fi
   else
@@ -84,9 +98,9 @@ function gopen() {
       ;;
     linux-gnu*|linux-musl*)
       if command -v xdg-open >/dev/null 2>&1; then
-        xdg-open "$@"
+        xdg-open "$@" >/dev/null 2>&1;
       elif command -v gio >/dev/null 2>&1; then
-        gio open "$@"
+        gio open "$@" >/dev/null 2>&1;
       elif grep -qi microsoft /proc/version 2>/dev/null; then
         # WSL (Windows Subsystem for Linux)
         explorer.exe "$@"

@@ -7,6 +7,47 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+    "enable_language_server": false,
+    "ssh_connections": [
+        {
+            "host": "server",
+            "args": [],
+            "projects": [
+                {
+                    "paths": [
+                        "/home/noshai/workspace/ingredient-ai/cookings-downloader"
+                    ]
+                },
+                {
+                    "paths": [
+                        "/home/noshai/workspace/sessions_dataprep"
+                    ]
+                }
+            ]
+        },
+        {
+            "host": "vm",
+            "args": [],
+            "projects": [
+                {
+                    "paths": [
+                        "/home/mnjm/workspace/ros_workspace"
+                    ]
+                },
+                {
+                    "paths": [
+                        "/home/mnjm/workspace/ros_ws"
+                    ]
+                }
+            ]
+        },
+        {
+            "host": "vm",
+            "args": [],
+            "projects": []
+        }
+    ],
+    "cli_default_open_behavior": "existing_window",
     "agent": {
         "default_profile": "write",
         "default_model": {
@@ -112,7 +153,15 @@
     "session": {
         "trust_all_worktrees": true,
     },
-    "agent_servers": {},
+    "agent_servers": {
+        "codex-acp": {
+            "default_config_options": {
+                "reasoning_effort": "medium",
+                "model": "gpt-5.5"
+            },
+            "type": "registry"
+        }
+    },
     "vim_mode": true,
     "base_keymap": "VSCode",
     "icon_theme": "Zed (Default)",

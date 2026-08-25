@@ -75,6 +75,26 @@ cmd fzf_jump ${{
     fi
 }}
 
+cmd clipboard-copy ${{
+    if [ "$(uname)" = Darwin ]; then
+        printf "%s" "$fx" | pbcopy
+    elif [ -n "${WAYLAND_DISPLAY:-}" ]; then
+        if command -v wl-copy >/dev/null 2>&1; then
+            printf "%s" "$fx" | wl-copy
+        else
+            echo "lf: No Wayland clipboard tool found (install wl-clipboard)" >&2
+            exit 1
+        fi
+    elif command -v xclip >/dev/null 2>&1; then
+        printf "%s" "$fx" | xclip -selection clipboard
+    elif command -v xsel >/dev/null 2>&1; then
+        printf "%s" "$fx" | xsel --clipboard --input
+    else
+        echo "lf: No X11 clipboard tool found (install xclip or xsel)" >&2
+        exit 1
+    fi
+}}
+
 # bindings
 map e
 map gw cd ~/workspace
@@ -83,4 +103,4 @@ map R delete-unsafe
 map <enter> open
 map <c-f> fzf_jump
 map <c-r> reload
-map Y $printf "%s" "$fx" | xclip -selection clipboard
+map Y clipboard-copy
