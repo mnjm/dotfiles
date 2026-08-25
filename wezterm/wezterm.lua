@@ -1,4 +1,15 @@
 local wezterm = require "wezterm"
+local target_triple = wezterm.target_triple
+local os
+
+if target_triple:find("windows", 1, true) then
+    os = "windows"
+elseif target_triple:find("linux", 1, true) then
+    os = "linux"
+elseif target_triple:find("apple-darwin", 1, true) then
+    os = "mac"
+end
+
 local options = ({ ... })[1]
 options = type(options) == "table" and options or {}
 local sessionizer_enabled = options.sessionizer ~= false
@@ -23,7 +34,7 @@ config.colors = {
 }
 config.window_background_opacity = 0.87
 config.font = wezterm.font("UbuntuMono Nerd Font")
-config.font_size = 13
+config.font_size = os == "mac" and 15 or 13
 
 config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 2000 }
 config.keys = {
