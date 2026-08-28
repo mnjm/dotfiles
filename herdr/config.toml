@@ -1,57 +1,96 @@
 onboarding = false
 
 [theme]
-name = "terminal"
+# catppuccin, terminal, tokyo-night, dracula, nord,
+# gruvbox, one-dark, solarized, kanagawa, rose-pine,
+# vesper
+name = "vesper"
+
 auto_switch = false
-
-[theme.custom]
-sidebar_bg = "#000000"
-active_row_bg = "#1f5f3a"
-selection_bg = "#ff9470"
-panel_bg = "#000000"
-accent = "#1f5f3a"
-red = "#d70000"
-green = "#a6e3a1"
-
 [terminal]
 new_cwd = "follow"
 
+[update]
+channel = "stable"
+
 [keys]
 prefix = "ctrl+b"
-new_tab = "prefix+t"
-close_pane = "prefix+w"
-split_horizontal = "prefix+backslash"
-split_vertical = "prefix+minus"
-focus_pane_left = "prefix+left"
-focus_pane_down = "prefix+down"
-focus_pane_up = "prefix+up"
-focus_pane_right = "prefix+right"
-resize_pane_left = "prefix+h"
-resize_pane_down = "prefix+j"
-resize_pane_up = "prefix+k"
-resize_pane_right = "prefix+l"
+help = "prefix+?"
+settings = "prefix+."
+detach = "prefix+q"
+reload_config = "prefix+shift+r"
+open_notification_target = "prefix+o"
 workspace_picker = "prefix+s"
-goto = "prefix+shift+s"
-previous_workspace = "prefix+p"
-rename_workspace = "prefix+shift+r"
-move_tab_previous = "prefix+shift+comma"
-move_tab_next = "prefix+shift+period"
-previous_tab = "alt+left"
-next_tab = "alt+right"
+goto = "prefix+g"
+new_workspace = "prefix+shift+n"
+new_worktree = "prefix+shift+g"
+open_worktree = ""
+remove_worktree = ""
+rename_workspace = "prefix+r"
+# close_workspace = "prefix+shift+w" # close all panes (and tabs) to close workspace
+previous_workspace = "prefix+n"
+next_workspace = "prefix+p"
+previous_agent = ""
+next_agent = ""
+focus_agent = ""
+remote_image_paste = "ctrl+v" # only active in herdr --remote; empty disables raw-key image paste
+new_tab = "prefix+t"
+rename_tab = "prefix+shift+t"
+previous_tab = "prefix+shift+,"
+next_tab = "prefix+shift+."
+move_tab_previous = ""
+move_tab_next = ""
 switch_tab = "prefix+1..9"
-zoom = "prefix+z"
-reload_config = "prefix+shift+c"
-detach = "prefix+d"
+switch_workspace = "prefix+shift+1..9"
+# close_tab = "prefix+shift+w" # close panes to close tab
+rename_pane = ""
+edit_scrollback = "prefix+e"
+focus_pane_left = "prefix+h"
+focus_pane_down = "prefix+j"
+focus_pane_up = "prefix+k"
+focus_pane_right = "prefix+l"
+last_pane = "prefix+tab"
+# cycle_pane_next = "prefix+tab"
+# cycle_pane_previous = "prefix+shift+tab"
+split_vertical = "prefix+\\"
+split_horizontal = "prefix+minus"
+close_pane = "prefix+shift+w"
+resize_mode = "prefix+shift+\\"
+resize_pane_left = "ctrl+shift+h"
+resize_pane_down = "ctrl+shift+j"
+resize_pane_up = "ctrl+shift+k"
+resize_pane_right = "ctrl+shift+l"
+toggle_sidebar = "prefix+b"
+
+navigate_workspace_up = "up"
+navigate_workspace_down = "down"
+navigate_pane_left = "h"
+navigate_pane_down = "j"
+navigate_pane_up = "k"
+navigate_pane_right = "l"
 
 [ui]
-show_agent_labels_on_pane_borders = true
-pane_borders = true
-pane_outer_borders = false
-pane_gaps = false
-pane_scrollbars = false
+sidebar_width = 26
+sidebar_min_width = 18
+sidebar_max_width = 36
+sidebar_start_collapsed = false
+# Collapsed sidebar presentation: "compact" keeps the narrow status rail, "hidden" uses zero width.
+sidebar_collapsed_mode = "hidden"
 mouse_capture = true
 copy_on_select = true
-confirm_close = true
 prompt_new_tab_name = false
-hide_tab_bar_when_single_tab = false
+prompt_new_workspace_name = false
+pane_borders = true
+pane_outer_borders = true
+pane_gaps = false
+hide_tab_bar_when_single_tab = true
 tab_bar_position = "top"
+
+[remote]
+manage_ssh_config = true
+
+[ui.sound]
+enabled = false
+
+[ui.toast]
+delivery = "herdr"
