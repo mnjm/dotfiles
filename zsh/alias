@@ -117,10 +117,18 @@ function gopen() {
 }
 
 # shortcuts
-alias py='python3'                                                # Python Alias
-alias g='git'                                                     # git
+alias py='python3'                                                 # Python Alias
+alias g='git'                                                      # git
 alias v=nvim
-alias rsync='rsync --human-readable'                              # rsync
+if [[ "$(uname)" == "Darwin" ]]; then
+  rsync() {
+    command rsync --human-readable "$@"
+  }
+else
+  rsync() {
+    command rsync --human-readable -az --info=progress2 --no-i-r "$@"
+  }
+fi
 function help(){
     "$@" --help | bat --plain --language=help --paging=always --file-name "$1 $2 --help"
 }
