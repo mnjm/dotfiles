@@ -16,11 +16,12 @@ local sessionizer_enabled = options.sessionizer ~= false
 local server = options.server == true
 local sessionizer = sessionizer_enabled and require("sessionizer") or nil
 
--- maximize window on startup (not fullscreen)
-wezterm.on("gui-startup", function(cmd)
-  local _, _, window = wezterm.mux.spawn_window(cmd or {})
-  window:gui_window():toggle_fullscreen()
-end)
+if os == "linux" then
+    wezterm.on("gui-startup", function(cmd)
+        local _, _, window = wezterm.mux.spawn_window(cmd or {})
+        window:gui_window():maximize()
+    end)
+end
 
 local config = {}
 

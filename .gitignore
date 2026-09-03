@@ -2,16 +2,15 @@
 *
 
 # Do not ignore contents in these folders
-!alacritty
-!bin
-!git
-!nvim
-!wezterm
-!zsh
-!.gitignore
-!README.md
-!herdr/
-!herdr/config.toml
+!alacritty/**
+!bin/**
+!git/**
+!nvim/**
+!wezterm/**
+!zsh/**
+!.gitignore/**
+!README.md/**
+!herdr/**
 
 # Ignore some "inner" files in the above listed folders
 .zcompdump

@@ -4,18 +4,13 @@ local wezterm = require("wezterm")
 local act = wezterm.action
 local M = {}
 local fd = nil
-local use_find = false
 local projects_dir = nil
 local dir_icon = "  "
 local workspace_icon = "  "
 
 local target = wezterm.target_triple:lower()
 if target:find("linux") then
-  -- WezTerm is installed as a Flatpak on this machine.  The host has fd at
-  -- /usr/bin/fd, but that binary is not available inside the Flatpak sandbox,
-  -- so use find from the Flatpak runtime instead.
-  fd = "/usr/bin/find"
-  use_find = true
+  fd = "/usr/bin/fd"
   projects_dir = os.getenv("HOME") .. "/workspace"
 elseif target:find("darwin") then
   fd = "/opt/homebrew/bin/fd"
@@ -43,11 +38,7 @@ local function get_entries()
   local success, stdout, stderr
   if fd and projects_dir then
     local cmd
-    if use_find then
-      cmd = { fd, projects_dir, "-mindepth", "1", "-maxdepth", "1", "-type", "d" }
-    else
-      cmd = { fd, "-t", "d", "--max-depth=1", ".", projects_dir }
-    end
+    cmd = { fd, "-t", "d", "--max-depth=1", ".", projects_dir }
     success, stdout, stderr = wezterm.run_child_process(cmd)
   end
 

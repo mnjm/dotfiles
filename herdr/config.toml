@@ -1,9 +1,7 @@
 onboarding = false
 
 [theme]
-# catppuccin, terminal, tokyo-night, dracula, nord,
-# gruvbox, one-dark, solarized, kanagawa, rose-pine,
-# vesper
+# catppuccin, terminal, tokyo-night, dracula, nord, gruvbox, one-dark, solarized, kanagawa, rose-pine, vesper
 name = "vesper"
 
 auto_switch = false
