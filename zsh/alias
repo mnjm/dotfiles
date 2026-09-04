@@ -120,6 +120,7 @@ function gopen() {
 alias py='python3'                                                 # Python Alias
 alias g='git'                                                      # git
 alias v=nvim
+
 if [[ "$(uname)" == "Darwin" ]]; then
   rsync() {
     command rsync --human-readable "$@"
@@ -129,6 +130,9 @@ else
     command rsync --human-readable -az --info=progress2 --no-i-r "$@"
   }
 fi
+
 function help(){
     "$@" --help | bat --plain --language=help --paging=always --file-name "$1 $2 --help"
 }
+
+alias codex="codex -a never"
