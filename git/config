@@ -32,11 +32,11 @@
     ; explicitly create merge commit
     mf = merge --no-ff
     f = fetch
-    wtl = worktree list
-    ; `git wta <ref>` - add worktree to ../<repo>-<ref> <ref> could be branch, commit or tag (replaces / in ref name with -)
-    wta = "!f() { ref=\"$1\"; repo=$(basename \"$(git rev-parse --show-toplevel)\"); safe_ref=$(printf \"%s\" \"$ref\" | sed 's|/|-|g'); dir=\"../${repo}-${safe_ref}\"; git worktree add \"$dir\" \"$ref\"; }; f"
-    ; `git wtr <ref>` - removes worktree at ../<repo>-<ref> <ref> could be branch, commit or tag
-    wtr = "!f() { ref=\"$1\"; repo=$(basename \"$(git rev-parse --show-toplevel)\"); safe_ref=$(printf \"%s\" \"$ref\" | sed 's|/|-|g'); dir=\"../${repo}-${safe_ref}\"; git worktree remove \"$dir\"; }; f"
+    wtl = !$HOME/.config/bin/git-worktree list
+    ; `git wta <ref>` adds ../<repo>-<ref> and copies files from worktree-files.list.
+    wta = !$HOME/.config/bin/git-worktree add
+    ; `git wtr <ref>` removes ../<repo>-<ref>.
+    wtr = !$HOME/.config/bin/git-worktree remove
     link = !git-link
     ; create temp wip commit
     wip = !"f() { git add -Av && git commit -m '[WIP]' && git commit --amend --quiet; }; f"

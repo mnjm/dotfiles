@@ -31,3 +31,4 @@
 zsh-autosuggestions/
 zsh-syntax-highlighting/
 nvim/lazy-lock.json
+bin/__pycache__/
