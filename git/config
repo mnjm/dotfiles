@@ -86,6 +86,12 @@
 [include]
     path = ~/.config/git/delta_themes.config
 
+[includeIf "gitdir:/home/mnjm/workspace/"]
+    path = ~/.config/git/workspace.gitconfig
+
+[includeIf "gitdir:/home/mnjm/personalspace/"]
+    path = ~/.config/git/personalspace.gitconfig
+
 [delta]
     features = calochortus-lyallii
     navigate = true    # use n and N to move between diff sections

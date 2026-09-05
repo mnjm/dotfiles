@@ -1,138 +1,126 @@
-# ███████╗███████╗██╗  ██╗     █████╗ ██╗     ██╗ █████╗ ███████╗
-# ╚══███╔╝██╔════╝██║  ██║    ██╔══██╗██║     ██║██╔══██╗██╔════╝
-#   ███╔╝ ███████╗███████║    ███████║██║     ██║███████║███████╗
-#  ███╔╝  ╚════██║██╔══██║    ██╔══██║██║     ██║██╔══██║╚════██║
-# ███████╗███████║██║  ██║    ██║  ██║███████╗██║██║  ██║███████║
-# ╚══════╝╚══════╝╚═╝  ╚═╝    ╚═╝  ╚═╝╚══════╝╚═╝╚═╝  ╚═╝╚══════╝
+case "$(uname -s)" in
+  Darwin) os_type='darwin' ;;
+  Linux) os_type='linux' ;;
+  *) os_type='unknown' ;;
+esac
 
 # ls
-if [[ "$(uname)" == "Linux" ]]; then
-  alias ls='ls --color=auto --group-directories-first'
-  alias l='ls --color=auto --group-directories-first'
-  alias la='ls -A --color=auto --group-directories-first'
-  alias ll='ls -lAFh --color=auto --group-directories-first'
-else
-  alias ls='ls --color=auto'
-  alias l='ls --color=auto'
-  alias la='ls -A --color=auto'
-  alias ll='ls -lAFh --color=auto'
-fi
+case "$os_type" in
+  darwin)
+    alias ls='ls -G'
+    alias l='ls -G'
+    alias la='ls -AG'
+    alias ll='ls -lAFhG'
+    ;;
+  linux)
+    alias ls='ls --color=auto --group-directories-first'
+    alias l='ls --color=auto --group-directories-first'
+    alias la='ls -A --color=auto --group-directories-first'
+    alias ll='ls -lAFh --color=auto --group-directories-first'
+    ;;
+esac
 
+# copi
+case "$os_type" in
+  darwin)
+    if command -v pbcopy >/dev/null 2>&1; then
+      alias copi='pbcopy'
+    fi
+    ;;
+  linux)
+    if [[ -n "${WAYLAND_DISPLAY:-}" ]] && command -v wl-copy >/dev/null 2>&1; then
+      alias copi='wl-copy'
+    elif [[ -n "${DISPLAY:-}" ]] && command -v xclip >/dev/null 2>&1; then
+      alias copi='xclip -selection clipboard'
+    elif [[ -n "${DISPLAY:-}" ]] && command -v xsel >/dev/null 2>&1; then
+      alias copi='xsel --clipboard --input'
+    fi
+    ;;
+esac
 
-# colorize
-alias grep='grep --color=auto'                                    # Grep with colors
-alias tree='tree -C'
+# pasti
+case "$os_type" in
+  darwin)
+    if command -v pbpaste >/dev/null 2>&1; then
+      alias pasti='pbpaste'
+    fi
+    ;;
+  linux)
+    if [[ -n "${WAYLAND_DISPLAY:-}" ]] && command -v wl-paste >/dev/null 2>&1; then
+      alias pasti='wl-paste'
+    elif [[ -n "${DISPLAY:-}" ]] && command -v xclip >/dev/null 2>&1; then
+      alias pasti='xclip -selection clipboard -o'
+    elif [[ -n "${DISPLAY:-}" ]] && command -v xsel >/dev/null 2>&1; then
+      alias pasti='xsel --clipboard --output'
+    fi
+    ;;
+esac
 
-# ez backtracking
+# gopen
+case "$os_type" in
+  darwin)
+    command -v open >/dev/null 2>&1 && alias gopen='open'
+    ;;
+  linux)
+    if command -v xdg-open >/dev/null 2>&1; then
+      alias gopen='xdg-open'
+    elif command -v gio >/dev/null 2>&1; then
+      alias gopen='gio open'
+    elif grep -qi microsoft /proc/version 2>/dev/null && command -v explorer.exe >/dev/null 2>&1; then
+      alias gopen='explorer.exe'
+    fi
+    ;;
+esac
+
+# rsync
+case "$os_type" in
+  darwin)
+    command -v rsync >/dev/null 2>&1 && alias rsync='rsync --human-readable'
+    ;;
+  linux)
+    command -v rsync >/dev/null 2>&1 && alias rsync='rsync --human-readable -az --info=progress2 --no-i-r'
+    ;;
+esac
+
+# ppath
+case "$os_type" in
+  linux)
+    command -v readlink >/dev/null 2>&1 && alias ppath='readlink -f'
+    ;;
+  darwin)
+    if command -v realpath >/dev/null 2>&1; then
+      alias ppath='realpath'
+    elif command -v grealpath >/dev/null 2>&1; then
+      alias ppath='grealpath'
+    fi
+    ;;
+esac
+
+# grep
+case "$os_type" in
+  linux)
+    grep --color=auto --version >/dev/null 2>&1 && alias grep='grep --color=auto'
+    ;;
+  darwin)
+    command -v ggrep >/dev/null 2>&1 && alias grep='ggrep --color=auto'
+    ;;
+esac
+
+# tree
+command -v tree >/dev/null 2>&1 && alias tree='tree -C'
+
+# Navigation and safe file operations
 alias ..='cd ..'
-
-# clipboard copy
-function copi() {
-  if [[ "$OSTYPE" == darwin* ]]; then
-    pbcopy "$@"
-  elif [[ "$OSTYPE" == linux-gnu* || "$OSTYPE" == linux-musl* ]]; then
-    if [[ -n "${WAYLAND_DISPLAY:-}" ]]; then
-      if command -v wl-copy >/dev/null 2>&1; then
-        wl-copy "$@"
-      else
-        echo "copi: No Wayland clipboard tool found (install wl-clipboard)" >&2
-        return 1
-      fi
-    elif command -v xclip >/dev/null 2>&1; then
-      xclip -selection clipboard "$@"
-    elif command -v xsel >/dev/null 2>&1; then
-      xsel --clipboard "$@"
-    else
-      echo "copi: No X11 clipboard tool found (install xclip or xsel)" >&2
-      return 1
-    fi
-  else
-    echo "copi: Unsupported OS: $OSTYPE" >&2
-    return 1
-  fi
-}
-
-pasti() {
-  if [[ "$OSTYPE" == darwin* ]]; then
-    pbpaste "$@"
-  elif [[ "$OSTYPE" == linux-gnu* || "$OSTYPE" == linux-musl* ]]; then
-    if [[ -n "${WAYLAND_DISPLAY:-}" ]]; then
-      if command -v wl-paste >/dev/null 2>&1; then
-        wl-paste "$@"
-      else
-        echo "pasti: No Wayland clipboard tool found (install wl-clipboard)" >&2
-        return 1
-      fi
-    elif command -v xclip >/dev/null 2>&1; then
-      xclip -selection clipboard -o "$@"
-    elif command -v xsel >/dev/null 2>&1; then
-      xsel --clipboard --output "$@"
-    else
-      echo "pasti: No X11 clipboard tool found (install xclip or xsel)" >&2
-      return 1
-    fi
-  else
-    echo "pasti: Unsupported OS: $OSTYPE" >&2
-    return 1
-  fi
-}
-
-# Safe Remove
-function safe_rm() {
-    rm -vI "$@"
-}
-# replace rm with trash
-alias rm='safe_rm'
-
-# safe move and copy
+alias rm='rm -vI'
 alias mv='mv -vi'
 alias cp='cp -vi'
 
-# find real abosolute path of the file
-alias ppath='readlink -f'
+# Shortcuts
+alias py='python3'
+alias g='git'
+alias v='nvim'
+alias cc='codex -a never'
 
-function gopen() {
-  case "$OSTYPE" in
-    darwin*)  # macOS
-      open "$@"
-      ;;
-    linux-gnu*|linux-musl*)
-      if command -v xdg-open >/dev/null 2>&1; then
-        xdg-open "$@" >/dev/null 2>&1;
-      elif command -v gio >/dev/null 2>&1; then
-        gio open "$@" >/dev/null 2>&1;
-      elif grep -qi microsoft /proc/version 2>/dev/null; then
-        # WSL (Windows Subsystem for Linux)
-        explorer.exe "$@"
-      else
-        echo "gopen: No graphical open command found (need xdg-open, gio, or explorer.exe)" >&2
-        return 1
-      fi
-      ;;
-    *)
-      echo "gopen: Unsupported OS ($OSTYPE)" >&2
-      return 1
-      ;;
-  esac
+function help() {
+  "$@" --help | bat --plain --language=help --paging=always --file-name "$1 $2 --help"
 }
-
-# shortcuts
-alias py='python3'                                                 # Python Alias
-alias g='git'                                                      # git
-alias v=nvim
-
-if [[ "$(uname)" == "Darwin" ]]; then
-  rsync() {
-    command rsync --human-readable "$@"
-  }
-else
-  rsync() {
-    command rsync --human-readable -az --info=progress2 --no-i-r "$@"
-  }
-fi
-
-function help(){
-    "$@" --help | bat --plain --language=help --paging=always --file-name "$1 $2 --help"
-}
-
-alias codex="codex -a never"

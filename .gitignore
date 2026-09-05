@@ -2,20 +2,32 @@
 *
 
 # Do not ignore contents in these folders
-!alacritty/**
+!bin/
 !bin/**
+!git/
 !git/**
+!lf/
+!lf/**
+!nvim/
 !nvim/**
+!tmux/
+!tmux/**
+!wezterm/
 !wezterm/**
+!zed/settings.json
+!zed/**
+!zsh/
 !zsh/**
-!.gitignore/**
-!README.md/**
-!herdr/**
+!herdr/config.toml
+
+!.gitignore
+!README.md
 
 # Ignore some "inner" files in the above listed folders
 .zcompdump
 .zsh_history
 .zsh_sessions/
+.zshrc_local
 zsh-autosuggestions/
 zsh-syntax-highlighting/
 nvim/lazy-lock.json
