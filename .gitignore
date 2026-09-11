@@ -19,6 +19,12 @@
 !zsh/
 !zsh/**
 !herdr/config.toml
+!codex/
+codex/*
+!codex/skills/
+!codex/skills/**
+!codex/AGENTS.md
+!codex/config.toml
 
 !.gitignore
 !README.md
@@ -32,3 +38,4 @@ zsh-autosuggestions/
 zsh-syntax-highlighting/
 nvim/lazy-lock.json
 bin/__pycache__/
+codex/skills/.system

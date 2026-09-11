@@ -7,7 +7,7 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
-    "enable_language_server": false,
+    "enable_language_server": true,
     "ssh_connections": [
         {
             "host": "server",
