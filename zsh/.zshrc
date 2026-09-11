@@ -29,6 +29,7 @@ export FZF_ALT_C_COMMAND="fd -t d -H --exclude '**/.git/'"
 export FZF_DEFAULT_OPTS='--height 50% --layout=reverse --border'
 export FZF_CTRL_T_OPTS="--preview='bat --style=numbers --color=always --line-range :500 {}'"
 export CODEX_HOME="$HOME/.config/codex"
+export PI_CODING_AGENT_DIR="$HOME/.config/pi/agent"
 
 # disable default python virtualenv prompt display
 export VIRTUAL_ENV_DISABLE_PROMPT=1

@@ -21,6 +21,13 @@
 !herdr/config.toml
 !codex/
 codex/*
+!pi/
+!pi/agent/
+!pi/agent/AGENTS.md
+!pi/agent/skills/
+!pi/agent/skills/**
+!pi/agent/extensions/
+!pi/agent/extensions/**
 !codex/skills/
 !codex/skills/**
 !codex/AGENTS.md
@@ -39,3 +46,4 @@ zsh-syntax-highlighting/
 nvim/lazy-lock.json
 bin/__pycache__/
 codex/skills/.system
+agent/extensions/herdr-agent-state.ts
