@@ -38,3 +38,7 @@ Re-check with: git diff --cached, git status --short
 git commit
 git show --stat --oneline HEAD
 git status --short
+
+5. Fallback
+
+- If you couldn't commit, output the complete command do so
