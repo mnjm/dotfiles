@@ -86,10 +86,10 @@
 [include]
     path = ~/.config/git/delta_themes.config
 
-[includeIf "gitdir:/home/mnjm/workspace/"]
+[includeIf "gitdir:~/workspace/"]
     path = ~/.config/git/workspace.gitconfig
 
-[includeIf "gitdir:/home/mnjm/personalspace/"]
+[includeIf "gitdir:~/personalspace/"]
     path = ~/.config/git/personalspace.gitconfig
 
 [delta]

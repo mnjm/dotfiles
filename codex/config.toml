@@ -113,6 +113,12 @@ trust_level = "trusted"
 [projects."/home/mnjm/workspace/ingredient-ai"]
 trust_level = "trusted"
 
+[projects."/home/noshai/workspace/nosh_device_app_integrated"]
+trust_level = "trusted"
+
+[projects."/home/noshai/.config"]
+trust_level = "trusted"
+
 [desktop]
 conversationDetailMode = "STEPS_COMMANDS"
 ambient-suggestions-enabled = false
