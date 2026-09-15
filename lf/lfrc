@@ -97,7 +97,6 @@ cmd clipboard-copy ${{
 
 # bindings
 map e
-map gw cd ~/workspace
 map D delete-safe
 map R delete-unsafe
 map <enter> open

@@ -4,21 +4,30 @@ local wezterm = require("wezterm")
 local act = wezterm.action
 local M = {}
 local fd = nil
-local projects_dir = nil
+local project_dirs = nil
 local dir_icon = "  "
 local workspace_icon = "  "
 
 local target = wezterm.target_triple:lower()
 if target:find("linux") then
   fd = "/usr/bin/fd"
-  projects_dir = os.getenv("HOME") .. "/workspace"
+  project_dirs = {
+    { path = os.getenv("HOME") .. "/work", name = "work" },
+    { path = os.getenv("HOME") .. "/personal", name = "personal" },
+  }
 elseif target:find("darwin") then
   fd = "/opt/homebrew/bin/fd"
-  projects_dir = os.getenv("HOME") .. "/workspace"
+  project_dirs = {
+    { path = os.getenv("HOME") .. "/work", name = "work" },
+    { path = os.getenv("HOME") .. "/personal", name = "personal" },
+  }
 elseif target:find("windows") then
   -- Install fd using `winget install sharkdp.fd`
   fd = "fd"
-  projects_dir = "C:\\workspace"
+  project_dirs = {
+    { path = "C:\\work", name = "work" },
+    { path = "C:\\personal", name = "personal" },
+  }
 else
   wezterm.log_info("Unknown OS: " .. target)
 end
@@ -35,23 +44,21 @@ local function get_entries()
     end
   end
 
-  local success, stdout, stderr
-  if fd and projects_dir then
-    local cmd
-    cmd = { fd, "-t", "d", "--max-depth=1", ".", projects_dir }
-    success, stdout, stderr = wezterm.run_child_process(cmd)
-  end
-
-  if not success then
-    wezterm.log_error("Failed to list projects: " .. (stderr or "<no stderr>"))
-    return entries
-  end
-
-  for path in stdout:gmatch("([^\r\n]+)") do
-    path = path:gsub("[/\\]$", "")
-    local basename = path:match("([^/\\]+)$")
-    if basename and ws_f_d[basename] == nil then
-      table.insert(entries, { label = dir_icon .. basename, id = path })
+  if fd and project_dirs then
+    for _, project_dir in ipairs(project_dirs) do
+      local success, stdout, stderr = wezterm.run_child_process({ fd, "-t", "d", "--max-depth=1", ".", project_dir.path })
+      if not success then
+        wezterm.log_error("Failed to list projects in " .. project_dir.path .. ": " .. (stderr or "<no stderr>"))
+      else
+        for path in stdout:gmatch("([^\r\n]+)") do
+          path = path:gsub("[/\\]$", "")
+          local basename = path:match("([^/\\]+)$")
+          local workspace = basename and project_dir.name .. "/" .. basename
+          if workspace and ws_f_d[workspace] == nil then
+            table.insert(entries, { label = dir_icon .. workspace, id = path })
+          end
+        end
+      end
     end
   end
 
@@ -72,7 +79,7 @@ end
 M.show = function(win, pane)
   local entries = get_entries()
   if #entries == 0 then
-    wezterm.log_info("No projects in " .. tostring(projects_dir))
+    wezterm.log_info("No projects found")
     return
   end
 

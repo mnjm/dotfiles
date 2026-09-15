@@ -17,7 +17,7 @@ enabled = false
 
 [marketplaces.openai-bundled]
 source_type = "local"
-source = "/home/mnjm/.codex/.tmp/bundled-marketplaces/openai-bundled"
+source = "/home/mnjm/.config/codex/.tmp/bundled-marketplaces/openai-bundled"
 
 [marketplaces.openai-primary-runtime]
 source_type = "local"
@@ -72,51 +72,57 @@ startup_timeout_sec = 120
 NODE_REPL_NATIVE_PIPE_CONNECT_TIMEOUT_MS = "1000"
 NODE_REPL_NODE_MODULE_DIRS = "/usr/lib/chatgpt/resources/cua_node/lib/node_modules"
 NODE_REPL_NODE_PATH = "/usr/lib/chatgpt/resources/cua_node/bin/node"
-NODE_REPL_TRUSTED_CODE_PATHS = "/home/mnjm/.codex:/usr/lib/chatgpt/resources/cua_node/lib/node_modules"
-CODEX_HOME = "/home/mnjm/.codex"
+NODE_REPL_TRUSTED_CODE_PATHS = "/home/mnjm/.config/codex:/usr/lib/chatgpt/resources/cua_node/lib/node_modules"
+CODEX_HOME = "/home/mnjm/.config/codex"
 BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab"
 BROWSER_USE_TINYSKY_ENABLED = "1"
 NODE_REPL_INSTRUCTIONS_USE_CASE_BROWSER = ""
 NODE_REPL_INSTRUCTIONS_USE_CASE_CHROME = ""
 BROWSER_USE_CODEX_APP_BUILD_FLAVOR = "prod"
-BROWSER_USE_CODEX_APP_VERSION = "26.901.51231"
-NODE_REPL_TRUSTED_SERVICES = '{"browser":"/home/mnjm/.codex/plugins/cache/openai-bundled/browser/26.901.51231/scripts/browser-service.mjs"}'
+BROWSER_USE_CODEX_APP_VERSION = "26.908.40834"
+NODE_REPL_TRUSTED_SERVICES = '{"browser":"/home/mnjm/.config/codex/plugins/cache/openai-bundled/browser/26.908.40834/scripts/browser-service.mjs"}'
 CODEX_CLI_PATH = "/usr/lib/chatgpt/resources/codex"
 
 [shell_environment_policy.set]
 NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "e7fc907079d6797973cb63f97d2562c965aad8d33f52fb726005bf6702f30afc"
 
-[projects."/home/mnjm/workspace/device_app"]
+[projects."/home/mnjm/work/device_app"]
 trust_level = "trusted"
 
-[projects."/home/mnjm/workspace/recipes-chatbot"]
+[projects."/home/mnjm/work/recipes-chatbot"]
 trust_level = "trusted"
 
-[projects."/home/mnjm/workspace/learning"]
+[projects."/home/mnjm/work/learning"]
 trust_level = "trusted"
 
 [projects."/home/mnjm/.config"]
 trust_level = "trusted"
 
-[projects."/home/mnjm/workspace/analytics-tool"]
+[projects."/home/mnjm/work/analytics-tool"]
 trust_level = "trusted"
 
-[projects."/home/mnjm/workspace/recipes-chatbot-v2"]
+[projects."/home/mnjm/work/recipes-chatbot-v2"]
 trust_level = "trusted"
 
-[projects."/home/mnjm/workspace/onnx-litert-benchmark-tool"]
+[projects."/home/mnjm/work/onnx-litert-benchmark-tool"]
 trust_level = "trusted"
 
-[projects."/home/mnjm/workspace/nosh-analytic-agent-2"]
+[projects."/home/mnjm/work/nosh-analytic-agent-2"]
 trust_level = "trusted"
 
-[projects."/home/mnjm/workspace/ingredient-ai"]
+[projects."/home/mnjm/work/ingredient-ai"]
 trust_level = "trusted"
 
-[projects."/home/noshai/workspace/nosh_device_app_integrated"]
+[projects."/home/noshai/work/nosh_device_app_integrated"]
 trust_level = "trusted"
 
 [projects."/home/noshai/.config"]
+trust_level = "trusted"
+
+[projects."/home/mnjm/work"]
+trust_level = "trusted"
+
+[projects."/home/mnjm/personal"]
 trust_level = "trusted"
 
 [desktop]

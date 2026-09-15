@@ -86,11 +86,11 @@
 [include]
     path = ~/.config/git/delta_themes.config
 
-[includeIf "gitdir:~/workspace/"]
-    path = ~/.config/git/workspace.gitconfig
+[includeIf "gitdir:~/work/"]
+    path = ~/.config/git/work.gitconfig
 
-[includeIf "gitdir:~/personalspace/"]
-    path = ~/.config/git/personalspace.gitconfig
+[includeIf "gitdir:~/personal/"]
+    path = ~/.config/git/personal.gitconfig
 
 [delta]
     features = calochortus-lyallii
