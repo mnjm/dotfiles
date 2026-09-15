@@ -3,27 +3,22 @@
 local wezterm = require("wezterm")
 local act = wezterm.action
 local M = {}
-local fd = nil
 local project_dirs = nil
 local dir_icon = "  "
 local workspace_icon = "  "
 
 local target = wezterm.target_triple:lower()
 if target:find("linux") then
-  fd = "/usr/bin/fd"
   project_dirs = {
     { path = os.getenv("HOME") .. "/work", name = "work" },
     { path = os.getenv("HOME") .. "/personal", name = "personal" },
   }
 elseif target:find("darwin") then
-  fd = "/opt/homebrew/bin/fd"
   project_dirs = {
     { path = os.getenv("HOME") .. "/work", name = "work" },
     { path = os.getenv("HOME") .. "/personal", name = "personal" },
   }
 elseif target:find("windows") then
-  -- Install fd using `winget install sharkdp.fd`
-  fd = "fd"
   project_dirs = {
     { path = "C:\\work", name = "work" },
     { path = "C:\\personal", name = "personal" },
@@ -44,17 +39,17 @@ local function get_entries()
     end
   end
 
-  if fd and project_dirs then
+  if project_dirs then
     for _, project_dir in ipairs(project_dirs) do
-      local success, stdout, stderr = wezterm.run_child_process({ fd, "-t", "d", "--max-depth=1", ".", project_dir.path })
+      local success, paths = pcall(wezterm.read_dir, project_dir.path)
       if not success then
-        wezterm.log_error("Failed to list projects in " .. project_dir.path .. ": " .. (stderr or "<no stderr>"))
+        wezterm.log_error("Failed to list projects in " .. project_dir.path .. ": " .. tostring(paths))
       else
-        for path in stdout:gmatch("([^\r\n]+)") do
-          path = path:gsub("[/\\]$", "")
+        for _, path in ipairs(paths) do
           local basename = path:match("([^/\\]+)$")
           local workspace = basename and project_dir.name .. "/" .. basename
-          if workspace and ws_f_d[workspace] == nil then
+          local is_directory = pcall(wezterm.read_dir, path)
+          if is_directory and workspace and ws_f_d[workspace] == nil then
             table.insert(entries, { label = dir_icon .. workspace, id = path })
           end
         end
