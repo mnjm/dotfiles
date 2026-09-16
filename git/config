@@ -49,7 +49,7 @@
     ; restore file to HEAD
     restore-head = restore --staged --worktree
     ; re setup target origin branch
-    track-current = !b=$(git branch --show-current) && git branch --set-upstream-to=origin/$b $b
+    track-remote = !b=$(git branch --show-current) && git branch --set-upstream-to=origin/$b $b
     ; rebase
     rb = rebase
     rbi = rebase --interactive
