@@ -125,6 +125,9 @@ trust_level = "trusted"
 [projects."/home/mnjm/personal"]
 trust_level = "trusted"
 
+[projects."/Users/mnjm/.config"]
+trust_level = "trusted"
+
 [desktop]
 conversationDetailMode = "STEPS_COMMANDS"
 ambient-suggestions-enabled = false

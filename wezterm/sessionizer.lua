@@ -3,17 +3,12 @@
 local wezterm = require("wezterm")
 local act = wezterm.action
 local M = {}
-local project_dirs = nil
 local dir_icon = "  "
 local workspace_icon = "  "
 
 local target = wezterm.target_triple:lower()
-if target:find("linux") then
-  project_dirs = {
-    { path = os.getenv("HOME") .. "/work", name = "work" },
-    { path = os.getenv("HOME") .. "/personal", name = "personal" },
-  }
-elseif target:find("darwin") then
+local project_dirs
+if target:find("linux") or target:find("darwin") then
   project_dirs = {
     { path = os.getenv("HOME") .. "/work", name = "work" },
     { path = os.getenv("HOME") .. "/personal", name = "personal" },
@@ -28,13 +23,13 @@ else
 end
 
 local function get_entries()
-  local ws_f_d = {}
+  local workspaces = {}
   local entries = {}
 
-  local existing_workspaces = wezterm.mux.get_workspace_names()
-  for _, ws in ipairs(existing_workspaces) do
-    ws_f_d[ws] = true
-    if ws ~= wezterm.mux.get_active_workspace() then
+  local active_workspace = wezterm.mux.get_active_workspace()
+  for _, ws in ipairs(wezterm.mux.get_workspace_names()) do
+    workspaces[ws] = true
+    if ws ~= active_workspace then
       table.insert(entries, { label = workspace_icon .. tostring(ws), id = nil })
     end
   end
@@ -49,7 +44,7 @@ local function get_entries()
           local basename = path:match("([^/\\]+)$")
           local workspace = basename and project_dir.name .. "/" .. basename
           local is_directory = pcall(wezterm.read_dir, path)
-          if is_directory and workspace and ws_f_d[workspace] == nil then
+          if is_directory and workspace and not workspaces[workspace] then
             table.insert(entries, { label = dir_icon .. workspace, id = path })
           end
         end
@@ -61,8 +56,9 @@ local function get_entries()
 end
 
 local function set_last_workspace(win)
-  wezterm.log_info("Setting last workspace to " .. win:active_workspace())
-  wezterm.GLOBAL.sessionizer_last_workspace = win:active_workspace()
+  local workspace = win:active_workspace()
+  wezterm.log_info("Setting last workspace to " .. workspace)
+  wezterm.GLOBAL.sessionizer_last_workspace = workspace
 end
 
 local function get_last_workspace()
