@@ -96,9 +96,6 @@ if (( $+commands[fzf] )); then
   zle -N _fzf-cdprev-widget
   bindkey '^o' fzf-cd-widget
   bindkey '^\' _fzf-cdprev-widget
-  bindkey -M emacs '^F' fzf-file-widget
-  bindkey -M viins '^F' fzf-file-widget
-  bindkey -M vicmd '^F' fzf-file-widget
 fi
 
 # lf widgets
@@ -114,11 +111,14 @@ fi
 autoload -Uz edit-command-line
 zle -N edit-command-line
 bindkey '^e' edit-command-line
+
+# These bindings make Backspace, Home, End, and Delete work when the terminal sends their escape codes.
 bindkey '^?' backward-delete-char
 bindkey '^[[H' beginning-of-line
 bindkey '^[[F' end-of-line
 bindkey '^[[3~' delete-char
-WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
+
+WORDCHARS='*?_-.[]~=&;!#$%^(){}<>' # These characters count as part of a word for word-wise editing.
 
 # Plugins
 if [[ -r "$ZDOTDIR/zsh-autosuggestions/zsh-autosuggestions.zsh" ]]; then
