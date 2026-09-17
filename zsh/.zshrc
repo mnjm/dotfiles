@@ -95,6 +95,7 @@ if (( $+commands[fzf] )); then
   bindkey '\ec' undefined-key
   zle -N _fzf-cdprev-widget
   bindkey '^o' fzf-cd-widget
+  bindkey '^F' fzf-file-widget
   bindkey '^\' _fzf-cdprev-widget
 fi
 
@@ -108,15 +109,10 @@ if (( $+commands[lf] )); then
 fi
 
 # Editing and terminal keys
+bindkey -e
 autoload -Uz edit-command-line
 zle -N edit-command-line
 bindkey '^e' edit-command-line
-
-# These bindings make Backspace, Home, End, and Delete work when the terminal sends their escape codes.
-bindkey '^?' backward-delete-char
-bindkey '^[[H' beginning-of-line
-bindkey '^[[F' end-of-line
-bindkey '^[[3~' delete-char
 
 WORDCHARS='*?_-.[]~=&;!#$%^(){}<>' # These characters count as part of a word for word-wise editing.
 
