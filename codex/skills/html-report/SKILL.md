@@ -9,7 +9,7 @@ Create a readable, static HTML document when a visual report explains the work b
 
 ## Build the document
 
-Produce one HTML file with a semantic structure, responsive layout, and no application behavior. Tailwind from its CDN is fine for layout. Use Mermaid from its CDN for dependency or flow diagrams. Use HTML and inline SVG when Mermaid would make the visual generic or hard to read.
+Produce one HTML file with a semantic structure, responsive layout, and no application behavior. Tailwind from its CDN is fine for layout. Use MathJax from a CDN to render math. Use Mermaid from its CDN for diagrams. Use HTML and inline SVG when Mermaid would make the visual generic or hard to read. Make every diagram, including Mermaid diagrams, zoomable.
 
 ```html
 <!doctype html>
