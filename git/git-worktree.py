@@ -25,7 +25,7 @@ def repository_root() -> Path:
     try:
         return Path(git_output("rev-parse", "--show-toplevel")).resolve()
     except subprocess.CalledProcessError:
-        print("git-worktree must run inside a Git working tree", file=sys.stderr)
+        print("git-worktree.py must run inside a Git working tree", file=sys.stderr)
         raise SystemExit(1)
 
 

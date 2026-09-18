@@ -18,7 +18,7 @@ settings = "prefix+."
 detach = "prefix+q"
 reload_config = "prefix+shift+r"
 open_notification_target = "prefix+o"
-workspace_picker = "prefix+s"
+workspace_picker = "prefix+shift+s"
 goto = "prefix+g"
 new_workspace = "prefix+n"
 new_worktree = "prefix+shift+g"
@@ -66,6 +66,13 @@ navigate_pane_left = "h"
 navigate_pane_down = "j"
 navigate_pane_up = "k"
 navigate_pane_right = "l"
+
+[[keys.command]]
+key = "prefix+s"
+type = "popup"
+command = "$HOME/.config/bin/herdrn"
+width = "80%"
+height = "80%"
 
 [ui]
 sidebar_width = 26

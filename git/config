@@ -11,8 +11,8 @@
     ds = diff --staged
     dt = difftool -y
     dts = difftool -y --staged
-    dp = !git-diff-previewer
-    dps = !git-diff-previewer --staged
+    dp = !$HOME/.config/git/git-diff-previewer.sh
+    dps = !$HOME/.config/git/git-diff-previewer.sh --staged
     a = add -v
     au = add -vu
     b = branch
@@ -32,12 +32,12 @@
     ; explicitly create merge commit
     mf = merge --no-ff
     f = fetch
-    wtl = !$HOME/.config/bin/git-worktree list
+    wtl = !$HOME/.config/git/git-worktree.py list
     ; `git wta <ref>` adds ../<repo>-<ref> and copies files from worktree-files.list.
-    wta = !$HOME/.config/bin/git-worktree add
+    wta = !$HOME/.config/git/git-worktree.py add
     ; `git wtr <ref>` removes ../<repo>-<ref>.
-    wtr = !$HOME/.config/bin/git-worktree remove
-    link = !git-link
+    wtr = !$HOME/.config/git/git-worktree.py remove
+    link = !$HOME/.config/git/git-link.sh
     ; create temp wip commit
     wip = !"f() { git add -Av && git commit -m '[WIP]' && git commit --amend --quiet; }; f"
     ; remove last commit stage the changes

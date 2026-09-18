@@ -18,7 +18,9 @@
 !zed/**
 !zsh/
 !zsh/**
+!herdr/
 !herdr/config.toml
+!herdr/herdr-sessionizer.sh
 !codex/
 codex/*
 !pi/
