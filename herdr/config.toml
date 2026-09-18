@@ -12,7 +12,7 @@ new_cwd = "follow"
 channel = "stable"
 
 [keys]
-prefix = "ctrl+b"
+prefix = "ctrl+a"
 help = "prefix+?"
 settings = "prefix+."
 detach = "prefix+q"
@@ -58,19 +58,12 @@ resize_pane_left = "ctrl+shift+h"
 resize_pane_down = "ctrl+shift+j"
 resize_pane_up = "ctrl+shift+k"
 resize_pane_right = "ctrl+shift+l"
-toggle_sidebar = "prefix+b"
-
-navigate_workspace_up = "up"
-navigate_workspace_down = "down"
-navigate_pane_left = "h"
-navigate_pane_down = "j"
-navigate_pane_up = "k"
-navigate_pane_right = "l"
+toggle_sidebar = "prefix+a"
 
 [[keys.command]]
 key = "prefix+s"
 type = "popup"
-command = "$HOME/.config/bin/herdrn"
+command = "$HOME/.config/herdr/herdr-sessionizer.sh"
 width = "80%"
 height = "80%"
 

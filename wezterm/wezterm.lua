@@ -41,7 +41,7 @@ config.window_background_opacity = 0.87
 config.font = wezterm.font("UbuntuMono Nerd Font")
 config.font_size = os == "mac" and 15 or 13
 
-config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 2000 }
+config.leader = { key = "b", mods = "CTRL", timeout_milliseconds = 2000 }
 config.keys = {
     { mods = "LEADER", key = "t", action = wezterm.action.SpawnTab "CurrentPaneDomain", },
     { mods = "LEADER", key = "w", action = wezterm.action.CloseCurrentPane { confirm = true } },
