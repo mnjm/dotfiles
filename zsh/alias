@@ -120,7 +120,3 @@ alias py='python3'
 alias g='git'
 alias v='nvim'
 alias cc='codex -a never'
-
-function help() {
-  "$@" --help | bat --plain --language=help --paging=always --file-name "$1 $2 --help"
-}
