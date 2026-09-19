@@ -12,8 +12,8 @@
 !nvim/**
 !tmux/
 !tmux/**
-!wezterm/
-!wezterm/**
+!ghostty/
+!ghostty/**
 !zed/settings.json
 !zed/**
 !zsh/
@@ -39,6 +39,7 @@ codex/*
 !README.md
 
 # Ignore some "inner" files in the above listed folders
+ghostty/config.local
 .zcompdump
 .zsh_history
 .zsh_sessions/
