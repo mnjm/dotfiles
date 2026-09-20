@@ -40,3 +40,5 @@ split-inherit-working-directory = true
 window-new-tab-position = current
 
 maximize = true
+cursor-style = block
+shell-integration-features = no-cursor
