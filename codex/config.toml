@@ -148,6 +148,9 @@ trust_level = "trusted"
 [projects."/Users/mnjm/personal/mnjm.github.io"]
 trust_level = "trusted"
 
+[projects."/home/mnjm/work/tomato"]
+trust_level = "trusted"
+
 [desktop]
 conversationDetailMode = "STEPS_COMMANDS"
 ambient-suggestions-enabled = false
