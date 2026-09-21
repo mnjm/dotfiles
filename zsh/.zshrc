@@ -95,7 +95,7 @@ if (( $+commands[fzf] )); then
   bindkey '\ec' undefined-key
   zle -N _fzf-cdprev-widget
   bindkey '^o' fzf-cd-widget
-  bindkey '^F' fzf-file-widget
+  bindkey '^f' fzf-file-widget
   bindkey '^\' _fzf-cdprev-widget
 fi
 
