@@ -3,10 +3,11 @@
 
 from __future__ import annotations
 
+import re
 import shutil
 import subprocess
 import sys
-from pathlib import Path, PurePosixPath
+from pathlib import Path
 
 
 FILES_LIST = "worktree-files.list"
@@ -40,18 +41,18 @@ def listed_files(root: Path) -> list[tuple[Path, Path]]:
 
     files: list[tuple[Path, Path]] = []
     for line_number, line in enumerate(files_list.read_text().splitlines(), start=1):
-        entry = line.strip()
-        if not entry or entry.startswith("#"):
+        pattern = line.strip()
+        if not pattern or pattern.startswith("#"):
             continue
 
-        relative = PurePosixPath(entry)
-        if relative.is_absolute() or ".." in relative.parts:
-            raise ValueError(f"{FILES_LIST}:{line_number}: path must stay inside the repository: {entry}")
+        try:
+            regex = re.compile(pattern)
+        except re.error as error:
+            raise ValueError(f"{FILES_LIST}:{line_number}: invalid regex: {pattern}") from error
 
-        source = root.joinpath(*relative.parts)
-        if not source.is_file():
-            raise ValueError(f"{FILES_LIST}:{line_number}: file does not exist: {entry}")
-        files.append((source, Path(*relative.parts)))
+        for source in root.rglob("*"):
+            if source.is_file() and regex.fullmatch(source.relative_to(root).as_posix()):
+                files.append((source, source.relative_to(root)))
     return files
 
 
@@ -66,6 +67,8 @@ def add(root: Path, ref: str) -> None:
     subprocess.run(["git", "worktree", "add", str(destination), ref], cwd=root, check=True)
     try:
         for source, relative in files:
+            if not source.is_file():
+                continue
             target = destination / relative
             target.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy2(source, target)

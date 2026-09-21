@@ -48,5 +48,6 @@ zsh-autosuggestions/
 zsh-syntax-highlighting/
 nvim/lazy-lock.json
 bin/__pycache__/
+git/__pycache__/**
 codex/skills/.system
 agent/extensions/herdr-agent-state.ts
