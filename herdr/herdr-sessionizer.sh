@@ -10,7 +10,7 @@ project_title() {
   local path=$1 root
 
   path=${path:A}
-  for root in "$HOME/work" "$HOME/personal"; do
+  for root in "$HOME/work" "$HOME/personal" "$HOME/workspace"; do
     [[ -d $root && $path == "${root:A}"/* ]] || continue
     print -r -- "${root:t}/${path#${root:A}/}"
     return
