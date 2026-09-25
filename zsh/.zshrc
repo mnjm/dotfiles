@@ -95,7 +95,6 @@ if (( $+commands[fzf] )); then
   bindkey '\ec' undefined-key
   zle -N _fzf-cdprev-widget
   bindkey '^o' fzf-cd-widget
-  bindkey '^f' fzf-file-widget
   bindkey '^\' _fzf-cdprev-widget
 fi
 
@@ -126,3 +125,11 @@ fi
 # zsh-syntax-highlighting must load after all widgets and bindings.
 [[ -r "$ZDOTDIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]] && \
   source "$ZDOTDIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+
+# Bind after selecting the editing mode and loading plugins so Ctrl-F never
+# falls back to forward-char, which accepts an autosuggestion.
+if (( $+commands[fzf] )); then
+  bindkey -M emacs '^f' fzf-file-widget
+  bindkey -M viins '^f' fzf-file-widget
+  bindkey -M vicmd '^f' fzf-file-widget
+fi
