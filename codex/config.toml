@@ -167,6 +167,45 @@ trust_level = "trusted"
 [projects."/home/mnjm/work/scratch-pad"]
 trust_level = "trusted"
 
+[projects."/home/noshai/workspace/temporal-classification-kamal"]
+trust_level = "trusted"
+
+[projects."/mnt/nvme/Pasta"]
+trust_level = "trusted"
+
+[projects."/home/noshai/workspace/temporal-classification-consistency"]
+trust_level = "trusted"
+
+[projects."/home/noshai/workspace/ai-cv-trainer-pth-priyanshu"]
+trust_level = "trusted"
+
+[projects."/home/noshai/workspace/foundation_model"]
+trust_level = "trusted"
+
+[projects."/mnt/nvme/cauliflower"]
+trust_level = "trusted"
+
+[projects."/home/noshai/workspace/consistency/labelling_tool"]
+trust_level = "trusted"
+
+[projects."/home/noshai/workspace/potato_geometry"]
+trust_level = "trusted"
+
+[projects."/mnt/nvme"]
+trust_level = "trusted"
+
+[projects."/home/noshai/workspace/consistency"]
+trust_level = "trusted"
+
+[projects."/home/noshai/workspace/scratch-pad/potato"]
+trust_level = "trusted"
+
+[projects."/home/noshai/workspace/ai-cv-trainer-pth-kamal"]
+trust_level = "trusted"
+
+[projects."/home/noshai/workspace"]
+trust_level = "trusted"
+
 [desktop]
 conversationDetailMode = "STEPS_COMMANDS"
 ambient-suggestions-enabled = false
