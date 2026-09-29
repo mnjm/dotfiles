@@ -11,10 +11,32 @@ set autoquit true
 set previewer '~/.config/lf/preview.sh'
 
 cmd open ${{
-    test -L $f && f=$(readlink -f $f)
-    case $(file --mime-type $f -b) in
+    case $(file --mime-type "$f" -b) in
         text/*) $EDITOR $fx;;
-        *) for f in $fx; do setsid $OPENER $f > /dev/null 2> /dev/null & done;;
+        *)
+            opener() {
+                case $(uname) in
+                    Darwin) open "$@";;
+                    Linux)
+                        if command -v xdg-open >/dev/null 2>&1; then
+                            xdg-open "$@"
+                        elif command -v gio >/dev/null 2>&1; then
+                            gio open "$@"
+                        elif grep -qi microsoft /proc/version 2>/dev/null && command -v explorer.exe >/dev/null 2>&1; then
+                            explorer.exe "$@"
+                        else
+                            echo "lf: No opener found (install xdg-utils or gio)" >&2
+                            return 1
+                        fi
+                        ;;
+                    *)
+                        echo "lf: Unsupported OS: $(uname)" >&2
+                        return 1
+                        ;;
+                esac
+            }
+            opener $fx > /dev/null 2> /dev/null &
+            ;;
     esac
 }}
 
