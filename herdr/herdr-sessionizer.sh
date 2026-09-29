@@ -2,6 +2,7 @@
 
 typeset selected kind title display_name target project_dir project_path workspace_id workspace_name workspace_path
 typeset -a entries
+typeset -a project_dirs=("$HOME/work" "$HOME/personal" "$HOME/workspace")
 typeset -A seen_titles
 typeset dir_icon="  "
 typeset workspace_icon="  "
@@ -10,7 +11,7 @@ project_title() {
   local path=$1 root
 
   path=${path:A}
-  for root in "$HOME/work" "$HOME/personal" "$HOME/workspace"; do
+  for root in "${project_dirs[@]}"; do
     [[ -d $root && $path == "${root:A}"/* ]] || continue
     print -r -- "${root:t}/${path#${root:A}/}"
     return
@@ -39,7 +40,7 @@ done < <(
   '
 )
 
-for project_dir in "$HOME/work" "$HOME/personal"; do
+for project_dir in "${project_dirs[@]}"; do
   [[ -d $project_dir ]] || continue
 
   for project_path in "$project_dir"/*(/N); do
