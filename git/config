@@ -89,6 +89,9 @@
 [includeIf "gitdir:~/work/"]
     path = ~/.config/git/work.gitconfig
 
+[includeIf "gitdir:~/workspace/"]
+    path = ~/.config/git/work.gitconfig
+
 [includeIf "gitdir:~/personal/"]
     path = ~/.config/git/personal.gitconfig
 
