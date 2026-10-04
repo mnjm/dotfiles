@@ -14,7 +14,7 @@ FILES_LIST = "worktree-files.list"
 
 
 def usage() -> None:
-    print(f"Usage: {Path(sys.argv[0]).name} {{add|remove|list}} [branch-or-ref]", file=sys.stderr)
+    print(f"Usage: {Path(sys.argv[0]).name} {{add|remove|list}} [branch-or-ref] [--force|-f (remove only)]", file=sys.stderr)
     raise SystemExit(1)
 
 
@@ -77,8 +77,28 @@ def add(root: Path, ref: str) -> None:
         raise
 
 
-def remove(root: Path, ref: str) -> None:
-    subprocess.run(["git", "worktree", "remove", str(worktree_path(root, ref))], cwd=root, check=True)
+def remove(root: Path, ref: str, force: bool = False) -> None:
+    destination = worktree_path(root, ref)
+    worktrees = git_output("worktree", "list", "--porcelain", "-z", cwd=root)
+    branch = ref if ref.startswith("refs/heads/") else f"refs/heads/{ref}"
+    for record in worktrees.split("\0\0"):
+        fields = record.split("\0")
+        if f"branch {branch}" in fields:
+            destination = Path(fields[0].removeprefix("worktree "))
+            break
+
+    if force:
+        if f"worktree {destination}" not in worktrees.split("\0"):
+            if destination.is_symlink():
+                destination.unlink()
+            elif destination.exists():
+                shutil.rmtree(destination)
+            return
+
+    args = ["git", "worktree", "remove"]
+    if force:
+        args.append("--force")
+    subprocess.run([*args, str(destination)], cwd=root, check=True)
 
 
 def main() -> None:
@@ -92,14 +112,18 @@ def main() -> None:
         subprocess.run(["git", "worktree", "list"], check=True)
         return
 
-    if len(sys.argv) != 3 or not sys.argv[2]:
+    refs = sys.argv[2:]
+    force = command == "remove" and any(arg in {"--force", "-f"} for arg in refs)
+    if force:
+        refs = [arg for arg in refs if arg not in {"--force", "-f"}]
+    if len(refs) != 1 or not refs[0] or refs[0].startswith("-"):
         usage()
 
     root = repository_root()
     if command == "add":
-        add(root, sys.argv[2])
+        add(root, refs[0])
     else:
-        remove(root, sys.argv[2])
+        remove(root, refs[0], force=force)
 
 
 if __name__ == "__main__":
