@@ -217,6 +217,42 @@ trust_level = "trusted"
 [projects."/home/mnjm/work/nosh-dish-recommendation-v2"]
 trust_level = "trusted"
 
+[projects."/home/mnjm/work/tray_wrap"]
+trust_level = "trusted"
+
+[projects."/home/mnjm/Downloads/egg_segmentation"]
+trust_level = "trusted"
+
+[projects."/home/mnjm/Downloads/cv_eggs"]
+trust_level = "trusted"
+
+[projects."/home/mnjm/Downloads/EGG-DETECTION-AND-SEGMENTATION"]
+trust_level = "trusted"
+
+[projects."/home/mnjm/work/scratch-pad/cv-intern-assignments/Saksham-Chauhan"]
+trust_level = "trusted"
+
+[projects."/home/mnjm/work/scratch-pad/cv-intern-assignments/Swayam-Singh"]
+trust_level = "trusted"
+
+[projects."/home/mnjm/work/scratch-pad/cv-intern-assignments/Soham-Saha"]
+trust_level = "trusted"
+
+[projects."/home/mnjm/work/scratch-pad/cv-intern-assignments/Siddharth-Sharma"]
+trust_level = "trusted"
+
+[projects."/home/mnjm/work/scratch-pad/cv-intern-assignments/Neeraj-N"]
+trust_level = "trusted"
+
+[projects."/home/mnjm/work/scratch-pad/cv-intern-assignments/Neeraj-N/Prem-Reddy-YS"]
+trust_level = "trusted"
+
+[projects."/home/mnjm/personal/vit"]
+trust_level = "trusted"
+
+[projects."/home/mnjm/personal/resume"]
+trust_level = "trusted"
+
 [desktop]
 conversationDetailMode = "STEPS_COMMANDS"
 ambient-suggestions-enabled = false
