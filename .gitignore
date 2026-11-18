@@ -35,6 +35,21 @@ codex/*
 !codex/AGENTS.md
 !codex/config.toml
 
+# Claude Code: whitelist only portable config (no credentials, history,
+# sessions, caches, plugins, synced skills, or .claude.json state)
+!claude/
+claude/*
+!claude/settings.json
+!claude/CLAUDE.md
+!claude/agents/
+!claude/agents/**
+!claude/commands/
+!claude/commands/**
+!claude/hooks/
+!claude/hooks/**
+!claude/keybindings.json
+claude/settings.local.json
+
 !.gitignore
 !README.md
 

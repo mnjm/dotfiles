@@ -71,6 +71,9 @@
 [color]
     ui = auto
 
+[diff]
+    tool = nvimdiff
+
 [difftool]
     prompt = true
 
