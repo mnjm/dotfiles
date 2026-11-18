@@ -69,6 +69,7 @@ hooks = true
 js_repl = false
 
 [mcp_servers.node_repl]
+enabled = false
 args = []
 command = "/usr/lib/chatgpt/resources/cua_node/bin/node_repl"
 env_vars = ["BROWSER_USE_ACCESS_EXECUTOR_ID", "BROWSER_USE_ACCESS_PIPE_PATH", "BROWSER_USE_ACCESS_VERIFYING_IDENTITY"]
