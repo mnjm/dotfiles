@@ -41,6 +41,10 @@ codex/*
 claude/*
 !claude/settings.json
 !claude/CLAUDE.md
+!claude/skills/
+claude/skills/*
+!claude/skills/*
+claude/skills/synced
 !claude/agents/
 !claude/agents/**
 !claude/commands/
