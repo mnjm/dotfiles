@@ -14,7 +14,7 @@ FILES_LIST = "worktree-files.list"
 
 
 def usage() -> None:
-    print(f"Usage: {Path(sys.argv[0]).name} {{add|remove|list}} [branch-or-ref]", file=sys.stderr)
+    print(f"Usage: {Path(sys.argv[0]).name} {{add|remove|list}} [branch-or-ref-or-path] [--force|-f (remove only)]", file=sys.stderr)
     raise SystemExit(1)
 
 
@@ -77,8 +77,60 @@ def add(root: Path, ref: str) -> None:
         raise
 
 
-def remove(root: Path, ref: str) -> None:
-    subprocess.run(["git", "worktree", "remove", str(worktree_path(root, ref))], cwd=root, check=True)
+def remove(root: Path, ref: str, force: bool = False) -> None:
+    worktrees = git_output("worktree", "list", "--porcelain", "-z", cwd=root)
+    records = [record.split("\0") for record in worktrees.split("\0\0") if record]
+    main_root = Path(records[0][0].removeprefix("worktree "))
+    destination = worktree_path(main_root, ref)
+    explicit_path = Path(ref).resolve()
+    branch = ref if ref.startswith("refs/heads/") else f"refs/heads/{ref}"
+    destination_fields = next(
+        (fields for fields in records if fields[0] == f"worktree {explicit_path}"),
+        None,
+    )
+    if destination_fields is None:
+        destination_fields = next(
+            (fields for fields in records if f"branch {branch}" in fields),
+            None,
+        )
+    if destination_fields is None:
+        destination_fields = next(
+            (fields for fields in records if fields[0] == f"worktree {destination}"),
+            None,
+        )
+    if destination_fields is None:
+        revision = subprocess.run(
+            ["git", "rev-parse", "--verify", "--quiet", f"{ref}^{{commit}}"],
+            cwd=root, text=True, capture_output=True,
+        )
+        if revision.returncode == 0:
+            matches = [fields for fields in records if f"HEAD {revision.stdout.strip()}" in fields]
+            if len(matches) > 1:
+                print(f"Multiple worktrees match {ref}; specify a worktree path:", file=sys.stderr)
+                for fields in matches:
+                    print(fields[0].removeprefix("worktree "), file=sys.stderr)
+                raise SystemExit(1)
+            if matches:
+                destination_fields = matches[0]
+    if destination_fields is not None:
+        destination = Path(destination_fields[0].removeprefix("worktree "))
+
+    if force:
+        locked = any(field == "locked" or field.startswith("locked ") for field in destination_fields or [])
+        if destination_fields is None or (
+            destination_fields is not records[0] and not (destination / ".git").exists() and not locked
+        ):
+            if destination.is_symlink():
+                destination.unlink()
+            elif destination.exists():
+                shutil.rmtree(destination)
+            if destination_fields is None:
+                return
+
+    args = ["git", "worktree", "remove"]
+    if force:
+        args.append("--force")
+    subprocess.run([*args, str(destination)], cwd=root, check=True)
 
 
 def main() -> None:
@@ -92,15 +144,22 @@ def main() -> None:
         subprocess.run(["git", "worktree", "list"], check=True)
         return
 
-    if len(sys.argv) != 3 or not sys.argv[2]:
+    refs = sys.argv[2:]
+    force = command == "remove" and any(arg in {"--force", "-f"} for arg in refs)
+    if force:
+        refs = [arg for arg in refs if arg not in {"--force", "-f"}]
+    if len(refs) != 1 or not refs[0] or refs[0].startswith("-"):
         usage()
 
     root = repository_root()
     if command == "add":
-        add(root, sys.argv[2])
+        add(root, refs[0])
     else:
-        remove(root, sys.argv[2])
+        remove(root, refs[0], force=force)
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except subprocess.CalledProcessError as error:
+        raise SystemExit(error.returncode)

@@ -8,6 +8,7 @@ export HISTSIZE=10000
 export SAVEHIST=10000
 export CODEX_HOME="$XDG_CONFIG_HOME/codex"
 export PI_CODING_AGENT_DIR="$XDG_CONFIG_HOME/pi/agent"
+export CLAUDE_CONFIG_DIR="$XDG_CONFIG_HOME/claude"
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 
 # Machine-specific settings stay out of version control.

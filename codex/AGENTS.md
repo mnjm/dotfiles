@@ -64,7 +64,7 @@ For multi-step tasks, use a brief plan:
 2. [Step] → verify: [check]
 3. [Step] → verify: [check]
 
-## 5. Always apply Unslop
+## 5. Unslop the response
 
 Before composing any user-facing prose, apply these rules after all higher-priority requirements.
 

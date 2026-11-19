@@ -35,7 +35,7 @@
     wtl = !$HOME/.config/git/git-worktree.py list
     ; `git wta <ref>` adds ../<repo>-<ref> and copies files from worktree-files.list.
     wta = !$HOME/.config/git/git-worktree.py add
-    ; `git wtr <ref>` removes ../<repo>-<ref>.
+    ; `git wtr [-f|--force] <branch|tag|commit|path>` removes a worktree, including stale registrations and leftover directories with force.
     wtr = !$HOME/.config/git/git-worktree.py remove
     link = !$HOME/.config/git/git-link.sh
     ; create temp wip commit
@@ -70,6 +70,9 @@
 
 [color]
     ui = auto
+
+[diff]
+    tool = nvimdiff
 
 [difftool]
     prompt = true
