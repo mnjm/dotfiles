@@ -54,7 +54,7 @@ done
 
 (( $#entries )) || exit 0
 
-selected=$(printf '%s\n' "${entries[@]}" | fzf --reverse --no-multi \
+selected=$(printf '%s\n' "${entries[@]}" | fzf --reverse --no-multi --no-sort \
   --delimiter=$'\t' --with-nth=3)
 [[ -n $selected ]] || exit 0
 

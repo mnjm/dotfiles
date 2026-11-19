@@ -1,4 +1,4 @@
-model = "gpt-6.1-sol"
+model = "gpt-6-luna"
 model_reasoning_effort = "medium"
 service_tier = "default"
 
@@ -359,6 +359,9 @@ trust_level = "trusted"
 trust_level = "trusted"
 
 [projects."/home/mnjm/work/hiring/data/genai-intern/assignments/Anshu Saini"]
+trust_level = "trusted"
+
+[projects."/home/mnjm/work/party-planner"]
 trust_level = "trusted"
 
 [desktop]
