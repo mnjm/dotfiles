@@ -1,5 +1,5 @@
 {
-  "model": "sonnet",
+  "model": "opus",
   "statusLine": {
     "type": "command",
     "command": "input=$(cat); m=$(echo \"$input\" | jq -r '.model.display_name'); e=$(echo \"$input\" | jq -r '.effort.level // empty'); r=$(echo \"$input\" | jq -r '.context_window.remaining_percentage // empty'); f=$(echo \"$input\" | jq -r '.rate_limits.five_hour.used_percentage // empty'); w=$(echo \"$input\" | jq -r '.rate_limits.seven_day.used_percentage // empty'); out=\"$m\"; [ -n \"$e\" ] && out=\"$out ($e)\"; [ -n \"$r\" ] && out=\"$out $(printf '%.0f' \"$r\")%\" || out=\"$out ?%\"; [ -n \"$f\" ] && out=\"$out 5H:$(printf '%.0f' \"$(awk -v u=\"$f\" 'BEGIN{print 100-u}')\")%\" || out=\"$out 5H:?%\"; [ -n \"$w\" ] && out=\"$out W:$(printf '%.0f' \"$(awk -v u=\"$w\" 'BEGIN{print 100-u}')\")%\" || out=\"$out W:?%\"; echo \"$out\""
