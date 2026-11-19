@@ -14,6 +14,7 @@ status_line_use_colors = true
 keymap.global.open_external_editor = "ctrl-e"
 keymap.editor.move_line_end = "ctrl-g"
 screen_reader_detection_done = true
+session_picker_view = "comfortable"
 
 [tui.model_availability_nux]
 "gpt-5.6-sol" = 4
@@ -216,6 +217,51 @@ trust_level = "trusted"
 [projects."/home/noshai/workspace"]
 trust_level = "trusted"
 
+[projects."/home/noshai/work/sticking-det"]
+trust_level = "trusted"
+
+[projects."/home/noshai/workspace/temporal_labelling_tool"]
+trust_level = "trusted"
+
+[projects."/home/noshai/workspace/recipes-chatbot"]
+trust_level = "trusted"
+
+[projects."/home/noshai/workspace/scratch-pad"]
+trust_level = "trusted"
+
+[projects."/home/noshai/workspace/sessions_dataprep"]
+trust_level = "trusted"
+
+[projects."/home/noshai/workspace/nosh_device_app_integrated"]
+trust_level = "trusted"
+
+[projects."/home/noshai/workspace/temporal-classification"]
+trust_level = "trusted"
+
+[projects."/home/noshai/workspace/ai-cv-trainer-pth"]
+trust_level = "trusted"
+
+[projects."/home/noshai/workspace/kamal/ingredient-cooking-funcitons-py"]
+trust_level = "trusted"
+
+[projects."/home/noshai/workspace/cooking_modeling"]
+trust_level = "trusted"
+
+[projects."/home/noshai/work/foundation_model"]
+trust_level = "trusted"
+
+[projects."/home/noshai/workspace/ingredient-cooking-funcitons-py"]
+trust_level = "trusted"
+
+[projects."/mnt/nvme/Potato"]
+trust_level = "trusted"
+
+[projects."/home/noshai/workspace/bubble_detection"]
+trust_level = "trusted"
+
+[projects."/home/noshai/workspace/kamal/ozempic"]
+trust_level = "trusted"
+
 [projects."/home/mnjm/work/recommendation-code"]
 trust_level = "trusted"
 
@@ -329,6 +375,3 @@ enabled = true
 
 [notice]
 hide_rate_limit_model_nudge = true
-
-[apps.connector_5f3c8c41a1e54ad7a76272c89e2554fa.tools."google_drive.batch_update_spreadsheet"]
-approval_mode = "approve"

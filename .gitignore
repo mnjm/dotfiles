@@ -65,6 +65,7 @@ ghostty/config.local
 .zshrc_local
 zsh-autosuggestions/
 zsh-syntax-highlighting/
+zsh/kamal
 nvim/lazy-lock.json
 bin/__pycache__/
 git/__pycache__/**
