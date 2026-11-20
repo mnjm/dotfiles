@@ -52,6 +52,7 @@ claude/skills/synced
 !claude/hooks/
 !claude/hooks/**
 !claude/keybindings.json
+!claude/statusline.sh
 claude/settings.local.json
 
 !.gitignore
